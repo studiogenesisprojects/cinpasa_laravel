@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="Grupo_209" data-name="Grupo 209" transform="translate(-1139 -6666)">
+    <g id="Grupo_208" data-name="Grupo 208" transform="translate(-203 6655)">
+      <circle id="Elipse_10" data-name="Elipse 10" cx="11" cy="11" r="11" transform="translate(1346 15)" fill="#fff"/>
+      <path id="Exclusión_4" data-name="Exclusión 4" d="M15,0A15,15,0,1,1,0,15,15,15,0,0,1,15,0Z" transform="translate(1342 11)" fill="#dd2a7b"/>
+    </g>
+    <g id="Icon_feather-instagram" data-name="Icon feather-instagram" transform="translate(1143.198 6670.198)">
+      <path id="Trazado_39" data-name="Trazado 39" d="M6.9,3h7.8a3.9,3.9,0,0,1,3.9,3.9v7.8a3.9,3.9,0,0,1-3.9,3.9H6.9A3.9,3.9,0,0,1,3,14.7V6.9A3.9,3.9,0,0,1,6.9,3Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Trazado_40" data-name="Trazado 40" d="M18.273,14.6a3.121,3.121,0,1,1-2.629-2.629A3.121,3.121,0,0,1,18.273,14.6Z" transform="translate(-4.35 -4.287)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Trazado_41" data-name="Trazado 41" d="M26.25,9.75h0" transform="translate(-11.157 -3.239)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

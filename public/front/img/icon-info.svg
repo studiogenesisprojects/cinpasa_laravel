@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_950" data-name="Rectángulo 950" width="24" height="24" transform="translate(-13032 2316)" fill="none" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Enmascarar_grupo_18" data-name="Enmascarar grupo 18" transform="translate(13032 -2316)" clip-path="url(#clip-path)">
+    <path id="Icon_metro-info" data-name="Icon metro-info" d="M12.737,8.827a1.092,1.092,0,0,1,1.089-1.089h.726a1.092,1.092,0,0,1,1.089,1.089v.726a1.092,1.092,0,0,1-1.089,1.089h-.726a1.092,1.092,0,0,1-1.089-1.089Zm4.357,10.53h-5.81V17.9h1.452V13.547H11.285V12.095h4.357V17.9h1.452ZM14.19,1.928A11.619,11.619,0,1,0,25.809,13.547,11.619,11.619,0,0,0,14.19,1.928Zm0,21.06a9.441,9.441,0,1,1,9.441-9.441A9.441,9.441,0,0,1,14.19,22.988Z" transform="translate(-13033.801 2314.363)" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_951" data-name="Rectángulo 951" width="24" height="24" transform="translate(-12988 2316)" fill="none" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Enmascarar_grupo_19" data-name="Enmascarar grupo 19" transform="translate(12988 -2316)" clip-path="url(#clip-path)">
+    <path id="Icon_feather-heart" data-name="Icon feather-heart" d="M18.937,5.89a4.726,4.726,0,0,0-6.7,0l-.913.916-.913-.916a4.745,4.745,0,1,0-6.7,6.721l.913.916,6.7,6.721,6.7-6.721.913-.916A4.762,4.762,0,0,0,18.937,5.89Z" transform="translate(-12987.113 2315.52)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+</svg>

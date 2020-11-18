@@ -1,0 +1,370 @@
+@extends('front.common.main')
+@section('meta-title', $product->lang(App::getLocale())->seo_title ?? $product->lang(App::getLocale())->title)
+@section('meta-description', $product->lang(App::getLocale())->seo_description ?? $product->lang(App::getLocale())->description )
+
+@section('content')
+<section id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 my-5 d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb no-bg pt-2 pb-0 px-0" style="background-color: white;">
+                        <li class="breadcrumb-item text-uppercase text-muted"><a class=""
+                                href="./">{{__('Comun.ruta_navegacion_inicio')}}</a></li>
+                        <li class="breadcrumb-item text-uppercase text-muted " aria-current="page">
+                            <a href="{{LaravelLocalization::localizeUrl('/productos')}}">{{__('Encabezado.productos')}}
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item text-uppercase text-muted ">
+                            <a
+                                href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.show', ['productCategory' => $productCategory->lang(App::getLocale())->slug])}}">
+                                {{$productCategory->lang()->name}} </a>
+                        </li>
+                        <li class="breadcrumb-item text-uppercase text-muted active"> {{$product->name}}</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-lg-7 col-10 offset-lg-0 offset-1 order-lg-1 order-2 mt-lg-0 mt-5">
+                <div id="carousel-token" class="carousel slide carousel-token" data-ride="carousel"
+                    data-interval="false">
+                    <div class="carousel-inner">
+                        @if ($product->primaryImage)
+                        <div class="carousel-item active">
+                            <figure class="bg-cover bg-lg box-list__figure">
+                                <img src="@if(!empty($product->primaryImage->path)){{ route('carousel.getImage', str_replace("/",";",$product->primaryImage->path))}}@else{{Storage::url('/img/nofoto.png')}}@endif" alt="@empty($product->primaryImage->alt) {{ $product->name }} @else {{  $product->primaryImage->alt}} @endempty" class="box-product__carousel">
+                            </figure>
+                        </div>
+                        @endif
+                        @if($product->galeries->first())
+                        @foreach ($product->galeries->first()->images as $image)
+                        <div class="carousel-item {{(!$product->primaryImage && $loop->first) ? 'active' : ''}}">
+                            <figure class="bg-cover bg-lg box-list__figure">
+                                <img src="@if(!empty($image->path)){{Storage::url($image->path)}}@else{{Storage::url('/img/nofoto.png')}}@endif" alt="@empty($image->alt) {{ $product->name }} @else {{  $image->alt}} @endempty" class="box-product__carousel">
+                            </figure>
+                        </div>
+                        @endforeach
+                        @endif
+                        @if($product->video)
+                        <div class="carousel-item">
+                            <figure class="bg-cover bg-lg">
+                                <iframe title="video producto" width="100%" height="100%"
+                                    src="https://www.youtube.com/embed/{{$product->video}}" frameborder="0"
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </figure>
+                        </div>
+                        @endif
+                    </div>
+                    <ol class="carousel-indicators">
+                        @if ($product->primaryImage)
+                        <li data-target="#carousel-token" data-slide-to="0" class="active col">
+                            <figure class="bg-cover bg-sm"
+                                style="background-image:@if(!empty($product->primaryImage->path)) url('{{route('carousel.getImage', str_replace("/",";",$product->primaryImage->path))}}')@else url('{{Storage::url('/img/nofoto.png')}}')@endif">
+                            </figure>
+                        </li>
+                        @endif
+                        @if ($product->galeries->first())
+                        @foreach ($product->galeries->first()->images as $i => $image)
+                        <li data-target="#carousel-token" data-slide-to="{{$product->primaryImage ? $i+1 : $i}}"
+                            class="{{$loop->first && !$product->primaryImage ? 'active' : ''}} col">
+                            <figure class="bg-cover bg-sm"
+                                style="background-image: @if(!empty($image->path)) url('{{route('carousel.getImage', str_replace("/",";",$image->path))}}')@else url('{{Storage::url('/img/nofoto.png')}}')@endif">
+                            </figure>
+                        </li>
+                        @endforeach
+                        @endif
+                        @if($product->video)
+                        <li data-target="#carousel-token"
+                            data-slide-to="{{ $product->galeries->first()->images->count() +1  }}" class="col">
+                            <figure class="bg-cover bg-sm"
+                                style="background-image: url(https://img.youtube.com/vi/{{$product->video}}/default.jpg)">
+                                <span class="video"><img src="{{Storage::url('/img/video.svg')}}" alt="video"
+                                        class="img-fluid"></span>
+                            </figure>
+                        </li>
+                        @endif
+                    </ol>
+                    <div class="carousel-control-prev bg-lg" data-target="#carousel-token" role="button"
+                        data-slide="prev">
+                        <i class="fi-xnllxl-chevron fi-3x"></i>
+                        <span class="sr-only">Previous</span>
+                    </div>
+                    <div class="carousel-control-next bg-lg" data-target="#carousel-token" role="button"
+                        data-slide="next">
+                        <i class="fi-xnlrxl-chevron fi-3x"></i>
+                        <span class="sr-only">Next</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 d-flex flex-column justify-content-between order-lg-2 order-1">
+                <div>
+                    <h3 class="font-bold before-title mt-4">{{$product->name}}</h3>
+                    <p class="mt-3">{!! $product->lang()->description !!}</p>
+                </div>
+                <br>
+                <div class="d-lg-block d-none">
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <p class="small py-3">Compartir</p>
+                            <div class="share-btn mt-2">
+                                <a class="btn-whatsapp" title="comparteix a whatsapp"
+                                    href="whatsapp://send?text=<?php echo URL::current(); ?>" data-action="share/whatsapp/share"
+                                    target="_blank"><img  class="mr-3" src="{{ asset('front/img/whatsapp.svg') }}" alt="icono whatsapp"></a>
+                                <a class="btn-facebook" title="comparteix a facebook"
+                                    href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL::current(); ?>"
+                                    target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-facebook.svg') }}" alt="icono facebook"></a>
+                                <a class="btn-twitter" title="comparteix a twitter"
+                                    href="https://twitter.com/home?status=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-twitter.svg') }}" alt="icono twitter"></a>
+                                <a class="btn-linkedin" title="comparteix a linkedin"
+                                    href="https://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=<?php echo URL::current(); ?>"
+                                    target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn-pinterest" title="comparteix a pinterest"
+                                    href="https://pinterest.com/pin/create/button/?url=<?php echo URL::current(); ?>&media=&description=<?php echo URL::current(); ?>"><img class="mr-3" src="{{ asset('front/img/icon-pinterest.svg') }}" alt="icono pinterest"></a>
+
+                            </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-end py-3">
+                        <p class="btn btn-third">Añadir a favoritos</p>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        @if(isset($product_caracteristics))
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <hr>
+                <p class="font-bold color-black mt-4">CARACTERÍSTICAS</p>
+                <div class="row mt-4">
+                    @if($product->materials)
+                    <div class="col-6">
+                        <p class="small color-primary">Material</p>
+                        @foreach($product->materials as $material)
+                            <p class="color-primary">{{$material->name}}</p>
+                        @endforeach
+                    </div>
+                    @endif
+                    @if($product_caracteristics->rapport)
+                    <div class="col-6">
+                        <p class="small color-primary">Rapport</p>
+                        <p class="color-primary">{{$product_caracteristics->rapport}}</p>
+                    </div>
+                    @endif
+                    @if($product_caracteristics->pockets)
+                    <div class="col-6 mt-5">
+                        <p class="small color-primary">Nº Bolsillos</p>
+                        <p class="color-primary">{{$product_caracteristics->pockets}}</p>
+                    </div>
+                    @endif
+                    @if($product_caracteristics->laces)
+                    <div class="col-6 mt-5">
+                        <p class="small color-primary">Nº Cordones</p>
+                        <p class="color-primary">{{$product_caracteristics->pockets}}</p>
+                    </div>
+                    @endif
+                    @if($product_caracteristics->packaging)
+                    <div class="col-6 mt-5">
+                        <p class="small color-primary">Envases</p>
+                        <p class="color-primary">{{$product_caracteristics->packaging}}</p>
+                    </div>
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-6 mt-md-0 mt-5">
+                <hr>
+                <p class="font-bold color-black mt-4">REFERENCIAS Y DIÁMETROS</p>
+                <div class="row mt-4">
+                    @if($product_caracteristics->width)
+                    <div class="col-6 ">
+                        <p class="small color-primary">Ancho</p>
+                        <p class="color-primary">{{$product_caracteristics->width}} mm</p>
+                    </div>
+                    @endif
+                    @if($product_caracteristics->bags)
+                    <div class="col-6 ">
+                        <p class="small color-primary">Bolsas</p>
+                        <p class="color-primary">{{$product_caracteristics->bags}}</p>
+                    </div>
+                    @endif
+                    @if($product_caracteristics->length)
+                    <div class="col-6 mt-5">
+                        <p class="small color-primary">Largo</p>
+                        <p class="color-primary">{{$product_caracteristics->length}} cm</p>
+                    </div>
+                    @endif
+                    @if($product_caracteristics->flecortin_head)
+                    <div class="col-6 mt-5">
+                        <p class="small color-primary">Cabezal FleCortin</p>
+                        <p class="color-primary">{{$product_caracteristics->flecortin_head}}</p>
+                    </div>
+                    @endif
+                    @if($product_caracteristics->flecortin_width)
+                    <div class="col-6 mt-5">
+                        <p class="small color-primary">Ancho FleCortin</p>
+                        <p class="color-primary">{{$product_caracteristics->flecortin_width}}</p>
+                    </div>
+                    @endif
+                    <div class="col-6 mt-5">
+                        <p class="small color-primary">Diámetro</p>
+                        @php
+                        $references = collect($product->references)->sortBy('diametro')->toArray();
+                        @endphp
+
+                        @foreach ($references as $reference)
+                        <p class="color-primary">{{$reference['referencia']}}
+                            ({{$product->form->id !== 23550 ? 'Ø ' : '' }}{{$reference['diametro']}} MM)</p>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        <hr class="mt-4">
+        <div class="row">
+            <div class="col-12 mt-5">
+                <p class="font-bold color-black"><strong>{{__('Productos.producto_mostrar_colores')}}</strong></p>
+                <p class="mt-3">{{__('Productos.producto_mostrar_colores_texto2')}}</p>
+            </div>
+            <div class="col-12 mt-5 d-flex flex-wrap">
+                @foreach ($colorCategories as $colorCategory)
+                    @foreach ($colorCategory->colors as $color)
+                        <a href="#" title="Más información sobre el color" class="card-color p-2 mr-3 mt-2 show-color-modal" data-toggle="modal" cc="{{$colorCategory->id}}" id="{{$color->id}}"
+                            data-target="#modal-color" >
+                            <div class="color" style="background:#{{$color->hex_color}}">
+                                <img class="position-absolute t-0 r-0 background-blue p-1 icon-plus-color" src="{{ asset('front/img/icon-plus.svg') }}" alt="icono más">
+                            </div>
+                            <p class="small-xs font-semibold mt-2">{{$color->name}}</p>
+                        </a>
+                    @endforeach
+                @endforeach
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <hr>
+                <p class="font-bold color-black">{{__('Productos.producto_mostrar_acabados')}}</p>
+            </div>
+            @foreach ($finishedColumns as $cols)
+            <div class="col-lg-4 col-sm-6 mt-5">
+                    @foreach ($cols as $finished)
+                    <p class="color-black mb-3">{{$finished->lang()->name}}</p>
+                    <hr>
+                    @endforeach
+            </div>
+            @endforeach
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <p class="font-bold color-black">{{__('Productos.producto_mostrar_aplicaciones')}}</p>
+            </div>
+            <div class="col-lg-4 col-md-6 mt-5">
+                @foreach ($applicationCategories as $applicationCategory => $apps)
+                    @foreach ($apps as $app)
+                        <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.applications._show', [
+                            "applicationCategory" => $app->applicationCategories->first()->lang() ? $app->applicationCategories->first()->lang()->slug : "",
+                            "aplication" => $app
+                        ])}}" title="Acceder a la aplicación" class="d-flex justify-content-between align-items-center">
+                            <p class="color-black mb-3">{{$app->lang()->name}}</p>
+                            <img class="mr-sm-0 mr-3" src="{{ asset('front/img/arrow-right.svg') }}" alt="icono flecha derecha">
+                        </a>
+                    @endforeach
+                @endforeach
+                <hr>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@if ($relateds)
+    @include('front.partials.related')
+@endif
+
+{{-- @include('front.common.partials.mid-banner') --}}
+@include('front.common.modals.color')
+@endsection
+
+@push('js')
+<script>
+
+    $('[data-toggle="popover"]').popover({
+        trigger: "hover"
+       });
+
+    $('.favorit').each( (i, e) => {
+        $(e).click( ev => {
+            ev.preventDefault();
+            const id = $(ev.currentTarget).attr('id');
+            axios.post('/fav', {
+                value: id,
+            })
+            .then(r => {
+                if (r.data.action == 'added') {
+                    // $(ev.currentTarget).addClass('active')
+                    $(ev.currentTarget).html('<i class="far fa-trash-alt mr-3"></i></i>' + "{{__('Productos.producto_mostrar_no_favorito')}}")
+                }else{
+                    // $(ev.currentTarget).removeClass('active')
+                    $(ev.currentTarget).html('<i class="far fa-heart mr-3"></i>' + "{{__('Productos.producto_mostrar_favoritos')}}")
+                }
+
+                $('#header-fav-count').html(`(${r.data.count})`)
+            })
+            .catch(e => console.log(e.response))
+        })
+    })
+
+    $('.show-color-modal').each( (i, v) => {
+        $(v).click( e => {
+            var search = "";
+            var id = $(e.currentTarget).attr('id')
+            var cc = $(e.currentTarget).attr('cc')
+            $('#modal-color').modal('toggle')
+
+            axios.get('/colors/ajax/'+id +'/' + cc)
+            .then(r => {
+                $('#color-modal-name').html(r.data.color.name)
+                $('#color-modal-pantone').html(r.data.color.pantone)
+                $('#color-modal-color').css('background-color', '#' + r.data.color.hex_color)
+                $('#color-modal-products').html('');
+                if (r.data.products.length > 0) {
+                    $('#color-modal-products').append(`
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                    `)
+
+                    for(i = 0 ; i < 4; i++){
+
+                        search = "?color=" + r.data.color.id;
+
+                        var image = r.data.products[i]['primaryImage'].path.length != 0 ? encodeURI(r.data.products[i]['primaryImage'].path) : '/img/nofoto.png';
+                        var alt = r.data.products[i]['primaryImage'].alt.length != 0 ? r.data.products[i]['primaryImage'].alt : r.data.products[i]['name'];
+
+                        $('#color-modal-products').append(`
+
+                        <div class="col-md-3 col-6">
+                            <div class="box-product">
+                                <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProductRe', [
+                                    'product' => '${ r.data.products[i].slug}'
+                                ])}}">
+                                    <figure class="border mb-0 square box-product__figure ${ r.data.products[i].class}">
+                                        <img src="{{Storage::url('${image}')}}" class="box-product__img" alt="${r.data.products[i]['name']}">
+                                    </figure>
+                                    <div class="box-product-info">
+                                        <p class="text-primary"><strong>${r.data.products[i]['name']}</strong></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        `)
+                    }
+                }
+            })
+            .catch(e => console.log(e.response))
+        })
+    })
+</script>
+@endpush

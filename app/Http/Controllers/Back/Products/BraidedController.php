@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Http\Controllers\Back\Products;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductsBraidedRequest;
+use App\Models\Language;
+use App\Models\ProductBraided;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
+class BraidedController extends Controller
+{
+    public function index()
+    {
+        $braids = ProductBraided::cursor();
+        return view('back.products.braids.index', compact('braids'));
+    }
+
+    public function update($id = null)
+    {
+        if ($id) {
+            $braid = ProductBraided::find($id);
+        } else {
+            $braid = new ProductBraided;
+        }
+        $languages = Language::all();
+
+        return view('back.products.braids.update', compact('braid', 'languages'));
+    }
+
+    public function handleUpdate(ProductsBraidedRequest $request, $id = null)
+    {
+        try {
+            DB::beginTransaction();
+
+            if ($id) {
+                $braid = ProductBraided::findOrFail($id);
+                $braid->update($request->toArray());
+                foreach (Language::all() as $language) {
+                    $braid->lang($language->id)->update([
+                        'product_braided_id' => $braid->id,
+                        'language_id' => $language->id,
+                        'name' => $request->name[$language->id - 1],
+                        'description' => $request->description[$language->id - 1],
+                    ]);
+                }
+            } else {
+                $braid = ProductBraided::create($request->toArray());
+
+                foreach (Language::all() as $language) {
+                    $braid->languages()->create([
+                        'product_braided_id' => $braid->id,
+                        'language_id' => $language->id,
+                        'name' => $request->name[$language->id - 1],
+                        'description' => $request->description[$language->id - 1],
+                    ]);
+                }
+            }
+            DB::commit();
+
+            return redirect()->route('braidedUpdate', $braid->id);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error('Error: ' . $e->getMessage() . ' ******* Fallo en ' . $e->getFile() . ' ------ En la línea ' . $e->getLine());
+            return redirect()->route('braidedUpdate')->with('error_message', 'No se ha podido realizar la acción.');
+        }
+    }
+
+    public function delete($id)
+    {
+        $braid = ProductBraided::findOrFail($id);
+        $braid->delete();
+
+        return response()->json("ok");
+    }
+}

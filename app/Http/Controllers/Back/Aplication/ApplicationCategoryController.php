@@ -1,0 +1,157 @@
+<?php
+
+namespace App\Http\Controllers\Back\Aplication;
+
+use App\Http\Controllers\Controller;
+use App\Models\ApplicationCategory;
+use App\Models\Language;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+class ApplicationCategoryController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $applicationCategories = ApplicationCategory::orderBy('order')->get();
+        return view('back.aplication.categories.index', compact('applicationCategories'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $languages = Language::all();
+
+        return view('back.aplication.categories.create', compact('languages'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+
+        $applicationCategory = ApplicationCategory::create([]);
+
+        foreach ($request->applications as $application) {
+            !$application['name'] ?: $applicationCategory->languages()->create($application);
+        }
+
+        if ($request->hasFile('image')) {
+            $name = $request->image->getClientOriginalName();
+            Storage::putFileAs('aplicaciones', $request->image, $name);
+            $applicationCategory->update(['image' => 'aplicaciones/' . $request->image]);
+            // Storage::delete($applicationCategory->image);
+        }
+
+        if ($request->hasFile('list_image')) {
+            $name = $request->list_image->getClientOriginalName();
+            Storage::putFileAs('aplicaciones', $request->list_image, $name);
+            $applicationCategory->update(['list_image' => 'aplicaciones/' . $name]);
+            // Storage::delete($applicationCategory->image);
+        }
+
+        return redirect()->route('categorias-aplicaciones.index')->with('success', "Aplicación creada correctamente");
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $applicationCategory = ApplicationCategory::findOrFail($id);
+        $languages = Language::all();
+
+        return view('back.aplication.categories.edit', compact('applicationCategory', 'languages'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $applicationCategory = ApplicationCategory::find($id);
+
+        foreach ($request->applications as $language) {
+            $lang = $applicationCategory->lang((int) $language['language_id']);
+            if ($lang) {
+                $lang->update($language);
+            } else {
+                $lang->create($language);
+            }
+        }
+
+        if ($request->hasFile('image')) {
+            Storage::delete($applicationCategory->image);
+            $name = $request->image->getClientOriginalName();
+            Storage::putFileAs('aplicaciones', $request->image, $name);
+            $applicationCategory->update(['image' => 'aplicaciones/' . $request->image]);
+        }
+
+        if ($request->hasFile('list_image')) {
+            Storage::delete($applicationCategory->list_image);
+            $name = $request->list_image->getClientOriginalName();
+            Storage::putFileAs('aplicaciones', $request->list_image, $name);
+            $applicationCategory->update(['list_image' => 'aplicaciones/' . $name]);
+        }
+
+        return redirect()->route('categorias-aplicaciones.index')->with('success', "Categoría actualizada correctamente");
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $applicationCategory = ApplicationCategory::findOrFail($id);
+
+        Storage::delete($applicationCategory->image);
+        Storage::delete($applicationCategory->list_image);
+
+        $applicationCategory->delete();
+        return response()->json('ok');
+    }
+
+    public function toggleActive($id)
+    {
+        $category = ApplicationCategory::findOrFail($id);
+        $category->update([
+            "active" => !$category->active
+        ]);
+
+        return response()->json(["active" => $category->active]);
+    }
+
+    public function changeOrder(Request $request, $id)
+    {
+        $request->validate([
+            "order" => "required|numeric",
+        ]);
+        $category = ApplicationCategory::findOrFail($id);
+        $category->update([
+            "order" => $request->order,
+        ]);
+        return response()->json(["order" => $category->order]);
+    }
+}
