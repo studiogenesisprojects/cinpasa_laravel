@@ -213,7 +213,7 @@
 
                         @foreach ($references as $reference)
                         <p class="color-primary">{{$reference['referencia']}}
-                            ({{$product->form->id !== 23550 ? 'Ø ' : '' }}{{$reference['diametro']}} MM)</p>
+                            ({{$reference['diametro']}} MM)</p>
                         @endforeach
                     </div>
                 </div>
