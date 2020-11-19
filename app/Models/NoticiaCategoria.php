@@ -95,7 +95,7 @@ class NoticiaCategoria extends TranslatedModel implements LocalizedUrlRoutable
         return $this->lang()->nombre;
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return NoticiaCategoriaLang::where('slug', $value)->first()->noticiaCategoria;
     }

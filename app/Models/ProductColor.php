@@ -60,7 +60,7 @@ class ProductColor extends TranslatedModel implements LocalizedUrlRoutable
         return $this->lang()->name;
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return ProductColorLang::where('slug', $value)->firstOrFail()->productColor;
     }

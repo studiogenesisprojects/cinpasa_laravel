@@ -63,7 +63,7 @@ class ProductCategory extends TranslatedModel implements LocalizedUrlRoutable
         return $this->lang()->slug;
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return ProductCategoryLang::where('slug', $value)->firstOrFail()->productCategory;
     }

@@ -91,7 +91,7 @@ class NoticiaEtiqueta extends TranslatedModel implements LocalizedUrlRoutable
         return $this->lang()->nombre;
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return NoticiaEtiquetaLang::where('slug', $value)->first()->tag;
     }

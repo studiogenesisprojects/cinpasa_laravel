@@ -44,7 +44,7 @@ class ApplicationCategory extends TranslatedModel implements LocalizedUrlRoutabl
         return $this->morphOne(ApplicationHome::class, 'applicationable');
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return ApplicationCategoryLang::where('slug', $value)->firstOrFail()->applicationCategory;
     }

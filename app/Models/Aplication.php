@@ -72,7 +72,7 @@ class Aplication extends TranslatedModel implements LocalizedUrlRoutable
         return $this->lang()->name;
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return AplicationLang::where('slug', $value)->firstOrFail()->application;
     }

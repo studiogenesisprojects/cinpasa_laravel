@@ -144,7 +144,7 @@ class Finished extends TranslatedModel implements LocalizedUrlRoutable
         return $this->lang()->alt ?? "";
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return FinishedLang::where('slug', $value)->firstOrFail()->finished;
     }

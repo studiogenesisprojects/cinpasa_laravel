@@ -69,7 +69,7 @@ class ProductColorCategory extends TranslatedModel implements LocalizedUrlRoutab
         return $this->lang()->slug;
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return ProductColorCategoryLang::where('slug', $value)->firstOrFail()->product_color_category;
     }

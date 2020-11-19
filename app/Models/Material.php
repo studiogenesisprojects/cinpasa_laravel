@@ -20,7 +20,7 @@ class Material extends TranslatedModel implements LocalizedUrlRoutable
     ];
 
     protected $fillable = [
-        "id", //TODO remove after import 
+        "id", //TODO remove after import
         'order',
         'sup_material',
         "searcher_order",
@@ -113,7 +113,7 @@ class Material extends TranslatedModel implements LocalizedUrlRoutable
         return $this->lang()->slug;
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return MaterialLang::where('slug', $value)->firstOrFail()->material;
     }

@@ -57,7 +57,7 @@ class News extends TranslatedModel implements LocalizedUrlRoutable
             "news" => $this,
         ]);
     }
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return NewsLang::where('slug', $value)->where('language_id', $this->langCodeIds[App::getLocale()])->where('active', true)->firstOrFail()->news;
     }

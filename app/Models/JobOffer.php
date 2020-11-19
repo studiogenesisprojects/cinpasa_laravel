@@ -43,7 +43,7 @@ class JobOffer extends TranslatedModel implements LocalizedUrlRoutable
         return $this->lang()->slug;
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return JobOfferLang::where('slug', $value)->firstOrFail()->offer;
     }
