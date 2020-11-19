@@ -209,7 +209,7 @@ class ProductController extends Controller
         $product->colorCategories()->sync($this->getOrder($request->colors));
         $product->finisheds()->sync($this->getOrder($request->finisheds));
         $product->applications()->sync($this->getOrder($request->applications));
-        $product->relateds()->sync($this->getOrder($request->relateds));
+        //$product->relateds()->sync($this->getOrder($request->relateds));
         $product->categories()->sync($this->getOrder($request->categories));
 
         $product->ecoLogos()->sync($request->ecos);

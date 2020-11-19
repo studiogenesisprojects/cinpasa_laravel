@@ -44,6 +44,7 @@
                 </li>
             @endif
 
+            @if(1 == 0)
                 <li class="selected has-sub-menu">
                     <a href="#">
                         <div class="icon-w">
@@ -59,7 +60,7 @@
                         </div>
                     </div>
                 </li>
-
+                @endif
             @if(Auth()->user()->role->canRead(App\Models\Section::find(13)))
 
                 <li class="selected has-sub-menu">
@@ -306,6 +307,7 @@
             </li>
             @endif
 
+            @if(1 == 0)
             <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('dashboardIndex')}}">
                     <div class="icon-w">
@@ -314,7 +316,9 @@
                     <span>Escritorio</span>
                 </a>
             </li>
+            @endif
 
+            @if(1 == 0)
             @if(Auth()->user()->role->canRead(App\Models\Section::find(13)))
             <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('traducciones')}}">
@@ -324,6 +328,7 @@
                     <span>Traducciones</span>
                 </a>
             </li>
+            @endif
             @endif
 
             @if(Auth()->user()->role->canRead(App\Models\Section::find(10)))
@@ -346,7 +351,7 @@
                 </div>
             </li>
             @endif
-
+            @if(1 == 0)
             @if(Auth()->user()->role->canRead(App\Models\Section::find(3)))
             <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('carousels.index')}}">
@@ -356,6 +361,7 @@
                     <span>Carouseles</span>
                 </a>
             </li>
+            @endif
             @endif
 
             @if(Auth()->user()->role->canRead(App\Models\Section::find(7)))
@@ -423,6 +429,7 @@
             </li>
 
             @endif
+            @if(1 == 0)
             @if(Auth()->user()->role->canRead(App\Models\Section::find(12)))
 
             <li class="selected has-sub-menu no-sub-menu">
@@ -434,7 +441,8 @@
                 </a>
             </li>
             @endif
-
+            @endif
+            @if(1 == 0)
             @if(Auth()->user()->role->canRead(App\Models\Section::find(6)))
 
             <li class="selected no-sub-menu">
@@ -446,6 +454,8 @@
                 </a>
             </li>
             @endif
+            @endif
+
 
             @if(Auth()->user()->role->canRead(App\Models\Section::find(8)))
             <li class="selected has-sub-menu">
@@ -468,7 +478,7 @@
                 </div>
             </li>
             @endif
-
+            @if(1 == 0)
             @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
             <li class="selected has-sub-menu">
                 <a href="javascript:void(0)">
@@ -488,6 +498,8 @@
                 </div>
             </li>
             @endif
+            @endif
+            @if(1 == 0)
             @if(Auth()->user()->role->canRead(App\Models\Section::find(15)))
             <li class="selected has-sub-menu">
                 <a href="javascript:void(0)">
@@ -505,6 +517,7 @@
                     </div>
                 </div>
             </li>
+            @endif
             @endif
         </ul>
     </div>
