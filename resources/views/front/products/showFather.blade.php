@@ -63,6 +63,7 @@
                 <div class="row">
                     @foreach($productCategory->childrens as $product)
                     @if($product->active == 1)
+                    {{dd($product->primaryImage->path)}}
                         <div class="col-md-4 col-sm-6 p-3 border-card">
                             <div class="position-relative">
                                 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
