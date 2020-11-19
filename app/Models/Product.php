@@ -231,7 +231,7 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
         ]);
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         return ProductLang::where('slug', $value)->whereHas('product', function ($q) {
             $q->where('active', 1);
