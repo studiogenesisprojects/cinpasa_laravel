@@ -15,8 +15,8 @@ class TranslatedModel extends Model
         "es" => 1,
         "ca" => 2,
         "en" => 3,
-        "it" => 4,
-        "fr" => 5,
+        "ru" => 5,
+        "fr" => 4,
     ];
 
     public function getRouteKeyName()
@@ -47,7 +47,8 @@ class TranslatedModel extends Model
         }
 
         if (!array_key_exists($id, $this->langCodeIds) && !array_search($id, $this->langCodeIds)) {
-            throw new \Exception("Codigo o id de idioma no encontrado");
+
+            throw new \Exception("Codigo o id de idioma no encontrado " . $id);
         }
 
         if (gettype($id) == "string") {

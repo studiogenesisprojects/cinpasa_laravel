@@ -14,13 +14,7 @@ class ApplicationCategory extends TranslatedModel implements LocalizedUrlRoutabl
         "name",
         "aplication_type",
     ];
-    public $langCodeIds = [
-        "es" => 1,
-        "ca" => 2,
-        "en" => 3,
-        "fr" => 5,
-        "it" => 4,
-    ];
+
     public function getAplicationTypeAttribute()
     {
         return get_class($this);

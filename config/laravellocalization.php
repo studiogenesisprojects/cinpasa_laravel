@@ -46,7 +46,7 @@ return [
         'ca'          => ['name' => 'ca',           'script' => 'Latn', 'native' => 'català', 'regional' => 'ca_ES'],
         'en'          => ['name' => 'en',                'script' => 'Latn', 'native' => 'English', 'regional' => 'en_GB'],
         'fr'          => ['name' => 'fr',                 'script' => 'Latn', 'native' => 'français', 'regional' => 'fr_FR'],
-        'it'          => ['name' => 'it',                'script' => 'Latn', 'native' => 'italiano', 'regional' => 'it_IT'],
+        //'it'          => ['name' => 'it',                'script' => 'Latn', 'native' => 'italiano', 'regional' => 'it_IT'],
 
         //'en-AU'       => ['name' => 'Australian English',     'script' => 'Latn', 'native' => 'Australian English', 'regional' => 'en_AU'],
         //'en-GB'       => ['name' => 'British English',        'script' => 'Latn', 'native' => 'British English', 'regional' => 'en_GB'],
@@ -224,7 +224,7 @@ return [
         //'mk'          => ['name' => 'Macedonian',             'script' => 'Cyrl', 'native' => 'македонски', 'regional' => 'mk_MK'],
         //'mn'          => ['name' => 'Mongolian (Cyrillic)',   'script' => 'Cyrl', 'native' => 'монгол', 'regional' => 'mn_MN'],
         //'ce'          => ['name' => 'Chechen',                'script' => 'Cyrl', 'native' => 'нохчийн мотт', 'regional' => 'ce_RU'],
-        //'ru'          => ['name' => 'Russian',                'script' => 'Cyrl', 'native' => 'русский', 'regional' => 'ru_RU'],
+        'ru'          => ['name' => 'ru',                'script' => 'Cyrl', 'native' => 'русский', 'regional' => 'ru_RU'],
         //'sah'         => ['name' => 'Yakut',                  'script' => 'Cyrl', 'native' => 'саха тыла', 'regional' => ''],
         //'tt'          => ['name' => 'Tatar',                  'script' => 'Cyrl', 'native' => 'татар теле', 'regional' => 'tt_RU'],
         //'tg'          => ['name' => 'Tajik (Cyrillic)',       'script' => 'Cyrl', 'native' => 'тоҷикӣ', 'regional' => 'tg_TJ'],

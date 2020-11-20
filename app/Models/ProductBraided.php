@@ -9,13 +9,7 @@ use Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 class ProductBraided extends TranslatedModel implements LocalizedUrlRoutable
 {
     protected $table = 'products_braideds';
-    protected $langCodeIds = [
-        "es" => 1,
-        "ca" => 4,
-        "en" => 2,
-        "it" => 5,
-        "fr" => 3,
-    ];
+
 
     protected $fillable = ['searcher_order'];
 

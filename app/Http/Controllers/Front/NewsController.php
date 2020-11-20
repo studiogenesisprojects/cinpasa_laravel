@@ -17,14 +17,6 @@ use Maatwebsite\Excel\Concerns\ToArray;
 class NewsController extends Controller
 {
 
-    private $langCodeIds = [
-        "es" => 1,
-        "ca" => 2,
-        "en" => 3,
-        "it" => 5,
-        "fr" => 4,
-    ];
-
     public function index()
     {
         $featuredNews = NewsFeatured::first();

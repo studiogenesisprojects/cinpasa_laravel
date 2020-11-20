@@ -12,13 +12,7 @@ class ProductColorCategory extends TranslatedModel implements LocalizedUrlRoutab
 {
     protected $languageModel = ProductColorCategoryLang::class;
 
-    protected $langCodeIds = [
-        "es" => 1,
-        "ca" => 2,
-        "en" => 3,
-        "it" => 5,
-        "fr" => 4,
-    ];
+
 
     protected $fillable = ['active', 'order'];
 

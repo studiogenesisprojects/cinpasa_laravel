@@ -12,13 +12,7 @@ class Finished extends TranslatedModel implements LocalizedUrlRoutable
 {
     protected $languageModel = FinishedLang::class;
 
-    protected $langCodeIds = [
-        "es" => 1,
-        "ca" => 2,
-        "en" => 3,
-        "it" => 5,
-        "fr" => 4,
-    ];
+
 
     protected $fillable = [
         'list_image',

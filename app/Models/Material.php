@@ -11,13 +11,7 @@ class Material extends TranslatedModel implements LocalizedUrlRoutable
 
     protected $languageModel = MaterialLang::class;
 
-    protected $langCodeIds = [
-        "es" => 1,
-        "ca" => 2,
-        "en" => 3,
-        "it" => 5,
-        "fr" => 4,
-    ];
+
 
     protected $fillable = [
         "id", //TODO remove after import

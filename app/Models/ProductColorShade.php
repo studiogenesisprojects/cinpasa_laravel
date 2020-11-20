@@ -10,13 +10,7 @@ use Illuminate\Support\Facades\Log;
 class ProductColorShade extends TranslatedModel implements LocalizedUrlRoutable
 {
 
-    protected $langCodeIds = [
-        "es" => 1,
-        "ca" => 2,
-        "en" => 3,
-        "it" => 5,
-        "fr" => 4,
-    ];
+
 
     protected $languageModel = ProductColorShadeLang::class;
 

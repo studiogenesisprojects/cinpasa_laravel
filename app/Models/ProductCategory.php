@@ -8,13 +8,7 @@ use App\TranslatedModel;
 
 class ProductCategory extends TranslatedModel implements LocalizedUrlRoutable
 {
-    protected $langCodeIds = [
-        "es" => 1,
-        "ca" => 2,
-        "en" => 3,
-        "it" => 5,
-        "fr" => 4,
-    ];
+
 
     protected $fillable = [
         "sup_product_category",
