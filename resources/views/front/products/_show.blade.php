@@ -366,5 +366,6 @@
             .catch(e => console.log(e.response))
         })
     })
+
 </script>
 @endpush

@@ -67,10 +67,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="">Slug</label>
+                                                    <label for="">Slug</label>
+                                                    <div class="input-group">
                                                         <input type="text" class="form-control slug" value="{{$product->lang($idioma->id)->slug ?? ""}}"
                                                         name="productLanguages[{{ $idioma->id }}][slug]">
+                                                        <div class="input-group-append">
+                                                            <a href="{{LaravelLocalization::getURLFromRouteNameTranslated($idioma->code, 'routes.products.showProduct', [
+                                                                "productCategory" => $product->categories[0],
+                                                                "product" => $product
+                                                                ])}}" target="_blank" id="preview" class="input-group-text"><i class="ti-eye"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
