@@ -42,9 +42,9 @@
                                 href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" => $father->slug])}}">{!! $father->name !!}</a>
                         @endforeach
                     </div>
-                    <a class="ml-sm-5 a-stagger" href="aplicaciones.php" title="Accede al apartado aplicaciones">APLICACIONES</a>
+                    <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Accede al apartado aplicaciones">APLICACIONES</a>
                     <a class="ml-sm-5 a-stagger" href="LAB.php" title="Accede al apartado LAB">LAB</a>
-                    <a class="ml-sm-5 a-stagger" href="noticias.php" title="Accede al apartado noticias">NOTICIAS</a>
+                    <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.news.index')}}" title="Accede al apartado noticias">NOTICIAS</a>
                     <a class="ml-sm-5 a-stagger" href="outlet.php" title="Accede al apartado outlet">OUTLET</a>
                     <a class="ml-sm-5 a-stagger" href="contacta.php" title="Accede al apartado contacta">CONTACTA</a>
                 </div>
@@ -60,9 +60,9 @@
                 <nav id="nav_a" class="justify-content-end mt-4 d-lg-flex d-none">
                     <a class="ml-3 {{Str::contains($currentUrl, "empresa") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.company.index')}}" title="Accede al apartado empresa">EMPRESA</a>
                     <a class="ml-3 hover-dropdown {{Str::contains($currentUrl, "productos") ? "active": ""}}" href="javascript:;" title="Accede al apartado productos">PRODUCTOS</a>
-                    <a class="ml-3 {{Str::contains($currentUrl, "aplicaciones") ? "active": ""}}" href="aplicaciones.php" title="Accede al apartado aplicaciones">APLICACIONES</a>
+                    <a class="ml-3 {{Str::contains($currentUrl, "aplicaciones") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Accede al apartado aplicaciones">APLICACIONES</a>
                     <a class="ml-3 {{Str::contains($currentUrl, "lab") ? "active": ""}}" href="LAB.php" title="Accede al apartado LAB">LAB</a>
-                    <a class="ml-3 {{Str::contains($currentUrl, "noticias") ? "active": ""}}" href="noticias.php" title="Accede al apartado noticias">NOTICIAS</a>
+                    <a class="ml-3 {{Str::contains($currentUrl, "noticias") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.news.index')}}" title="Accede al apartado noticias">NOTICIAS</a>
                     <a class="ml-3 {{Str::contains($currentUrl, "outlet") ? "active": ""}}" href="outlet.php" title="Accede al apartado outlet">OUTLET</a>
                     <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="contacta.php" title="Accede al apartado contacta">CONTACTA</a>
                 </nav>
@@ -216,9 +216,9 @@
                 <nav class="d-flex justify-content-end mt-4">
                     <a class="ml-3" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.company.index')}}" title="Accede al apartado empresa">EMPRESA</a>
                     <a class="ml-3 hover-dropdown" href="javascript:;" title="Accede al apartado productos">PRODUCTOS</a>
-                    <a class="ml-3" href="aplicaciones.php" title="Accede al apartado aplicaciones">APLICACIONES</a>
+                    <a class="ml-3" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Accede al apartado aplicaciones">APLICACIONES</a>
                     <a class="ml-3" href="LAB.php" title="Accede al apartado LAB">LAB</a>
-                    <a class="ml-3" href="noticias.php" title="Accede al apartado noticias">NOTICIAS</a>
+                    <a class="ml-3" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.news.index')}}" title="Accede al apartado noticias">NOTICIAS</a>
                     <a class="ml-3" href="outlet.php" title="Accede al apartado outlet">OUTLET</a>
                     <a class="ml-3" href="contacta.php" title="Accede al apartado contacta">CONTACTA</a>
                 </nav>

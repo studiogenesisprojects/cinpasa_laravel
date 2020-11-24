@@ -4,25 +4,17 @@
             <div class="d-flex form-group">
                 <input type="search" class="form-control form-control-border-bottom" placeholder="Nombre del producto…">
                 <select class="form-control form-control-border-bottom" id="FormControlAncho">
-                    <option>Ancho</option>
-                    <option>Ancho</option>
-                    <option>Ancho</option>
-                    <option>Ancho</option>
-                    <option>Ancho</option>
+                    <option value="">{{__('Productos.producto_mostrar_referencias')}}</option>
+
                 </select>
                 <select class="form-control form-control-border-bottom" id="FormControlTipo">
-                    <option>Tipo</option>
-                    <option>Tipo</option>
-                    <option>Tipo</option>
-                    <option>Tipo</option>
-                    <option>Tipo</option>
+                    <option value="">{{__('Productos.producto_mostrar_tipo')}}</option>
+
+
                 </select>
                 <select class="form-control form-control-border-bottom" id="FormControlMaterial">
-                    <option>Material</option>
-                    <option>Material</option>
-                    <option>Material</option>
-                    <option>Material</option>
-                    <option>Material</option>
+                    <option value="">{{__('Productos.producto_mostrar_materiales')}}</option>
+
                 </select>
                 <a href="#" title="Filtrar segun categorías" class="form-control m-1 form-control-search-icon">
                     <img src="{{ asset('front/img/icon-search-bar.svg') }}" alt="icono buscar">

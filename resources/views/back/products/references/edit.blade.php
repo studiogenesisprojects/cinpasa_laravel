@@ -42,6 +42,27 @@
                                     <div class="help-block form-text with-errors form-control-feedback"></div>
                                 </div>
                             </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Cordones</label>
+                                    <input type="text" name="cordons" class="form-control" value="{{$reference->id ? $reference->cordones : ''}}" data-error="Introduzca una medida" required>
+                                    <div class="help-block form-text with-errors form-control-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Bolsas</label>
+                                    <input type="text" name="bags" class="form-control" value="{{$reference->id ? $reference->bolsas : ''}}" data-error="Introduzca una medida" required>
+                                    <div class="help-block form-text with-errors form-control-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Rapport</label>
+                                    <input type="text" name="rapport" class="form-control" value="{{$reference->id ? $reference->rapport : ''}}" data-error="Introduzca una medida" required>
+                                    <div class="help-block form-text with-errors form-control-feedback"></div>
+                                </div>
+                            </div>
                         </div>
 
                         {{-- Error messages --}}

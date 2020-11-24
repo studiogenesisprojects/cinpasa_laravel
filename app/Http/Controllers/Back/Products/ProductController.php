@@ -6,6 +6,7 @@ use App\Exports\ExportProducts;
 use App\Exports\ExportProductsApps;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestCategory;
 use App\Models\Product;
 use App\Models\Aplication;
 use App\Models\EcoFriend;
@@ -76,7 +77,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(RequestCategory $request)
     {
         $product = Product::create($request->all());
 
@@ -111,7 +112,7 @@ class ProductController extends Controller
         $product->categories()->sync($request->categories);
         $product->colorCategories()->sync($request->colors);
 
-        // $product->labels()->sync($request->labels);
+        $product->labels()->sync($request->labels);
         //
         // $product->relateds()->sync($request->relateds);
 
@@ -163,7 +164,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(RequestCategory $request, $id)
     {
         $product = Product::findOrFail($id);
 

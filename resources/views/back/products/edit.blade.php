@@ -291,17 +291,17 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>Categorías</label>
                                     <applications :name="'categories[]'" :items="{{$categories}}" :sitems="{{$product->categories->sortBy('pivot.order')}}" ></applications>
+                                </div>
+                                <div class="col-md-6">
+                                    <strong>Muestrarios</strong>
+                                    <applications :name="'colors[]'" :items="{{$colors}}" :sitems="{{$product->categoryColors->sortBy('pivot.order')}}" ></applications>
                                 </div>
                             </div>
 
                             <div class="row">
-                                {{-- <div class="col-md-6">
-                                    <strong>Muestrarios</strong>
-                                    <applications :name="'colors[]'" :items="{{$colors}}" :sitems="{{$product->categoryColors->sortBy('pivot.order')}}" ></applications>
-                                </div> --}}
                                 <div class="col-md-6">
                                     <strong>Acabados</strong>
                                     <applications :name="'finisheds[]'" :items="{{$finishes}}" :sitems="{{$product->finisheds}}" ></applications>

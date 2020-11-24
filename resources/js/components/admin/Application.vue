@@ -14,6 +14,7 @@
         <a-select-option
           v-for="app in apps"
           :key="app.id"
+          :required="!selected"
           :value="app.id"
           :pantone="name == 'colors[]' ? app.pantone : ''"
         >{{ app.name }}</a-select-option>

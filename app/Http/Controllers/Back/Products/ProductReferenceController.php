@@ -39,7 +39,10 @@ class ProductReferenceController extends Controller
     {
         ProductReference::create([
             "referencia" => $request->name,
-            "diametro" => $request->reference
+            "diametro" => $request->reference,
+            "bolsas" => $request->bags,
+            "rapport" => $request->rapport,
+            "cordones" => $request->cordons
         ]);
 
         return redirect()->route('referencias.index');
@@ -65,6 +68,7 @@ class ProductReferenceController extends Controller
     public function edit($id)
     {
         $reference = ProductReference::find($id);
+
         return view('back.products.references.edit', compact('reference'));
     }
 
@@ -80,7 +84,10 @@ class ProductReferenceController extends Controller
         $reference = ProductReference::findOrFail($id);
         $reference->update([
             "referencia" => $request->name,
-            "diametro" => $request->reference
+            "diametro" => $request->reference,
+            "bolsas" => $request->bags,
+            "rapport" => $request->rapport,
+            "cordones" => $request->cordons
         ]);
 
         return redirect()->route('referencias.index');

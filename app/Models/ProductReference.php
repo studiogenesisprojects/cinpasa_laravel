@@ -9,7 +9,7 @@ class ProductReference extends Model
     protected $table = 'products_references';
     protected $fillable = [
         "id", //TODO remove after import
-        'referencia', 'diametro'
+        'referencia', 'diametro', 'bolsas', 'rapport', 'cordones'
     ];
 
     public function product()

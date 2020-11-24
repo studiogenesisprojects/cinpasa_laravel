@@ -213,7 +213,7 @@
 
                         @foreach ($references as $reference)
                         <p class="color-primary">{{$reference['referencia']}}
-                            ({{$reference['diametro']}} MM)</p>
+                            ({{$reference['diametro']}} MM{{$reference['bolsas'] ? ', '.$reference['bolsas'] . ' bolsa/s' : ''}}{{$reference['cordones'] ? ', '.$reference['cordones'] . ' cordón/es' : ''}}{{$reference['rapport'] ? ', '.$reference['rapport'] . ' rapport' : ''}}) </p>
                         @endforeach
                     </div>
                 </div>

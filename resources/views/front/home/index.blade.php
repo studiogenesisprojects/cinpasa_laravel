@@ -18,7 +18,7 @@
                 @include('front.home.categories')
             </div>
             <div class="row justify-content-center">
-                <a href="productos.php" title="Acceder a todas las categorías" class="btn btn-primary my-5 after-title-center position-relative">
+                <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Acceder a todas las categorías" class="btn btn-primary my-5 after-title-center position-relative">
                     {{__('Inicio.seccion1_boton_2')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
                 </a>
             </div>
@@ -35,7 +35,7 @@
                     <h3>{{__('Inicio.seccion2_titulo')}}</h3>
                     <hr class="my-3">
                     <p>{{__('Inicio.seccion2_texto')}}</p>
-                    <a href="productos.php" title="Acceder a todas las categorías" class="btn btn-primary mt-4">
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Acceder a todas las categorías" class="btn btn-primary mt-4">
                         {{__('Inicio.seccion2_boton')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
                     </a>
                 </div>
@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-10 mt-5">
                     <h3>{{__('Inicio.seccion4_titulo')}}</h3>
-                    <a href="noticias.php" title="Acceder a la categoría noticias" class="btn btn-primary mt-4">
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.news.index')}}" class="btn btn-primary mt-4">
                         {{__('Inicio.seccion4_boton')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
                     </a>
                 </div>

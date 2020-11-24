@@ -19,17 +19,18 @@ class NewsController extends Controller
 
     public function index()
     {
-        $featuredNews = NewsFeatured::first();
-        if (!$featuredNews) {
-            $featuredNews = News::where('active', true)
-                ->whereHas('languages', function ($q) {
-                    $q->where('language_id', $this->langCodeIds[App::getLocale()])
-                        ->where('active', 1);
-                })
-                ->orderBy('created_at', 'DESC')->first();
-        } else {
-            $featuredNews = $featuredNews->news;
-        }
+        // $featuredNews = NewsFeatured::first();
+        // if (!$featuredNews) {
+        //     $featuredNews = News::where('active', true)
+        //         ->whereHas('languages', function ($q) {
+        //             $q->where('language_id', $this->langCodeIds[App::getLocale()])
+        //                 ->where('active', 1);
+        //         })
+        //         ->orderBy('created_at', 'DESC')->first();
+        // } else {
+        //     $featuredNews = $featuredNews->news;
+        // }
+        $featuredNews = NewsFeatured::all();
         return view('front.news.index', compact('featuredNews'));
     }
 
