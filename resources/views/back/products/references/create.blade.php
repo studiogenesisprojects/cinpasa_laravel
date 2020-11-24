@@ -44,21 +44,21 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="">Cordones</label>
-                                    <input type="text" name="cordons" class="form-control" value="" data-error="Introduzca una medida" required>
+                                    <input type="text" name="cordons" class="form-control" value="" data-error="Introduzca una medida" >
                                     <div class="help-block form-text with-errors form-control-feedback"></div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="">Bolsas</label>
-                                    <input type="text" name="bags" class="form-control" value="" data-error="Introduzca una medida" required>
+                                    <input type="text" name="bags" class="form-control" value="" data-error="Introduzca una medida" >
                                     <div class="help-block form-text with-errors form-control-feedback"></div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="">Rapport</label>
-                                    <input type="text" name="rapport" class="form-control" value="" data-error="Introduzca una medida" required>
+                                    <input type="text" name="rapport" class="form-control" value="" data-error="Introduzca una medida" >
                                     <div class="help-block form-text with-errors form-control-feedback"></div>
                                 </div>
                             </div>
