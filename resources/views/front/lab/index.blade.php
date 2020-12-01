@@ -20,7 +20,9 @@
                 <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xl-5 p-lg-3 p-sm-5 pt-3">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
                     <p class="color-white">{{ $lab->description }}</p>
-                    <a href="#" title="saber más sobre CINTech" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">MÁS INFORMACIÓN <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
+                    ["lab" => $lab
+                ])}}" title="saber más sobre CINTech" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">MÁS INFORMACIÓN <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
                 </div>
             </div>
             @elseif($key == 1)
@@ -29,7 +31,9 @@
                  <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xl-5 p-lg-3 p-sm-5 pt-3">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
                     <p class="color-white">{{ $lab->description }}</p>
-                    <a href="#" title="saber más sobre CINHome" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">MÁS INFORMACIÓN <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
+                    ["lab" => $lab
+                ])}}" title="saber más sobre CINHome" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">MÁS INFORMACIÓN <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
                 </div>
             </div>
             @elseif($key % 2 == 0)
@@ -38,7 +42,9 @@
                 <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xl-5 p-lg-3 p-sm-5 pt-3">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
                     <p class="color-white">{{ $lab->description }}</p>
-                    <a href="#" title="saber más sobre CINTech" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">MÁS INFORMACIÓN <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
+                    ["lab" => $lab
+                ])}}" title="saber más sobre CINTech" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">MÁS INFORMACIÓN <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
                 </div>
             </div>
             @else
@@ -47,7 +53,9 @@
                  <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xl-5 p-lg-3 p-sm-5 pt-3">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
                     <p class="color-white">{{ $lab->description }}</p>
-                    <a href="#" title="saber más sobre CINHome" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">MÁS INFORMACIÓN <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
+                    ["lab" => $lab
+                ])}}" title="saber más sobre CINHome" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">MÁS INFORMACIÓN <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
                 </div>
             </div>
             @endif
