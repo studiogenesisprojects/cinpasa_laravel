@@ -28,16 +28,16 @@
                 <div id="carousel-token" class="carousel slide carousel-token" data-ride="carousel"
                     data-interval="false">
                     <div class="carousel-inner">
-                        @if ($product->primaryImage)
+                        {{-- @if ($product->primaryImage)
                         <div class="carousel-item active">
                             <figure class="bg-cover bg-lg box-list__figure">
                                 <img src="@if(!empty($product->primaryImage->path)){{ route('carousel.getImage', str_replace("/",";",$product->primaryImage->path))}}@else{{Storage::url('/img/nofoto.png')}}@endif" alt="@empty($product->primaryImage->alt) {{ $product->name }} @else {{  $product->primaryImage->alt}} @endempty" class="box-product__carousel">
                             </figure>
                         </div>
-                        @endif
+                        @endif --}}
                         @if($product->galeries->first())
                         @foreach ($product->galeries->first()->images as $image)
-                        <div class="carousel-item {{(!$product->primaryImage && $loop->first) ? 'active' : ''}}">
+                        <div class="carousel-item {{($loop->first) ? 'active' : ''}}">
                             <figure class="bg-cover bg-lg box-list__figure">
                                 <img src="@if(!empty($image->path)){{Storage::url($image->path)}}@else{{Storage::url('/img/nofoto.png')}}@endif" alt="@empty($image->alt) {{ $product->name }} @else {{  $image->alt}} @endempty" class="box-product__carousel">
                             </figure>
@@ -56,16 +56,16 @@
                         @endif
                     </div>
                     <ol class="carousel-indicators">
-                        @if ($product->primaryImage)
+                        {{-- @if ($product->primaryImage)
                         <li data-target="#carousel-token" data-slide-to="0" class="active col">
                             <figure class="bg-cover bg-sm"
                                 style="background-image:@if(!empty($product->primaryImage->path)) url('{{route('carousel.getImage', str_replace("/",";",$product->primaryImage->path))}}')@else url('{{Storage::url('/img/nofoto.png')}}')@endif">
                             </figure>
                         </li>
-                        @endif
+                        @endif --}}
                         @if ($product->galeries->first())
                         @foreach ($product->galeries->first()->images as $i => $image)
-                        <li data-target="#carousel-token" data-slide-to="{{$product->primaryImage ? $i+1 : $i}}"
+                        <li data-target="#carousel-token" data-slide-to="{{$product->primaryImage ? $i : $i}}"
                             class="{{$loop->first && !$product->primaryImage ? 'active' : ''}} col">
                             <figure class="bg-cover bg-sm"
                                 style="background-image: @if(!empty($image->path)) url('{{route('carousel.getImage', str_replace("/",";",$image->path))}}')@else url('{{Storage::url('/img/nofoto.png')}}')@endif">
@@ -173,7 +173,7 @@
             </div>
             <div class="col-md-6 mt-md-0 mt-5">
                 <hr>
-                <p class="font-bold color-black mt-4">REFERENCIAS Y DIÁMETROS</p>
+                <p class="font-bold color-black mt-4">REFERENCIAS Y ANCHO/DIÁMETRO</p>
                 <div class="row mt-4">
                     @if($product_caracteristics->width)
                     <div class="col-6 ">
@@ -206,7 +206,6 @@
                     </div>
                     @endif
                     <div class="col-6 mt-5">
-                        <p class="small color-primary">Diámetro</p>
                         @php
                         $references = collect($product->references)->sortBy('diametro')->toArray();
                         @endphp
@@ -327,6 +326,7 @@
             .then(r => {
                 $('#color-modal-name').html(r.data.color.name)
                 $('#color-modal-pantone').html(r.data.color.pantone)
+                $('#color-modal-description').html(r.data.description);
                 $('#color-modal-color').css('background-color', '#' + r.data.color.hex_color)
                 $('#color-modal-products').html('');
                 if (r.data.products.length > 0) {

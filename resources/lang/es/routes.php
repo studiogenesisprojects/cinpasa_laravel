@@ -66,4 +66,11 @@ return [
         'stored' => 'trabaja-con-nosotros/cv/enviado',
         'show' => 'trabaja-con-nosotros/{jobOffer}',
     ],
+    'outlet' => [
+        'index' => 'outlet'
+    ],
+    'lab' => [
+        'index' => 'lab',
+        'show_products' => 'lab/{lab}'
+    ]
 ];

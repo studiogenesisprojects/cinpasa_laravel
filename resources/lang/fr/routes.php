@@ -67,4 +67,10 @@ return [
         'stored' => 'travaillez-avec-nous/cv/messager',
         'show' => 'travaillez-avec-nous/{jobOffer}',
     ],
+    'outlet' => [
+        'index' => 'outlet'
+    ],
+    'lab' => [
+        'index' => 'lab'
+    ]
 ];

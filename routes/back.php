@@ -62,6 +62,18 @@ Route::group(['prefix' => 'news'], function () {
     Route::resource('categories', 'NewsCategoryController');
 });
 
+//PRODUCTOS
+Route::group([
+    "prefix" => "lab",
+    "middleware" => ['access.client']
+], function () {
+    Route::get('/', "Back\Lab\LabController@index")->name('lab');
+    Route::get('/create', "Back\Lab\LabController@create")->name('lab.create');
+    Route::post('/save', "Back\Lab\LabController@store")->name('lab.store');
+    Route::get('/edit/{lab}', "Back\Lab\LabController@edit")->name('lab.edit');
+    Route::any('/update', "Back\Lab\LabController@update")->name('lab.update');
+    Route::get('/delete/{id}', "Back\Lab\LabController@destroy")->name('lab.destroy');
+});
 
 //PRODUCTOS
 Route::group([

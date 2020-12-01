@@ -12,6 +12,7 @@ use App\Models\Aplication;
 use App\Models\EcoFriend;
 use App\Models\ProductColor;
 use App\Models\Finished;
+use App\Models\Lab;
 use App\Models\ProductCategory;
 use App\Models\ProductLabel;
 use App\Models\ProductReference;
@@ -81,7 +82,7 @@ class ProductController extends Controller
     {
         $product = Product::create($request->all());
 
-        ProductCaracteristics::create(array_merge($request->all(), ['product_id' => $product->id]));
+        ProductCaracteristics::create(array_merge($request->all(), ['product_id' => $product->id, "outlet" => isset($request->outlet)]));
 
         if ($request->galery_id) {
             $galery = ProductGalery::find($request->galery_id);
@@ -133,6 +134,7 @@ class ProductController extends Controller
         $categories = ProductCategory::where('sup_product_category', '!=', null)->get();
         $tags = ProductLabel::all();
         $ecos = EcoFriend::all();
+        $labs = Lab::all();
 
         //características
         $types = ProductType::where('active', true)->get();
@@ -160,7 +162,8 @@ class ProductController extends Controller
             "materials" => $materials,
             "references" => $references,
             "languages" => $languages,
-            "caracteristics" => $caracteristics
+            "caracteristics" => $caracteristics,
+            'labs' => $labs
         ]);
     }
 
@@ -210,11 +213,11 @@ class ProductController extends Controller
         $product->colorCategories()->sync($this->getOrder($request->colors));
         $product->finisheds()->sync($this->getOrder($request->finisheds));
         $product->applications()->sync($this->getOrder($request->applications));
-        //$product->relateds()->sync($this->getOrder($request->relateds));
+        // $product->relateds()->sync($this->getOrder($request->relateds));
         $product->categories()->sync($this->getOrder($request->categories));
 
         $product->ecoLogos()->sync($request->ecos);
-        $product->update(array_merge($request->all(), ["active" => isset($request->active)]));
+        $product->update(array_merge($request->all(), ["active" => isset($request->active), "outlet" => isset($request->outlet)]));
         $this->assignCategories($product);
 
         return redirect()->back()->with(["success" => "Product actualizado correctamente"]);

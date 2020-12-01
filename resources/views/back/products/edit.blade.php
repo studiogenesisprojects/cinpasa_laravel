@@ -129,7 +129,9 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="">Activo: <input type="checkbox" name="active" {{ !$product->active ? "": "checked" }}></label>
                                 </div>
-
+                                <div class="col-md-6">
+                                    <label for="">Outlet: <input type="checkbox" name="outlet" {{ !$product->outlet ? "": "checked" }}></label>
+                                </div>
                                 <div class="col-md-6">
                                     <label for="">Orden</label>
                                     <input class="form-control" type="number" name="order" value="{{$product->order}}">
@@ -157,7 +159,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label>Codigo liasa</label>
+                                    <label>Codigo Cinpasa</label>
                                     <input name="liasa_code" class="form-control"
                                     value="{{$product->liasa_code}}" />
                                 </div>
@@ -277,6 +279,19 @@
                                         <option value="">Elige una presentación</option>
                                         <option value="0">Por unidades</option>
                                         <option value="1">Por lotes</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 pb-3">
+                                    <label>LAB</label>
+                                    <select name="lab_id" class="form-control">
+                                        <option value="">Elige un LAB</option>
+                                        @foreach($labs as $lab)
+                                        @if($lab->id == $product->lab_id)
+                                            <option value="{{$lab->id}}" selected>{{$lab->name}}</option>
+                                        @else
+                                            <option value="{{$lab->id}}">{{$lab->name}}</option>
+                                        @endif
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6 pb-3">

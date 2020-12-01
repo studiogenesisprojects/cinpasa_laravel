@@ -26,7 +26,7 @@
             <ul class="main-menu">
                 <li class="sub-header"><span>Secciones</span></li>
 
-                @if(Auth()->user()->role->canRead(App\Models\Section::find(2)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(2)))
                 <li class="selected has-sub-menu">
                     <a href="#">
                         <div class="icon-w">
@@ -278,6 +278,17 @@
                 </li>
             @endif
 
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(2)))
+                <li class="selected has-sub-menu no-sub-menu">
+                <a href="{{route('lab')}}">
+                    <div class="icon-w">
+                        <div class="ti-image"></div>
+                    </div>
+                    <span>Lab</span>
+                </a>
+            </li>
+            @endif
+
             </ul>
         </div>
     </div>
@@ -518,6 +529,16 @@
                 </div>
             </li>
             @endif
+            @endif
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(2)))
+                <li class="selected has-sub-menu no-sub-menu">
+                <a href="{{route('lab')}}">
+                    <div class="icon-w">
+                        <div class="ti-image"></div>
+                    </div>
+                    <span>Lab</span>
+                </a>
+            </li>
             @endif
         </ul>
     </div>

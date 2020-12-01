@@ -1,6 +1,7 @@
 @extends('front.common.main')
 @section('content')
 <section>
+    <br><br><br>
     @include('front.home.barra-busqueda')
     <div class="container-fluid">
         <div class="row">

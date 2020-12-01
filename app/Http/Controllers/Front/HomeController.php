@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ApplicationCategory;
 use App\Models\Carousel;
 use App\Models\Customer;
+use App\Models\Lab;
 use App\Models\Noticia;
 use App\Models\NoticiaPrincipal;
 use App\NewsFeatured;
@@ -19,6 +20,8 @@ class HomeController extends Controller
         $applicationCategories = ApplicationCategory::orderBy('order')->take(6)->get();
         $homeApps = ApplicationHome::orderBy('order')->take(8)->get();
 
+        $labs = Lab::all();
+
         $customers = Customer::all();
 
         $carousel = Carousel::with(['slides' => function ($q) {
@@ -27,6 +30,6 @@ class HomeController extends Controller
 
         $featuredNews = NewsFeatured::all();
 
-        return view('front.home.index', compact('applicationCategories', 'featuredNews', 'carousel', 'customers', "homeApps"));
+        return view('front.home.index', compact('applicationCategories', 'featuredNews', 'carousel', 'customers', "homeApps", 'labs'));
     }
 }

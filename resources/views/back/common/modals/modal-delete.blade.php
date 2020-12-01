@@ -13,7 +13,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <a href="#" class="btn btn-danger" id="delete_link">Eliminar</a>
+                <a href="#" class="btn btn-danger" id="delete_link2">Eliminar</a>
             </div>
         </div>
     </div>

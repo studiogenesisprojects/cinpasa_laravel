@@ -14,6 +14,7 @@
                             <div>
                                 <p class="font-bold"><strong id="color-modal-name"></strong></p>
                                 <p class="text-muted text-sm">PANTONE <span id="color-modal-pantone"></span></p>
+                                <small class="text-muted text-sm" id="color-modal-description"></small>
                             </div>
 
                             <a href="#" title="Ver productos con el mismo color" class="font-semibold">Ver productos con el mismo color <img class="ml-3" src="{{ asset('front/img/icon-arrow-right-blue.svg') }}" alt="icono flecha derecha"></a>
@@ -25,6 +26,7 @@
                             <div class="ml-3">
                                 <p class="font-bold"><strong id="color-modal-name"></strong></p>
                                 <p class="text-muted text-sm">PANTONE <span id="color-modal-pantone">0000</span></p>
+                                <small class="text-muted text-sm" id="color-modal-description"></small>
                             </div>
                         </div>
                         <a href="#" title="Ver productos con el mismo color" class="font-semibold float-right">Ver productos con el <br> mismo color <img class="ml-3" src="{{ asset('front/img/icon-arrow-right-blue.svg') }}" alt="icono flecha derecha"></a>

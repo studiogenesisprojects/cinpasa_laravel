@@ -112,6 +112,18 @@ Route::group([
     Route::get(LaravelLocalization::transRoute('routes.favorites.info'), 'Front\FavoriteController@info');
     Route::get(LaravelLocalization::transRoute('routes.favorites.stored'), 'Front\FavoriteController@stored');
 
+    /**
+     * Outlet
+     */
+    Route::get(LaravelLocalization::transRoute('routes.outlet.index'), 'Front\OutletController@index');
+    Route::get('/outlet', 'Front\OutletController@index')->name('outlet');
+
+    /**
+     * LAB
+     */
+    Route::get(LaravelLocalization::transRoute('routes.lab.index'), 'Front\LabController@index');
+    Route::get(LaravelLocalization::transRoute('routes.lab.show_products'), 'Front\LabController@showProducts');
+
 
     Route::post('fav', 'Front\FavoriteController@fav');
     Route::post('search', 'Front\ProductController@filter');

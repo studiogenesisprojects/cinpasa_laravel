@@ -69,4 +69,10 @@ return [
         'stored' => 'work-with-us/cv/sended',
         'show' => 'work-with-us/{jobOffer}',
     ],
+    'outlet' => [
+        'index' => 'outlet'
+    ],
+    'lab' => [
+        'index' => 'lab'
+    ]
 ];

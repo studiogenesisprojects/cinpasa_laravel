@@ -32,6 +32,7 @@
         $('.delete-register').click(function(e) {
             url = $(this).data('url');
             $('#delete_link').attr('href', url);
+            $('#delete_link2').attr('href', url);
             tr = $(e.currentTarget).parents('tr');
             img = $(e.currentTarget).parent().parent();
         });
@@ -39,7 +40,7 @@
         $('#delete_link').click(e => {
             e.preventDefault();
             var url = $(e.currentTarget).attr('href');
-
+            console.log('URL DE ATAC: ' + url);
             axios.delete(url).then(
                 r => {
 
@@ -54,8 +55,34 @@
                     img.remove();
                 }
             ).catch(e => {
-                console.log(e.response);
+                    $('#modal-delete').modal('hide')
+                    swal({
+                        title: "Error al borrar",
+                        text: "@yield('swal.error.text')",
+                        type: "error",
+                        timer: 4000
+                    });
 
+            });
+        })
+
+        $('#delete_link2').click(e => {
+            e.preventDefault();
+            var url = $(e.currentTarget).attr('href');
+            axios.get(url).then(
+                r => {
+
+                    $('#modal-delete').modal('hide')
+                    swal({
+                        title: "Borrado correctamente",
+                        text: ' ',
+                        type: "success",
+                        timer: 2000
+                    });
+                    tr.remove();
+                    img.remove();
+                }
+            ).catch(e => {
                     $('#modal-delete').modal('hide')
                     swal({
                         title: "Error al borrar",

@@ -67,4 +67,10 @@ return [
         'stored' => 'работать-с-нами/cv/inviato',
         'show' => 'работать-с-нами/{jobOffer}',
     ],
+    'outlet' => [
+        'index' => 'выход'
+    ],
+    'lab' => [
+        'index' => 'лаборатория'
+    ]
 ];

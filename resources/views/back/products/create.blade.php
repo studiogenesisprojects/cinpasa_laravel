@@ -108,6 +108,9 @@
                                     <label for="">Activo: <input type="checkbox" name="active" checked></label>
                                 </div>
                                 <div class="col-md-6">
+                                    <label for="">Outlet: <input type="checkbox" name="outlet" checked></label>
+                                </div>
+                                <div class="col-md-6">
                                     <label for="">Orden</label>
                                     <input class="form-control" type="number" name="order">
                                 </div>
@@ -234,7 +237,15 @@
                                         <option value="1">Por lotes</option>
                                     </select>
                                 </div>
-
+                                <div class="col-md-6 pb-3">
+                                    <label>LAB</label>
+                                    <select name="lab_id" class="form-control">
+                                        <option value="">Elige un LAB</option>
+                                        @foreach($labs as $lab)
+                                            <option value="{{$lab->id}}">{{$lab->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="col-md-6 pb-3">
                                     <label for="">Referencias</label>
                                     <select name="references[]" class="form-control select2" multiple>

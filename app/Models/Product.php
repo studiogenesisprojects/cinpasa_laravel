@@ -22,7 +22,9 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
         "form_id",
         "brided_id",
         "video",
-        "product_image_id"
+        "product_image_id",
+        "outlet",
+        "lab_id"
     ];
 
     protected $appends = [

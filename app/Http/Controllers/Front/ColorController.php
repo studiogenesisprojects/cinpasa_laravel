@@ -31,6 +31,7 @@ class ColorController extends Controller
 
     public function ajaxColor($colorID, $productColorCategoryId)
     {
+        $category = ProductColorCategory::find($productColorCategoryId);
         $color = ProductColor::findOrFail($colorID);
         $products = Product::where('active', 1)->orderBy('order', 'asc')->whereHas('colorCategories', function ($q) use ($colorID, $productColorCategoryId) {
             $q->where('product_color_categories.id', $productColorCategoryId)
@@ -54,6 +55,7 @@ class ColorController extends Controller
         })->toArray();
 
         return response()->json([
+            "description" => $category->getDescriptionAttribute(),
             "color" => $color,
             "products" => array_values($products),
         ], 200);
