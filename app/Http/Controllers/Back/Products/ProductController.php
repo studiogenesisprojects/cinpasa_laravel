@@ -359,7 +359,7 @@ class ProductController extends Controller
 
 
                 if (!$product->categories->contains($cordonMateriaReciclableCategory)) {
-                    $product->categories()->save($cordonMateriaReciclableCategory);
+                    $product->categories()->attach($cordonMateriaReciclableCategory);
                 };
             } elseif (strpos(strtolower($product->name), 'cint') !== false) {
                 if (!$product->categories->contains($cintaReciclabeCategory)) {
@@ -369,18 +369,18 @@ class ProductController extends Controller
         }
         if ($product->ecoLogos->contains(10)) {
             if (!$product->categories->contains($cordonFIBRANATURALCategory)) {
-                $product->categories()->save($cordonFIBRANATURALCategory);
+                $product->categories()->attach($cordonFIBRANATURALCategory);
             };
         }
         if ($product->ecoLogos->contains(8)) {
 
             if (!$product->categories->contains($cordonMATERIARECICLADACategory)) {
-                $product->categories()->save($cordonMATERIARECICLADACategory);
+                $product->categories()->attach($cordonMATERIARECICLADACategory);
             }
         }
         if ($product->ecoLogos->contains(7)) {
             if (!$product->categories->contains($cordonBIOCategory)) {
-                $product->categories()->save($cordonBIOCategory);
+                $product->categories()->attach($cordonBIOCategory);
             };
         }
 
