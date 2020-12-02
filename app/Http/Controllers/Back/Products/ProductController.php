@@ -363,7 +363,7 @@ class ProductController extends Controller
                 };
             } elseif (strpos(strtolower($product->name), 'cint') !== false) {
                 if (!$product->categories->contains($cintaReciclabeCategory)) {
-                    $product->categories()->save($cintaReciclabeCategory);
+                    $product->categories()->attach($cintaReciclabeCategory);
                 };
             }
         }
