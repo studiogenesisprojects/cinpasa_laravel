@@ -59,6 +59,7 @@ class ProductController extends Controller
         $braids = ProductBraided::all();
         $materials = Material::all();
         $references = ProductReference::all();
+        $labs = Lab::all();
 
         return view('back.products.create', [
             "categories" => $categories,
@@ -75,6 +76,7 @@ class ProductController extends Controller
             "materials" => $materials,
             "references" => $references,
             'languages' => Language::all(),
+            'labs' => $labs
         ]);
     }
 
