@@ -228,6 +228,16 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+        $product->caracteristics()->delete();
+
+        foreach($product->galeries as $galery) {
+            foreach($galery->images as $image){
+                $image->delete();
+            }
+            $galery->delete();
+        }
+
+        $product->galeries()->delete();
         $product->update(['product_image_id' => null]);
         $product->images()->delete();
         $product->delete();
