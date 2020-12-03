@@ -166,7 +166,7 @@ Route::group([
     Route::post('/', 'Back\Materials\MaterialsController@index')->name('materialIndex');
     Route::get('/update/{id?}', 'Back\Materials\MaterialsController@update')->name('materialUpdate');
     Route::post('/handleupdate/{id?}', 'Back\Materials\MaterialsController@handleUpdate')->name('materialHandleUpdate');
-    Route::delete('/delete/{id}', 'Back\Materials\MaterialsController@delete')->name('materialDelete');
+    Route::get('/delete/{id}', 'Back\Materials\MaterialsController@delete')->name('materialDelete');
     Route::get('toggle-active/{id}', "Back\Materials\MaterialsController@toggleActive");
     Route::post('change-order/{id}', "Back\Materials\MaterialsController@changeOrder");
 
