@@ -63,7 +63,7 @@
                                                 <i class="icon-pencil"></i>
                                                 Editar
                                             </a>
-                                            <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('aplicaciones.destroy', $aplication->id) }}">
+                                            <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('aplicacions.destroy', $aplication->id) }}">
                                                 <i class="ti-trash"></i> Eliminar
                                             </a>
                                         </div>
@@ -118,7 +118,7 @@
                 })
                 .catch(e => {
                     console.log(e.response)
-                })            
+                })
         });
 
         $("#applications").on("keyup", ".order", function(e){
@@ -127,12 +127,12 @@
             if(value != ''){
                 axios.post('/admin/aplicaciones/change-order/'+ id, {order: value})
                 .then(r => {
-                   
+
                 })
                 .catch(e => {
                     console.log(e.response)
-                }) 
-            }           
+                })
+            }
         });
 } );
 </script>

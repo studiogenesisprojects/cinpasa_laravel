@@ -149,6 +149,8 @@ Route::resource('aplicaciones', 'Back\Aplication\AplicationController');
 Route::get('aplicaciones/toggle-active/{id}', "Back\Aplication\AplicationController@toggleActive");
 Route::post('aplicaciones/change-order/{id}', "Back\Aplication\AplicationController@changeOrder");
 
+Route::get('delete-app/{id}', 'Back\Aplication\AplicationController@destroy')->name('aplicacions.destroy');
+
 Route::resource('categorias-aplicaciones', 'Back\Aplication\ApplicationCategoryController');
 Route::get('categorias-aplicaciones/toggle-active/{id}', "Back\Aplication\ApplicationCategoryController@toggleActive");
 Route::post('categorias-aplicaciones/change-order/{id}', "Back\Aplication\ApplicationCategoryController@changeOrder");
@@ -182,6 +184,7 @@ Route::resource('acabados/materiales-acabados', 'Back\Finished\FinishedMaterialC
 Route::resource('acabados/posiciones', 'Back\Finished\FinishedPositionController');
 Route::resource('acabados', 'Back\Finished\FinishedController');
 Route::delete('acabados/delete-image/{id}/{image}', 'Back\Finished\FinishedController@deleteImage')->name('finished.delete-image');
+Route::get('acabados/delete/{id}', 'Back\Finished\FinishedController@destroy')->name('acabados.destroy');
 
 
 //OFERTAS DE TRABAJO
@@ -210,6 +213,7 @@ Route::delete('/acabados/galery/{id}', 'Back\EndingGaleryController@destroy');
 
 Route::post('/productos/galery', 'Back\Products\ProductController@handleGalery');
 Route::delete('/productos/galery/{id}', 'Back\Products\ProductController@deleteGalery');
+Route::get('/productos/delete/{id}', 'Back\Products\ProductController@destroy')->name('products.destroy');
 
 Route::resource('peticiones', 'Back\Petitions\PetitionController');
 Route::get('excel/peticiones', 'Back\Petitions\PetitionController@excel')->name('petitionsExcel');

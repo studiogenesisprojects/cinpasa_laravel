@@ -56,6 +56,11 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
         return $this->hasMany(ProductGalery::class);
     }
 
+    public function caracteristics()
+    {
+        return $this->hasMany(ProductCaracteristics::class);
+    }
+
     public function references()
     {
         return $this->belongsToMany(ProductReference::class, 'products_references_relations', 'product_id', 'reference_id');
