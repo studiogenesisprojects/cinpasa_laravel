@@ -154,48 +154,84 @@
                         <table id="caracteritics_table" width="100%" height="150px" class="table table-striped table-lightfont table-hover">
                             <thead>
                                 <tr>
-                                    <th>Referencia</th>
-                                    <th>Ancho</th>
-                                    <th>Bolsas</th>
-                                    <th>Cordones</th>
-                                    <th>Rapport</th>
-                                    <th>Diámetro</th>
-                                    <th>Largo</th>
-                                    <th>Ancho/Diámetro</th>
-                                    <th>Observaciones</th>
+                                    @if(in_array(!null, $references->toArray()))
+                                        <th>Referencia</th>
+                                    @endif
+                                    @if(in_array(!null, $width->toArray()))
+                                        <th>Ancho</th>
+                                    @endif
+                                    @if(in_array(!null, $bags->toArray()))
+                                        <th>Bolsas</th>
+                                    @endif
+                                    @if(in_array(!null, $laces->toArray()))
+                                        <th>Cordones</th>
+                                    @endif
+                                    @if(in_array(!null, $rapport->toArray()))
+                                        <th>Rapport</th>
+                                    @endif
+                                    @if(in_array(!null, $diameter->toArray()))
+                                        <th>Diámetro</th>
+                                    @endif
+                                    @if(in_array(!null, $length->toArray()))
+                                        <th>Largo</th>
+                                    @endif
+                                    @if(in_array(!null, $width_diameter->toArray()))
+                                        <th>Ancho/Diámetro</th>
+                                    @endif
+                                    @if(in_array(!null, $observations->toArray()))
+                                        <th>Observaciones</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody id="caracteristics_body">
                                 @for($i = 0; $i < sizeOf($product_caracteristics); $i++)
                                 <div id="bloc_1">
                                     <tr id="row_0">
+                                    @if(in_array(!null, $references->toArray()))
                                     <td class="border">
                                         <span>{{$references[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if(in_array(!null, $width->toArray()))
                                     <td class="border">
                                         <span>{{$width[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if(in_array(!null, $bags->toArray()))
                                     <td class="border">
                                         <span>{{$bags[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if(in_array(!null, $laces->toArray()))
                                     <td class="border">
                                         <span>{{$laces[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if(in_array(!null, $rapport->toArray()))
                                     <td class="border">
                                         <span>{{$rapport[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if(in_array(!null, $diameter->toArray()))
                                     <td class="border">
                                         <span>{{$diameter[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if(in_array(!null, $length->toArray()))
                                     <td class="border">
                                         <span>{{$length[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if(in_array(!null, $width_diameter->toArray()))
                                     <td class="border">
                                         <span>{{$width_diameter[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if(in_array(!null, $observations->toArray()))
                                     <td>
                                         <input type="text" class="form-control " value="{{$observations[$i]}}" name="observations[]">
                                     </td>
+                                    @endif
                                     </tr>
                                 </div>
                                 @endfor
