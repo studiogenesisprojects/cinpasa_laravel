@@ -154,51 +154,87 @@
                         <table id="caracteritics_table" width="100%" height="150px" class="table table-striped table-lightfont table-hover">
                             <thead>
                                 <tr>
-                                    <th>Referencia</th>
-                                    <th>Ancho</th>
-                                    <th>Bolsas</th>
-                                    <th>Cordones</th>
-                                    <th>Rapport</th>
-                                    <th>Diámetro</th>
-                                    <th>Largo</th>
-                                    <th>Ancho/Diámetro</th>
-                                    <th>Observaciones</th>
+                                    @if(in_array(!null, $references->toArray()))
+                                        <th>Referencia</th>
+                                    @endif
+                                    @if(in_array(!null, $width->toArray()))
+                                        <th>Ancho</th>
+                                    @endif
+                                    @if(in_array(!null, $bags->toArray()))
+                                        <th>Bolsas</th>
+                                    @endif
+                                    @if(in_array(!null, $laces->toArray()))
+                                        <th>Cordones</th>
+                                    @endif
+                                    @if(in_array(!null, $rapport->toArray()))
+                                        <th>Rapport</th>
+                                    @endif
+                                    @if(in_array(!null, $diameter->toArray()))
+                                        <th>Diámetro</th>
+                                    @endif
+                                    @if(in_array(!null, $length->toArray()))
+                                        <th>Largo</th>
+                                    @endif
+                                    @if(in_array(!null, $width_diameter->toArray()))
+                                        <th>Ancho/Diámetro</th>
+                                    @endif
+                                    @if(in_array(!null, $observations->toArray()))
+                                        <th>Observaciones</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody id="caracteristics_body">
-                                @foreach($product_caracteristics as $caracteristic)
+                                @for($i = 0; $i < sizeOf($product_caracteristics); $i++)
                                 <div id="bloc_1">
                                     <tr id="row_0">
+                                    @if($references[$i])
                                     <td class="border">
-                                        <span>{{$caracteristic->references}}</span>
+                                        <span>{{$references[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if($width[$i])
                                     <td class="border">
-                                        <span>{{$caracteristic->width}}</span>
+                                        <span>{{$width[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if($bags[$i])
                                     <td class="border">
-                                        <span>{{$caracteristic->bags}}</span>
+                                        <span>{{$bags[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if($laces[$i])
                                     <td class="border">
-                                        <span>{{$caracteristic->laces}}</span>
+                                        <span>{{$laces[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if($rapport[$i])
                                     <td class="border">
-                                        <span>{{$caracteristic->rapport}}</span>
+                                        <span>{{$rapport[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if($diameter[$i])
                                     <td class="border">
-                                        <span>{{$caracteristic->diameter}}</span>
+                                        <span>{{$diameter[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if($length[$i])
                                     <td class="border">
-                                        <span>{{$caracteristic->length}}</span>
+                                        <span>{{$length[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if($width_diameter[$i])
                                     <td class="border">
-                                        <span>{{$caracteristic->width_diameter}}</span>
+                                        <span>{{$width_diameter[$i]}}</span>
                                     </td>
+                                    @endif
+                                    @if($observations[$i])
                                     <td>
-                                        <input type="text" class="form-control " value="{{$caracteristic->observations}}" name="observations[]">
+                                        <input type="text" class="form-control " value="{{$observations[$i]}}" name="observations[]">
                                     </td>
+                                    @endif
                                     </tr>
                                 </div>
-                                @endforeach
+                                @endfor
                             </tbody>
                         </table>
                     </div>

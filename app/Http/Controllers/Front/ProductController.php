@@ -58,9 +58,26 @@ class ProductController extends Controller
         });
 
         $product_caracteristics = ProductCaracteristics::where('product_id', $product->id)->orderBy('order')->get();
+
+        $references = $product_caracteristics->pluck('references');
+        $width = $product_caracteristics->pluck('width');
+        $bags = $product_caracteristics->pluck('bags');
+        $laces = $product_caracteristics->pluck('laces');
+        $rapport = $product_caracteristics->pluck('rapport');
+        $diameter = $product_caracteristics->pluck('diameter');
+        $length = $product_caracteristics->pluck('length');
+        $width_diameter = $product_caracteristics->pluck('width_diameter');
+        $observations = $product_caracteristics->pluck('observations');
+
         $relateds = $product->relateds();
 
-        return view('front.products._show', compact('relateds', 'product_caracteristics', 'product', 'finishedColumns', 'productCategory', 'colorCategories', 'applicationCategories'));
+        return view('front.products._show', compact('relateds',
+         'product_caracteristics',
+         'references', 'width', 'bags', 'laces', 'rapport', 'diameter', 'length', 'width_diameter', 'observations',
+         'product', 'finishedColumns',
+          'productCategory',
+           'colorCategories',
+           'applicationCategories'));
     }
 
     public function showProductRedirect(Product $product)
