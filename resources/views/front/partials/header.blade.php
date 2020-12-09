@@ -37,6 +37,9 @@
                     <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.company.index')}}" title="Accede al apartado empresa">EMPRESA</a>
                     <a id="productos_submenu" class="ml-sm-5 a-stagger" href="#" title="Accede al apartado productos">PRODUCTOS <img src="{{ asset('front/img/icon-arrow-down-blue.svg') }}" alt="icono flecha abajo"></a>
                     <div class="flex-column ml-5 my-2 submenu">
+                        @php
+                           $fathers = $fathers->sortBy('order');
+                        @endphp
                         @foreach ($fathers as $father)
                             <a class="ml-sm-5"
                                 href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" => $father->slug])}}">{!! $father->name !!}</a>
@@ -182,6 +185,9 @@
         <div class="position-absolute w-100 z-1 justify-content-center background-white py-5 opacity-97 dropdown">
             <div class="container mt-5">
                 <div class="row">
+                    @php
+                        $fathers = $fathers->sortBy('order');
+                    @endphp
                     @foreach ($fathers as $father)
                     <div class="col-2 d-flex flex-column">
                         <a class="font-bold"

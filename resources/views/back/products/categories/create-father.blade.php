@@ -79,8 +79,15 @@
                                                         <textarea class="item form-control" name="productCategoryLanguages[{{ $idioma->id }}][seo_description]" cols="30" rows="6"></textarea>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         @endforeach
+                                        <div class="row mb-3">
+                                            <div class="col-md-12">
+                                                <label>Orden</label>
+                                                <input class="item form-control" type="number" name="order">
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>

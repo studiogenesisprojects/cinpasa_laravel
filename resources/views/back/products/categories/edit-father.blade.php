@@ -82,6 +82,12 @@
                                             </div>
                                         </div>
                                         @endforeach
+                                        <div class="row mb-3">
+                                            <div class="col-md-12">
+                                                <label>Orden</label>
+                                                <input class="item form-control" value="{{$category->order}}" type="number" name="order">
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>

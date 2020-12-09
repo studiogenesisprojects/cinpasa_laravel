@@ -81,6 +81,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
+                                <th>Orden</th>
                                 <th class="td-acciones">Acciones</th>
                             </tr>
                         </thead>
@@ -97,6 +98,7 @@
                                     <tr role="row">
                                         <td><strong>{{ $category->name }}</strong></td>
                                         <td>{{ $category->description }}</td>
+                                        <td>{{ $category->order }}</td>
                                         <td class="td-acciones">
                                             <div class="btn-group">
                                                 <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
@@ -187,7 +189,7 @@
                 })
                 .catch(e => {
                     console.log(e.response)
-                })            
+                })
         });
 
         $("#categorias").on("keyup", ".order", function(e){
@@ -196,12 +198,12 @@
             if(value != ''){
                 axios.post('/admin/productos/categorias/change-order/'+ id, {order: value})
                 .then(r => {
-                   
+
                 })
                 .catch(e => {
                     console.log(e.response)
-                }) 
-            }           
+                })
+            }
         });
     });
 </script>

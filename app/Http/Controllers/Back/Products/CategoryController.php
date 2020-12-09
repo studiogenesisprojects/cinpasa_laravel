@@ -13,7 +13,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = ProductCategory::all();
+        $categories = ProductCategory::orderBy('order', 'ASC')->get();
         return view('back.products.categories.index', compact('categories'));
     }
 

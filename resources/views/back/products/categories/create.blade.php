@@ -78,7 +78,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="">Slug</label>
-                                                        <input id="name" type="text" class="form-control slug" name="productCategoryLanguages[{{ $idioma->id }}][slug]" required>
+                                                        <input id="name" type="text" pattern="[a-zA-Z0-9!@#$%^*_|]{6,25}" class="form-control slug" name="productCategoryLanguages[{{ $idioma->id }}][slug]" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
@@ -114,8 +114,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
+
+
                                 {{-- Error messages --}}
                                     @if ($errors->any())
                                         <div class="alert alert-danger" role="alert">
@@ -140,7 +140,7 @@
                                     <button class="btn btn-success" type="submit">Guardar</button>
                                 </div>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>

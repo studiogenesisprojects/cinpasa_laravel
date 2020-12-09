@@ -57,7 +57,7 @@ class ProductController extends Controller
             return $item->applicationCategories->first()->name ?? "";
         });
 
-        $product_caracteristics = ProductCaracteristics::where('product_id', $product->id)->first();
+        $product_caracteristics = ProductCaracteristics::where('product_id', $product->id)->orderBy('order')->get();
         $relateds = $product->relateds();
 
         return view('front.products._show', compact('relateds', 'product_caracteristics', 'product', 'finishedColumns', 'productCategory', 'colorCategories', 'applicationCategories'));

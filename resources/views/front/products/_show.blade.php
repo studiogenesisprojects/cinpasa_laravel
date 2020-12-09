@@ -133,7 +133,7 @@
         </div>
         @if(isset($product_caracteristics))
         <div class="row mt-5">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <hr>
                 <p class="font-bold color-black mt-4">CARACTERÍSTICAS</p>
                 <div class="row mt-4">
@@ -145,75 +145,62 @@
                         @endforeach
                     </div>
                     @endif
-                    @if($product_caracteristics->rapport)
-                    <div class="col-6">
-                        <p class="small color-primary">Rapport</p>
-                        <p class="color-primary">{{$product_caracteristics->rapport}}</p>
-                    </div>
-                    @endif
-                    @if($product_caracteristics->pockets)
-                    <div class="col-6 mt-5">
-                        <p class="small color-primary">Nº Bolsillos</p>
-                        <p class="color-primary">{{$product_caracteristics->pockets}}</p>
-                    </div>
-                    @endif
-                    @if($product_caracteristics->laces)
-                    <div class="col-6 mt-5">
-                        <p class="small color-primary">Nº Cordones</p>
-                        <p class="color-primary">{{$product_caracteristics->pockets}}</p>
-                    </div>
-                    @endif
-                    @if($product_caracteristics->packaging)
-                    <div class="col-6 mt-5">
-                        <p class="small color-primary">Envases</p>
-                        <p class="color-primary">{{$product_caracteristics->packaging}}</p>
-                    </div>
-                    @endif
                 </div>
             </div>
-            <div class="col-md-6 mt-md-0 mt-5">
-                <hr>
+            <div class="col-md-12 mt-md-0 mt-5">
                 <p class="font-bold color-black mt-4">REFERENCIAS Y ANCHO/DIÁMETRO</p>
                 <div class="row mt-4">
-                    @if($product_caracteristics->width)
-                    <div class="col-6 ">
-                        <p class="small color-primary">Ancho</p>
-                        <p class="color-primary">{{$product_caracteristics->width}} mm</p>
-                    </div>
-                    @endif
-                    @if($product_caracteristics->bags)
-                    <div class="col-6 ">
-                        <p class="small color-primary">Bolsas</p>
-                        <p class="color-primary">{{$product_caracteristics->bags}}</p>
-                    </div>
-                    @endif
-                    @if($product_caracteristics->length)
-                    <div class="col-6 mt-5">
-                        <p class="small color-primary">Largo</p>
-                        <p class="color-primary">{{$product_caracteristics->length}} cm</p>
-                    </div>
-                    @endif
-                    @if($product_caracteristics->flecortin_head)
-                    <div class="col-6 mt-5">
-                        <p class="small color-primary">Cabezal FleCortin</p>
-                        <p class="color-primary">{{$product_caracteristics->flecortin_head}}</p>
-                    </div>
-                    @endif
-                    @if($product_caracteristics->flecortin_width)
-                    <div class="col-6 mt-5">
-                        <p class="small color-primary">Ancho FleCortin</p>
-                        <p class="color-primary">{{$product_caracteristics->flecortin_width}}</p>
-                    </div>
-                    @endif
-                    <div class="col-6 mt-5">
-                        @php
-                        $references = collect($product->references)->sortBy('diametro')->toArray();
-                        @endphp
-
-                        @foreach ($references as $reference)
-                        <p class="color-primary">{{$reference['referencia']}}
-                            ({{$reference['diametro']}} MM{{$reference['bolsas'] ? ', '.$reference['bolsas'] . ' bolsa/s' : ''}}{{$reference['cordones'] ? ', '.$reference['cordones'] . ' cordón/es' : ''}}{{$reference['rapport'] ? ', '.$reference['rapport'] . ' rapport' : ''}}) </p>
-                        @endforeach
+                    <div class="table-responsive">
+                        <table id="caracteritics_table" width="100%" height="150px" class="table table-striped table-lightfont table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Referencia</th>
+                                    <th>Ancho</th>
+                                    <th>Bolsas</th>
+                                    <th>Cordones</th>
+                                    <th>Rapport</th>
+                                    <th>Diámetro</th>
+                                    <th>Largo</th>
+                                    <th>Ancho/Diámetro</th>
+                                    <th>Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="caracteristics_body">
+                                @foreach($product_caracteristics as $caracteristic)
+                                <div id="bloc_1">
+                                    <tr id="row_0">
+                                    <td class="border">
+                                        <span>{{$caracteristic->references}}</span>
+                                    </td>
+                                    <td class="border">
+                                        <span>{{$caracteristic->width}}</span>
+                                    </td>
+                                    <td class="border">
+                                        <span>{{$caracteristic->bags}}</span>
+                                    </td>
+                                    <td class="border">
+                                        <span>{{$caracteristic->laces}}</span>
+                                    </td>
+                                    <td class="border">
+                                        <span>{{$caracteristic->rapport}}</span>
+                                    </td>
+                                    <td class="border">
+                                        <span>{{$caracteristic->diameter}}</span>
+                                    </td>
+                                    <td class="border">
+                                        <span>{{$caracteristic->length}}</span>
+                                    </td>
+                                    <td class="border">
+                                        <span>{{$caracteristic->width_diameter}}</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control " value="{{$caracteristic->observations}}" name="observations[]">
+                                    </td>
+                                    </tr>
+                                </div>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

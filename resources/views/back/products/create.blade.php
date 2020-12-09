@@ -169,6 +169,72 @@
                             </div>
                             <h5 class="py-3">Características</h5>
                             <div class="row pb-3">
+                                <div class="table-responsive">
+                                    <table id="caracteritics_table" width="100%" height="150px" class="table table-striped table-lightfont table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Referencia</th>
+                                                <th>Ancho</th>
+                                                <th>Bolsas</th>
+                                                <th>Cordones</th>
+                                                <th>Rapport</th>
+                                                <th>Diámetro</th>
+                                                <th>Largo</th>
+                                                <th>Ancho/Diámetro</th>
+                                                <th>Observaciones</th>
+                                                <th>Orden</th>
+                                                <th class="td-acciones">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="caracteristics_body">
+                                            <div id="bloc_1">
+                                                <tr id="row_0">
+                                                <td>
+                                                    <input type="text" class="form-control " name="references2[]">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control " name="width[]">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control " name="bags[]">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control " name="laces[]">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control " name="rapport[]">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control " name="diameter[]">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control " name="length[]">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control " name="width_diameter[]">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control " name="observations[]">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control " name="order[]">
+                                                </td>
+                                                <td class="acciones">
+                                                    <div class="btn-group">
+                                                        <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
+                                                        <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu dropdown-menu-right">
+                                                            <a href="javascript:;" onClick="addValues()" class="dropdown-item addRow"><i class="ti-pencil"></i> Afegir</a>
+                                                            <a href="javascript:;" onClick="deleteRow(0)" class="dropdown-item deleteRow"><i class="ti-trash"></i> Eliminar</a>
+                                                            <a href="javascript:;" onClick="duplicateRow(0)" class="dropdown-item duplicateRow"><i class="ti-layers-alt"></i> Duplicar</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                </tr>
+                                            </div>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
                                 {{-- <div class="col-md-6 pb-3">
                                     <label>Forma</label>
                                     <select class="form-control select2" name="form_id" >
@@ -185,7 +251,7 @@
                                         @endforeach
                                     </select>
                                 </div> --}}
-                                <div class="col-md-6 pb-3">
+                                <div class="col-md-6 pb-3 mt-3">
                                     <label>Materiales</label>
                                     <select class="form-control select2" name="materials[]" multiple="true">
                                         @foreach ($materials as $material)
@@ -193,35 +259,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Rapport</label>
-                                    <input type="text" class="form-control " name="rapport">
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Ancho</label>
-                                    <input type="number" class="form-control " name="width">
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Nº Bolsillos</label>
-                                    <input type="number" class="form-control " name="pockets">
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Nº Cordones</label>
-                                    <input type="number" class="form-control " name="laces">
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Envases</label>
-                                    <input type="text" class="form-control " name="packaging">
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Bolsas</label>
-                                    <input type="text" class="form-control " name="bags">
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Largo</label>
-                                    <input type="text" class="form-control " name="length">
-                                </div>
-                                <div class="col-md-6 pb-3">
+                                <div class="col-md-6 pb-3 mt-3">
                                     <label>Cabezal FleCortin</label>
                                     <input type="text" class="form-control " name="flecortin_head">
                                 </div>
@@ -230,27 +268,11 @@
                                     <input type="text" class="form-control " name="flecortin_width">
                                 </div>
                                 <div class="col-md-6 pb-3">
-                                    <label>Presentación</label>
-                                    <select name="presentation" class="form-control">
-                                        <option value="">Elige una presentación</option>
-                                        <option value="0">Por unidades</option>
-                                        <option value="1">Por lotes</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 pb-3">
                                     <label>LAB</label>
                                     <select name="lab_id" class="form-control">
                                         <option value="">Elige un LAB</option>
                                         @foreach($labs as $lab)
                                             <option value="{{$lab->id}}">{{$lab->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label for="">Referencias</label>
-                                    <select name="references[]" class="form-control select2" multiple>
-                                        @foreach ($references as $reference)
-                                            <option value="{{$reference->id}}">{{$reference->referencia}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -270,24 +292,15 @@
                                     <label>Categorías</label>
                                     <applications :name="'categories[]'" :items="{{$categories}}"  ></applications>
                                 </div>
-                                {{-- <div class="col-md-12">
-                                    <label>Categorías</label>
-                                    <applications :name="'categories[]'" :items="{{$categories}}"  ></applications>
-                                </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6">
-                                    <strong>Muestrarios</strong>
-                                    <applications :name="'colors[]'" :items="{{$colors}}" ></applications>
+                                    <label for="">Referencias</label>
+                                    <select name="references[]" class="form-control select2" multiple >
+                                        @foreach ($references as $reference)
+                                            <option value="{{$reference->id}}">{{$reference->referencia}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                --}}
-                                <div class="row">
-
-
-
                             </div>
-
 
                             <div class="pt-4">
                                 <button class="btn btn-primary" type="submit">Guardar</button>
@@ -302,9 +315,80 @@
 
 @section('js')
     <script>
+
+        var counter = 1;
+
         $(document).ready( () => {
             CKEDITOR.replaceAll('item');
             $('.select2').select2();
-        })
+        });
+
+        function addValues(){
+            $('#caracteristics_body').append(`
+            <tr id="row_`+counter+`">
+                <td>
+                    <input type="text" class="form-control " name="references2[]">
+                </td>
+                <td>
+                    <input type="number" class="form-control " name="width[]">
+                </td>
+                <td>
+                    <input type="number" class="form-control " name="bags[]">
+                </td>
+                <td>
+                    <input type="number" class="form-control " name="laces[]">
+                </td>
+                <td>
+                    <input type="text" class="form-control " name="rapport[]">
+                </td>
+                <td>
+                    <input type="text" class="form-control " name="diameter[]">
+                </td>
+                <td>
+                    <input type="text" class="form-control " name="length[]">
+                </td>
+                <td>
+                    <input type="text" class="form-control " name="width_diameter[]">
+                </td>
+                <td>
+                    <input type="text" class="form-control " name="observations[]">
+                </td>
+                <td>
+                    <input type="number" class="form-control " name="order[]">
+                </td>
+                <td class="acciones">
+                    <div class="btn-group">
+                        <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
+                        <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu dropdown-menu-right">
+                            <a href="javascript:;" onClick="addValues()" class="dropdown-item addRow"><i class="ti-pencil"></i> Afegir</a>
+                            <a href="javascript:;" onClick="deleteRow(`+counter+`)" class="dropdown-item deleteRow"><i class="ti-trash"></i> Eliminar</a>
+                            <a href="javascript:;" onClick="duplicateRow(`+counter+`)" class="dropdown-item duplicateRow"><i class="ti-layers-alt"></i> Duplicar</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            `);
+
+            counter++;
+        }
+
+        function duplicateRow(num){
+            $('.dropdown-toggle').dropdown('toggle');
+            //Get the clone of the row
+            var clone = $('#row_' + num).clone();
+            //change the id to the correct id
+            clone.attr("id","row_" + counter);
+            //change the functions too
+            clone.find("[onClick^='deleteRow']").attr("onClick","deleteRow("+counter+")");
+            clone.find("[onClick^='duplicateRow']").attr("onClick","duplicateRow("+counter+")");
+
+            $('#caracteristics_body').append(clone);
+            counter++;
+        }
+
+        function deleteRow(num){
+            $('#row_' + num).remove();
+        }
+
     </script>
 @endsection

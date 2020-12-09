@@ -62,7 +62,7 @@ Route::group(['prefix' => 'news'], function () {
     Route::resource('categories', 'NewsCategoryController');
 });
 
-//PRODUCTOS
+//LAB
 Route::group([
     "prefix" => "lab",
     "middleware" => ['access.client']
@@ -80,11 +80,9 @@ Route::group([
     "prefix" => "productos",
     "middleware" => ['access.client']
 ], function () {
-
-
+    Route::get('categorias/{id}', "Back\Products\CategoryController@destroy");
     Route::get('categorias/toggle-active/{id}', "Back\Products\CategoryController@toggleActive");
     Route::post('categorias/change-order/{id}', "Back\Products\CategoryController@changeOrder");
-
 
     //CATEGORIAS DE PRODUCTOS
     Route::resource('categorias', 'Back\Products\CategoryController');

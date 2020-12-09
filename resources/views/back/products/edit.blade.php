@@ -72,10 +72,12 @@
                                                         <input type="text" class="form-control slug" value="{{$product->lang($idioma->id)->slug ?? ""}}"
                                                         name="productLanguages[{{ $idioma->id }}][slug]">
                                                         <div class="input-group-append">
+                                                            @if(isset($product->categories[0]))
                                                             <a href="{{LaravelLocalization::getURLFromRouteNameTranslated($idioma->code, 'routes.products.showProduct', [
                                                                 "productCategory" => $product->categories[0],
                                                                 "product" => $product
                                                                 ])}}" target="_blank" id="preview" class="input-group-text"><i class="ti-eye"></i></a>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -205,27 +207,74 @@
                             </div>
                             <h5 class="py-3">Características</h5>
                             <div class="row pb-3">
-                                {{-- <div class="col-md-6 pb-3">
-                                    <label>Forma</label>
-                                    <select class="form-control select2" name="form_id" >
-                                        @foreach ($shapes as $shape)
-                                            <option value="{{$shape->id}}"
-                                                {{ $shape->id == $product->form_id ? "selected" : '' }}
-                                                >{{$shape->name}}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="table-responsive">
+                                    <table id="caracteritics_table" width="100%" height="150px" class="table table-striped table-lightfont table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Referencia</th>
+                                                <th>Ancho</th>
+                                                <th>Bolsas</th>
+                                                <th>Cordones</th>
+                                                <th>Rapport</th>
+                                                <th>Diámetro</th>
+                                                <th>Largo</th>
+                                                <th>Ancho/Diámetro</th>
+                                                <th>Observaciones</th>
+                                                <th>Orden</th>
+                                                <th class="td-acciones">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="caracteristics_body">
+                                            @foreach($caracteristics as $caracteristic)
+                                            <div id="bloc_1">
+                                                <tr id="row_0">
+                                                <td>
+                                                    <input type="text" class="form-control" value="{{$caracteristic->references}}" name="references2[]">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control " value="{{$caracteristic->width}}" name="width[]">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control " value="{{$caracteristic->bags}}" name="bags[]">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control " value="{{$caracteristic->laces}}" name="laces[]">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control " value="{{$caracteristic->rapport}}" name="rapport[]">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control " value="{{$caracteristic->diameter}}" name="diameter[]">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control " value="{{$caracteristic->length}}" name="length[]">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control " value="{{$caracteristic->width_diameter}}" name="width_diameter[]">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control " value="{{$caracteristic->observations}}" name="observations[]">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control " value="{{$caracteristic->order}}" name="order[]">
+                                                </td>
+                                                <td class="acciones">
+                                                    <div class="btn-group">
+                                                        <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
+                                                        <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu dropdown-menu-right">
+                                                            <a href="javascript:;" onClick="addValues()" class="dropdown-item addRow"><i class="ti-pencil"></i> Afegir</a>
+                                                            <a href="javascript:;" onClick="deleteRow(0)" class="dropdown-item deleteRow"><i class="ti-trash"></i> Eliminar</a>
+                                                            <a href="javascript:;" onClick="duplicateRow(0)" class="dropdown-item duplicateRow"><i class="ti-layers-alt"></i> Duplicar</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                </tr>
+                                            </div>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Trenzado</label>
-                                    <select class="form-control select2" name="brided_id" >
-                                        @foreach ($braids as $braid)
-                                            <option value="{{$braid->id}}"
-                                                {{ $braid->id == $product->brided_id ? "selected" : '' }}
-                                                >{{$braid->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div> --}}
-                                <div class="col-md-6 pb-3">
+                                <div class="col-md-6 pb-3 mt-2">
                                     <label>Materiales</label>
                                     <select class="form-control select2" name="materials[]" multiple="true">
                                         @foreach ($materials as $material)
@@ -237,41 +286,13 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Rapport</label>
-                                    <input type="text" class="form-control " value="{{ $caracteristics->rapport }}" name="rapport">
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Ancho</label>
-                                    <input type="number" class="form-control " value="{{ $caracteristics->width }}" name="width">
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Nº Bolsillos</label>
-                                    <input type="number" class="form-control " value="{{ $caracteristics->pockets }}" name="pockets">
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Nº Cordones</label>
-                                    <input type="number" class="form-control " value="{{ $caracteristics->laces }}" name="laces">
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Envases</label>
-                                    <input type="text" class="form-control " value="{{ $caracteristics->packaging }}" name="packaging">
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Bolsas</label>
-                                    <input type="text" class="form-control " value="{{ $caracteristics->bags }}" name="bags">
-                                </div>
-                                <div class="col-md-6 pb-3">
-                                    <label>Largo</label>
-                                    <input type="text" class="form-control " value="{{ $caracteristics->length }}" name="length">
-                                </div>
-                                <div class="col-md-6 pb-3">
+                                <div class="col-md-6 pb-3 mt-2">
                                     <label>Cabezal FleCortin</label>
-                                    <input type="text" class="form-control " value="{{ $caracteristics->flecortin_head }}" name="flecortin_head">
+                                    <input type="text" class="form-control " value="{{ $caracteristics[0]->flecortin_head }}" name="flecortin_head">
                                 </div>
                                 <div class="col-md-6 pb-3">
                                     <label>Ancho FleCortin</label>
-                                    <input type="text" class="form-control " value="{{ $caracteristics->flecortin_width }}" name="flecortin_width">
+                                    <input type="text" class="form-control " value="{{ $caracteristics[0]->flecortin_width }}" name="flecortin_width">
                                 </div>
                                 <div class="col-md-6 pb-3">
                                     <label>Presentación</label>
@@ -344,9 +365,79 @@
 
 @section('js')
     <script>
+        var counter = 1;
+
         $(document).ready( () => {
             CKEDITOR.replaceAll('item');
             $('.select2').select2();
-        })
+        });
+
+        function addValues(){
+            $('#caracteristics_body').append(`
+            <tr id="row_`+counter+`">
+                <td>
+                    <input type="text" class="form-control " name="references2[]">
+                </td>
+                <td>
+                    <input type="number" class="form-control " name="width[]">
+                </td>
+                <td>
+                    <input type="number" class="form-control " name="bags[]">
+                </td>
+                <td>
+                    <input type="number" class="form-control " name="laces[]">
+                </td>
+                <td>
+                    <input type="text" class="form-control " name="rapport[]">
+                </td>
+                <td>
+                    <input type="text" class="form-control " name="diameter[]">
+                </td>
+                <td>
+                    <input type="text" class="form-control " name="length[]">
+                </td>
+                <td>
+                    <input type="text" class="form-control " name="width_diameter[]">
+                </td>
+                <td>
+                    <input type="text" class="form-control " name="observations[]">
+                </td>
+                <td>
+                    <input type="number" class="form-control " name="order[]">
+                </td>
+                <td class="acciones">
+                    <div class="btn-group">
+                        <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
+                        <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu dropdown-menu-right">
+                            <a href="javascript:;" onClick="addValues()" class="dropdown-item addRow"><i class="ti-pencil"></i> Afegir</a>
+                            <a href="javascript:;" onClick="deleteRow(`+counter+`)" class="dropdown-item deleteRow"><i class="ti-trash"></i> Eliminar</a>
+                            <a href="javascript:;" onClick="duplicateRow(`+counter+`)" class="dropdown-item duplicateRow"><i class="ti-layers-alt"></i> Duplicar</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            `);
+
+            counter++;
+        }
+
+        function duplicateRow(num){
+            $('.dropdown-toggle').dropdown('toggle');
+            //Get the clone of the row
+            var clone = $('#row_' + num).clone();
+            //change the id to the correct id
+            clone.attr("id","row_" + counter);
+            //change the functions too
+            clone.find("[onClick^='deleteRow']").attr("onClick","deleteRow("+counter+")");
+            clone.find("[onClick^='duplicateRow']").attr("onClick","duplicateRow("+counter+")");
+
+            $('#caracteristics_body').append(clone);
+            counter++;
+        }
+
+        function deleteRow(num){
+            $('#row_' + num).remove();
+        }
+
     </script>
 @endsection

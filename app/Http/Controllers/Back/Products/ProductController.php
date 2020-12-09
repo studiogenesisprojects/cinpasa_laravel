@@ -82,9 +82,28 @@ class ProductController extends Controller
 
     public function store(RequestCategory $request)
     {
+
         $product = Product::create($request->all());
 
-        ProductCaracteristics::create(array_merge($request->all(), ['product_id' => $product->id, "outlet" => isset($request->outlet)]));
+        for($i = 0; $i < sizeOf($request->references2); $i++){
+            $product_caracteristic = new ProductCaracteristics;
+            $product_caracteristic->product_id = $product->id;
+            $product_caracteristic->references = $request->references2[$i];
+            $product_caracteristic->width = $request->width[$i];
+            $product_caracteristic->bags = $request->bags[$i];
+            $product_caracteristic->laces = $request->laces[$i];
+            $product_caracteristic->rapport = $request->rapport[$i];
+            $product_caracteristic->diameter = $request->diameter[$i];
+            $product_caracteristic->length = $request->length[$i];
+            $product_caracteristic->width_diameter = $request->width_diameter[$i];
+            $product_caracteristic->observations = $request->observations[$i];
+            $product_caracteristic->flecortin_head = $request->flecortin_head;
+            $product_caracteristic->flecortin_width = $request->flecortin_width;
+            $product_caracteristic->order = $request->order[$i];
+
+            $product_caracteristic->save();
+        }
+        // ProductCaracteristics::create(array_merge($request->all(), ['product_id' => $product->id, "outlet" => isset($request->outlet)]));
 
         if ($request->galery_id) {
             $galery = ProductGalery::find($request->galery_id);
@@ -145,7 +164,7 @@ class ProductController extends Controller
         $materials = Material::all();
         $references = ProductReference::all();
         $languages = Language::all();
-        $caracteristics = ProductCaracteristics::where('product_id', $id)->first();
+        $caracteristics = ProductCaracteristics::where('product_id', $id)->get();
 
         return view('back.products.edit', [
             "product" => $product,
@@ -173,8 +192,26 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        $product_caracteristics = ProductCaracteristics::where('product_id', $product->id)->first();
-        $product_caracteristics->update($request->all());
+        $product->caracteristics()->delete();
+
+        for($i = 0; $i < sizeOf($request->references2); $i++){
+            $product_caracteristic = new ProductCaracteristics;
+            $product_caracteristic->product_id = $product->id;
+            $product_caracteristic->references = $request->references2[$i];
+            $product_caracteristic->width = $request->width[$i];
+            $product_caracteristic->bags = $request->bags[$i];
+            $product_caracteristic->laces = $request->laces[$i];
+            $product_caracteristic->rapport = $request->rapport[$i];
+            $product_caracteristic->diameter = $request->diameter[$i];
+            $product_caracteristic->length = $request->length[$i];
+            $product_caracteristic->width_diameter = $request->width_diameter[$i];
+            $product_caracteristic->observations = $request->observations[$i];
+            $product_caracteristic->flecortin_head = $request->flecortin_head;
+            $product_caracteristic->flecortin_width = $request->flecortin_width;
+            $product_caracteristic->order = $request->order[$i];
+
+            $product_caracteristic->save();
+        }
 
         foreach ($request->productLanguages as $language) {
             $language["active"] = isset($language["active"]);
@@ -299,8 +336,9 @@ class ProductController extends Controller
                 ]);
             } else {
                 $galery = ProductGalery::create(['product_id' => $request->product_id]);
-                $image = $galery->images()->create([
-                    "image" => $path
+                $image = ProductGaleryImage::create([
+                    "path" => $path,
+                    "product_galery_id" => $galery->id
                 ]);
             }
             return response()->json($image);

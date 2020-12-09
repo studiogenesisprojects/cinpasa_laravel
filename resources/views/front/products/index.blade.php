@@ -16,7 +16,9 @@
         <div class="row">
             <div id="menu_categorias" class="col-lg-3 col-sm-7 col-10 d-lg-block flex-column px-lg-5 mt-5 background-white z-1">
                 <p class="color-blue mb-4 d-flex align-items-center ml-lg-0 ml-3 mt-lg-0 mt-5"><img class="mr-3 mb-1 d-lg-inline-block d-none" src="{{ asset('front/img/icon-categorias.svg') }}" alt="icono menu categorías"><strong>CATEGORÍAS</strong></p>
-
+                @php
+                    $fathers = $fathers->sortBy('order');
+                @endphp
                 @foreach ($fathers as $father)
                 <div class="d-flex flex-column ml-4">
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
