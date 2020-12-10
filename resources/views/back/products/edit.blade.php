@@ -256,7 +256,7 @@
                                                     <input type="text" class="form-control " value="{{$caracteristic->observations}}" name="observations[]">
                                                 </td>
                                                 <td>
-                                                    <input type="number" class="form-control " value="{{$caracteristic->order}}" name="order[]">
+                                                    <input type="number" class="form-control " value="{{$caracteristic->order}}" name="order_car[]">
                                                 </td>
                                                 <td class="acciones">
                                                     <div class="btn-group">

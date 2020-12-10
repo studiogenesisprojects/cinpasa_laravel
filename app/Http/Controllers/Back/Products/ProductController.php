@@ -99,7 +99,7 @@ class ProductController extends Controller
             $product_caracteristic->observations = $request->observations[$i];
             $product_caracteristic->flecortin_head = $request->flecortin_head;
             $product_caracteristic->flecortin_width = $request->flecortin_width;
-            $product_caracteristic->order = $request->order[$i];
+            $product_caracteristic->order = $request->order_car[$i];
 
             $product_caracteristic->save();
         }
@@ -208,7 +208,7 @@ class ProductController extends Controller
             $product_caracteristic->observations = $request->observations[$i];
             $product_caracteristic->flecortin_head = $request->flecortin_head;
             $product_caracteristic->flecortin_width = $request->flecortin_width;
-            $product_caracteristic->order = $request->order[$i];
+            $product_caracteristic->order = $request->order_car[$i];
 
             $product_caracteristic->save();
         }
