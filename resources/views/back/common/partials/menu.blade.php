@@ -413,7 +413,7 @@
                             <li><a href="{{route('colores.index')}}">Colores</a></li>
                             <li><a href="{{route('categorias-colores.index')}}">Muestrario de colores</a></li>
                             <li><a href="{{route('tonalidades-colores.index')}}">Tonalidades de colores</a></li>
-                            {{-- <li><a href="{{route('referencias.index')}}">Referencias de medida</a></li> --}}
+                            <li><a href="{{route('referencias.index')}}">Referencias de medida</a></li>
                             <li><a href="{{route('eco.index')}}">Logos Eco</a></li>
                         </ul>
                     </div>
