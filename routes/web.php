@@ -29,6 +29,7 @@ Route::group([
 ],  function () {
 
     Route::get('/', 'Front\HomeController@index')->name('Home');
+    Route::get('/proves-script', 'ChangeReferences@execute')->name('proves-script');
 
     /**
      * Páginas estáticas

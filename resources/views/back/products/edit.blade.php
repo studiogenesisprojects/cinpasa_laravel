@@ -315,7 +315,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-6 pb-3">
+                                {{-- <div class="col-md-6 pb-3">
                                     <label for="">Referencias</label>
                                     <select name="references[]" class="form-control select2" multiple >
                                         @foreach ($references as $reference)
@@ -326,7 +326,7 @@
                                                 >{{$reference->referencia}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-6">
                                     <label>Categorías</label>
                                     <applications :name="'categories[]'" :items="{{$categories}}" :sitems="{{$product->categories->sortBy('pivot.order')}}" ></applications>
