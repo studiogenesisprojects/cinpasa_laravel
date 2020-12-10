@@ -17,7 +17,7 @@ class ChangeReferences extends Controller
                 $product_caracteristics->product_id = $product->id;
                 $product_caracteristics->bags = $reference->bolsas;
                 $product_caracteristics->laces = $reference->cordones;
-                $product_caracteristics->bags = $reference->rapport;
+                $product_caracteristics->rapport = $reference->rapport;
 
                 foreach($product->categories as $category) {
                     if($category->sup_product_category == 25338){
