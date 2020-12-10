@@ -15,6 +15,7 @@ class ChangeReferences extends Controller
             foreach($product->references as $reference){
                 $product_caracteristics = new ProductCaracteristics;
                 $product_caracteristics->product_id = $product->id;
+                $product_caracteristics->references = $reference->referencia;
                 $product_caracteristics->bags = $reference->bolsas;
                 $product_caracteristics->laces = $reference->cordones;
                 $product_caracteristics->rapport = $reference->rapport;
