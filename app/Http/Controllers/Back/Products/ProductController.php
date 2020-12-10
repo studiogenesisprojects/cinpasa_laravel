@@ -58,7 +58,7 @@ class ProductController extends Controller
         $shapes = ProductForm::all();
         $braids = ProductBraided::all();
         $materials = Material::all();
-        // $references = ProductReference::all();
+        $references = ProductReference::all();
         $labs = Lab::all();
 
         return view('back.products.create', [
@@ -74,7 +74,7 @@ class ProductController extends Controller
             "shapes" => $shapes,
             "braids" => $braids,
             "materials" => $materials,
-            // "references" => $references,
+            "references" => $references,
             'languages' => Language::all(),
             'labs' => $labs
         ]);
@@ -127,7 +127,7 @@ class ProductController extends Controller
         }
 
         //relación de referencias
-        // $product->references()->sync($request->references);
+        $product->references()->sync($request->references);
         $product->applications()->sync($request->applications);
         $product->finisheds()->sync($request->finisheds);
         $product->materials()->sync($request->materials);
@@ -162,7 +162,7 @@ class ProductController extends Controller
         $shapes = ProductForm::all();
         $braids = ProductBraided::all();
         $materials = Material::all();
-        // $references = ProductReference::all();
+        $references = ProductReference::all();
         $languages = Language::all();
         $caracteristics = ProductCaracteristics::where('product_id', $id)->get();
 
@@ -181,7 +181,7 @@ class ProductController extends Controller
             "shapes" => $shapes,
             "braids" => $braids,
             "materials" => $materials,
-            // "references" => $references,
+            "references" => $references,
             "languages" => $languages,
             "caracteristics" => $caracteristics,
             'labs' => $labs
@@ -246,7 +246,7 @@ class ProductController extends Controller
             }
         }
 
-        // $product->references()->sync($request->references);
+        $product->references()->sync($request->references);
         $product->labels()->sync($this->getOrder($request->labels));
         $product->materials()->sync($this->getOrder($request->materials));
         $product->colorCategories()->sync($this->getOrder($request->colors));

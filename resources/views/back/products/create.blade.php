@@ -292,14 +292,14 @@
                                     <label>Categorías</label>
                                     <applications :name="'categories[]'" :items="{{$categories}}"  ></applications>
                                 </div>
-                                {{-- <div class="col-md-6">
+                                <div class="col-md-6">
                                     <label for="">Referencias</label>
                                     <select name="references[]" class="form-control select2" multiple >
                                         @foreach ($references as $reference)
                                             <option value="{{$reference->id}}">{{$reference->referencia}}</option>
                                         @endforeach
                                     </select>
-                                </div> --}}
+                                </div>
                             </div>
 
                             <div class="pt-4">
