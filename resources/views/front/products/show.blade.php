@@ -70,19 +70,19 @@
                         <div class="col-md-4 col-sm-6 p-3 border-card">
                             <div class="position-relative">
                                 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
-                                    "productCategory" => $productCategory,
+                                    "productCategory" => $product->categories[0],
                                     "product" => $product
                                     ])}}" title="Accede a la información"><img class="w-100 border-img" src="{{ route('carousel.getImage', str_replace("/",";",$product->getPrimaryImageUrlAttribute())) }}"></a>
                                 <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
                                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
-                                        "productCategory" => $productCategory,
+                                        "productCategory" => $product->categories[0],
                                         "product" => $product
                                         ])}}" title="Obten información de este artículo"><img class="btn-products p-1 mr-1" src="{{ asset('front/img/icon-info.svg') }}" alt="icono información"></a>
                                     <a href="#" title="Añade a favoritos este artículo"><img class="btn-products p-1" src="{{ asset('front/img/icon-favorito.svg') }}" alt="icono favoritos"></a>
                                 </div>
                             </div>
                             <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
-                                "productCategory" => $productCategory,
+                                "productCategory" => $product->categories[0],
                                 "product" => $product
                                 ])}}" title="Accede a la información" class="d-flex flex-column">
                                 <p class="small color-blue mt-3">{{ $productCategory->name }}</p>
