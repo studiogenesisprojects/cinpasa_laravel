@@ -143,7 +143,7 @@
                 <p class="font-bold color-black mt-4">REFERENCIAS Y ANCHO/DIÁMETRO</p>
                    <p class="d-sm-none d-block">*Haz scroll lateral para ver la tabla entera</p>
                     <div class="table-responsive mt-3">
-                        <table id="caracteritics_table" width="100%" height="150px" class="table table-striped table-lightfont table-hover">
+                        <table id="caracteritics_table" width="100%" height="150px" class="table table-striped table-lightfont">
                             <thead>
                                 <tr>
                                     @if(in_array(!null, $references->toArray()))
