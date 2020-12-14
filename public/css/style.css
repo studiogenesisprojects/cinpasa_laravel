@@ -255,6 +255,21 @@ hr {
     margin: 0;
 }
 
+.table{
+    min-width: 540px!important;
+}
+
+.table thead th{
+    border-bottom: 0!important;
+    border-top: 0!important;
+    font-size: calc(18px + (20 - 18) * ((100vw - 320px) / (1920 - 320)))!important;
+    font-weight: 600!important;
+}
+
+.table-striped tbody tr:nth-of-type(odd){
+    background-color: transparent!important;
+}
+
 .bg-light {
     background-color: #282828 !important;
 }
