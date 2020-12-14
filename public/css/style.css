@@ -256,18 +256,18 @@ hr {
 }
 
 .table{
-    min-width: 540px;
+    min-width: 540px!important;
 }
 
 .table thead th{
-    border-bottom: 0;
-    border-top: 0;
-    font-size: calc(18px + (20 - 18) * ((100vw - 320px) / (1920 - 320)));
-    font-weight: 600;
+    border-bottom: 0!important;
+    border-top: 0!important;
+    font-size: calc(18px + (20 - 18) * ((100vw - 320px) / (1920 - 320)))!important;
+    font-weight: 600!important;
 }
 
 .table-striped tbody tr:nth-of-type(odd){
-    background-color: transparent;
+    background-color: transparent!important;
 }
 
 .bg-light {
