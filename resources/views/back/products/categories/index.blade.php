@@ -5,7 +5,7 @@
     <div class="content-box">
         <div class="element-wrapper">
             <h6 class="element-header">Categorías ({{ $categories->count() }})
-                <a href="{{ route('categorias.create') }}" class="btn btn-primary float-right"><i class="ti-plus"></i> Nuevo</a>
+                <a href="{{ route('product.categorias.create') }}" class="btn btn-primary float-right"><i class="ti-plus"></i> Nuevo</a>
             </h6>
             @if(session('messages'))
             <div class="alert alert-success">{{ session('messages') }}</div>

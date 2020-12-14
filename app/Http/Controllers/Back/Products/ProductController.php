@@ -128,11 +128,13 @@ class ProductController extends Controller
 
         //relación de referencias
         $product->references()->sync($request->references);
+
         $product->applications()->sync($request->applications);
         $product->finisheds()->sync($request->finisheds);
         $product->materials()->sync($request->materials);
         $product->categories()->sync($request->categories);
         $product->colorCategories()->sync($request->colors);
+        $product->labs()->sync($request->labs);
 
         $product->labels()->sync($request->labels);
         //
@@ -165,6 +167,7 @@ class ProductController extends Controller
         $references = ProductReference::all();
         $languages = Language::all();
         $caracteristics = ProductCaracteristics::where('product_id', $id)->get();
+        $selected_labs = $product->labs->pluck('id');
 
         return view('back.products.edit', [
             "product" => $product,
@@ -184,7 +187,8 @@ class ProductController extends Controller
             "references" => $references,
             "languages" => $languages,
             "caracteristics" => $caracteristics,
-            'labs' => $labs
+            'labs' => $labs,
+            'selected_labs' => $selected_labs
         ]);
     }
 
@@ -252,6 +256,9 @@ class ProductController extends Controller
         $product->colorCategories()->sync($this->getOrder($request->colors));
         $product->finisheds()->sync($this->getOrder($request->finisheds));
         $product->applications()->sync($this->getOrder($request->applications));
+        // dd($request->labs);
+        $product->labs()->sync($request->labs);
+        // dd($product->applications);
         // $product->relateds()->sync($this->getOrder($request->relateds));
         $product->categories()->sync($this->getOrder($request->categories));
 

@@ -129,14 +129,17 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
 
     public function applications()
     {
-        return $this->belongsToMany(Aplication::class, 'product_applications', 'product_id', 'application_id')->whereHas('languages', function ($q) {
-            $q->where('active', true)->where('language_id', Aplication::getLangIndex(app()->getLocale()));
-        })->withPivot('order');
+        return $this->belongsToMany(Aplication::class, 'product_applications', 'product_id', 'application_id')->withPivot('order');
     }
 
     public function finisheds()
     {
         return $this->belongsToMany(Finished::class, 'product_finishes', 'product_id', 'finish_id')->withPivot('order');
+    }
+
+    public function labs()
+    {
+        return $this->belongsToMany(Lab::class, 'product_labs', 'product_id', 'lab_id');
     }
 
     public function relateds()

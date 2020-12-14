@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Back\Aplication;
 
 use App\Http\Controllers\Controller;
 use App\Models\ApplicationCategory;
+use App\Models\ApplicationCategoryLang;
 use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -125,6 +126,9 @@ class ApplicationCategoryController extends Controller
     public function destroy($id)
     {
         $applicationCategory = ApplicationCategory::findOrFail($id);
+
+        $applicationCategory->aplications()->detach();
+        ApplicationCategoryLang::where('application_category_id', $applicationCategory->id)->delete();
 
         Storage::delete($applicationCategory->image);
         Storage::delete($applicationCategory->list_image);

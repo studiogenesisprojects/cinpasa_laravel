@@ -304,10 +304,10 @@
                                 </div>
                                 <div class="col-md-6 pb-3">
                                     <label>LAB</label>
-                                    <select name="lab_id" class="form-control">
+                                    <select name="labs[]" class="form-control select2" multiple="multiple">
                                         <option value="">Elige un LAB</option>
                                         @foreach($labs as $lab)
-                                        @if($lab->id == $product->lab_id)
+                                        @if(in_array($lab->id,$selected_labs->toArray()))
                                             <option value="{{$lab->id}}" selected>{{$lab->name}}</option>
                                         @else
                                             <option value="{{$lab->id}}">{{$lab->name}}</option>

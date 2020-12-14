@@ -81,11 +81,13 @@ Route::group([
     "middleware" => ['access.client']
 ], function () {
     Route::get('categorias/{id}', "Back\Products\CategoryController@destroy");
+
     Route::get('categorias/toggle-active/{id}', "Back\Products\CategoryController@toggleActive");
     Route::post('categorias/change-order/{id}', "Back\Products\CategoryController@changeOrder");
 
     //CATEGORIAS DE PRODUCTOS
     Route::resource('categorias', 'Back\Products\CategoryController');
+    Route::get('categories/create', "Back\Products\CategoryController@create")->name('product.categorias.create');
     Route::get('categorias-padre/create', 'Back\Products\CategoryController@createFather')->name('product.category-father.create');
     Route::get('categorias-padre/{id}/edit', 'Back\Products\CategoryController@editFather')->name('product.category-father.edit');
 
@@ -152,6 +154,7 @@ Route::get('delete-app/{id}', 'Back\Aplication\AplicationController@destroy')->n
 Route::resource('categorias-aplicaciones', 'Back\Aplication\ApplicationCategoryController');
 Route::get('categorias-aplicaciones/toggle-active/{id}', "Back\Aplication\ApplicationCategoryController@toggleActive");
 Route::post('categorias-aplicaciones/change-order/{id}', "Back\Aplication\ApplicationCategoryController@changeOrder");
+Route::get('categorias-aplicaciones/delete/{id}', "Back\Aplication\ApplicationCategoryController@destroy")->name('categorias-aplicaciones.destroy');
 
 Route::post('aplicaciones/ordenar', 'Back\Aplication\AplicationController@order');
 
@@ -173,16 +176,23 @@ Route::group([
     ]);
     Route::get('categorias/toggle-active/{id}', "Back\Materials\MaterialCategoryController@toggleActive");
     Route::post('categorias/change-order/{id}', "Back\Materials\MaterialCategoryController@changeOrder");
+    Route::get('categorias/destroy/{id}', "Back\Materials\MaterialCategoryController@destroy")->name('materials.category.destroy');
 });
 
 //acabados
 Route::resource('acabados/colores-acabados', 'Back\Finished\FinishedColorController');
 Route::resource('acabados/tamanos', 'Back\Finished\FinishedSizeController');
+
 Route::resource('acabados/materiales-acabados', 'Back\Finished\FinishedMaterialController');
 Route::resource('acabados/posiciones', 'Back\Finished\FinishedPositionController');
 Route::resource('acabados', 'Back\Finished\FinishedController');
 Route::delete('acabados/delete-image/{id}/{image}', 'Back\Finished\FinishedController@deleteImage')->name('finished.delete-image');
 Route::get('acabados/delete/{id}', 'Back\Finished\FinishedController@destroy')->name('acabados.destroy');
+Route::get('acabados/tamanos/delete/{id}', 'Back\Finished\FinishedSizeController@destroy')->name('tamanos.destroy');
+Route::get('acabados/positions/delete/{id}', 'Back\Finished\FinishedPositionController@destroy')->name('posiciones.destroy');
+Route::get('acabados/colores/delete/{id}', 'Back\Finished\FinishedColorController@destroy')->name('colores-acabados.destroy');
+Route::get('acabados/materiales/delete/{id}', 'Back\Finished\FinishedMaterialController@destroy')->name('materiales-acabados.destroy');
+
 
 
 //OFERTAS DE TRABAJO

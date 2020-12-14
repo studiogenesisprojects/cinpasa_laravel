@@ -269,7 +269,7 @@
                                 </div>
                                 <div class="col-md-6 pb-3">
                                     <label>LAB</label>
-                                    <select name="lab_id" class="form-control">
+                                    <select name="labs[]" class="form-control select2" multiple="multiple">
                                         <option value="">Elige un LAB</option>
                                         @foreach($labs as $lab)
                                             <option value="{{$lab->id}}">{{$lab->name}}</option>

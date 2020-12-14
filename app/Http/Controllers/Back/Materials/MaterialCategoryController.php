@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Back\Materials;
 
 use App\Http\Controllers\Controller;
+use App\Models\Language;
 use App\Models\Material;
 use App\Models\MaterialCategory;
 use Illuminate\Http\Request;
@@ -20,15 +21,16 @@ class MaterialCategoryController extends Controller
     {
         $category = new MaterialCategory();
         $materials = Material::all();
-        return view('back.materials.categories.create', compact('category', 'materials'));
+        $languages = Language::all();
+        return view('back.materials.categories.create', compact('category', 'materials', 'languages'));
     }
 
     public function edit($id)
     {
         $category = MaterialCategory::findOrFail($id);
         $materials = Material::all();
-
-        return view('back.materials.categories.edit', compact('category', 'materials'));
+        $languages = Language::all();
+        return view('back.materials.categories.edit', compact('category', 'materials', 'languages'));
     }
 
     public function store(Request $request)

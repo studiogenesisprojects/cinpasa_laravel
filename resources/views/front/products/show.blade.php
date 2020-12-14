@@ -58,9 +58,11 @@
                         </select>
                     </div>
                 </div>
+                @if($productCategory->lang())
                 <div class="row px-3 pt-4 pb-5 border-card-left">
                     <p class="small">{{$productCategory->lang()->description}}</p>
                 </div>
+                @endif
                 {{-- AQUI HAS DE MOSTRAR ELS PRODUCTES --}}
                 <div class="row">
                     @foreach($productCategory->products as $product)

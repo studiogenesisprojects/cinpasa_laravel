@@ -56,7 +56,7 @@
                                                 <i class="icon-pencil"></i>
                                                 Editar
                                             </a>
-                                            <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{ action('Back\Materials\MaterialCategoryController@destroy', $category->id) }}">
+                                            <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('materials.category.destroy', $category->id) }}">
                                                 <i class="ti-trash"></i> Eliminar
                                             </a>
                                         </div>
@@ -111,7 +111,7 @@
                 })
                 .catch(e => {
                     console.log(e.response)
-                })            
+                })
         });
 
         $("#applications").on("keyup", ".order", function(e){
@@ -120,12 +120,12 @@
             if(value != ''){
                 axios.post('/admin/materiales/categorias/change-order/'+ id, {order: value})
                 .then(r => {
-                   
+
                 })
                 .catch(e => {
                     console.log(e.response)
-                }) 
-            }           
+                })
+            }
         });
 } );
 </script>
