@@ -45,7 +45,9 @@ class ProductController extends Controller
     public function showProduct(ProductCategory $productCategory, Product $product)
     {
         $finishedColumns = [];
-        foreach ($product->finisheds as $index => $f) {
+        $finisheds = $product->finisheds;
+        $finisheds = $finisheds->sortBy('order');
+        foreach ($finisheds as $index => $f) {
             $finishedColumns[$index / 7][] = $f;
         }
 
