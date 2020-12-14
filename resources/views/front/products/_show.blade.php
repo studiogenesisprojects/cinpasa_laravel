@@ -106,22 +106,13 @@
                     <hr>
                     <div class="d-flex justify-content-between">
                         <p class="small py-3">Compartir</p>
-                            <div class="share-btn mt-2">
-                                <a class="btn-whatsapp" title="comparteix a whatsapp"
-                                    href="whatsapp://send?text=<?php echo URL::current(); ?>" data-action="share/whatsapp/share"
-                                    target="_blank"><img  class="mr-3" src="{{ asset('front/img/whatsapp.svg') }}" alt="icono whatsapp"></a>
-                                <a class="btn-facebook" title="comparteix a facebook"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL::current(); ?>"
-                                    target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-facebook.svg') }}" alt="icono facebook"></a>
-                                <a class="btn-twitter" title="comparteix a twitter"
-                                    href="https://twitter.com/home?status=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-twitter.svg') }}" alt="icono twitter"></a>
-                                <a class="btn-linkedin" title="comparteix a linkedin"
-                                    href="https://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=<?php echo URL::current(); ?>"
-                                    target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn-pinterest" title="comparteix a pinterest"
-                                    href="https://pinterest.com/pin/create/button/?url=<?php echo URL::current(); ?>&media=&description=<?php echo URL::current(); ?>"><img class="mr-3" src="{{ asset('front/img/icon-pinterest.svg') }}" alt="icono pinterest"></a>
-
-                            </div>
+                        <div class="share-btn mt-2">
+                            <a class="btn-whatsapp" title="comparteix a whatsapp" href="whatsapp://send?text=<?php echo URL::current(); ?>" data-action="share/whatsapp/share" target="_blank"><img  class="mr-3" src="{{ asset('front/img/whatsapp.svg') }}" alt="icono whatsapp"></a>
+                            <a class="btn-facebook" title="comparteix a facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-facebook.svg') }}" alt="icono facebook"></a>
+                            <a class="btn-twitter" title="comparteix a twitter" href="https://twitter.com/home?status=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-twitter.svg') }}" alt="icono twitter"></a>
+                            <a class="btn-linkedin" title="comparteix a linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=<?php echo URL::current(); ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn-pinterest" title="comparteix a pinterest" href="https://pinterest.com/pin/create/button/?url=<?php echo URL::current(); ?>&media=&description=<?php echo URL::current(); ?>"><img class="mr-3" src="{{ asset('front/img/icon-pinterest.svg') }}" alt="icono pinterest"></a>
+                        </div>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-end py-3">
@@ -138,19 +129,20 @@
                 <p class="font-bold color-black mt-4">CARACTERÍSTICAS</p>
                 <div class="row mt-4">
                     @if($product->materials)
-                    <div class="col-6">
-                        <p class="small color-primary">Material</p>
+                    <div class="col-12">
+                        <p class="color-black">Material: 
                         @foreach($product->materials as $material)
-                            <p class="color-primary">{{$material->name}}</p>
+                            <span class="color-primary">{{$material->name}}</span>
                         @endforeach
+                        </p>
                     </div>
                     @endif
                 </div>
             </div>
-            <div class="col-md-12 mt-md-0 mt-5">
+            <div class="col-md-12">
                 <p class="font-bold color-black mt-4">REFERENCIAS Y ANCHO/DIÁMETRO</p>
-                <div class="row mt-4">
-                    <div class="table-responsive">
+                   <p class="d-sm-none d-block">*Haz scroll lateral para ver la tabla entera</p>
+                    <div class="table-responsive mt-3">
                         <table id="caracteritics_table" width="100%" height="150px" class="table table-striped table-lightfont table-hover">
                             <thead>
                                 <tr>
@@ -187,62 +179,60 @@
                                 @for($i = 0; $i < sizeOf($product_caracteristics); $i++)
                                 <div id="bloc_1">
                                     <tr id="row_0">
-                                    @if(in_array(!null, $references->toArray()))
-                                    <td class="border">
-                                        <span>{{$references[$i]}}</span>
-                                    </td>
-                                    @endif
-                                    @if(in_array(!null, $width->toArray()))
-                                    <td class="border">
-                                        <span>{{$width[$i]}}</span>
-                                    </td>
-                                    @endif
-                                    @if(in_array(!null, $bags->toArray()))
-                                    <td class="border">
-                                        <span>{{$bags[$i]}}</span>
-                                    </td>
-                                    @endif
-                                    @if(in_array(!null, $laces->toArray()))
-                                    <td class="border">
-                                        <span>{{$laces[$i]}}</span>
-                                    </td>
-                                    @endif
-                                    @if(in_array(!null, $rapport->toArray()))
-                                    <td class="border">
-                                        <span>{{$rapport[$i]}}</span>
-                                    </td>
-                                    @endif
-                                    @if(in_array(!null, $diameter->toArray()))
-                                    <td class="border">
-                                        <span>{{$diameter[$i]}}</span>
-                                    </td>
-                                    @endif
-                                    @if(in_array(!null, $length->toArray()))
-                                    <td class="border">
-                                        <span>{{$length[$i]}}</span>
-                                    </td>
-                                    @endif
-                                    @if(in_array(!null, $width_diameter->toArray()))
-                                    <td class="border">
-                                        <span>{{$width_diameter[$i]}}</span>
-                                    </td>
-                                    @endif
-                                    @if(in_array(!null, $observations->toArray()))
-                                    <td>
-                                        <input type="text" class="form-control " value="{{$observations[$i]}}" name="observations[]">
-                                    </td>
-                                    @endif
+                                        @if(in_array(!null, $references->toArray()))
+                                            <td>
+                                                <span class="color-primary">{{$references[$i]}}</span>
+                                            </td>
+                                        @endif
+                                        @if(in_array(!null, $width->toArray()))
+                                            <td>
+                                                <span>{{$width[$i]}}</span>
+                                            </td>
+                                        @endif
+                                        @if(in_array(!null, $bags->toArray()))
+                                            <td>
+                                                <span>{{$bags[$i]}}</span>
+                                            </td>
+                                        @endif
+                                        @if(in_array(!null, $laces->toArray()))
+                                            <td>
+                                                <span>{{$laces[$i]}}</span>
+                                            </td>
+                                        @endif
+                                        @if(in_array(!null, $rapport->toArray()))
+                                            <td>
+                                                <span>{{$rapport[$i]}}</span>
+                                            </td>
+                                        @endif
+                                        @if(in_array(!null, $diameter->toArray()))
+                                            <td>
+                                                <span>{{$diameter[$i]}}</span>
+                                            </td>
+                                        @endif
+                                        @if(in_array(!null, $length->toArray()))
+                                            <td>
+                                                <span>{{$length[$i]}}</span>
+                                            </td>
+                                        @endif
+                                        @if(in_array(!null, $width_diameter->toArray()))
+                                            <td>
+                                                <span>{{$width_diameter[$i]}}</span>
+                                            </td>
+                                        @endif
+                                        @if(in_array(!null, $observations->toArray()))
+                                            <td>
+                                                <input type="text" class="form-control " value="{{$observations[$i]}}" name="observations[]">
+                                            </td>
+                                        @endif
                                     </tr>
                                 </div>
                                 @endfor
                             </tbody>
                         </table>
                     </div>
-                </div>
             </div>
         </div>
         @endif
-        <hr class="mt-4">
         <div class="row">
             <div class="col-12 mt-5">
                 <p class="font-bold color-black"><strong>{{__('Productos.producto_mostrar_colores')}}</strong></p>
