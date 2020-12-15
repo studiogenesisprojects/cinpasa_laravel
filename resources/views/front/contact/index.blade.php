@@ -47,11 +47,11 @@
                             <!-- Default inline 2-->
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
-                                <label class="custom-control-label" for="defaultInline2">{{__('Contacta.more_info')}}</label>
+                                <label class="custom-control-label" for="defaultInline2">{{__('Contacta.recibir_info')}}</label>
                             </div>
                         </div>
                         <div class="col-12 px-0 mt-3">
-                            <label for="">Información adicional necesaria</label>
+                            <label for="">{{__('Contacta.more_info')}}</label>
                         </div>
                         <div class="col-12 px-0 mt-2">
                             <div class="custom-control custom-radio custom-control-inline">
