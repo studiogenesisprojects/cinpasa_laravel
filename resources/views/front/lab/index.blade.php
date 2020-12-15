@@ -6,8 +6,8 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-lg-7 col-md-10 mt-4">
-                <h2 class="before-title">Nuestros sectores</h2>
-                <p class="mt-3">Cada diseño y cada proyecto es único para CINPASA. Acompañamos a nuestros clientes y cuidamos cada detalle.</p>
+                <h2 class="before-title">{{__('Lab.titulo')}}</h2>
+                <p class="mt-3">{{__('Lab.text')}}</p>
             </div>
         </div>
     </div>

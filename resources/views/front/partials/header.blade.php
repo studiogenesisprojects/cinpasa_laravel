@@ -59,10 +59,11 @@
                     <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Accede al apartado aplicaciones">{{strtoupper(strtoupper(__('Menu.aplications')))}}</a>
                     <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.index')}}" title="Accede al apartado LAB">LAB</a>
                     <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.news.index')}}" title="Accede al apartado noticias">{{strtoupper(__('Menu.news'))}}</a>
-                    <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.outlet.index')}}" title="Accede al apartado outlet">OUTLET</a>
                     @if(1 == 0)
-                    <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="contacta.php" title="Accede al apartado contacta">CONTACTA</a>
+                    <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.outlet.index')}}" title="Accede al apartado outlet">OUTLET</a>
                     @endif
+                    <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="contacta.php" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
+                    
                 </div>
             </div>
             <div class="position-relative">
@@ -79,10 +80,11 @@
                     <a class="ml-3 {{Str::contains($currentUrl, "aplicaciones") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Accede al apartado aplicaciones">{{strtoupper(strtoupper(__('Menu.aplications')))}}</a>
                     <a class="ml-3 {{Str::contains($currentUrl, "lab") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.index')}}" title="Accede al apartado LAB">LAB</a>
                     <a class="ml-3 {{Str::contains($currentUrl, "noticias") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.news.index')}}" title="Accede al apartado noticias">{{strtoupper(__('Menu.news'))}}</a>
-                    <a class="ml-3 {{Str::contains($currentUrl, "outlet") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.outlet.index')}}" title="Accede al apartado outlet">OUTLET</a>
                     @if(1 == 0)
-                    <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="contacta.php" title="Accede al apartado contacta">CONTACTA</a>
+                    <a class="ml-3 {{Str::contains($currentUrl, "outlet") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.outlet.index')}}" title="Accede al apartado outlet">OUTLET</a>
                     @endif
+                    <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="contacta.php" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
+                    
                 </nav>
 
                 <div id="buscador_modal" class="row position-absolute r-0 t-2 card width-auto vw-lg-40 vw-md-50 vw-sm-60 vw-xs-90 background-blue-light">
@@ -240,10 +242,11 @@
                     <a class="ml-3" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Accede al apartado aplicaciones">{{strtoupper(__('Menu.aplications'))}}</a>
                     <a class="ml-3" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.index')}}" title="Accede al apartado LAB">LAB</a>
                     <a class="ml-3" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.news.index')}}" title="Accede al apartado noticias">{{strtoupper(__('Menu.news'))}}</a>
-                    <a class="ml-3" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.outlet.index')}}" title="Accede al apartado outlet">OUTLET</a>
                     @if(1 == 0)
-                    <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="contacta.php" title="Accede al apartado contacta">CONTACTA</a>
+                    <a class="ml-3" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.outlet.index')}}" title="Accede al apartado outlet">OUTLET</a>
                     @endif
+                    <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="contacta.php" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
+                    
                 </nav>
             </div>
         </div>
