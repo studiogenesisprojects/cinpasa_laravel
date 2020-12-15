@@ -36,8 +36,8 @@
                                 @if ($category->sup_product_category)
                                     <tr role="row">
                                         <td>
-                                            <span class="d-none">{{ $category->order }}</span>
-                                            <input class="form-control order" product_id="{{ $category->id }}" type="number" value="{{ $category->order }}">
+                                            <span class="d-none">{{ $category->searcher_order }}</span>
+                                            <input class="form-control order" product_id="{{ $category->id }}" type="number" value="{{ $category->searcher_order }}">
                                         </td>
 
                                         <td><strong>{{ $category->name }}</strong></td>
@@ -134,9 +134,9 @@
         } );
 
         // DataTable
-        var table = $('#categorias').DataTable({
-            "order": [[ 0, "asc" ]]
-        });
+        // var table = $('#categorias').DataTable({
+        //     "searcher_order": [[ 0, "asc" ]]
+        // });
 
         // Apply the search
         table.columns().every( function () {

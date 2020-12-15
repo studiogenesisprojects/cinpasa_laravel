@@ -83,6 +83,12 @@
                                         </div>
                                         @endforeach
                                         <div class="row mb-3">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="">Imagen</label>
+                                                    <input class="form-control" type="file" name="image">
+                                                </div>
+                                            </div>
                                             <div class="col-md-12">
                                                 <label>Orden</label>
                                                 <input class="item form-control" value="{{$category->order}}" type="number" name="order">

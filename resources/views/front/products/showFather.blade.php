@@ -17,7 +17,7 @@
             <div id="menu_categorias" class="col-lg-3 col-sm-7 col-10 d-lg-block flex-column px-lg-5 mt-5 background-white z-1">
                 <p class="color-blue mb-4 d-flex align-items-center ml-lg-0 ml-3 mt-lg-0 mt-5"><img class="mr-3 mb-1 d-lg-inline-block d-none" src="{{ asset('front/img/icon-categorias.svg') }}" alt="icono menu categorías"><strong>CATEGORÍAS</strong></p>
                 @php
-                    $fathers = $fathers->sortBy('order');
+                    $fathers = $fathers->sortBy('searcher_order');
                 @endphp
                 @foreach ($fathers as $father)
                 <div class="d-flex flex-column ml-4">
@@ -27,9 +27,13 @@
                         <div class="position-relative mr-3 mb-1"><span class="icon-plus icon-plus-1"></span></div>{{$father->name}}
                     </a>
                 </div>
+                @php
+                    $childs = $father->childrens;
+                    $childs = $childs->sortBy('searcher_order');
+                @endphp
                 <div class="collapse show" id="{{$father->slug}}">
                     <div class="sub-item">
-                        @foreach ($father->childrens as $child)
+                        @foreach ($childs as $child)
                         <a class="d-block {{Str::contains(url()->current(), $child->slug) ? "active": ""}}"
                             href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
                         "productCategory" => $child,
@@ -100,14 +104,14 @@
             </div>
         </div>
         <hr class="hr-blue">
+        @if($productCategory->lang())
         <div class="row">
             <div class="col-md-8 offset-md-3 px-md-0 py-4">
-                <p class="color-blue">Más información sobre cortinas</p>
-                <p class="small mt-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. <br>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
+            <p class="small mt-2">{{$productCategory->lang()->footer_description}}</p>
             </div>
         </div>
         <hr class="hr-blue">
+        @endif
     </div>
 </section>
 @endsection

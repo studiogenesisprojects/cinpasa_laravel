@@ -13,7 +13,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = ProductCategory::orderBy('order', 'ASC')->get();
+        $categories = ProductCategory::orderBy('searcher_order', 'ASC')->get();
         return view('back.products.categories.index', compact('categories'));
     }
 
@@ -71,6 +71,7 @@ class CategoryController extends Controller
         }
 
         if ($request->hasFile('image')) {
+
             if (Storage::exists($category->image)) {
                 Storage::delete($category->image);
             }
