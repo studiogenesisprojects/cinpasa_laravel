@@ -329,7 +329,6 @@
             </li>
             @endif
 
-            @if(1 == 0)
             @if(Auth()->user()->role->canRead(App\Models\Section::find(13)))
             <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('traducciones')}}">
@@ -339,7 +338,6 @@
                     <span>Traducciones</span>
                 </a>
             </li>
-            @endif
             @endif
 
             @if(Auth()->user()->role->canRead(App\Models\Section::find(10)))
@@ -362,7 +360,7 @@
                 </div>
             </li>
             @endif
-            @if(1 == 0)
+
             @if(Auth()->user()->role->canRead(App\Models\Section::find(3)))
             <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('carousels.index')}}">
@@ -372,7 +370,6 @@
                     <span>Carouseles</span>
                 </a>
             </li>
-            @endif
             @endif
 
             @if(Auth()->user()->role->canRead(App\Models\Section::find(7)))

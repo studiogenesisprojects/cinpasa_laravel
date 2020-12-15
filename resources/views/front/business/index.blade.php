@@ -6,7 +6,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 mt-lg-5">
-                <h3>¿Por qué Cinpasa?</h3>
+                <h3>{{__('Empresa.titulo')}}</h3>
                 <hr class="mt-3">
             </div>
         </div>
@@ -17,8 +17,8 @@
             <div class="col-md-4 col-10 d-flex mt-md-0 mt-5">
                 <hr class="hr-vertical background-blue-light">
                 <div class="ml-4">
-                    <h6>MÁS DE 200 REFERENCIAS</h6>
-                    <p class="lineheight-small mt-2"><small>Disponemos de más de 200 referencias en estoc contínuo para poder dar respuesta inmediata y realizar envíos a corto plazo.</small></p>
+                    <h6>{{__('Empresa.seccion1_titulo')}}</h6>
+                    <p class="lineheight-small mt-2"><small>{{__('Empresa.seccion1_texto')}}</small></p>
                 </div>
             </div>
             <div class="col-md-1 col-2 offset-md-1 mt-md-0 mt-5">
@@ -27,8 +27,8 @@
             <div class="col-md-4 col-10 mt-md-0 mt-5 d-flex">
                 <hr class="hr-vertical background-blue-light">
                 <div class="ml-4">
-                    <h6>SOLUCIONES A MEDIDA</h6>
-                    <p class="lineheight-small mt-2"><small>Cada día hay nuevas necesidades. Nuestra misión es dar respuesta a cada una de ellas. Si algo no existe, investigamos.</small></p>
+                    <h6>{{__('Empresa.seccion2_titulo')}}</h6>
+                    <p class="lineheight-small mt-2"><small>{{__('Empresa.seccion2_texto')}}</small></p>
                 </div>
             </div>
         </div>
@@ -39,8 +39,8 @@
             <div class="col-md-4 col-10 mt-md-0 mt-5 d-flex">
                 <hr class="hr-vertical background-blue-light">
                 <div class="ml-4">
-                    <h6>PERSONALIZACIÓN</h6>
-                    <p class="lineheight-small mt-2"><small>CINPASA diseña y fabrica según las necesidades del cliente y los requisitos técnicos de cada aplicación.</small></p>
+                    <h6>{{__('Empresa.seccion3_titulo')}}</h6>
+                    <p class="lineheight-small mt-2"><small>{{__('Empresa.seccion3_texto')}}</small></p>
                 </div>
             </div>
             <div class="col-md-1 col-2 offset-md-1 mt-md-0 mt-5">
@@ -49,8 +49,8 @@
             <div class="col-md-4 col-10 mt-md-0 mt-5 d-flex">
                 <hr class="hr-vertical background-blue-light">
                 <div class="ml-4">
-                    <h6>ALTA CAPACIDAD DE PRODUCCIÓN</h6>
-                    <p class="lineheight-small mt-2"><small>CINPASA tiene una capacidad de producción que permite fabricar grandes volúmenes a precios ajustados.</small></p>
+                    <h6>{{__('Empresa.seccion4_titulo')}}</h6>
+                    <p class="lineheight-small mt-2"><small>{{__('Empresa.seccion4_texto')}}</small></p>
                 </div>
             </div>
         </div>
@@ -61,8 +61,8 @@
             <div class="col-md-4 col-10 d-flex mt-md-0 mt-5">
                 <hr class="hr-vertical background-blue-light">
                 <div class="ml-4">
-                    <h6>SATISFACCIÓN</h6>
-                    <p class="lineheight-small mt-2"><small>Nuestro equipo comercial está enfocado a la satisfacción del cliente y a la superación de sus expectativas.</small></p>
+                    <h6>{{__('Empresa.seccion5_titulo')}}</h6>
+                    <p class="lineheight-small mt-2"><small>{{__('Empresa.seccion5_texto')}}</small></p>
                 </div>
             </div>
             <div class="col-md-1 col-2 offset-md-1 mt-md-0 mt-5">
@@ -71,8 +71,8 @@
             <div class="col-md-4 col-10 mt-md-0 mt-5 d-flex">
                 <hr class="hr-vertical background-blue-light">
                 <div class="ml-4">
-                    <h6>LÍDERES</h6>
-                    <p class="lineheight-small mt-2"><small>Ser líderes europeos en el mercado de la cinta nos obliga a ser más exigentes para seguir ofreciendo excelencia.</small></p>
+                    <h6>{{__('Empresa.seccion6_titulo')}}</h6>
+                    <p class="lineheight-small mt-2"><small>{{__('Empresa.seccion6_texto')}}</small></p>
                 </div>
             </div>
         </div>
@@ -88,8 +88,9 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-10">
-                <h2 class="mt-5 before-title">Calidad</h2>
-                <p class="mt-3 color-blue mb-5">La calidad de nuestros productos se mide con parámetros objetivos, incluyendo siempre las opiniones de nuestros clientes.<br><br>Garantizamos la conformidad de nuestros productos así como su mejora continua. Nos comprometemos a tener una continua comunicación con el cliente. Cumplimos con los requisitos pactados con el cliente, nos anticipamos a sus necesidades y mantenemos un alto nivel de innovación y desarrollo.</p>
+                <h2 class="mt-5 before-title">{{__('Empresa.titulo_subtitulo1')}}</h2>
+                <p class="mt-3 color-blue mb-5">{{__('Empresa.titulo_subtitulo1_texto1')}}<br>
+                    <br>{{__('Empresa.titulo_subtitulo1_texto2')}}</p>
             </div>
         </div>
     </div>

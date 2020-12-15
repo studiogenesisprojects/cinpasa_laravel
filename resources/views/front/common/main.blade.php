@@ -11,5 +11,10 @@
         @include('front.partials.js')
         @stack('js')
 
+        <script>
+            $('#select_language').change(function(){
+                window.location.href = "{{URL::to('/')}}/" + $('#select_language').val();
+            });
+        </script>
     </body>
 </html>
