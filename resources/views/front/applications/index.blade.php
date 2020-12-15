@@ -9,8 +9,8 @@
     <div class="container">
         <div class="row mt-4">
             <div class="col-lg-7 col-md-10">
-                <h2 class="before-title">Aplicaciones</h2>
-                <p class="mt-3">En Cinpasa estamos especializados en diferentes aplicaciones. Según la aplicación y tus necesidades, buscamos una solución.</p>
+                <h2 class="before-title">{{__('aplications.titulo')}}</h2>
+                <p class="mt-3">{{__('aplications.subtext')}}</p>
             </div>
         </div>
         <div class="row mt-5">
