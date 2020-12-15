@@ -55,7 +55,7 @@
                         </div>
                         @endif
                     </div>
-                    <ol class="carousel-indicators">
+                    <ol class="carousel-indicators carousel-indicators-productos mt-3">
                         {{-- @if ($product->primaryImage)
                         <li data-target="#carousel-token" data-slide-to="0" class="active col">
                             <figure class="bg-cover bg-sm"
@@ -65,11 +65,8 @@
                         @endif --}}
                         @if ($product->galeries->first())
                         @foreach ($product->galeries->first()->images as $i => $image)
-                        <li data-target="#carousel-token" data-slide-to="{{$product->primaryImage ? $i : $i}}"
-                            class="{{$loop->first && !$product->primaryImage ? 'active' : ''}} col">
-                            <figure class="bg-cover bg-sm"
-                                style="background-image: @if(!empty($image->path)) url('{{route('carousel.getImage', str_replace("/",";",$image->path))}}')@else url('{{Storage::url('/img/nofoto.png')}}')@endif">
-                            </figure>
+                        <li data-target="#carousel-token" data-slide-to="{{$product->primaryImage ? $i : $i}}" class="{{$loop->first && !$product->primaryImage ? 'active' : ''}} col">
+                            <img class="border-img miniatura" style="width: 90px; height: 90px;" src="@if(!empty($image->path)) {{route('carousel.getImage', str_replace("/",";",$image->path))}} @else {{Storage::url('/img/nofoto.png')}}@endif" alt="miniatura carousel">
                         </li>
                         @endforeach
                         @endif
