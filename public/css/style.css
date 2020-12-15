@@ -255,19 +255,19 @@ hr {
     margin: 0;
 }
 
-.table {
-    min-width: 540px !important;
+.table{
+    min-width: 540px!important;
 }
 
-.table thead th {
-    border-bottom: 0 !important;
-    border-top: 0 !important;
-    font-size: calc(18px + (20 - 18) * ((100vw - 320px) / (1920 - 320))) !important;
-    font-weight: 600 !important;
+.table thead th{
+    border-bottom: 0!important;
+    border-top: 0!important;
+    font-size: calc(18px + (20 - 18) * ((100vw - 320px) / (1920 - 320)))!important;
+    font-weight: 600!important;
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: transparent !important;
+.table-striped tbody tr:nth-of-type(odd){
+    background-color: transparent!important;
 }
 
 .bg-light {
@@ -540,44 +540,32 @@ footer a {
     padding: 1.5rem 0;
 }
 
-.bg-cover {
-    display: flex;
-    justify-content: flex-end;
-}
-
 @media (max-width: 1200px) {
     .fondo {
         width: 279.98px;
         height: 279.98px;
     }
-
     .welcome {
         order: 1;
     }
-
     .foto1 {
         order: 3;
     }
-
     .foto2 {
         order: 4;
     }
-
     .horario {
         order: 2;
     }
-
     .menuocultar {
         display: none;
     }
-
     .menu {
         display: none;
         flex-direction: column;
         justify-content: center;
         align-items: flex-end;
     }
-
     .menu a {
         display: flex;
         width: 30%;
@@ -591,31 +579,25 @@ footer a {
         font-family: 'Roboto Slab', serif;
         font-weight: 700;
     }
-
     .menu a:hover {
         color: #962125;
     }
-
     .donde {
         display: none !important;
     }
-
     .reserva {
         display: none !important;
     }
-
     #wrapper {
         display: flex;
         align-items: center;
         cursor: pointer;
     }
-
     .main-item {
         width: 30px;
         height: 30px;
         position: relative;
     }
-
     .line {
         position: absolute;
         height: 2px;
@@ -623,26 +605,21 @@ footer a {
         transition: all 0.4s;
         z-index: 2;
     }
-
     .line01 {
         top: 22%;
         width: 100%;
     }
-
     .line02 {
         top: 50%;
         width: 100%;
     }
-
     .line03 {
         top: 78%;
         width: 100%;
     }
-
     .mediama2 {
         margin: 2rem 0;
     }
-
     .fotobarbero {
         position: absolute;
         left: 40rem;
@@ -655,11 +632,9 @@ footer a {
     .pa5 {
         padding: 0rem 0;
     }
-
     .fotobarbero {
         display: none;
     }
-
     .mensaje {
         background-color: rgba(0, 0, 0, .8);
         padding: 3rem;
@@ -668,7 +643,6 @@ footer a {
         left: 7rem;
         right: -18rem;
     }
-
     .fondo {
         width: 315px;
         height: 315px;
@@ -680,20 +654,16 @@ footer a {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
-
     .fondo {
         width: 480px;
         height: 480px;
     }
-
     .mediama2q {
         margin: 2rem 0;
     }
-
     .donde {
         display: flex !important;
     }
-
     .mensaje {
         background-color: rgba(0, 0, 0, .8);
         padding: 3rem;
@@ -703,53 +673,43 @@ footer a {
         left: 0;
         bottom: 0;
     }
-
     .ma10bottom {
         margin: 0 0 2rem 0;
     }
-
     .centro {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
         text-align: left;
     }
-
     .nav-item {
         display: flex;
         align-items: center;
     }
-
     .nav-item a {
         color: #fff !important;
         font-size: calc(14px + (14 - 14) * ((100vw - 320px) / (1920 - 320)));
         font-family: 'Roboto Slab', serif;
     }
-
     .navbar-brand img {
         height: 12rem;
         margin-top: 0;
     }
-
     .nav {
         margin-top: -5rem;
     }
-
     .navbar {
         height: 8rem;
         display: flex;
         justify-content: space-between;
     }
-
     .menu a {
         justify-content: flex-end;
         margin-right: 4rem;
     }
-
     .estamos {
         display: none;
     }
-
     header {
         display: flex;
         justify-content: center;
@@ -763,20 +723,16 @@ footer a {
         margin-right: auto;
         top: 0;
     }
-
     .menu a {
         width: 50%;
     }
-
     .ma5 {
         margin: 2rem 0;
     }
-
     .img1 {
         width: 100%;
         height: 450px;
     }
-
     .precio {
         padding: inherit;
         border: inherit;
@@ -793,33 +749,26 @@ footer a {
         height: auto;
         background-size: contain;
     }
-
     .navbar-brand img {
         height: 10rem;
         margin-top: 0;
     }
-
     .destacado {
         width: 8rem;
     }
-
     .destacado img {
         display: none;
     }
-
     .nav {
         margin-top: -3rem;
     }
-
     .menu a {
         justify-content: flex-end;
         margin-right: 3rem;
     }
-
     #section10 {
         display: none;
     }
-
     .img1 {
         width: 70%;
     }
@@ -829,15 +778,12 @@ footer a {
     .destacado {
         display: none;
     }
-
     .reserva {
         display: flex !important;
     }
-
     .img1 {
         height: 400px;
     }
-
     .footer {
         height: 15rem;
     }
