@@ -105,7 +105,8 @@
                                 <label class="custom-control-label" for="privacidad">{{__('Contacta.privacy')}}</label>
                             </div>
                             <a href="contacta_ok.php" title="" class="btn btn-primary mt-4">
-                                {{__('Contacta.send')}}<img class="ml-4 mb-1" src="img/icon-arrow-right.svg" alt="">
+                                {{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="">
+                                
                             </a>
                         </div>
                     </div>

@@ -4,22 +4,22 @@
             <div class="col-md-4 d-flex align-items-start">
                 <img src="{{ asset('front/img/icon-cintas.svg') }}" alt="icono vectorial cintas a medida">
                 <div class="ml-3">
-                    <p class="font-bold">Cintas a medida</p>
-                    <p class="mt-3">Especializados en el diseño y fabricación a partir de un mínimo de metros.</p>
+                    <p class="font-bold">{{__('Pre-Footer.seccion1-titulo')}}</p>
+                    <p class="mt-3">{{__('Pre-Footer.seccion1-text')}}</p>
                 </div>
             </div>
             <div class="col-md-4 d-flex align-items-start mt-md-0 mt-3">
                 <img src="{{ asset('front/img/icon-productiva.svg') }}" alt="icono vectorial alta capacidad productiva">
                 <div class="ml-3">
-                    <p class="font-bold">Alta capacidad productiva</p>
-                    <p class="mt-3">Que nos permite fabricar grandes volúmenes a precios ajustados.</p>
+                    <p class="font-bold">{{__('Pre-Footer.seccion2-titulo')}}</p>
+                    <p class="mt-3">{{__('Pre-Footer.seccion2-text')}}</p>
                 </div>
             </div>
             <div class="col-md-4 d-flex align-items-start mt-md-0 mt-3">
                 <img src="{{ asset('front/img/icon-flexibilidad.svg') }}" alt="icono vectorial flexibilidad total">
                 <div class="ml-3">
-                    <p class="font-bold">Flexibilidad total</p>
-                    <p class="mt-3">Flexibilidad y diversidad a la hora de participar en el diseño de proyectos y acabados.</p>
+                    <p class="font-bold">{{__('Pre-Footer.seccion3-titulo')}}</p>
+                    <p class="mt-3">{{__('Pre-Footer.seccion3-text')}}</p>
                 </div>
             </div>
         </div>
