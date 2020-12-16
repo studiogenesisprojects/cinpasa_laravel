@@ -63,7 +63,7 @@
                     <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.outlet.index')}}" title="Accede al apartado outlet">OUTLET</a>
                     @endif
                     <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
-                    
+
                 </div>
             </div>
             <div class="position-relative">
@@ -84,7 +84,7 @@
                     <a class="ml-3 {{Str::contains($currentUrl, "outlet") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.outlet.index')}}" title="Accede al apartado outlet">OUTLET</a>
                     @endif
                     <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
-                    
+
                 </nav>
 
                 <div id="buscador_modal" class="row position-absolute r-0 t-2 card width-auto vw-lg-40 vw-md-50 vw-sm-60 vw-xs-90 background-blue-light">
@@ -209,7 +209,11 @@
                     <div class="col-2 d-flex flex-column">
                         <a class="font-bold"
                             href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" => $father->slug])}}">{!! $father->name !!}</a>
-                        @foreach ($father->childrens as $children)
+                        @php
+                            $childs = $father->childrens;
+                            $childs = $childs->sortBy('searcher_order');
+                        @endphp
+                        @foreach ($childs as $children)
                         <a class="mt-1"
                             href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" =>$children->slug])}}">{!! $children->name !!}</a>
                         @endforeach
@@ -246,7 +250,7 @@
                     <a class="ml-3" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.outlet.index')}}" title="Accede al apartado outlet">OUTLET</a>
                     @endif
                     <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
-                    
+
                 </nav>
             </div>
         </div>

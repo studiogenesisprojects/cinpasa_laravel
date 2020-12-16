@@ -84,24 +84,25 @@ class ProductController extends Controller
     {
 
         $product = Product::create($request->all());
+        if(isset($request->references2)){
+            for($i = 0; $i < sizeOf($request->references2); $i++){
+                $product_caracteristic = new ProductCaracteristics;
+                $product_caracteristic->product_id = $product->id;
+                $product_caracteristic->references = $request->references2[$i];
+                $product_caracteristic->width = $request->width[$i];
+                $product_caracteristic->bags = $request->bags[$i];
+                $product_caracteristic->laces = $request->laces[$i];
+                $product_caracteristic->rapport = $request->rapport[$i];
+                $product_caracteristic->diameter = $request->diameter[$i];
+                $product_caracteristic->length = $request->length[$i];
+                $product_caracteristic->width_diameter = $request->width_diameter[$i];
+                $product_caracteristic->observations = $request->observations[$i];
+                $product_caracteristic->flecortin_head = $request->flecortin_head;
+                $product_caracteristic->flecortin_width = $request->flecortin_width;
+                $product_caracteristic->order = $request->order_car[$i];
 
-        for($i = 0; $i < sizeOf($request->references2); $i++){
-            $product_caracteristic = new ProductCaracteristics;
-            $product_caracteristic->product_id = $product->id;
-            $product_caracteristic->references = $request->references2[$i];
-            $product_caracteristic->width = $request->width[$i];
-            $product_caracteristic->bags = $request->bags[$i];
-            $product_caracteristic->laces = $request->laces[$i];
-            $product_caracteristic->rapport = $request->rapport[$i];
-            $product_caracteristic->diameter = $request->diameter[$i];
-            $product_caracteristic->length = $request->length[$i];
-            $product_caracteristic->width_diameter = $request->width_diameter[$i];
-            $product_caracteristic->observations = $request->observations[$i];
-            $product_caracteristic->flecortin_head = $request->flecortin_head;
-            $product_caracteristic->flecortin_width = $request->flecortin_width;
-            $product_caracteristic->order = $request->order_car[$i];
-
-            $product_caracteristic->save();
+                $product_caracteristic->save();
+            }
         }
         // ProductCaracteristics::create(array_merge($request->all(), ['product_id' => $product->id, "outlet" => isset($request->outlet)]));
 
@@ -198,24 +199,27 @@ class ProductController extends Controller
 
         $product->caracteristics()->delete();
 
-        for($i = 0; $i < sizeOf($request->references2); $i++){
-            $product_caracteristic = new ProductCaracteristics;
-            $product_caracteristic->product_id = $product->id;
-            $product_caracteristic->references = $request->references2[$i];
-            $product_caracteristic->width = $request->width[$i];
-            $product_caracteristic->bags = $request->bags[$i];
-            $product_caracteristic->laces = $request->laces[$i];
-            $product_caracteristic->rapport = $request->rapport[$i];
-            $product_caracteristic->diameter = $request->diameter[$i];
-            $product_caracteristic->length = $request->length[$i];
-            $product_caracteristic->width_diameter = $request->width_diameter[$i];
-            $product_caracteristic->observations = $request->observations[$i];
-            $product_caracteristic->flecortin_head = $request->flecortin_head;
-            $product_caracteristic->flecortin_width = $request->flecortin_width;
-            $product_caracteristic->order = $request->order_car[$i];
+        if(isset($request->references2)){
+            for($i = 0; $i < sizeOf($request->references2); $i++){
+                $product_caracteristic = new ProductCaracteristics;
+                $product_caracteristic->product_id = $product->id;
+                $product_caracteristic->references = $request->references2[$i];
+                $product_caracteristic->width = $request->width[$i];
+                $product_caracteristic->bags = $request->bags[$i];
+                $product_caracteristic->laces = $request->laces[$i];
+                $product_caracteristic->rapport = $request->rapport[$i];
+                $product_caracteristic->diameter = $request->diameter[$i];
+                $product_caracteristic->length = $request->length[$i];
+                $product_caracteristic->width_diameter = $request->width_diameter[$i];
+                $product_caracteristic->observations = $request->observations[$i];
+                $product_caracteristic->flecortin_head = $request->flecortin_head;
+                $product_caracteristic->flecortin_width = $request->flecortin_width;
+                $product_caracteristic->order = $request->order_car[$i];
 
-            $product_caracteristic->save();
+                $product_caracteristic->save();
+            }
         }
+
 
         foreach ($request->productLanguages as $language) {
             $language["active"] = isset($language["active"]);
@@ -238,7 +242,7 @@ class ProductController extends Controller
 
 
         if ($request->hasFile('primary_image')) {
-            $path = $request->file('primary_image')->storeAs('productos', $request->file('primary_image')->getClientOriginalName());
+            $path = $request->file('primary_image')->storeAs('productos', str_replace(" ","-",$request->file('primary_image')->getClientOriginalName()));
             $image = $product->images()->create(['path' => $path,]);
             $product->update(['product_image_id' => $image->id]);
         }

@@ -6,6 +6,7 @@
                 <p class="color-black font-bold">PRODUCTOS RELACIONADOS</p>
             </div>
             @foreach($relateds as $related)
+            @if($related->active == 1)
                 <div class="col-lg-3 col-sm-6 mt-4">
                     <div class="border-card h-100 p-3">
                         <div class="position-relative">
@@ -24,6 +25,7 @@
                         <p class="small">{!! strip_tags(Str::words($related->description, 15, '...')) !!}</p>
                     </div>
                 </div>
+            @endif
             @endforeach
         </div>
     </div>
