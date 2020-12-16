@@ -9,5 +9,14 @@
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
     {!! htmlScriptTagJsApi(['lang' => 'es']) !!}
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src=“https://www.googletagmanager.com/gtag/js?id=UA-2674152-1”></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag(‘js’, new Date());
+        gtag(‘config’, ‘UA-2674152-1’);
+    </script>
+
     <title>Cinpasa</title>
 </head>
