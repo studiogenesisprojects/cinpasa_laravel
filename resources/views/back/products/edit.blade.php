@@ -274,6 +274,11 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <br>
+                                <div class="col-md-12 pb-3 mt-3">
+                                    <a onClick="addValues()" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                                </div>
+                                <br>
                                 <div class="col-md-6 pb-3 mt-2">
                                     <label>Materiales</label>
                                     <select class="form-control select2" name="materials[]" multiple="true">

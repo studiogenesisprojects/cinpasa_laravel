@@ -235,22 +235,11 @@
                                     </table>
                                 </div>
                                 <br>
-                                {{-- <div class="col-md-6 pb-3">
-                                    <label>Forma</label>
-                                    <select class="form-control select2" name="form_id" >
-                                        @foreach ($shapes as $shape)
-                                            <option value="{{$shape->id}}">{{$shape->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div> --}}
-                                {{-- <div class="col-md-6 pb-3">
-                                    <label>Trenzado</label>
-                                    <select class="form-control select2" name="brided_id" >
-                                        @foreach ($braids as $braid)
-                                            <option value="{{$braid->id}}">{{$braid->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div> --}}
+                                <div class="col-md-12 pb-3 mt-3">
+                                    <a onClick="addValues()" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                                </div>
+                                <br>
+
                                 <div class="col-md-6 pb-3 mt-3">
                                     <label>Materiales</label>
                                     <select class="form-control select2" name="materials[]" multiple="true">
