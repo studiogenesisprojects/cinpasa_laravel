@@ -24,31 +24,25 @@ class RecapchaValidateRequest extends FormRequest
     public function rules()
     {
         return [
-            'g-recaptcha-response' => app()->env == 'local' ? '' : 'required|recaptcha',
             'politics' => 'accepted',
-            'nom_surname' => 'required|string',
-            'company' => 'required|string',
+            'name' => 'required|string',
             'email' => 'required|email',
-            'tel' => 'required|integer|min:9',
-            'country' => 'required|string',
-            'comment' => 'required|string',
+            'phone' => 'required|integer|min:9',
+            'comentaris' => 'required|string',
         ];
     }
 
     public function messages()
     {
         return [
-            'g-recaptcha-response.recaptcha' => 'No has pasado el test de capcha',
-            'g-recaptcha-response.required' => 'No has pasado el test de capcha',
             'politics.accepted' => 'Es necesario acceptar las politicas de privacidad',
-            'nom_surname.required' => 'El campo nombre es requerido',
-            'company.required' => 'El campo Nombre de empresa es obligatorio',
+            'name.required' => 'El campo nombre es requerido',
             'email.required' => 'El campo Email es obligatorio',
             'email.email' => 'Email no válido',
-            'comment.required' => 'El campo Comentario es obligatorio',
-            'tel.required' => 'El campo Teléfono de contacto es obligatorio',
-            'tel.integer' => 'Teléfono de contacto no válido',
-            'tel.required' => 'Mínimo 9 números',
+            'comentaris.required' => 'El campo Comentario es obligatorio',
+            'phone.required' => 'El campo Teléfono de contacto es obligatorio',
+            'phone.integer' => 'Teléfono de contacto no válido',
+            'phone.required' => 'Mínimo 9 números',
         ];
     }
 }

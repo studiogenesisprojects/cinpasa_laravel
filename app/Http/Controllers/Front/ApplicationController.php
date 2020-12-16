@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\ApplicationHome;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Aplication;
@@ -20,15 +21,13 @@ class ApplicationController extends Controller
         $carousel = Carousel::where('section_id', 7)->where('active', 1)->where('main', 1)->first();
 
         //en el index mostramos aplicaciones padres
-        $applicationCategories = ApplicationCategory::where('active', true)->orderBy('order')->get();
+        $applicationCategories = ApplicationHome::orderBy('order')->get();
         return view('front.applications.index', compact(['applicationCategories', 'carousel']));
     }
 
     public function show(ApplicationCategory $applicationCategory)
     {
-        $applications = $applicationCategory->aplications()->where('active', true)->whereHas('languages', function ($q) {
-            $q->where('active', true)->where('language_id', Aplication::getLangIndex(app()->getLocale()));
-        })->orderBy('order')->get();
+        $applications = $applicationCategory->aplications()->where('active', true)->orderBy('order')->get();
         return view('front.applications.show', compact('applicationCategory', 'applications'));
     }
 

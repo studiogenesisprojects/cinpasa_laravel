@@ -450,7 +450,7 @@
             </li>
             @endif
             @endif
-            @if(1 == 0)
+
             @if(Auth()->user()->role->canRead(App\Models\Section::find(6)))
 
             <li class="selected no-sub-menu">
@@ -461,7 +461,6 @@
                     <span>Peticiones de información</span>
                 </a>
             </li>
-            @endif
             @endif
 
 

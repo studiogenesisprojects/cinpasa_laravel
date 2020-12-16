@@ -41,8 +41,8 @@
         <div class="row mt-5">
             <div class="col-xl-3 col-sm-4 col-7 ml-sm-0 ml-1">
                 <img class="w-100" src="{{ asset('front/img/logo-cinpasa-negative.svg') }}" alt="logotipo cinpasa">
-                <p class="mt-4">Raval de Sant Rafael, 21 E-43470 La Selva del Camp (Tarragona) Spain</p>
-                <p class="mt-4">+34 977 845 668</p>
+                <p class="mt-4">{{__('Contacta.location')}}</p>
+                <p class="mt-4">{{__('Contacta.phone')}}</p>
             </div>
             <div class="col-xl-2 col-md-3 col-sm-4 col-6 offset-xl-1 offset-lg-2 offset-md-1 mt-sm-0 mt-5">
                 <p class="font-bold">CONTENIDO</p>

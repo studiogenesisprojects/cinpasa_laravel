@@ -9,12 +9,15 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "biscolab/laravel-recaptcha": "^5.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
+        "greggilbert/recaptcha": "*",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "mcamara/laravel-localization": "^1.6",
+        "mews/captcha": "^3.2",
         "spatie/laravel-translation-loader": "^2.6"
     },
     "require-dev": {

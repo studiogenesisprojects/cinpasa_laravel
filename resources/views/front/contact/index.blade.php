@@ -4,35 +4,43 @@
 @include('front.home.carousel')
 <section id="aplicaciones">
     <div class="container">
-        <form>
+        <form action="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.contact.store')}}" method="POST">
+        @csrf
             <div class="row">
                 <div class="col-lg-8 transform-t-5">
                     <div class="card flex-row flex-wrap p-4">
                         <div class="col-12 px-0">
                             <div class="form-group">
-                                <input type="text" class="form-control background-blue-light" id="" placeholder="{{__('Contacta.name')}}">
+                                <input type="text" name="name" class="form-control background-blue-light" id="" placeholder="{{__('Contacta.name')}}">
                             </div>
                         </div>
                         <div class="col-6 pl-0 mt-3">
                             <div class="form-group">
-                                <input type="email" class="form-control background-blue-light" id="" placeholder="{{__('Contacta.email')}}">
+                                <input type="hidden" name="origen" id="origen">
+                                <input type="email" name="email" class="form-control background-blue-light" id="" placeholder="{{__('Contacta.email')}}">
                             </div>
                         </div>
                         <div class="col-6 pr-0 mt-3">
                             <div class="form-group">
-                                <input type="phone" class="form-control background-blue-light" id="" placeholder="{{__('Contacta.phone_form')}} *">
+                                <input type="phone" name="phone" class="form-control background-blue-light" id="" placeholder="{{__('Contacta.phone_form')}} *">
                             </div>
                         </div>
                         <div class="col-12 px-0 mt-3">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
-                                <label class="custom-control-label" for="defaultInline1">{{__('Contacta.particular')}}</label>
+                                <input type="radio" class="custom-control-input" checked id="particular" name="particular">
+                                <label class="custom-control-label" for="particular">{{__('Contacta.particular')}}</label>
                             </div>
 
                             <!-- Default inline 2-->
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
-                                <label class="custom-control-label" for="defaultInline2">{{__('Contacta.empresa')}}</label>
+                                <input type="radio" class="custom-control-input" id="empresa" name="particular">
+                                <label class="custom-control-label" for="empresa">{{__('Contacta.empresa')}}</label>
+                            </div>
+
+                            <div class="col-12 px-0 d-none" id="company">
+                                <div class="form-group">
+                                    <input type="text" name="company" class="form-control background-blue-light" placeholder="{{__('Contacta.company')}}">
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 px-0 mt-3">
@@ -40,14 +48,14 @@
                         </div>
                         <div class="col-12 px-0 mt-2">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
-                                <label class="custom-control-label" for="defaultInline1">{{__('Contacta.recibir_presu')}}</label>
+                                <input type="radio" name="presu" checked class="custom-control-input" id="presu">
+                                <label class="custom-control-label" for="presu">{{__('Contacta.recibir_presu')}}</label>
                             </div>
 
                             <!-- Default inline 2-->
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
-                                <label class="custom-control-label" for="defaultInline2">{{__('Contacta.recibir_info')}}</label>
+                                <input type="radio" name="presu" class="custom-control-input" id="info">
+                                <label class="custom-control-label" for="info">{{__('Contacta.recibir_info')}}</label>
                             </div>
                         </div>
                         <div class="col-12 px-0 mt-3">
@@ -55,30 +63,31 @@
                         </div>
                         <div class="col-12 px-0 mt-2">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
-                                <label class="custom-control-label" for="defaultInline1">{{__('Contacta.cantidades')}}</label>
+                                <input type="radio" name="second" checked class="custom-control-input" id="cantidades">
+                                <label class="custom-control-label" checked for="cantidades">{{__('Contacta.cantidades')}}</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
-                                <label class="custom-control-label" for="defaultInline2">{{__('Contacta.medidas')}}</label>
+                                <input type="radio" name="second" class="custom-control-input" id="medidas">
+                                <label class="custom-control-label" for="medidas">{{__('Contacta.medidas')}}</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
-                                <label class="custom-control-label" for="defaultInline2">{{__('Contacta.comentarios')}}</label>
+                                <input type="radio" name="second" class="custom-control-input" id="comentarios">
+                                <label class="custom-control-label" for="comentarios">{{__('Contacta.comentarios')}}</label>
                             </div>
                         </div>
                         <div class="col-12 px-0 mt-2">
                             <div class="form-group">
-                                <textarea class="form-control background-blue-light" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control background-blue-light" name="comentaris" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="col-12 px-0 mt-3">
                             <div class="custom-control custom-checkbox mt-3">
-                                <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
+                                <input type="checkbox" class="custom-control-input" name="politics" id="defaultChecked2" checked>
                                 <label class="custom-control-label" for="defaultChecked2">{{__('Contacta.privacy')}}</label>
                             </div>
-                            <a href="#" title="Enviar formulario" class="btn btn-primary mt-4">{{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
-                            </a>
+                            {!! htmlFormSnippet() !!}
+                            <button type="submit" title="Enviar formulario" class="btn btn-primary mt-4">{{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -119,4 +128,19 @@
         </div>
     </div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $('#empresa').click(function(){
+        $('#company').removeClass('d-none');
+    });
+
+    $('#particular').click(function(){
+        $('#company').addClass('d-none');
+    });
+
+    $(document).ready(function(){
+        $('#origen').val(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+    });
+
+</script>
 @endsection

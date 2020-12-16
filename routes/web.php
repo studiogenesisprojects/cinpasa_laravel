@@ -53,6 +53,7 @@ Route::group([
     //  */
     Route::get(LaravelLocalization::transRoute('routes.contact.index'), 'Front\ContactFormController@index');
     Route::get(LaravelLocalization::transRoute('routes.contact.stored'), 'Front\ContactFormController@stored');
+    Route::post(LaravelLocalization::transRoute('routes.contact.store'), 'Front\PetitionController@store')->name('contact.store');
     /**
      * Productos
      */
@@ -150,7 +151,6 @@ Route::get('/get-image-{image}', 'Back\Carousel\CarouselController@getImage')->n
 Route::get('/get-news-image-{image}', 'Back\Carousel\CarouselController@getNewsImage')->name('carousel.getNewsImage');
 
 //Peticiones
-Route::post('contact', 'Front\PetitionController@store')->name('contact');
 Route::post('work-with-us', 'Front\WorkWithUsController@store')->name('work-with-us');
 Route::get('materials/{locale}', 'Front\MaterialController@fetch');
 Route::get('categories/{sup}/{locale}', 'Front\ProductController@fetchCategories');

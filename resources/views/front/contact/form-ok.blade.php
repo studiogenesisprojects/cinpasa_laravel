@@ -1,0 +1,67 @@
+@extends('front.common.main')
+
+@section('content')
+@include('front.home.carousel')
+<section id="aplicaciones">
+    <div class="container">
+        <form>
+            <div class="row">
+                <div class="col-lg-8 transform-t-5">
+                    <div class="card flex-row flex-wrap p-4">
+                        <div class="col-10">
+                            <h4 class="mt-4 color-black">{{__('Contacta.titulo_ok')}}</h4>
+                            <p class="mt-3">{{__('Contacta.text_ok')}}</p>
+                            <hr class="mt-4">
+                        </div>
+                        <div class="col-12">
+                            <h5 class="mt-5 color-black font-bold">{{__('Contacta.resume_ok')}}</h5>
+                        </div>
+                        <div class="col-5">
+                            <p class="small mt-4">{{__('Contacta.name')}}</p>
+                            <p>{{$request->name}}</p>
+                        </div>
+                        <div class="col-7 d-flex mt-4">
+                            <hr class="hr-vertical mr-4 background-grey-light">
+                            <div>
+                                <p class="small">{{__('Contacta.email')}}</p>
+                                <p>{{$request->email}}</p>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <p class="small mt-4">{{__('Contacta.phone')}}</p>
+                            <p>{{$request->phone}}</p>
+                        </div>
+                        <div class="col-7 d-flex mt-4">
+                            <hr class="hr-vertical mr-4 background-grey-light">
+                            <div>
+                                <p class="small">{{__('Contacta.interest')}}</p>
+                                @if(isset($request->presu))
+                                <p>{{__('Contacta.recibir_info')}}</p>
+                                @else
+                                <p>{{__('Contacta.recibir_presu')}}</p>
+                                @endif
+                            </div>
+                        </div>
+                        @if($request->company)
+                        <div class="col-5">
+                            <p class="small mt-4">{{__('Contacta.empresa')}}</p>
+                            <p>{{$request->company}}</p>
+                        </div>
+                        @endif
+
+                        <div class="col-12 mt-4">
+                            <hr>
+                            <p class="mt-3">{{__('Contacta.more_info')}}</p>
+                            <p class="mt-2">{{$request->comentaris}}</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-3 offset-1 d-lg-flex d-none flex-column justify-content-end">
+                    <img class="w-100" src="{{ asset('front/img/contacta-1.jpg') }}" alt="imagen mujer sonriendo">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+@endsection

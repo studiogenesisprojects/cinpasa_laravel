@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Models\Aplication;
+use App\Models\ApplicationCategory;
 use Illuminate\Database\Eloquent\Model;
 
 class ApplicationHome extends Model
@@ -23,5 +23,9 @@ class ApplicationHome extends Model
     public function getNameAttribute()
     {
         return $this->applicationable->name ?? "";
+    }
+
+    public function application(){
+        return $this->belongsTo(ApplicationCategory::class, 'aplication_id');
     }
 }
