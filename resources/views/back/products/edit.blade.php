@@ -288,11 +288,11 @@
                                 </div>
                                 <div class="col-md-6 pb-3 mt-2">
                                     <label>Cabezal FleCortin</label>
-                                    <input type="text" class="form-control " value="{{ $caracteristics[0]->flecortin_head }}" name="flecortin_head">
+                                    <input type="text" class="form-control " value="@if(isset($caracteristics[0])){{ $caracteristics[0]->flecortin_head }}@endif " name="flecortin_head">
                                 </div>
                                 <div class="col-md-6 pb-3">
                                     <label>Ancho FleCortin</label>
-                                    <input type="text" class="form-control " value="{{ $caracteristics[0]->flecortin_width }}" name="flecortin_width">
+                                    <input type="text" class="form-control " value="@if(isset($caracteristics[0])){{ $caracteristics[0]->flecortin_head }}@endif " name="flecortin_width">
                                 </div>
                                 <div class="col-md-6 pb-3">
                                     <label>Presentación</label>
