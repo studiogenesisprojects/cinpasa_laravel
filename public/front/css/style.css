@@ -1155,10 +1155,6 @@ figure.box-list__figure {
     overflow: hidden;
 }
 
-.border-card p.font-bold.color-black {
-    margin-top: 1.5rem;
-}
-
 .carousel-inner {
     border: 1px solid #E5E5E5;
     border-radius: 10px;

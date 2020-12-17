@@ -21,7 +21,7 @@
                                 <a href="#" title="Añade a favoritos este artículo"><img class="btn-products p-1" src="{{ asset('front/img/icon-favorito.svg') }}" alt="icono favoritos"></a>
                             </div>
                         </div>
-                        <p class="font-bold color-black">{{$related->name}}</p>
+                        <p class="font-bold color-black mt-4">{{$related->name}}</p>
                         <p class="small">{!! strip_tags(Str::words($related->description, 15, '...')) !!}</p>
                     </div>
                 </div>
