@@ -50,17 +50,13 @@ class ApplicationCategoryController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $name = $request->image->getClientOriginalName();
-            Storage::putFileAs('aplicaciones', $request->image, $name);
-            $applicationCategory->update(['image' => 'aplicaciones/' . $request->image]);
-            // Storage::delete($applicationCategory->image);
+            $path = $request->file('image')->storeAs('applications', str_replace(" ","-",$request->file('image')->getClientOriginalName()));
+            $applicationCategory->update(['image' => $path]);
         }
 
         if ($request->hasFile('list_image')) {
-            $name = $request->list_image->getClientOriginalName();
-            Storage::putFileAs('aplicaciones', $request->list_image, $name);
-            $applicationCategory->update(['list_image' => 'aplicaciones/' . $name]);
-            // Storage::delete($applicationCategory->image);
+            $path = $request->file('list_image')->storeAs('applications', str_replace(" ","-",$request->file('list_image')->getClientOriginalName()));
+            $applicationCategory->update(['list_image' => $path]);
         }
 
         return redirect()->route('categorias-aplicaciones.index')->with('success', "Aplicación creada correctamente");
@@ -101,17 +97,13 @@ class ApplicationCategoryController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            Storage::delete($applicationCategory->image);
-            $name = $request->image->getClientOriginalName();
-            Storage::putFileAs('aplicaciones', $request->image, $name);
-            $applicationCategory->update(['image' => 'aplicaciones/' . $request->image]);
+            $path = $request->file('image')->storeAs('applications', str_replace(" ","-",$request->file('image')->getClientOriginalName()));
+            $applicationCategory->update(['image' => $path]);
         }
 
         if ($request->hasFile('list_image')) {
-            Storage::delete($applicationCategory->list_image);
-            $name = $request->list_image->getClientOriginalName();
-            Storage::putFileAs('aplicaciones', $request->list_image, $name);
-            $applicationCategory->update(['list_image' => 'aplicaciones/' . $name]);
+            $path = $request->file('list_image')->storeAs('applications', str_replace(" ","-",$request->file('list_image')->getClientOriginalName()));
+            $applicationCategory->update(['list_image' => $path]);
         }
 
         return redirect()->route('categorias-aplicaciones.index')->with('success', "Categoría actualizada correctamente");
