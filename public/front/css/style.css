@@ -511,6 +511,12 @@ hr {
     background-color: #707070;
 }
 
+figure.bg-cover{
+    display: flex;
+    justify-content: flex-end;
+    overflow-x: hidden;
+}
+
 .table{
     min-width: 540px!important;
 }
