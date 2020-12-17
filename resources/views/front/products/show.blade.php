@@ -76,7 +76,7 @@
                                 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
                                     "productCategory" => $product->categories[0],
                                     "product" => $product
-                                    ])}}" title="Accede a la información"><img class="w-100 border-img" src="{{ route('carousel.getImage', str_replace("/",";",$product->getPrimaryImageUrlAttribute())) }}"></a>
+                                    ])}}" title="Accede a la información"><img class="w-100 border-img" src="{{ Storage::url($product->getPrimaryImageUrlAttribute()) }}"></a>
                                 <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
                                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
                                         "productCategory" => $product->categories[0],
