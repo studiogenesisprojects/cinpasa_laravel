@@ -225,9 +225,9 @@
                                             </tr>
                                         </thead>
                                         <tbody id="caracteristics_body">
-                                            @foreach($caracteristics as $caracteristic)
+                                            @foreach($caracteristics as $key => $caracteristic)
                                             <div id="bloc_1">
-                                                <tr id="row_0">
+                                                <tr id="row_{{$key}}">
                                                 <td>
                                                     <input type="text" class="form-control" value="{{$caracteristic->references}}" name="references2[]">
                                                 </td>
@@ -263,8 +263,8 @@
                                                         <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
                                                         <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu dropdown-menu-right">
                                                             <a href="javascript:;" onClick="addValues()" class="dropdown-item addRow"><i class="ti-pencil"></i> Afegir</a>
-                                                            <a href="javascript:;" onClick="deleteRow(0)" class="dropdown-item deleteRow"><i class="ti-trash"></i> Eliminar</a>
-                                                            <a href="javascript:;" onClick="duplicateRow(0)" class="dropdown-item duplicateRow"><i class="ti-layers-alt"></i> Duplicar</a>
+                                                            <a href="javascript:;" onClick="deleteRow({{$key}})" class="dropdown-item deleteRow"><i class="ti-trash"></i> Eliminar</a>
+                                                            <a href="javascript:;" onClick="duplicateRow({{$key}})" class="dropdown-item duplicateRow"><i class="ti-layers-alt"></i> Duplicar</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -370,7 +370,7 @@
 
 @section('js')
     <script>
-        var counter = 1;
+        var counter = {{sizeof($caracteristics)}};
 
         $(document).ready( () => {
             CKEDITOR.replaceAll('item');
