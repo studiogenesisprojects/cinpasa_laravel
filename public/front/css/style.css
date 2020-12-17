@@ -511,27 +511,6 @@ hr {
     background-color: #707070;
 }
 
-figure.bg-cover{
-    display: flex;
-    justify-content: flex-end;
-    overflow-x: hidden;
-}
-
-.table{
-    min-width: 540px!important;
-}
-
-.table thead th{
-    border-bottom: 0!important;
-    border-top: 0!important;
-    font-size: calc(18px + (20 - 18) * ((100vw - 320px) / (1920 - 320)))!important;
-    font-weight: 600!important;
-}
-
-.table-striped tbody tr:nth-of-type(odd){
-    background-color: transparent!important;
-}
-
 .border-0 {
     border: 0;
 }
@@ -1141,6 +1120,55 @@ footer label {
 .form-group {
     margin-bottom: 0rem;
 }
+
+
+
+
+
+
+
+.table {
+    min-width: 540px !important;
+}
+
+.table thead th {
+    border-bottom: 0 !important;
+    border-top: 0 !important;
+    font-size: calc(18px + (20 - 18) * ((100vw - 320px) / (1920 - 320))) !important;
+    font-weight: 600 !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: transparent !important;
+}
+
+figure.box-product__figure {
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+figure.box-list__figure {
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+.border-card p.font-bold.color-black {
+    margin-top: 1.5rem;
+}
+
+.carousel-inner {
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+}
+
+
+
+
+
+
 
 @media (max-width: 1199px) {
     .font-lab {
