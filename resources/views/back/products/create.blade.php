@@ -343,7 +343,7 @@
                     <input type="text" class="form-control " name="observations[]">
                 </td>
                 <td>
-                    <input type="number" class="form-control " name="order[]">
+                    <input type="number" class="form-control " name="order_car[]">
                 </td>
                 <td class="acciones">
                     <div class="btn-group">
