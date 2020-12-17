@@ -167,10 +167,12 @@ class CarouselController extends Controller
     {
         $slide = Slide::findOrFail($id);
         if ($request->hasFile('image')) {
-            $t = $request->file('image')->store('carousels');
+            $path = $request->file('image')->storeAs('carousels', str_replace(" ","-",$request->file('image')->getClientOriginalName()));
+
             $slide->update([
-                "image" => $t,
+                "image" => $path,
             ]);
+
             return response()->json([
                 "image" => $slide->image,
             ]);
