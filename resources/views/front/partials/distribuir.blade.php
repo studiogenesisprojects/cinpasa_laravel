@@ -9,7 +9,7 @@
                     {{__('Distribuir.titulo')}}
                 </h2>
                 <p class="mt-3">{{__('Distribuir.text')}}</p>
-                <a href="distribuir_productos.php" title="Saber más sobre quieres distribuir nuestros productos" class="btn btn-third mt-4">{{__('Distribuir.text_boton')}} <img class="ml-4" src="{{ asset('front/img/icon-arrow-right-blue.svg') }}" alt="icono vectorial flecha derecha"></a>
+                <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.distribute.index')}}" title="Saber más sobre quieres distribuir nuestros productos" class="btn btn-third mt-4">{{__('Distribuir.text_boton')}} <img class="ml-4" src="{{ asset('front/img/icon-arrow-right-blue.svg') }}" alt="icono vectorial flecha derecha"></a>
             </div>
         </div>
 

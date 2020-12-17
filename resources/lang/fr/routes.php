@@ -19,6 +19,9 @@ return [
         "show" => 'candidatures/{applicationCategory}',
         "_show" => 'candidatures/{applicationCategory}/{aplication}',
     ],
+    'distribute' => [
+        'index' => 'distribuer',
+    ],
     'company' => [
         'index' => 'entreprise',
         '100_block' => 'bloc-100',

@@ -11,13 +11,13 @@
                             <div class="row flex-row flex-md-column">
                                 <div class="col-md-12 col-sm-6 col-10">
                                     <div class="d-flex mt-4 align-items-start">
-                                        <img src="img/icon-loc.svg" alt="">
+                                        <img src="{{ asset('front/img/icon-loc.svg') }}" alt="icono localización">
                                         <p class="ml-3 color-blue small">{{__('Contacta.location')}}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-6">
                                     <div class="d-flex mt-4 align-items-start">
-                                        <img src="img/icon-phone.svg" alt="">
+                                        <img src="{{ asset('front/img/icon-phone.svg') }}" alt="icono teléfono">
                                         <p class="ml-3 color-blue small">{{__('Contacta.phone')}}</p>
                                     </div>
                                 </div>

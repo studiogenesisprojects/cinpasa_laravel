@@ -19,6 +19,9 @@ return [
         "show" => 'приложения/{applicationCategory}',
         "_show" => 'приложения/{applicationCategory}/{aplication}',
     ],
+    'distribute' => [
+        'index' => 'раздавать',
+    ],
     'company' => [
         'index' => 'компания',
         '100_block' => 'blocco-100',

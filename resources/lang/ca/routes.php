@@ -15,6 +15,9 @@ return [
         'searchProducts' => 'productes/busqueda/filtre',
 
     ],
+    'distribute' => [
+        'index' => 'distribuir',
+    ],
     'applications' => [
         "index" => 'aplicacions',
         "show" => 'aplicacions/{applicationCategory}',

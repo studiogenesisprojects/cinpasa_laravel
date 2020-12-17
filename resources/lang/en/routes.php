@@ -15,6 +15,9 @@ return [
         'showProductRe' => 'products/re/{product}',
         'searchProducts' => 'products/search/filter',
     ],
+    'distribute' => [
+        'index' => 'distribute',
+    ],
     'applications' => [
         "index" => 'applications',
         "show" => 'applications/{applicationCategory}',

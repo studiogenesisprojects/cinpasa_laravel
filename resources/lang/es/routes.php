@@ -30,6 +30,9 @@ return [
         'politic_privacy' => 'politica-de-privacidad',
         'coockie_privacy' => 'política-de-cookies',
     ],
+    'distribute' => [
+        'index' => 'distribuir',
+    ],
     'contact' => [
         'index' => 'contacto',
         'store' => 'contacto/formulario-de-contacto',
