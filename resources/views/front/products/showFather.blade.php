@@ -93,17 +93,6 @@
             </div>
         </div>
         <hr class="hr-blue">
-        <div class="row">
-            <div class="col-md-9 offset-md-3 px-0 d-flex py-4">
-                <hr class="hr-vertical background-blue-light">
-                <a class="ml-3" href="#" title="Número de página">1</a>
-                <a class="ml-3" href="#" title="Número de página">2</a>
-                <a class="ml-3" href="#" title="Número de página">3</a>
-                <a class="ml-3" href="#" title="Número de página">...</a>
-                <a class="ml-3" href="#" title="Número de página">40</a>
-            </div>
-        </div>
-        <hr class="hr-blue">
         @if($productCategory->lang())
         <div class="row">
             <div class="col-md-8 offset-md-3 px-md-0 py-4">
