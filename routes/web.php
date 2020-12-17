@@ -152,7 +152,6 @@ Route::get('/get-news-image-{image}', 'Back\Carousel\CarouselController@getNewsI
 
 //Peticiones
 Route::post('work-with-us', 'Front\WorkWithUsController@store')->name('work-with-us');
-Route::post('lang', 'Front\HomeController@language')->name('change-language');
 Route::get('materials/{locale}', 'Front\MaterialController@fetch');
 Route::get('categories/{sup}/{locale}', 'Front\ProductController@fetchCategories');
 Route::get('eco-page-url/{locale}', 'Front\EcologyController@getPageUrl');

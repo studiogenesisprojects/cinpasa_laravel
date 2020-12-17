@@ -13,7 +13,10 @@
 
         <script>
             $('#select_language').change(function(){
-                window.location.href = "{{URL::to('/')}}/" + $('#select_language').val();
+                var language = $('#select_language').val();
+                var url = $(this).find(':selected').data('url');
+
+                window.location.href = url;
             });
         </script>
     </body>

@@ -6,23 +6,21 @@
                 <a href="#" title="Escribenos a nuestro correo" class="ml-5">ventas@cinpasa.com</a>
             </div>
             <div class="d-flex align-items-center">
-                <a href="#" title="Escoge el idioma" class="form-group">
-                    <select class="form-control-search" id="select_language">
-                        @foreach(\App\Models\Language::all() as $language)
-                            @if($language->code != 'ru')
-                                @if(isset(explode("/", url()->current())[3]))
-                                    @if(explode("/", url()->current())[3] == $language->code)
-                                        <option value="{{$language->code}}" selected>{{strtoupper($language->code)}}</option>
-                                    @else
-                                        <option value="{{$language->code}}">{{strtoupper($language->code)}}</option>
-                                    @endif
+                <select class="form-control-search" id="select_language">
+                    @foreach(\App\Models\Language::all() as $language)
+                        @if($language->code != 'ru')
+                            @if(isset(explode("/", url()->current())[3]))
+                                @if(explode("/", url()->current())[3] == $language->code)
+                                    <option value="{{$language->code}}" data-url="{{LaravelLocalization::getLocalizedURL($language->code)}}" selected>{{strtoupper($language->code)}}</option>
                                 @else
-                                    <option value="{{$language->code}}">{{strtoupper($language->code)}}</option>
+                                    <option value="{{$language->code}}" data-url="{{LaravelLocalization::getLocalizedURL($language->code)}}">{{strtoupper($language->code)}}</option>
                                 @endif
+                            @else
+                                <option value="{{$language->code}}" data-url="{{LaravelLocalization::getLocalizedURL($language->code)}}">{{strtoupper($language->code)}}</option>
                             @endif
-                        @endforeach
-                    </select>
-                </a>
+                        @endif
+                    @endforeach
+                </select>
                 <a href="#" title="Accede a nuestro facebook"><img class="ml-3" src="{{ asset('front/img/icon-facebook.svg') }}" alt="icono facebook"></a>
                 <a href="#" title="Accede a nuestro canal de youtube"><img class="ml-3" src="{{ asset('front/img/icon-youtube.svg') }}" alt="icono youtube"></a>
                 <a href="#" title="Accede a nuestro twitter"><img class="ml-3" src="{{ asset('front/img/icon-twitter.svg') }}" alt="icono twitter"></a>
