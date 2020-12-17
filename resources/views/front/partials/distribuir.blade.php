@@ -6,10 +6,10 @@
             </div>
             <div class="col-md-6 d-flex flex-column justify-content-center align-items-start py-5 order-md-2 order-1 px-md-0 px-5">
                 <h2 class="font-bold">
-                    ¿Quieres distribuir nuestros productos?
+                    {{__('Distribuir.titulo')}}
                 </h2>
-                <p class="mt-3">Contacta con nosotros y cuéntanos. Responderemos a tus preguntas sobre objetivos, necesidades y expectativas. </p>
-                <a href="distribuir_productos.php" title="Saber más sobre quieres distribuir nuestros productos" class="btn btn-third mt-4">SABER MÁS <img class="ml-4" src="{{ asset('front/img/icon-arrow-right-blue.svg') }}" alt="icono vectorial flecha derecha"></a>
+                <p class="mt-3">{{__('Distribuir.text')}}</p>
+                <a href="distribuir_productos.php" title="Saber más sobre quieres distribuir nuestros productos" class="btn btn-third mt-4">{{__('Distribuir.text_boton')}} <img class="ml-4" src="{{ asset('front/img/icon-arrow-right-blue.svg') }}" alt="icono vectorial flecha derecha"></a>
             </div>
         </div>
 

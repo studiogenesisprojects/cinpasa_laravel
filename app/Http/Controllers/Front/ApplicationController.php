@@ -27,8 +27,26 @@ class ApplicationController extends Controller
 
     public function show(ApplicationCategory $applicationCategory)
     {
+        switch ($applicationCategory->id) {
+            case 25337:
+                $carousel = Carousel::find(12);
+                break;
+            case 25338:
+                $carousel = Carousel::find(14);
+                break;
+            case 25339:
+                $carousel = Carousel::find(13);
+                break;
+            case 25340:
+                $carousel = Carousel::find(15);
+                break;
+            case 25341:
+                $carousel = Carousel::find(16);
+                break;
+        }
+
         $applications = $applicationCategory->aplications()->where('active', true)->orderBy('order')->get();
-        return view('front.applications.show', compact('applicationCategory', 'applications'));
+        return view('front.applications.show', compact('applicationCategory', 'applications', 'carousel'));
     }
 
     public function _show(ApplicationCategory $applicationCategory, Aplication $aplication)

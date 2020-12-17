@@ -115,6 +115,11 @@ Route::group([
     Route::get(LaravelLocalization::transRoute('routes.favorites.stored'), 'Front\FavoriteController@stored');
 
     /**
+     * Distribuir
+     */
+    Route::get(LaravelLocalization::transRoute('routes.distribute.index'), 'Front\DistributeController@index');
+
+    /**
      * Outlet
      */
     Route::get(LaravelLocalization::transRoute('routes.outlet.index'), 'Front\OutletController@index');
