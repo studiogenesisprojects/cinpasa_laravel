@@ -182,6 +182,7 @@ class CarouselController extends Controller
     public function getImage($image)
     {
         $image = str_replace(";","/",$image);
+        $image = str_replace("%20"," ",$image);
 
         $path = storage_path() . '/app/' . $image;
 
