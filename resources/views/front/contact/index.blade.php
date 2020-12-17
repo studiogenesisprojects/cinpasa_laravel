@@ -1,7 +1,7 @@
 @extends('front.common.main')
 
 @section('content')
-@include('front.home.carousel')
+@include('front.home.carousel2')
 <section id="aplicaciones">
     <div class="container">
         <form action="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.contact.store')}}" method="POST">
@@ -85,6 +85,7 @@
                                 <input type="checkbox" class="custom-control-input" name="politics" id="defaultChecked2" checked>
                                 <label class="custom-control-label" for="defaultChecked2">{{__('Contacta.privacy')}}</label>
                             </div>
+                            <br>
                             {!! htmlFormSnippet() !!}
                             <button type="submit" title="Enviar formulario" class="btn btn-primary mt-4">{{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
                             </button>

@@ -97,6 +97,8 @@
                             </div>
                         </div>
                         <div class="col-12 mt-3">
+                            <br>
+                            {!! htmlFormSnippet() !!}
                             <div class="custom-control custom-checkbox mt-3">
                                 <input type="checkbox" name="politics" class="custom-control-input" id="privacidad" checked>
                                 <label class="custom-control-label" for="privacidad">{{__('Contacta.privacy')}}</label>

@@ -1,7 +1,7 @@
 @extends('front.common.main')
 
 @section('content')
-@include('front.home.carousel')
+@include('front.home.carousel2')
 <section id="aplicaciones">
     <div class="container">
         <form>

@@ -28,16 +28,16 @@
     <section>
         <div class="container">
             <div class="row my-5 align-items-end">
-                <div class="col-lg-5 col-md-6 col-10 offset-md-0 offset-1 order-md-1 order-2 mt-md-0 mt-5">
-                    <img class="w-100" src="{{ asset('front/img/sobrenosotros.jpg') }}" alt="imagen sobre nosotros">
-                </div>
                 <div class="col-md-6 offset-lg-1">
                     <h3>{{__('Inicio.seccion2_titulo')}}</h3>
                     <hr class="my-3">
                     <p>{{__('Inicio.seccion2_texto')}}</p>
-                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Acceder a todas las categorías" class="btn btn-primary mt-4">
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.index')}}" title="Acceder a todas las categorías" class="btn btn-primary mt-4">
                         {{__('Inicio.seccion2_boton')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
                     </a>
+                </div>
+                <div class="col-lg-5 col-md-6 col-10 offset-md-0 offset-1 order-md-1 order-2 mt-md-0 mt-5">
+                    <img class="w-100" src="{{ asset('front/img/sobrenosotros.jpg') }}" alt="imagen sobre nosotros">
                 </div>
             </div>
         </div>

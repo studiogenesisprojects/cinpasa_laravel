@@ -1,7 +1,7 @@
 @extends('front.common.main')
 @section('content')
 <section>
-    @include('front.home.carousel')
+    @include('front.home.carousel2')
     @include('front.home.barra-busqueda')
     <div class="container-fluid">
         <div class="row">

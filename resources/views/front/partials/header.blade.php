@@ -3,7 +3,7 @@
         <div class="row justify-content-between py-3 px-5 header-social">
             <div class="d-flex align-items-center">
                 <p>+34 977 845 668</p>
-                <a href="#" title="Escribenos a nuestro correo" class="ml-5">ventas@cinpasa.com</a>
+                <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Escribenos a nuestro correo" class="ml-5">ventas@cinpasa.com</a>
             </div>
             <div class="d-flex align-items-center">
                 <select class="form-control-search" id="select_language">

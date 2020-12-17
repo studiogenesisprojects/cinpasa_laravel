@@ -24,6 +24,7 @@ class RecapchaValidateRequest extends FormRequest
     public function rules()
     {
         return [
+            'g-recaptcha-response' => app()->env == 'local' ? '' : 'required|recaptcha',
             'politics' => 'accepted',
             'name' => 'required|string',
             'email' => 'required|email',
@@ -35,6 +36,8 @@ class RecapchaValidateRequest extends FormRequest
     public function messages()
     {
         return [
+            'g-recaptcha-response.recaptcha' => 'No has pasado el test de capcha',
+            'g-recaptcha-response.required' => 'No has pasado el test de capcha',
             'politics.accepted' => 'Es necesario acceptar las politicas de privacidad',
             'name.required' => 'El campo nombre es requerido',
             'email.required' => 'El campo Email es obligatorio',
