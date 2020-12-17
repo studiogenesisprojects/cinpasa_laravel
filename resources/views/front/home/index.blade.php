@@ -18,7 +18,7 @@
                 @include('front.home.categories')
             </div>
             <div class="row justify-content-center">
-                <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Acceder a todas las categorías" class="btn btn-primary my-5 after-title-center position-relative">
+                <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.index')}}" title="Acceder a todas las categorías" class="btn btn-primary my-5 after-title-center position-relative">
                     {{__('Inicio.seccion1_boton_2')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
                 </a>
             </div>

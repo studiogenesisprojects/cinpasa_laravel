@@ -14,7 +14,7 @@
                                     "productCategory" => $productCategory,
                                     "product" => $related
                                     ])}}" title="Accede a la información">
-                            <img class="w-100 border-img" src="{{ route('carousel.getImage', str_replace("/",";",$related->getPrimaryImageUrlAttribute())) }}" alt="imagen relacionada">
+                            <img class="w-100 border-img" src="{{ Storage::url($related->getPrimaryImageUrlAttribute()) }}" alt="imagen relacionada">
                             </a>
                             <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
                                 <a href="#" title="Compartir este artículo"><img class="btn-products p-1 mr-1" src="{{ asset('front/img/icon-share.svg') }}" alt="icono compartir"></a>

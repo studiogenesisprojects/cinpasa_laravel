@@ -44,7 +44,7 @@
                 <div class="row background-blue-light border-card py-2">
                     <div class="col-8 d-flex align-items">
                         <a id="menu_filtrar_productos" href="#" title="Despliega el menú filtrar productos" class="d-flex align-items"><img class="mr-2 d-lg-none d-inline-block" src="img/icon-categorias.svg" alt="icono menu categorías">
-                            <p class="color-blue font-bold">Cintas cortina para barras</p>
+                            <p class="color-blue font-bold"></p>
                         </a>
                     </div>
                     <div class="col-4 px-0 d-flex justify-content-between">
@@ -59,8 +59,7 @@
                     </div>
                 </div>
                 <div class="row px-3 pt-4 pb-5 border-card-left">
-                    <p class="small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. <br>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
+
                 </div>
 
             </div>
@@ -69,14 +68,6 @@
         <div class="row">
             <div class="col-md-9 offset-md-3 px-0 d-flex py-4">
 
-            </div>
-        </div>
-        <hr class="hr-blue">
-        <div class="row">
-            <div class="col-md-8 offset-md-3 px-md-0 py-4">
-                <p class="color-blue">Más información sobre cortinas</p>
-                <p class="small mt-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. <br>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
             </div>
         </div>
         <hr class="hr-blue">
