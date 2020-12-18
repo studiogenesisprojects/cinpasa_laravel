@@ -21,11 +21,11 @@
                         @endif
                     @endforeach
                 </select>
-                <a href="#" title="Accede a nuestro facebook"><img class="ml-3" src="{{ asset('front/img/icon-facebook.svg') }}" alt="icono facebook"></a>
-                <a href="#" title="Accede a nuestro canal de youtube"><img class="ml-3" src="{{ asset('front/img/icon-youtube.svg') }}" alt="icono youtube"></a>
-                <a href="#" title="Accede a nuestro twitter"><img class="ml-3" src="{{ asset('front/img/icon-twitter.svg') }}" alt="icono twitter"></a>
-                <a href="#" title="Accede a nuestro pinterest"><img class="ml-3" src="{{ asset('front/img/icon-pinterest.svg') }}" alt="icono pinterest"></a>
-                <a href="#" title="Accede a nuestro instagram"><img class="ml-3" src="{{ asset('front/img/icon-instagram.svg') }}" alt="icono instagram"></a>
+                <a href="https://www.facebook.com/pages/CINPASA/324453140914915" title="Accede a nuestro facebook"><img class="ml-3" src="{{ asset('front/img/icon-facebook.svg') }}" alt="icono facebook"></a>
+                <a href="https://www.youtube.com/channel/UCwARth039yQvkPHSULVCWog" title="Accede a nuestro canal de youtube"><img class="ml-3" src="{{ asset('front/img/icon-youtube.svg') }}" alt="icono youtube"></a>
+                <a href="https://twitter.com/CINPASA" title="Accede a nuestro twitter"><img class="ml-3" src="{{ asset('front/img/icon-twitter.svg') }}" alt="icono twitter"></a>
+                <a href="https://www.pinterest.es/cinpasa/" title="Accede a nuestro pinterest"><img class="ml-3" src="{{ asset('front/img/icon-pinterest.svg') }}" alt="icono pinterest"></a>
+                {{-- <a href="#" title="Accede a nuestro instagram"><img class="ml-3" src="{{ asset('front/img/icon-instagram.svg') }}" alt="icono instagram"></a> --}}
             </div>
         </div>
     </div>
@@ -34,14 +34,14 @@
         <div class="row justify-content-between align-items-center py-3 px-sm-5 px-4">
             <div class="d-lg-block d-flex justify-content-between w-md-100">
                 <a href="{{\LaravelLocalization::localizeURL('/')}}" title="Accede al apartado inicio"><img class="my-3 logo" src="{{ asset('front/img/logo-cinpasa.svg') }}" alt="logotipo Cinpasa"></a>
-                <div class="d-flex d-lg-none justify-content-end align-items-center">
+                {{-- <div class="d-flex d-lg-none justify-content-end align-items-center">
                     <div class="position-relative">
                         <a class="icon-fav" href="#" title="Accede a tus productos favoritos"><img class="icon-nav" src="{{ asset('front/img/icon-fav.svg') }}" alt="icono favoritos"></a>
                         <div class="num-fav">4</div>
                     </div>
                     <a class="icon-search" href="#" title="Busca por palabras clave"><img class="icon-nav ml-sm-3 ml-3" src="{{ asset('front/img/icon-search.svg') }}" alt="icono búsqueda"></a>
                     <a id="icon-menu" href="#" title="Busca por palabras clave"><img class="icon-nav ml-sm-3 ml-3" src="{{ asset('front/img/icon-menu.svg') }}" alt="icono búsqueda"></a>
-                </div>
+                </div> --}}
                 <div id="menu" class="">
                     <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.company.index')}}" title="Accede al apartado empresa">{{strtoupper(__('Menu.business'))}}</a>
                     <a id="productos_submenu" class="ml-sm-5 a-stagger" href="#" title="Accede al apartado productos">{{strtoupper(__('Menu.products'))}} <img src="{{ asset('front/img/icon-arrow-down-blue.svg') }}" alt="icono flecha abajo"></a>
@@ -65,13 +65,13 @@
                 </div>
             </div>
             <div class="position-relative">
-                <div class="justify-content-end mb-4 d-lg-flex d-none">
+                {{-- <div class="justify-content-end mb-4 d-lg-flex d-none">
                     <div class="position-relative">
                         <a id="icon-fav" href="#" title="Accede a tus productos favoritos"><img class="icon-nav" src="{{ asset('front/img/icon-fav.svg') }}" alt="icono favoritos"></a>
                         <div class="num-fav pointer-events-none">4</div>
                     </div>
                     <a id="icon-search" href="#" title="Busca por palabras clave"><img class="icon-nav ml-3" src="{{ asset('front/img/icon-search.svg') }}" alt="icono búsqueda"></a>
-                </div>
+                </div> --}}
                 <nav id="nav_a" class="justify-content-end mt-4 d-lg-flex d-none">
                     <a class="ml-3 {{Str::contains($currentUrl, "empresa") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.company.index')}}" title="Accede al apartado empresa">{{strtoupper(__('Menu.business'))}}</a>
                     <a class="ml-3 hover-dropdown {{Str::contains($currentUrl, "productos") ? "active": ""}}" href="javascript:;" title="Accede al apartado productos">{{strtoupper(__('Menu.products'))}}</a>
@@ -85,7 +85,7 @@
 
                 </nav>
 
-                <div id="buscador_modal" class="row position-absolute r-0 t-2 card width-auto vw-lg-40 vw-md-50 vw-sm-60 vw-xs-90 background-blue-light">
+                {{-- <div id="buscador_modal" class="row position-absolute r-0 t-2 card width-auto vw-lg-40 vw-md-50 vw-sm-60 vw-xs-90 background-blue-light">
                     <section id="close-busqueda" class="vh-100 vw-100 position-fixed t-0 l-0"></section>
                     <div class="col-12 px-4 pt-4 background-white">
                         <p class="font-bold color-blue">Buscador</p>
@@ -140,8 +140,8 @@
                     <div class="col-12 px-4 py-3">
                         <a href="#" title="Más resultados de tu búsqueda" class="color-blue small font-bold">Más resultados <img class="ml-2" src="{{ asset('front/img/icon-arrow-right-blue.svg') }}" alt="icono vectorial flecha derecha"></a>
                     </div>
-                </div>
-                <div id="favorito_modal" class="row position-absolute r-0 t-2 card pt-4 width-auto vw-lg-40 vw-md-50 vw-sm-60 vw-xs-90">
+                </div> --}}
+                {{-- <div id="favorito_modal" class="row position-absolute r-0 t-2 card pt-4 width-auto vw-lg-40 vw-md-50 vw-sm-60 vw-xs-90">
                     <section id="close-favorito" class="vh-100 vw-100 position-fixed t-0 l-0"></section>
                     <div class="col-12 px-4">
                         <p class="font-bold color-black">3 productos</p>
@@ -193,7 +193,7 @@
                         </div>
                         <a href="favoritos.php" title="Ver todos tus productos favoritos" class="btn btn-fav w-100 my-4 py-2">VER FAVORITOS</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <hr>
