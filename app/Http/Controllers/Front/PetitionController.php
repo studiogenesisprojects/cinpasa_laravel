@@ -35,6 +35,14 @@ class PetitionController extends Controller
             $comentaris = $comentaris . ' Comentarios: ' . $request->comentaris;
         }
 
+        if(isset($request->activity)){
+            $comentaris = $comentaris . ' Actividad: ' . $request->activity;
+        }
+
+        if(isset($request->web)){
+            $comentaris = $comentaris . ' Web: ' . $request->web;
+        }
+
         $petition = Petition::create([
             'fullname' => $request->name,
             'company' => $company,

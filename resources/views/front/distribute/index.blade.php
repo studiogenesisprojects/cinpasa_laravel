@@ -15,7 +15,7 @@
 
 <section>
     <div class="container mt-5">
-        <form>
+        <form action="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.contact.store')}}" method="POST">
             <div class="row">
                 <div class="col-lg-5 col-md-6 mt-5">
                     <h3 class="before-title">{{__('Distribuir.titulo_form')}}</h3>
@@ -32,7 +32,7 @@
                                 <div class="col-md-12 col-sm-6">
                                     <div class="d-flex mt-4 align-items-start">
                                         <img src="{{ asset('front/img/icon-phone.svg') }}" alt="">
-                                        <p class="ml-3 color-blue small">+34 977 845 668</p>
+                                        <p class="ml-3 color-blue small">{{__('Contacta.phone')}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-12 mt-3">
                             <div class="form-group">
-                                <select class="form-control background-blue-light" id="exampleFormControlSelect1">
+                                <select class="form-control background-blue-light" name="activity" id="exampleFormControlSelect1">
                                     <option>{{__('Distribuir.actividad_form')}}</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -61,29 +61,29 @@
                         </div>
                         <div class="col-12 mt-3">
                             <div class="form-group">
-                                <input type="text" class="form-control background-blue-light" id="" placeholder="{{__('Contacta.name')}}">
+                                <input type="text" class="form-control background-blue-light" name="name" id="" placeholder="{{__('Contacta.name')}}">
                             </div>
                         </div>
                         <div class="col-12 mt-3">
                             <div class="form-group">
-                                <input type="text" class="form-control background-blue-light" id="" placeholder="E-mail *">
+                                <input type="text" class="form-control background-blue-light" name="email" id="" placeholder="E-mail *">
                             </div>
                         </div>
                         <div class="col-12 mt-3">
                             <div class="form-group">
-                                <input type="text" class="form-control background-blue-light" id="" placeholder="{{__('Contacta.phone')}}">
+                                <input type="text" class="form-control background-blue-light" id="" name="phone" placeholder="{{__('Contacta.phone2')}}">
                             </div>
                         </div>
                         <div class="col-12 mt-3">
                             <div class="form-group">
-                                <input type="text" class="form-control background-blue-light" id="" placeholder="{{__('Distribuir.web_form')}}">
+                                <input type="text" class="form-control background-blue-light" id="" name="web" placeholder="{{__('Distribuir.web_form')}}">
                             </div>
                         </div>
                         <div class="col-12 mt-3">
                             <br>
                             {!! htmlFormSnippet() !!}
                             <div class="custom-control custom-checkbox mt-3">
-                                <input type="checkbox" class="custom-control-input" id="privacidad">
+                                <input type="checkbox" class="custom-control-input" required id="privacy">
                                 <label class="custom-control-label" for="privacidad">{{__('Contacta.privacy')}}</label>
                             </div>
                             <a href="contacta_ok.php" title="" class="btn btn-primary mt-4">
