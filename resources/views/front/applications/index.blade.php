@@ -19,6 +19,11 @@
                 "applicationCategory" => $category->application->lang()->slug
             ])}}" class="col-md-4 col-sm-6 col-10 offset-sm-0 offset-1 position-relative">
                 <img class="w-100 border-img" src="{{ Storage::url($category->application->image) }}" alt="imagen técnico industrial">
+                @if($loop->last)
+                <div class="position-absolute position-center-t40">
+                    <img src="{{ asset('front/img/mas-aplicaciones.svg') }}" alt="icono más">
+                </div>
+                @endif
                 <div class="card col-8 position-absolute position-center-t75 text-center p-3">
                     <h6>{{$category->application->lang()->name}}</h6>
                 </div>
