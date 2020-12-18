@@ -30,7 +30,7 @@
             </div>
             @elseif($key == 1)
             <div class="col-lg-6 px-0 mt-lg-5">
-                <img class="w-100 border-left border-bottom border-top-resp" src="{{Storage::url($lab->image)}}" alt="CINHome">
+                <img class="w-100 border-left border-bottom border-top-resp" src="{{Storage::url($lab->secondary_image)}}" alt="CINHome">
                  <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xs-5">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
                     <p class="color-white">{{ $lab->description }}</p>
