@@ -2,7 +2,11 @@
 <html lang="es">
     @include('front.partials.head')
     <body class="menu-position-side menu-side-left full-screen with-content-panel">
-        {{--  --}}
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5R5VDBD"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+
         @include('front.partials.header')
         @if(!isset($more_info_trigger))
             <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede a la categoría contacta" class="btn-fixed">
