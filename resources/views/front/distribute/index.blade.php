@@ -16,6 +16,7 @@
 <section>
     <div class="container mt-5">
         <form action="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.contact.store')}}" method="POST">
+            @csrf
             <div class="row">
                 <div class="col-lg-5 col-md-6 mt-5">
                     <h3 class="before-title">{{__('Distribuir.titulo_form')}}</h3>
@@ -50,17 +51,12 @@
                         </div>
                         <div class="col-12 mt-3">
                             <div class="form-group">
-                                <select class="form-control background-blue-light" name="activity" id="exampleFormControlSelect1">
-                                    <option>{{__('Distribuir.actividad_form')}}</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                                <input type="text" class="form-control background-blue-light" name="activity" id="" placeholder="{{__('Distribuir.actividad_form')}}">
                             </div>
                         </div>
                         <div class="col-12 mt-3">
                             <div class="form-group">
+                                <input type="hidden" name="origen" id="origen">
                                 <input type="text" class="form-control background-blue-light" name="name" id="" placeholder="{{__('Contacta.name')}}">
                             </div>
                         </div>
@@ -83,12 +79,12 @@
                             <br>
                             {!! htmlFormSnippet() !!}
                             <div class="custom-control custom-checkbox mt-3">
-                                <input type="checkbox" class="custom-control-input" required id="privacy">
-                                <label class="custom-control-label" for="privacidad">{{__('Contacta.privacy')}}</label>
+                                <input type="checkbox" class="custom-control-input" name="politics" required id="politics">
+                                <label class="custom-control-label" for="politics">{{__('Contacta.privacy')}}</label>
                             </div>
-                            <a href="contacta_ok.php" title="" class="btn btn-primary mt-4">
-                                ENVIAR<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="">
-                            </a>
+                            <button type="submit" title="" class="btn btn-primary mt-4">
+                                {{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="">
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -96,4 +92,17 @@
         </form>
     </div>
 </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function(){
+        var origen = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+        if(origen == '') {
+            origen = 'Home';
+        }
+        $('#origen').val(origen);
+    });
+
+</script>
 @endsection

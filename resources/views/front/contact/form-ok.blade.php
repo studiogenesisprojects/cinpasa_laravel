@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-5">
                             <p class="small mt-4">{{__('Contacta.name')}}</p>
-                            <p>{{$petition->name}}</p>
+                            <p>{{$petition->fullname}}</p>
                         </div>
                         <div class="col-7 d-flex mt-4">
                             <hr class="hr-vertical mr-4 background-grey-light">
@@ -29,13 +29,13 @@
                         </div>
                         <div class="col-5">
                             <p class="small mt-4">{{__('Contacta.phone')}}</p>
-                            <p>{{$petition->phone}}</p>
+                            <p>{{$petition->phone_number}}</p>
                         </div>
                         <div class="col-7 d-flex mt-4">
                             <hr class="hr-vertical mr-4 background-grey-light">
                             <div>
                                 <p class="small">{{__('Contacta.interest')}}</p>
-                                @if(isset($petition->presu))
+                                @if(isset($request->presu))
                                 <p>{{__('Contacta.recibir_info')}}</p>
                                 @else
                                 <p>{{__('Contacta.recibir_presu')}}</p>
@@ -52,7 +52,7 @@
                         <div class="col-12 mt-4">
                             <hr>
                             <p class="mt-3">{{__('Contacta.more_info')}}</p>
-                            <p class="mt-2">{{$petition->comentaris}}</p>
+                            <p class="mt-2">{{$petition->comment}}</p>
                         </div>
 
                     </div>

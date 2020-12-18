@@ -63,6 +63,6 @@ class PetitionController extends Controller
         // }
 
         $carousel = Carousel::where('section_id', 18)->where('active', 1)->where('main', 1)->first();
-        return view('front.contact.form-ok', compact('petition', 'carousel'));
+        return view('front.contact.form-ok', compact('petition', 'carousel', 'request'));
     }
 }
