@@ -11,7 +11,7 @@
             <div class="row justify-content-center mt-5">
                 <h2 class="before-title-center">{{__('Inicio.seccion1_titulo')}}</h2>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-4">
                 @include('front.home.categories')
             </div>
             <div class="row justify-content-center">
