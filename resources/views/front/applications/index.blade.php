@@ -13,11 +13,11 @@
                 <p class="mt-3">{{__('aplications.subtext')}}</p>
             </div>
         </div>
-        <div class="row mt-5">
+        <div class="row mt-4">
             @foreach($applicationCategories as $category)
             <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.show', [
                 "applicationCategory" => $category->application->lang()->slug
-            ])}}" class="col-md-4 col-sm-6 col-10 offset-sm-0 offset-1 position-relative">
+            ])}}" class="col-md-4 col-sm-6 col-10 offset-sm-0 offset-1 position-relative mt-3">
                 <img class="w-100 border-img" src="{{ Storage::url($category->application->image) }}" alt="imagen técnico industrial">
                 @if($loop->last)
                 <div class="position-absolute position-center-t40">
