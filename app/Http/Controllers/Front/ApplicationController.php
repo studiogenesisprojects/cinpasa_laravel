@@ -27,6 +27,7 @@ class ApplicationController extends Controller
 
     public function show(ApplicationCategory $applicationCategory)
     {
+        $carousel = null;
         switch ($applicationCategory->id) {
             case 25337:
                 $carousel = Carousel::find(12);
