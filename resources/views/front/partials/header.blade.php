@@ -61,6 +61,7 @@
                     <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.outlet.index')}}" title="Accede al apartado outlet">OUTLET</a>
                     @endif
                     <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
+
                 </div>
             </div>
             <div class="position-relative">

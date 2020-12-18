@@ -96,7 +96,7 @@
             <div class="col-lg-5 d-flex flex-column justify-content-between order-lg-2 order-1">
                 <div>
                     <h3 class="font-bold before-title mt-4">{{$product->name}}</h3>
-                    <p class="mt-3 p-small">{!! $product->lang()->description !!}</p>
+                    <p class="mt-3">{!! $product->lang()->description !!}</p>
                 </div>
                 <br>
                 <div class="d-lg-block d-none">
@@ -253,7 +253,7 @@
         <div class="row mt-5">
             <div class="col-12">
                 <hr>
-                <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_acabados')}}</p>
+                <p class="font-bold color-black">{{__('Productos.producto_mostrar_acabados')}}</p>
             </div>
             @foreach ($finishedColumns as $cols)
             <div class="col-lg-4 col-sm-6 mt-5">
