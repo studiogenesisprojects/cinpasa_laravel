@@ -66,7 +66,11 @@
                     <p class="small">{{$productCategory->lang()->description}}</p>
                 </div>
                 <div class="row">
-                    @foreach($productCategory->childrens as $product)
+                @php
+                 $products = $productCategory->childrens;
+                 $products = $products->sortByDesc('order');
+                @endphp
+                    @foreach($products as $product)
                     @if($product->active == 1)
                         <div class="col-md-4 col-sm-6 p-3 border-card">
                             <div class="position-relative">
