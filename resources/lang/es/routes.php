@@ -28,7 +28,7 @@ return [
     'politic_pages' => [
         'leagal_warning' => 'aviso-legal',
         'politic_privacy' => 'politica-de-privacidad',
-        'coockie_privacy' => 'política-de-cookies',
+        'coockie_privacy' => 'politica-de-cookies',
     ],
     'distribute' => [
         'index' => 'distribuir',
