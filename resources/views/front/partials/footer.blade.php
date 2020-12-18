@@ -30,7 +30,7 @@
     <div class="container">
         <div class="row mx-0 align-items-center">
             <img class="mb-1" src="{{ asset('front/img/icon-insta.svg') }}" alt="Icono vectorial instagram">
-            <h5 class="ml-3 font-bold color-black">SÍGUENOS EN INSTAGRAM</h5>
+            <h5 class="ml-3 font-bold color-black">{{__('Footer.instagram')}}</h5>
             <a class="ml-3" href="#" title="Accede a nuestro instagram">@cinpasa</a>
         </div>
     </div>
