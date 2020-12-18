@@ -1,5 +1,5 @@
 <section>
-    <div class="container mt-5">
+    <div class="container mt-5" id="contact-form-products">
         <form action="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.contact.store')}}" method="POST">
             @csrf
             <div class="row">
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-12 mt-3">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="particular" name="inlineDefaultRadiosExample">
+                                <input type="radio" class="custom-control-input" id="particular" name="inlineDefaultRadiosExample" checked>
                                 <label class="custom-control-label" for="particular">{{__('Contacta.particular')}}</label>
                             </div>
 
@@ -56,13 +56,19 @@
                                 <input type="radio" class="custom-control-input" id="empresa" name="inlineDefaultRadiosExample">
                                 <label class="custom-control-label" for="empresa">{{__('Contacta.empresa')}}</label>
                             </div>
+
+                            <div class="col-12 px-0 d-none" id="company">
+                                <div class="form-group">
+                                    <input type="text" name="company" class="form-control background-blue-light" placeholder="{{__('Contacta.company')}}">
+                                </div>
+                            </div>
                         </div>
                         <div class="col-12 mt-3">
                             <label for="">{{__('Contacta.interest')}}</label>
                         </div>
                         <div class="col-12 mt-2">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="Recibir" name="inlineDefaultRadiosExample2">
+                                <input type="radio" class="custom-control-input" id="Recibir" name="inlineDefaultRadiosExample2" checked>
                                 <label class="custom-control-label" for="Recibir">{{__('Contacta.recibir_presu')}}</label>
                             </div>
 
@@ -77,30 +83,40 @@
                         </div>
                         <div class="col-12 mt-2">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="Cantidades" checked>
-                                <label class="custom-control-label" for="Cantidades">{{__('Contacta.cantidades')}}</label>
+                                <input type="checkbox" class="custom-control-input" id="cantidades">
+                                <label class="custom-control-label" for="cantidades">{{__('Contacta.cantidades')}}</label>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-3 d-none" id="cantidades-text">
+                            <div class="form-group">
+                                <textarea class="form-control background-blue-light" name="cantidades" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="custom-control custom-checkbox mt-3">
-                                <input type="checkbox" class="custom-control-input" id="Medidas" checked>
-                                <label class="custom-control-label" for="Medidas">{{__('Contacta.medidas')}}</label>
+                                <input type="checkbox" class="custom-control-input" id="medidas">
+                                <label class="custom-control-label" for="medidas">{{__('Contacta.medidas')}}</label>
+                            </div>
+                            <div class="col-12 mt-3 d-none" id="medidas-text">
+                                <div class="form-group">
+                                    <textarea class="form-control background-blue-light" name="medidas" rows="3"></textarea>
+                                </div>
                             </div>
                             <div class="custom-control custom-checkbox mt-3">
-                                <input type="checkbox" class="custom-control-input" id="Comentarios" checked>
-                                <label class="custom-control-label" for="Comentarios">{{__('Contacta.comentarios')}}</label>
+                                <input type="checkbox" class="custom-control-input" id="comentarios">
+                                <label class="custom-control-label" for="comentarios">{{__('Contacta.comentarios')}}</label>
                             </div>
                         </div>
-                        <div class="col-12 mt-3">
+                        <div class="col-12 mt-3 d-none" id="comentarios-text">
                             <div class="form-group">
-                                <textarea class="form-control background-blue-light" name="comentaris" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control background-blue-light" name="comentarios" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="col-12 mt-3">
                             <br>
                             {!! htmlFormSnippet() !!}
                             <div class="custom-control custom-checkbox mt-3">
-                                <input type="checkbox" name="politics" class="custom-control-input" id="privacidad" checked>
+                                <input type="checkbox" name="politics" class="custom-control-input" id="privacidad">
                                 <label class="custom-control-label" for="privacidad">{{__('Contacta.privacy')}}</label>
                             </div>
                             <button type="submit" title="Enviar formulario" class="btn btn-primary mt-4">{{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
@@ -116,6 +132,30 @@
 <script>
     $('#empresa').click(function(){
         $('#company').removeClass('d-none');
+    });
+
+    $('#cantidades').click(function(){
+        if($( "#cantidades-text" ).hasClass("d-none")){
+            $('#cantidades-text').removeClass('d-none');
+        } else {
+            $('#cantidades-text').addClass('d-none');
+        }
+    });
+
+    $('#medidas').click(function(){
+        if($( "#medidas-text" ).hasClass("d-none")){
+            $('#medidas-text').removeClass('d-none');
+        } else {
+            $('#medidas-text').addClass('d-none');
+        }
+    });
+
+    $('#comentarios').click(function(){
+        if($( "#comentarios-text" ).hasClass("d-none")){
+            $('#comentarios-text').removeClass('d-none');
+        } else {
+            $('#comentarios-text').addClass('d-none');
+        }
     });
 
     $('#particular').click(function(){

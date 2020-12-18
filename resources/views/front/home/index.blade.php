@@ -1,9 +1,6 @@
 @extends('front.common.main')
 
 @section('content')
-    <a href="contacta.php" title="Accede a la categoría contacta" class="btn-fixed">
-        <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">¿MÁS INFORMACIÓN?
-    </a>
     <section id="home">
             @include('front.home.carousel')
             @include('front.home.barra-busqueda')

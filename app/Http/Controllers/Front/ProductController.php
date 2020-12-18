@@ -32,14 +32,14 @@ class ProductController extends Controller
 
     public function show(ProductCategory $productCategory)
     {
-
+        $more_info_trigger = 1;
         if ($productCategory->father == null) {
             $productCategoryChildrens = $productCategory->childrens;
             $fathers = ProductCategory::where('sup_product_category', null)->get();
-            return view('front.products.showFather', compact('productCategory', 'productCategoryChildrens', 'fathers'));
+            return view('front.products.showFather', compact('productCategory', 'productCategoryChildrens', 'fathers', 'more_info_trigger'));
         }
 
-        return view('front.products.show', compact('productCategory'));
+        return view('front.products.show', compact('productCategory', 'more_info_trigger'));
     }
 
     public function showProduct(ProductCategory $productCategory, Product $product)
@@ -72,6 +72,7 @@ class ProductController extends Controller
         $observations = $product_caracteristics->pluck('observations');
 
         $relateds = $product->relateds();
+        $more_info_trigger = 1;
 
         return view('front.products._show', compact('relateds',
          'product_caracteristics',
@@ -79,7 +80,7 @@ class ProductController extends Controller
          'product', 'finishedColumns',
           'productCategory',
            'colorCategories',
-           'applicationCategories'));
+           'applicationCategories', 'more_info_trigger'));
     }
 
     public function showProductRedirect(Product $product)

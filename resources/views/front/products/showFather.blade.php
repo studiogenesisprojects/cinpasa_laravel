@@ -51,16 +51,13 @@
                             <p class="color-blue font-bold">{{$productCategory->name}}</p>
                         </a>
                     </div>
-                    <div class="col-4 px-0 d-flex justify-content-between">
+                    {{-- <div class="col-4 px-0 d-flex justify-content-between">
                         <hr class="hr-vertical background-blue">
                         <select class="form-control p-0 px-4 w-auto mr-5 border-0" id="">
-                            <option>Ordenar</option>
-                            <option>Ordenar</option>
-                            <option>Ordenar</option>
-                            <option>Ordenar</option>
-                            <option>Ordenar</option>
+                            <option>Z-A</option>
+                            <option>A-Z</option>
                         </select>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="row px-3 pt-4 pb-5 border-card-left">
                     <p class="small">{{$productCategory->lang()->description}}</p>

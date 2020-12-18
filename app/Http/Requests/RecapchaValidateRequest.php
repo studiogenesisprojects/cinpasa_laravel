@@ -24,12 +24,10 @@ class RecapchaValidateRequest extends FormRequest
     public function rules()
     {
         return [
-            'g-recaptcha-response' => app()->env == 'local' ? '' : 'required|recaptcha',
             'politics' => 'accepted',
             'name' => 'required|string',
             'email' => 'required|email',
             'phone' => 'required|integer|min:9',
-            'comentaris' => 'required|string',
         ];
     }
 

@@ -18,41 +18,41 @@
                         </div>
                         <div class="col-5">
                             <p class="small mt-4">{{__('Contacta.name')}}</p>
-                            <p>{{$request->name}}</p>
+                            <p>{{$petition->name}}</p>
                         </div>
                         <div class="col-7 d-flex mt-4">
                             <hr class="hr-vertical mr-4 background-grey-light">
                             <div>
                                 <p class="small">{{__('Contacta.email')}}</p>
-                                <p>{{$request->email}}</p>
+                                <p>{{$petition->email}}</p>
                             </div>
                         </div>
                         <div class="col-5">
                             <p class="small mt-4">{{__('Contacta.phone')}}</p>
-                            <p>{{$request->phone}}</p>
+                            <p>{{$petition->phone}}</p>
                         </div>
                         <div class="col-7 d-flex mt-4">
                             <hr class="hr-vertical mr-4 background-grey-light">
                             <div>
                                 <p class="small">{{__('Contacta.interest')}}</p>
-                                @if(isset($request->presu))
+                                @if(isset($petition->presu))
                                 <p>{{__('Contacta.recibir_info')}}</p>
                                 @else
                                 <p>{{__('Contacta.recibir_presu')}}</p>
                                 @endif
                             </div>
                         </div>
-                        @if($request->company)
+                        @if($petition->company)
                         <div class="col-5">
                             <p class="small mt-4">{{__('Contacta.empresa')}}</p>
-                            <p>{{$request->company}}</p>
+                            <p>{{$petition->company}}</p>
                         </div>
                         @endif
 
                         <div class="col-12 mt-4">
                             <hr>
                             <p class="mt-3">{{__('Contacta.more_info')}}</p>
-                            <p class="mt-2">{{$request->comentaris}}</p>
+                            <p class="mt-2">{{$petition->comentaris}}</p>
                         </div>
 
                     </div>

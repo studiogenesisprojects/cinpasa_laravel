@@ -47,23 +47,28 @@
             <div class="col-xl-2 col-md-3 col-sm-4 col-6 offset-xl-1 offset-lg-2 offset-md-1 mt-sm-0 mt-5">
                 <p class="font-bold">CONTENIDO</p>
                 <div class="d-flex flex-column">
-                    <a href="outlet.php" title="Accede al apartado Outlet" class="mt-3 font-regular">Outlet</a>
-                    <a href="productos.php" title="Accede al apartado Productos" class="font-regular">Productos</a>
-                    <a href="trabaja.php" title="Accede al apartado Trabaja con nosotros" class="font-regular">Trabaja con nosotros</a>
-                    <a href="aplicaciones.php" title="Accede al apartado Aplicaciones" class="font-regular">Aplicaciones</a>
+                    @php
+                        $fathers = $fathers->sortBy('order');
+                    @endphp
+                    @foreach ($fathers as $father)
+                        <a class=""
+                            href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" => $father->slug])}}">{!! $father->name !!}</a>
+                    @endforeach
+                    <br>
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.index')}}" title="Accede al apartado LAB">LAB</a>
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Accede al apartado aplicaciones">{{strtoupper(strtoupper(__('Menu.aplications')))}}</a>
                 </div>
             </div>
             <div class="col-xl-2 col-lg-3 col-sm-4 col-6 mt-sm-0 mt-5">
                 <p>LEGAL</p>
                 <div class="d-flex flex-column">
-                    <a href="privacidad.php" title="Accede a las políticas de privacidad" class="mt-3">Política de privacidad</a>
-                    <a href="cookies.php" title="Accede a las políticas de cookies">Política de cookies</a>
-                    <a href="legal.php" title="Accede a aviso legal">Aviso legal</a>
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}" title="Accede a las políticas de privacidad" class="mt-3">Política de privacidad</a>
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.coockie_privacy')}}" title="Accede a las políticas de cookies">Política de cookies</a>
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.leagal_warning')}}" title="Accede a aviso legal">Aviso legal</a>
                 </div>
                 <p class="mt-5">SOPORTE</p>
                 <div class="d-flex flex-column">
-                    <a href="#" title="Accede a preguntas frecuentes" class="mt-3">Faq</a>
-                    <a href="#" title="Contacta con nosotros">Contacta</a>
+                    <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
                 </div>
             </div>
             <div class="col-xl-4 col-md-7 d-flex mt-xl-0 mt-5">

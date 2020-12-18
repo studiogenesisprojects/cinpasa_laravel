@@ -2,6 +2,9 @@
 
 @section('content')
 @include('front.home.carousel2')
+<a href="contacta.php" title="Accede a la categoría contacta" class="btn-fixed">
+    <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">¿MÁS INFORMACIÓN?
+</a>
 <section id="aplicaciones">
     <div class="container">
         <div class="row mt-5">

@@ -21,13 +21,27 @@ class PetitionController extends Controller
             $company = 'Particular';
         }
 
+        $comentaris = '';
+
+        if(isset($request->medidas)){
+            $comentaris = 'Medidas: ' . $request->medidas;
+        }
+
+        if(isset($request->cantidades)){
+            $comentaris = $comentaris . ' Cantidades: ' . $request->cantidades;
+        }
+
+        if(isset($request->comentaris)){
+            $comentaris = $comentaris . ' Comentarios: ' . $request->comentaris;
+        }
+
         $petition = Petition::create([
             'fullname' => $request->name,
             'company' => $company,
             'email' => $request->email,
             'phone_number' => $request->phone,
             'country' => '-',
-            'comment' => $request->comentaris,
+            'comment' => $comentaris,
             'origen' => $request->origen,
         ]);
 
@@ -41,6 +55,6 @@ class PetitionController extends Controller
         // }
 
         $carousel = Carousel::where('section_id', 18)->where('active', 1)->where('main', 1)->first();
-        return view('front.contact.form-ok', compact('request', 'carousel'));
+        return view('front.contact.form-ok', compact('petition', 'carousel'));
     }
 }
