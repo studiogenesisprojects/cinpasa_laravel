@@ -86,7 +86,7 @@
                     <input type='hidden' name='frm_email_format' id='frm_email_format' value='2'/>
                     <div class="custom-control custom-checkbox mt-3">
                         <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
-                        <label class="custom-control-label" for="defaultChecked2">He leído y acepto la política de privacidad.</label>
+                        <label class="custom-control-label" for="defaultChecked2">{{__('Contacta.privacy')}}</label>
                     </div>
                     <input type="hidden" name="frm_nc" id="frm_nc" value="1" />
                     <link title="embed_style" rel="stylesheet" type="text/css" href="https://d1nn1beycom2nr.cloudfront.net/news/css/form.style.css" id="embed_style" />
