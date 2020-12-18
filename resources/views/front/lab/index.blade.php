@@ -20,7 +20,7 @@
             @if($key == 0)
             <div class="col-lg-6 px-0">
                 <img class="w-100 border-bottom border-right" src="{{Storage::url($lab->image)}}" alt="CINTech">
-                <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xl-5 p-lg-3 p-sm-5 pt-3">
+                <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xs-5">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
                     <p class="color-white">{{ $lab->description }}</p>
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
@@ -31,7 +31,7 @@
             @elseif($key == 1)
             <div class="col-lg-6 px-0 mt-lg-5">
                 <img class="w-100 border-left border-bottom border-top-resp" src="{{Storage::url($lab->image)}}" alt="CINHome">
-                 <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xl-5 p-lg-3 p-sm-5 pt-3">
+                 <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xs-5">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
                     <p class="color-white">{{ $lab->description }}</p>
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
@@ -42,7 +42,7 @@
             @elseif($key % 2 == 0)
             <div class="col-lg-6 px-0 mt-lg-n5">
                 <img class="w-100 border-bottom border-right" src="{{Storage::url($lab->image)}}" alt="CINTech">
-                <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xl-5 p-lg-3 p-sm-5 pt-3">
+                <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xs-5">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
                     <p class="color-white">{{ $lab->description }}</p>
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
@@ -53,7 +53,7 @@
             @else
             <div class="col-lg-6 px-0 mt-1">
                 <img class="w-100 border-left border-bottom border-top-resp" src="{{Storage::url($lab->image)}}" alt="CINHome">
-                 <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xl-5 p-lg-3 p-sm-5 pt-3">
+                 <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xs-5">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
                     <p class="color-white">{{ $lab->description }}</p>
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
