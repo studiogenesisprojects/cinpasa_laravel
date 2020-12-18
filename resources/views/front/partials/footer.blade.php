@@ -72,26 +72,41 @@
                 </div>
             </div>
             <div class="col-xl-4 col-md-7 d-flex mt-xl-0 mt-5">
+                <!-- [BEGIN OF SIGNUP FORM]-->
                 <hr class="hr-vertical mr-4">
                 <div class="form-group w-100">
+                <form name="frmjoin" id="frmjoin" method="post" action="https://www.email-index.com/join.php?L=RblSsAJNHjFVyC7639jyAyzg" class="form" > <input value="" id="frm_guardar" name="frm_guardar" type="hidden" />
                     <label for="">SUSCRÍBETE A NUESTRO NEWSLETTER</label>
-                    <div class="d-flex">
-                        <input type="text" class="form-control background-white" id="" placeholder="Escribe tu e-mail…">
-                        <a href="#" title="Suscríbete a nuestro newsletter" class="btn-sub px-3">SUSCRIBIRME</a>
+                    <div class="form-group w-100">
+                        <div class="d-flex">
+                            <input maxlength="" data-type="email" value="" id="frm_email" name="frm_email" type="text"  placeholder="Email*" class="form-control background-white"  />
+                            <button type="submit" title="Suscríbete a nuestro newsletter" class="btn-sub px-3">SUSCRIBIRME</button>
+                        </div>
                     </div>
+                    <input type='hidden' name='frm_email_format' id='frm_email_format' value='2'/>
                     <div class="custom-control custom-checkbox mt-3">
                         <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
                         <label class="custom-control-label" for="defaultChecked2">He leído y acepto la política de privacidad.</label>
                     </div>
+                    <input type="hidden" name="frm_nc" id="frm_nc" value="1" />
+                    <link title="embed_style" rel="stylesheet" type="text/css" href="https://d1nn1beycom2nr.cloudfront.net/news/css/form.style.css" id="embed_style" />
+                    <script id="embed_jquery" type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+                    <script id="embed_script" type="text/javascript"  src="https://d1nn1beycom2nr.cloudfront.net/news/scripts/form.script.js"></script>
+                </form>
+                <br>
+                <!-- [END OF SIGNUP FORM] -->
+
                     <label class="mt-4" for="">SÍGUENOS</label>
                     <div class="d-flex align-items-center mt-3">
-                        <a href="#" title="Accede a nuestro facebook"><img src="{{ asset('front/img/icon-facebook.svg') }}" alt="icono facebook"></a>
-                        <a href="#" title="Accede a nuestro canal de youtube"><img class="ml-3" src="{{ asset('front/img/icon-youtube.svg') }}" alt="icono youtube"></a>
-                        <a href="#" title="Accede a nuestro twitter"><img class="ml-3" src="{{ asset('front/img/icon-twitter.svg') }}" alt="icono twitter"></a>
-                        <a href="#" title="Accede a nuestro pinterest"><img class="ml-3" src="{{ asset('front/img/icon-pinterest.svg') }}" alt="icono pinterest"></a>
-                        <a href="#" title="Accede a nuestro instagram"><img class="ml-3" src="{{ asset('front/img/icon-instagram.svg') }}" alt="icono instagram"></a>
+                        <a href="https://www.facebook.com/pages/CINPASA/324453140914915" title="Accede a nuestro facebook"><img src="{{ asset('front/img/icon-facebook.svg') }}" alt="icono facebook"></a>
+                        <a href="https://www.youtube.com/channel/UCwARth039yQvkPHSULVCWog" title="Accede a nuestro canal de youtube"><img class="ml-3" src="{{ asset('front/img/icon-youtube.svg') }}" alt="icono youtube"></a>
+                        <a href="https://twitter.com/CINPASA" title="Accede a nuestro twitter"><img class="ml-3" src="{{ asset('front/img/icon-twitter.svg') }}" alt="icono twitter"></a>
+                        <a href="https://www.pinterest.es/cinpasa/" title="Accede a nuestro pinterest"><img class="ml-3" src="{{ asset('front/img/icon-pinterest.svg') }}" alt="icono pinterest"></a>
+                        {{-- <a href="#" title="Accede a nuestro instagram"><img class="ml-3" src="{{ asset('front/img/icon-instagram.svg') }}" alt="icono instagram"></a> --}}
                     </div>
                 </div>
+
+
             </div>
         </div>
         <div class="row justify-content-center py-5 mt-5">
