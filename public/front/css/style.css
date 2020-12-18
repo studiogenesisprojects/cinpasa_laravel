@@ -289,6 +289,10 @@ p {
     font-weight: 100;
 }
 
+.p-small {
+    font-size: calc(16px + (18 - 16) * ((100vw - 320px) / (1920 - 320)));
+}
+
 .lineheight-small {
     line-height: 22px;
 }

@@ -47,10 +47,11 @@
             <div class="col-xl-2 col-md-3 col-sm-4 col-6 offset-xl-1 offset-lg-2 offset-md-1 mt-sm-0 mt-5">
                 <p class="font-bold">CONTENIDO</p>
                 <div class="d-flex flex-column">
-                    <a href="outlet.php" title="Accede al apartado Outlet" class="mt-3 font-regular">Outlet</a>
-                    <a href="productos.php" title="Accede al apartado Productos" class="font-regular">Productos</a>
-                    <a href="trabaja.php" title="Accede al apartado Trabaja con nosotros" class="font-regular">Trabaja con nosotros</a>
-                    <a href="aplicaciones.php" title="Accede al apartado Aplicaciones" class="font-regular">Aplicaciones</a>
+                    <a href="" title="Accede al apartado Cintas para cortina" class="mt-3 font-regular">Cintas para cortina</a>
+                    <a href="" title="Accede al apartado Cintas" class="font-regular">Cintas</a>
+                    <a href="" title="Accede al apartado Cortinas" class="mt-3 font-regular">Cortinas</a>
+                    <a href="" title="Accede al apartado Pasamanería" class="font-regular">Pasamanería</a>
+                    <a href="" title="Accede al apartado Cordones" class="font-regular">Cordones</a>
                 </div>
             </div>
             <div class="col-xl-2 col-lg-3 col-sm-4 col-6 mt-sm-0 mt-5">
