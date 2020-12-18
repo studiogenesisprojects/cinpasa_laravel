@@ -83,7 +83,7 @@
                         <div class="col-12 px-0 mt-3">
                             <div class="custom-control custom-checkbox mt-3">
                                 <input type="checkbox" class="custom-control-input" name="politics" id="defaultChecked2" checked>
-                                <label class="custom-control-label" for="defaultChecked2">{{__('Contacta.privacy')}}</label>
+                                <label class="custom-control-label" for="defaultChecked2"><a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}">{{__('Contacta.privacy')}}</a></label>
                             </div>
                             <br>
                             {!! htmlFormSnippet() !!}

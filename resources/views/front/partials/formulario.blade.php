@@ -117,7 +117,7 @@
                             {!! htmlFormSnippet() !!}
                             <div class="custom-control custom-checkbox mt-3">
                                 <input type="checkbox" name="politics" class="custom-control-input" id="privacidad">
-                                <label class="custom-control-label" for="privacidad">{{__('Contacta.privacy')}}</label>
+                                <label class="custom-control-label" for="privacidad"><a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}">{{__('Contacta.privacy')}}</a></label>
                             </div>
                             <button type="submit" title="Enviar formulario" class="btn btn-primary mt-4">{{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
                             </button>

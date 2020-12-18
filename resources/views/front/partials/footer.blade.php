@@ -86,7 +86,7 @@
                     <input type='hidden' name='frm_email_format' id='frm_email_format' value='2'/>
                     <div class="custom-control custom-checkbox mt-3">
                         <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
-                        <label class="custom-control-label" for="defaultChecked2">{{__('Contacta.privacy')}}</label>
+                        <label class="custom-control-label" for="defaultChecked2"><a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}">{{__('Contacta.privacy')}}</a></label>
                     </div>
                     <input type="hidden" name="frm_nc" id="frm_nc" value="1" />
                     <script id="embed_jquery" type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
