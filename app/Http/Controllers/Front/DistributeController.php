@@ -14,7 +14,7 @@ class DistributeController extends Controller
      */
     public function index()
     {
-        dd('j');
+        // dd('j');
     }
 
     /**
