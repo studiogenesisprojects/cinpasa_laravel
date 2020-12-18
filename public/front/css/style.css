@@ -1165,6 +1165,9 @@ figure.box-list__figure {
     border-radius: 10px;
 }
 
+.p-xs-5 {
+    padding: 5rem;
+}
 
 
 
@@ -1228,6 +1231,10 @@ figure.box-list__figure {
     .border-top-resp {
         border-top: 4px solid #fff !important;
     }
+
+    .p-xs-5 {
+        padding: 3rem;
+    }
 }
 
 @media (max-width: 767px) {
@@ -1246,6 +1253,10 @@ figure.box-list__figure {
     .color-modal {
         width: 144px;
         height: 144px;
+    }
+    
+    .p-xs-5 {
+        padding: 4rem;
     }
 }
 
@@ -1284,6 +1295,10 @@ figure.box-list__figure {
     .scale-xs-08 {
         transform: scale(0.8);
         transform-origin: left;
+    }
+    
+    .p-xs-5 {
+        padding: 2rem;
     }
 }
 
@@ -1334,92 +1349,4 @@ figure.box-list__figure {
 .carousel-inner-multi .carousel-item-right,
 .carousel-inner-multi .carousel-item-left {
     transform: translateX(0);
-}
-
-
-
-#CIN {
-    height: 100%;
-    padding: 0px;
-    display: flex;
-}
-
-.CINchild {
-    width: 16.6666667%;
-    height: calc(100vh - 125.64px);
-    overflow: hidden;
-    background-position: center;
-    background-size: cover;
-    position: relative;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-
-.CINgradient {
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
-}
-
-.CINcontent {
-    background-color: #fff;
-    width: 0%;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-}
-
-.gradientTech {
-    background: linear-gradient(to bottom, rgba(141, 141, 180, 0.5) 0%, rgba(103, 101, 123, 0.5) 100%);
-}
-
-.gradientHome {
-    background: linear-gradient(to bottom, rgba(252, 213, 146, 0.5) 0%, rgba(251, 187, 60, 0.5) 100%);
-}
-
-.gradientContract {
-    background: linear-gradient(to bottom, rgba(223, 118, 120, 0.5) 0%, rgba(147, 82, 79, 0.5) 100%);
-}
-
-.gradientDeco {
-    background: linear-gradient(to bottom, rgba(193, 97, 124, 0.5) 0%, rgba(198, 56, 90, 0.5) 100%);
-}
-
-.gradientEco {
-    background: linear-gradient(to bottom, rgba(110, 194, 181, 0.5) 0%, rgba(64, 181, 158, 0.5) 100%);
-}
-
-.gradientLeisure {
-    background: linear-gradient(to bottom, rgba(180, 119, 177, 0.5) 0%, rgba(145, 74, 151, 0.5) 100%);
-}
-
-.CINchild:nth-child(1) {
-    background-image: url(../img/lab-CINTech.jpg);
-}
-
-.CINchild:nth-child(2) {
-    background-image: url(../img/lab-CINHome.jpg);
-}
-
-.CINchild:nth-child(3) {
-    background-image: url(../img/lab-CINContract.jpg);
-}
-
-.CINchild:nth-child(4) {
-    background-image: url(../img/lab-CINDeco.jpg);
-}
-
-.CINchild:nth-child(5) {
-    background-image: url(../img/lab-CINEco.jpg);
-}
-
-.CINchild:nth-child(6) {
-    background-image: url(../img/lab-CINLeisure.jpg);
 }
