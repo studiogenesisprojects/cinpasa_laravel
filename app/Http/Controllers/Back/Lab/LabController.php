@@ -51,6 +51,11 @@ class LabController extends Controller
             $newLab->image = 'no image';
         }
 
+        if ($request->hasFile('secondary_image')) {
+            $path = $request->file('secondary_image')->storeAs('labs', $request->file('secondary_image')->getClientOriginalName());
+            $newLab->secondary_image = $path;
+        }
+
         $newLab->save();
 
         return  redirect()->route('lab')->with('message', 'LAB creat correctament!');
@@ -97,6 +102,11 @@ class LabController extends Controller
         if ($request->hasFile('primary_image')) {
             $path = $request->file('primary_image')->storeAs('labs', $request->file('primary_image')->getClientOriginalName());
             $lab->image = $path;
+        }
+
+        if ($request->hasFile('secondary_image')) {
+            $path = $request->file('secondary_image')->storeAs('labs', $request->file('secondary_image')->getClientOriginalName());
+            $lab->secondary_image = $path;
         }
 
         $lab->save();

@@ -47,9 +47,15 @@
                             </div>
                             <div class="col-md-6" style="max-width: 100%;">
                                 <label for="primary_image">
-                                    Imagen
+                                    Imagen de la Home
                                 </label>
                                 <input type="file" name="primary_image" class="form-control" for="primary_image">
+                            </div>
+                            <div class="col-md-6" style="max-width: 100%;">
+                                <label for="secondary_image">
+                                    Imagen del Lab
+                                </label>
+                                <input type="file" name="secondary_image" class="form-control" for="secondary_image">
                             </div>
                             <div class="col-md-6">
                                 <label for="">Activo: <input type="checkbox" name="active" {{$lab->active ? 'checked' : ''}}></label>
