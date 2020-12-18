@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Carousel;
 
 class DistributeController extends Controller
 {
@@ -14,7 +15,10 @@ class DistributeController extends Controller
      */
     public function index()
     {
-        // dd('j');
+        $carousel = Carousel::find(17);
+        $no_contact = 1;
+
+        return view('front.distribute.index', compact('carousel', 'no_contact'));
     }
 
     /**

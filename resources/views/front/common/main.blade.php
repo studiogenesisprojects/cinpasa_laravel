@@ -18,7 +18,9 @@
             </a>
         @endif
         @yield('content')
+        @if(!isset($no_contact))
         @include('front.partials.formulario')
+        @endif
         @include('front.partials.distribuir')
         @include('front.partials.footer')
         @include('front.partials.js')
