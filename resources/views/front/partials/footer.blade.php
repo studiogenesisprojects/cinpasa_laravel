@@ -45,7 +45,7 @@
                 <p class="mt-4">{{__('Contacta.phone')}}</p>
             </div>
             <div class="col-xl-2 col-md-3 col-sm-4 col-6 offset-xl-1 offset-lg-2 offset-md-1 mt-sm-0 mt-5">
-                <p class="font-bold">CONTENIDO</p>
+                <p class="font-bold">{{__('Footer.contenido')}}</p>
                 <div class="d-flex flex-column">
                     @php
                         $fathers = $fathers->sortBy('order');
@@ -60,13 +60,13 @@
                 </div>
             </div>
             <div class="col-xl-2 col-lg-3 col-sm-4 col-6 mt-sm-0 mt-5">
-                <p>LEGAL</p>
+                <p>{{__('Footer.legal')}}</p>
                 <div class="d-flex flex-column">
-                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}" title="Accede a las políticas de privacidad" class="mt-3">Política de privacidad</a>
-                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.coockie_privacy')}}" title="Accede a las políticas de cookies">Política de cookies</a>
-                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.leagal_warning')}}" title="Accede a aviso legal">Aviso legal</a>
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}" title="Accede a las políticas de privacidad" class="mt-3">{{__('Textos_legals.privacy_polity_titulo')}}</a>
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.coockie_privacy')}}" title="Accede a las políticas de cookies">{{__('Textos_legals.cookie_policy_titulo')}}</a>
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.leagal_warning')}}" title="Accede a aviso legal">{{__('Textos_legals.legal_warning_titulo')}}</a>
                 </div>
-                <p class="mt-5">SOPORTE</p>
+                <p class="mt-5">{{__('Footer.soporte')}}</p>
                 <div class="d-flex flex-column">
                     <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
                 </div>
@@ -76,11 +76,11 @@
                 <hr class="hr-vertical mr-4">
                 <div class="form-group w-100">
                 <form name="frmjoin" id="frmjoin" method="post" action="https://www.email-index.com/join.php?L=RblSsAJNHjFVyC7639jyAyzg" class="form" > <input value="" id="frm_guardar" name="frm_guardar" type="hidden" />
-                    <label for="">SUSCRÍBETE A NUESTRO NEWSLETTER</label>
+                    <label for="">{{__('Footer.subscribe')}}</label>
                     <div class="form-group w-100">
                         <div class="d-flex">
                             <input maxlength="" data-type="email" value="" id="frm_email" name="frm_email" type="text"  placeholder="Email*" class="form-control background-white"  />
-                            <button type="submit" title="Suscríbete a nuestro newsletter" class="btn-sub px-3">SUSCRIBIRME</button>
+                            <button type="submit" title="Suscríbete a nuestro newsletter" class="btn-sub px-3">{{__('Footer.seguir')}}</button>
                         </div>
                     </div>
                     <input type='hidden' name='frm_email_format' id='frm_email_format' value='2'/>
@@ -96,7 +96,7 @@
                 <br>
                 <!-- [END OF SIGNUP FORM] -->
 
-                    <label class="mt-4" for="">SÍGUENOS</label>
+                    <label class="mt-4" for="">{{__('Footer.seguir')}}</label>
                     <div class="d-flex align-items-center mt-3">
                         <a href="https://www.facebook.com/pages/CINPASA/324453140914915" title="Accede a nuestro facebook"><img src="{{ asset('front/img/icon-facebook.svg') }}" alt="icono facebook"></a>
                         <a href="https://www.youtube.com/channel/UCwARth039yQvkPHSULVCWog" title="Accede a nuestro canal de youtube"><img class="ml-3" src="{{ asset('front/img/icon-youtube.svg') }}" alt="icono youtube"></a>
