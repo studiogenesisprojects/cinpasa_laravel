@@ -25,7 +25,7 @@
     <section>
         <div class="container">
             <div class="row my-5 align-items-end">
-               <div class="col-lg-5 col-md-6 col-10 offset-md-0 offset-1 order-md-1 order-2 mt-md-0 mt-5">
+               <div class="mt-md-0 mt-5">
                     <img class="w-100" src="{{ asset('front/img/sobrenosotros.jpg') }}" alt="imagen sobre nosotros">
                 </div>
                 <div class="col-md-6 offset-lg-1">
