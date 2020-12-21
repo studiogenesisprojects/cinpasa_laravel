@@ -74,6 +74,7 @@ return [
         'index' => 'outlet'
     ],
     'lab' => [
-        'index' => 'lab'
+        'index' => 'lab',
+        'show_products' => 'lab/{lab}'
     ]
 ];

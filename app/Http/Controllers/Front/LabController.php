@@ -28,7 +28,9 @@ class LabController extends Controller
     public function showProducts(Lab $lab)
     {
         $productCategory = $lab;
-        return view('front.products.show', compact('productCategory'));
+        $isLab = true;
+        $carousel = Carousel::where('lab_id', $lab->id)->first();
+        return view('front.products.show', compact('productCategory', 'isLab', 'carousel'));
     }
 
     /**

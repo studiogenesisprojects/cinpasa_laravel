@@ -1,7 +1,12 @@
 @extends('front.common.main')
 @section('content')
 <section>
-    <br><br><br>
+    @if($isLab)
+        @include('front.home.carousel2')
+    @else
+        <br><br><br>
+    @endif
+
     @include('front.home.barra-busqueda')
     <div class="container-fluid">
         <div class="row">
