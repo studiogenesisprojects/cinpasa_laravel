@@ -78,7 +78,10 @@
                                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
                                         "productCategory" => $product,
                                         ])}}" title="Obten información de este artículo"><img class="btn-products p-1 mr-1" src="{{ asset('front/img/icon-info.svg') }}" alt="icono información"></a>
-                                    <a href="#" title="Añade a favoritos este artículo"><img class="btn-products p-1" src="{{ asset('front/img/icon-favorito.svg') }}" alt="icono favoritos"></a>
+                                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
+                                        "productCategory" => $product->categories[0],
+                                        "product" => $product
+                                        ])}}" title="Añade a favoritos este artículo"><img class="btn-products p-1" src="{{ asset('front/img/icon-favorito.svg') }}" alt="icono favoritos"></a>
                                 </div>
                             </div>
                             <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
