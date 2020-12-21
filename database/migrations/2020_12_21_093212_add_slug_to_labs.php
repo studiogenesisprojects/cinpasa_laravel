@@ -13,7 +13,7 @@ class AddSlugToLabs extends Migration
      */
     public function up()
     {
-        Schema::table('Labs', function (Blueprint $table) {
+        Schema::table('labs', function (Blueprint $table) {
             $table->string('slug')->after('name');
         });
     }
