@@ -4,7 +4,7 @@
     </IfModule>
 
     RewriteEngine On
-    #redirect 301 / https://www.cinpasa.com/
+    redirect 301 / https://www.cinpasa.com/
     redirect 301 /visillos/ https://www.cinpasa.com/noticias
     redirect 301 /visillos-estores-decora-cocina https://www.cinpasa.com/noticias
     redirect 301 /videos https://www.cinpasa.com/noticias
