@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <br><br><br>
-@include('front.home.barra-busqueda')
+{{-- @include('front.home.barra-busqueda') --}}
 <section class="products">
     <div class="container">
         <div class="row">

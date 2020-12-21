@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 @include('front.home.carousel2')
-@include('front.home.barra-busqueda')
+{{-- @include('front.home.barra-busqueda') --}}
 <section id="aplicaciones">
     <div class="container">
         <div class="row mt-4">
@@ -15,6 +15,7 @@
         </div>
         <div class="row mt-5">
             @foreach ($applications as $children)
+            {{-- @dd($children) --}}
             <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications._show', [
                 "aplication" => $children,
                 "applicationCategory" => $applicationCategory->lang(App::getLocale())->slug

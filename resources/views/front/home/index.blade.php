@@ -3,7 +3,7 @@
 @section('content')
     <section id="home">
             @include('front.home.carousel')
-            @include('front.home.barra-busqueda')
+            {{-- @include('front.home.barra-busqueda') --}}
         </div>
     </section>
     <section id="categorias">
