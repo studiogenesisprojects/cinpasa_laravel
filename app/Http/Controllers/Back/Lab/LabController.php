@@ -43,6 +43,7 @@ class LabController extends Controller
         $newLab->order = $request->order;
         $newLab->active = isset($request->active);
         $newLab->description = $request->description;
+        $newLab->slug = $request->slug;
 
         if ($request->hasFile('primary_image')) {
             $path = $request->file('primary_image')->storeAs('labs', $request->file('primary_image')->getClientOriginalName());
@@ -98,6 +99,8 @@ class LabController extends Controller
         $lab->order = $request->order;
         $lab->active = isset($request->active);
         $lab->description = $request->description;
+        $lab->slug = $request->slug;
+
 
         if ($request->hasFile('primary_image')) {
             $path = $request->file('primary_image')->storeAs('labs', $request->file('primary_image')->getClientOriginalName());

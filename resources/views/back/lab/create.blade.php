@@ -35,6 +35,13 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <label for="">Slug</label>
+                                    <input type="text" name="slug" class="form-control" value="" data-error="Introduzca un nombre" required>
+                                    <div class="help-block form-text with-errors form-control-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label for="">Descripción</label>
                                     <input type="text" name="description" class="form-control" value="" data-error="Introduzca un nombre" required>
                                     <div class="help-block form-text with-errors form-control-feedback"></div>

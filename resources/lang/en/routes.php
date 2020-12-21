@@ -77,6 +77,6 @@ return [
     ],
     'lab' => [
         'index' => 'lab',
-        'show_products' => 'lab/{lab}'
+        'show_products' => 'lab/{slug}'
     ]
 ];
