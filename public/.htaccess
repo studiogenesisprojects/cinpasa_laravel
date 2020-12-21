@@ -1232,6 +1232,7 @@ redirect 301 /2010/01/20 https://www.cinpasa.com/
 redirect 301 /2009/10/22 https://www.cinpasa.com/
 redirect 301 /2007/11/09 https://www.cinpasa.com/
 redirect 301 /2007/10/05 https://www.cinpasa.com/
+redirect 301 /2-trucos-de-magia-con-cuerdas-para-dejar-con-la-boca-abierta https://www.cinpasa.com/
 redirect 301 /10-consejos-basicos-instaladores-cortinas https://www.cinpasa.com/
 redirect 301  https://www.cinpasa.com/
 redirect 301 a.es https://www.cinpasa.com/
@@ -1244,23 +1245,6 @@ redirect 301 /productos-acabados/cortincord https://www.cinpasa.com/
 redirect 301 /productos-acabados/cortin-cloud https://www.cinpasa.com/
 redirect 301 /productos-acabados https://www.cinpasa.com/
 redirect 301 /paneles-japoneses-ideas-montaje https://www.cinpasa.com/
-redirect 301 /hemitextil-2018 https://www.cinpasa.com/
-redirect 301 /gomas-elasticas https://www.cinpasa.com/
-redirect 301 /feria-hh-cologne-2016 https://www.cinpasa.com/
-redirect 301 /escaparate-springfiel https://www.cinpasa.com/
-redirect 301 /escaparate-pull-and-bear-cortina-cinpasa-2 https://www.cinpasa.com/
-redirect 301 /cordones/macrame-cord https://www.cinpasa.com/
-redirect 301 /consejos-seguridad-instaladores-cortinas https://www.cinpasa.com/
-redirect 301 /cintas-tecnicas/cintas-segun-composicion https://www.cinpasa.com/
-redirect 301 /cintas-tecnicas/cintas-por-aplicacion https://www.cinpasa.com/
-redirect 301 /cintas-tecnicas/cintas-por-acabado https://www.cinpasa.com/
-redirect 301 /cintas-para-packaging https://www.cinpasa.com/
-redirect 301 /cintas-para-cortinas https://www.cinpasa.com/
-redirect 301 /cintas-cortinas https://www.cinpasa.com/
-redirect 301 /cintas-cortina/cintas-para-barras/cinta-con-ojales https://www.cinpasa.com/
-redirect 301 /?p=250 https://www.cinpasa.com/
-redirect 301 .es https://www.cinpasa.com/
-redirect 301 contactar https://www.cinpasa.com/
 
 
     # Handle Authorization Header
