@@ -5,20 +5,7 @@
 
     RewriteEngine On
     redirect 301 /visillos/ https://www.cinpasa.com/noticias
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    redirect 301 /visillos-estores-decora-cocina https://www.cinpasa.com/noticias
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
