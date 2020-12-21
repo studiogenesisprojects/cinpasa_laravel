@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 Route::redirect("/universotipos/", "/", 301);
 Route::redirect("/tipo/", "/", 301);
@@ -3706,4 +3706,4 @@ Route::redirect('it/applicazione/tecnico-industrial', 'it/applicazioni/tecnicoin
 // Route::redirect('serie/prolaces-mountain-3', 'prolaces-mountain-3', 301);
 // Route::redirect('serie/prolaces-urban-sport-8', '', 301);
 // Route::redirect('serie/prolaces-original', 'prolaces-original', 301);
-// Route::redirect('serie/prolaces-urban-sport-11', '', 301);
+// Route::redirect('serie/prolaces-urban-sport-11', '', 301); -->
