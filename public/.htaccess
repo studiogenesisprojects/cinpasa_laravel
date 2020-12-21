@@ -1236,15 +1236,7 @@ redirect 301 /2-trucos-de-magia-con-cuerdas-para-dejar-con-la-boca-abierta https
 redirect 301 /10-consejos-basicos-instaladores-cortinas https://www.cinpasa.com/
 redirect 301  https://www.cinpasa.com/
 redirect 301 a.es https://www.cinpasa.com/
-redirect 301 /sample-page/productos-acabados https://www.cinpasa.com/
-redirect 301 /productos/poli-tape https://www.cinpasa.com/
-redirect 301 /productos/alucortin https://www.cinpasa.com/
-redirect 301 /productos-acabados/rideau-de-fils-cortincord https://www.cinpasa.com/
-redirect 301 /productos-acabados/mallacortin https://www.cinpasa.com/
-redirect 301 /productos-acabados/cortincord https://www.cinpasa.com/
-redirect 301 /productos-acabados/cortin-cloud https://www.cinpasa.com/
-redirect 301 /productos-acabados https://www.cinpasa.com/
-redirect 301 /paneles-japoneses-ideas-montaje https://www.cinpasa.com/
+
 
 
     # Handle Authorization Header
