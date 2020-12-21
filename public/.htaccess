@@ -4,6 +4,7 @@
     </IfModule>
 
     RewriteEngine On
+    redirect 301 / https://www.cinpasa.com/
     redirect 301 /visillos/ https://www.cinpasa.com/noticias
     redirect 301 /visillos-estores-decora-cocina https://www.cinpasa.com/noticias
     redirect 301 /videos https://www.cinpasa.com/noticias
@@ -1310,7 +1311,7 @@
     redirect 301 /cintas-tecnicas/cintas-por-acabado/con-enganches https://www.cinpasa.com/
     redirect 301 /cintas-tecnicas/cintas-por-acabado/con-cabeteado https://www.cinpasa.com/
     redirect 301 /cintas-cortina/cintas-cortina-fruncidoras/fruncidoras-automaticas-dobles https://www.cinpasa.com/
-    redirect 301 / https://www.cinpasa.com/
+
 
 
     # Handle Authorization Header
