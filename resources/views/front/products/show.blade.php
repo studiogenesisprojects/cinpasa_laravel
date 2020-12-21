@@ -1,7 +1,7 @@
 @extends('front.common.main')
 @section('content')
 <section>
-    @if($isLab)
+    @if(isset($isLab))
         @include('front.home.carousel2')
     @else
         <br><br><br>
