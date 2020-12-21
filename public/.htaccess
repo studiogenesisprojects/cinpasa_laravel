@@ -1258,7 +1258,7 @@
     redirect 301 /cintas-para-cortinas https://www.cinpasa.com/
     redirect 301 /cintas-cortinas https://www.cinpasa.com/
     redirect 301 /cintas-cortina/cintas-para-barras/cinta-con-ojales https://www.cinpasa.com/
-    redirect 301 contactar https://www.cinpasa.com/
+    redirect 301 /contactar https://www.cinpasa.com/
     redirect 301 /wp-content/uploads/2015/01/Cinpasa-Cintas-Técnicas-Heimtextil9.jp https://www.cinpasa.com/
     redirect 301 /wp-content/uploads/2015/01/Cinpasa-Cintas-Técnicas-Heimtextil8.jp https://www.cinpasa.com/
     redirect 301 /wp-content/uploads/2015/01/Cinpasa-Cintas-Técnicas-Heimtextil7.jp https://www.cinpasa.com/
