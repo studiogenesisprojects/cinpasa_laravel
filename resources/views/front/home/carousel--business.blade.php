@@ -17,7 +17,7 @@
             <div class="carousel-item {{$loop->first == 1 ? 'active' : ''}}">
                 <div class="row mx-0 position-relative justify-content-center mt-5">
                     <div class="col-lg-6 col-md-6 col-sm-8 col-10 d-flex flex-column justify-content-center order-lg-1 order-2 my-lg-0 my-5">
-                        <img class="d-block w-100 img-historia" src="{{ route('carousel.getImage', str_replace("/",";",$slide->image)) }}" alt="primer slide">
+                        <img class="d-block w-100 img-historia" src="{{ Storage::url($slide->image) }}" alt="primer slide">
                     </div>
                     <div class="col-lg-4 col-10 d-flex flex-column order-lg-2 order-1">
                         <div class="mt-3">
