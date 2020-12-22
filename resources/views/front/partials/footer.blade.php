@@ -26,7 +26,7 @@
     </div>
 </section>
 
-<section>
+{{-- <section>
     <div class="container">
         <div class="row mx-0 align-items-center">
             <img class="mb-1" src="{{ asset('front/img/icon-insta.svg') }}" alt="Icono vectorial instagram">
@@ -34,7 +34,7 @@
             <a class="ml-3" href="#" title="Accede a nuestro instagram">@cinpasa</a>
         </div>
     </div>
-</section>
+</section> --}}
 
 <footer class="mt-3 pt-5">
     <div class="container">
