@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WorkWithUsRequest;
+use App\Models\Carousel;
 use App\Models\JobOffer;
 use App\Models\JobOfferInscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class WorkWithUsController extends Controller
 {
@@ -36,7 +39,8 @@ class WorkWithUsController extends Controller
     public function index()
     {
         $offers = JobOffer::all();
-        return view('front.work-with-us.index', compact('offers'));
+        $carousel = Carousel::find(25);
+        return view('front.work-with-us.index', compact('offers', 'carousel'));
     }
 
     public function store(WorkWithUsRequest $request)
@@ -53,9 +57,9 @@ class WorkWithUsController extends Controller
         ]);
 
         if ($offer) {
-            $cvPath = $request->file('file')->store('app/curriculums/' . Str::slug($offer->name));
+            $cvPath = $request->file('file')->storeAs('curriculums/' . Str::slug($offer->name), 'curriculum_' . $request->name . '_' . $request->surname . '.pdf');
         } else {
-            $cvPath = $request->file('file')->store('app/curriculums/sin-oferta');
+            $cvPath = $request->file('file')->storeAs('curriculums/sin-oferta', 'curriculum_' . $request->name . '_' . $request->surname);
         }
         $inscription->job_offer_resume()->create([
             'name' => $request->name . " " . $request->surname,
@@ -64,12 +68,13 @@ class WorkWithUsController extends Controller
 
         $request->session()->flash('inscription', $inscription);
         $request->session()->flash('filename', $request->file('file')->getClientOriginalName());
-        return response()->json('ok');
+        return redirect()->back()->with('message', 'CV recibido correctamente!');
     }
 
     public function show(JobOffer $jobOffer)
     {
-        return view('front.work-with-us.show', ['offer' => $jobOffer]);
+        $no_contact = 1;
+        return view('front.work-with-us.show', ['offer' => $jobOffer, 'no_contact' => $no_contact]);
     }
 
     public function stored()

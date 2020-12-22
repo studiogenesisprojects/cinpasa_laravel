@@ -89,8 +89,9 @@ Route::group([
     /**
      * Trabaja con nosotros
      */
+    Route::post(LaravelLocalization::transRoute('routes.work-with-us.store'), 'Front\WorkWithUsController@store');
     Route::get(LaravelLocalization::transRoute('routes.work-with-us.index'), 'Front\WorkWithUsController@index');
-    Route::get(LaravelLocalization::transRoute('routes.work-with-us.stored'), 'Front\WorkWithUsController@stored');
+    Route::get(LaravelLocalization::transRoute('routes.work-with-us.stored'), 'Front\WorkWithUsController@stored')->name('work-with-us_stored');
     Route::get(LaravelLocalization::transRoute('routes.work-with-us.show'), 'Front\WorkWithUsController@show');
 
     /**

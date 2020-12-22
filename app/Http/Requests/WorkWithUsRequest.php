@@ -25,13 +25,13 @@ class WorkWithUsRequest extends FormRequest
     {
         return [
             // 'g-recaptcha-response' => 'required|recaptcha',
-            'g-recaptcha-response' => app()->env == 'local' ? '' : 'required|recaptcha',
+            // 'g-recaptcha-response' => app()->env == 'local' ? '' : 'required|recaptcha',
             'politics' => 'accepted',
             'name' => 'required|string',
             'surname' => 'required|string',
             'email' => 'required|email',
             'tel' => 'required|integer|min:9',
-            'file' => 'required|max:50000|mimes:doc,docx,pdf,txt'
+            'file' => 'required|max:50000|mimes:pdf'
         ];
     }
 

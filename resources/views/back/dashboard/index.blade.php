@@ -37,7 +37,7 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            {{-- @foreach ($petitions as $petition)
+                            @foreach ($petitions as $petition)
                             <tr>
                                 <td><a href="{{route('peticiones.show', $petition->id)}}">{{$petition->origen}}</a></td>
                                 <td>{{$petition->company}}</td>
@@ -57,7 +57,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -84,13 +84,13 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    {{-- @foreach ($currculumVitaes as $currculumVitaes)
+                                    @foreach ($currculumVitaes as $currculumVitaes)
                                     <tr>
                                         <td>{{$currculumVitaes->name}}</td>
                                         <td>{{$currculumVitaes->created_at}}</td>
                                         <td><a href="{{route('downloadCV', ['id' => $currculumVitaes->id])}}"> <span class="ti-download align-center"></span></a></td>
                                     </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -120,7 +120,7 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    {{-- @foreach ($inscriptions as $inscription)
+                                    @foreach ($inscriptions as $inscription)
                                     <tr>
                                         <td>{{$inscription->name}}</td>
                                         <td>{{$inscription->email}}</td>
@@ -134,7 +134,7 @@
                                             </ul>
                                         </td>
                                     </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -42,9 +42,7 @@
                         </div>
                     </div>
                 </li>
-            @endif
 
-            @if(1 == 0)
                 <li class="selected has-sub-menu">
                     <a href="#">
                         <div class="icon-w">
@@ -316,9 +314,7 @@
                     <span>Inicio</span>
                 </a>
             </li>
-            @endif
 
-            @if(1 == 0)
             <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('dashboardIndex')}}">
                     <div class="icon-w">
