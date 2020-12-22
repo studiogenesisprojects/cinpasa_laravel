@@ -71,11 +71,11 @@
                     @if($product->active == 1)
                         <div class="col-md-4 col-sm-6 p-3 border-card">
                             <div class="position-relative">
-                                @if(Storage::url($product->getPrimaryImageUrlAttribute()) != '/storage/')
+                                @if(Storage::url($product->image) != '/storage/')
                                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
                                         "productCategory" => $product->categories[0],
                                         "product" => $product
-                                        ])}}" title="Accede a la información"><img class="w-100 border-img" src="{{ Storage::url($product->getPrimaryImageUrlAttribute()) }}"></a>
+                                        ])}}" title="Accede a la información"><img class="w-100 border-img" src="{{ Storage::url($product->image) }}"></a>
                                 @else
                                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
                                         "productCategory" => $product->categories[0],
