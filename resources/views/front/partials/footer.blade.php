@@ -68,7 +68,7 @@
                 </div>
                 <p class="mt-5">{{__('Footer.soporte')}}</p>
                 <div class="d-flex flex-column">
-                    <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
+                    <a class="" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
                 </div>
             </div>
             <div class="col-xl-4 col-md-7 d-flex mt-xl-0 mt-5">
