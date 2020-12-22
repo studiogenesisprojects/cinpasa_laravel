@@ -67,6 +67,7 @@
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.leagal_warning')}}" title="Accede a aviso legal">{{__('Textos_legals.legal_warning_titulo')}}</a>
                 </div>
                 <p class="mt-5">{{__('Footer.soporte')}}</p>
+                <br>
                 <div class="d-flex flex-column">
                     <a class="" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
                 </div>
