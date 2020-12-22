@@ -59,12 +59,12 @@ class FinishedController extends Controller
         $finished = new Finished($request->toArray());
 
         if ($request->hasFile('secondary_image')) {
-            $path = $request->file('secondary_image')->storeAs('acabados', $request->file('secondary_image')->getClientOriginalName());
+            $path = $request->file('secondary_image')->storeAs('public/acabados', $request->file('secondary_image')->getClientOriginalName());
             $finished->list_image = $path;
         }
 
         if ($request->hasFile('primary_image')) {
-            $path = $request->file('primary_image')->storeAs('acabados', $request->file('primary_image')->getClientOriginalName());
+            $path = $request->file('primary_image')->storeAs('public/acabados', $request->file('primary_image')->getClientOriginalName());
             $finished->section_image = $path;
         }
         $finished->save();
@@ -143,14 +143,14 @@ class FinishedController extends Controller
 
         $finished = Finished::findOrFail($id);
         if ($request->hasFile('primary_image')) {
-            $path = $request->file('primary_image')->storeAs('acabados', $request->file('primary_image')->getClientOriginalName());
+            $path = $request->file('primary_image')->storeAs('public/acabados', $request->file('primary_image')->getClientOriginalName());
             // dd($path);
             $finished->update([
                 'section_image' => $path,
             ]);
         }
         if ($request->hasFile('secondary_image')) {
-            $path = $request->file('secondary_image')->storeAs('acabados', $request->file('secondary_image')->getClientOriginalName());
+            $path = $request->file('secondary_image')->storeAs('public/acabados', $request->file('secondary_image')->getClientOriginalName());
             $finished->update([
                 'list_image' => $path,
             ]);

@@ -13,11 +13,11 @@ class EndingGaleryController extends Controller
 {
     public function handle(Request $request){
         $galery = FinishedGalery::find($request->galery_id);
-        
+
         if($request->hasFile('image')){
 
-            $path = $request->file('image')->storeAs('acabados', $request->file('image')->getClientOriginalName());
-        
+            $path = $request->file('image')->storeAs('public/acabados', $request->file('image')->getClientOriginalName());
+
             if($galery){
                 $image = FinishedGaleryImage::create([
                     "image" => $path,
@@ -44,7 +44,7 @@ class EndingGaleryController extends Controller
                     }
                 }
             }
-          
+
             return response()->json("ok");
         }
 

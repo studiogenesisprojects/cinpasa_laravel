@@ -51,7 +51,7 @@ class CategoryController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->storeAs('productos/categorias', $request->file('image')->getClientOriginalName());
+            $path = $request->file('image')->storeAs('public/productos/categorias', $request->file('image')->getClientOriginalName());
             $productCategory->update(['image' => $path,]);
         }
         return redirect()->route('categorias.index')->with('success', 'Categoría creada correctamente');
@@ -76,7 +76,7 @@ class CategoryController extends Controller
                 Storage::delete($category->image);
             }
 
-            $path = $request->file('image')->storeAs('productos/categorias', $request->file('image')->getClientOriginalName());
+            $path = $request->file('image')->storeAs('public/productos/categorias', $request->file('image')->getClientOriginalName());
             $category->update(['image' => $path,]);
         }
 

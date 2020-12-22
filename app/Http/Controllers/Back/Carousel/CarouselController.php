@@ -167,7 +167,7 @@ class CarouselController extends Controller
     {
         $slide = Slide::findOrFail($id);
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->storeAs('carousels', str_replace(" ","-",$request->file('image')->getClientOriginalName()));
+            $path = $request->file('image')->storeAs('public/carousels', str_replace(" ","-",$request->file('image')->getClientOriginalName()));
 
             $slide->update([
                 "image" => $path,

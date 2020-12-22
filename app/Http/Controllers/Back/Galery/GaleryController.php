@@ -139,7 +139,7 @@ class GaleryController extends Controller
                     if ($request->file('imagenes')[$indiceImagen]->isValid()) {
                         // Sube y le da un nombre único
                         $nombreImagen = sha1(time() . Str::random(4)) . '.' . $request->file('imagenes')[$indiceImagen]->getClientOriginalExtension();
-                        $request->file('imagenes')[$indiceImagen]->storeAs(config('app.route_uploads.galerias'), $nombreImagen, 'public_uploads');
+                        $request->file('imagenes')[$indiceImagen]->storeAs('public/' . config('app.route_uploads.galerias'), $nombreImagen, 'public_uploads');
                         ImageOptimizer::optimize(public_path('uploads' . DIRECTORY_SEPARATOR . 'galerias' . DIRECTORY_SEPARATOR . $nombreImagen));
 
                         // Ponemos en el request los valores que no nos llegan y van a la tabla de galeria_imagenes
@@ -244,7 +244,7 @@ class GaleryController extends Controller
                     $imagenBorrar = $imagen->imagen;
                     // Sube y le da un nombre único
                     $nombreImagen = sha1(time() . Str::random(4)) . '.' . $request->file('img_new')->getClientOriginalExtension();
-                    $path = $request->file('img_new')->storeAs(config('app.route_uploads.galerias'), $nombreImagen, 'public_uploads');
+                    $path = $request->file('img_new')->storeAs('public/' . config('app.route_uploads.galerias'), $nombreImagen, 'public_uploads');
                     ImageOptimizer::optimize(public_path('uploads' . DIRECTORY_SEPARATOR . 'galerias' . DIRECTORY_SEPARATOR . $nombreImagen));
 
                     // Ponemos en el request los valores que no nos llegan y van a la tabla de galeria_imagenes

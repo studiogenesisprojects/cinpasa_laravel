@@ -116,7 +116,7 @@ class ProductController extends Controller
         }
 
         if ($request->hasFile('primary_image')) {
-            $path = $request->file('primary_image')->storeAs('productos', $request->file('primary_image')->getClientOriginalName());
+            $path = $request->file('primary_image')->storeAs('public/productos', $request->file('primary_image')->getClientOriginalName());
             $image = $product->images()->create(['path' => $path,]);
             $product->update(['product_image_id' => $image->id]);
         }
@@ -242,14 +242,14 @@ class ProductController extends Controller
 
 
         if ($request->hasFile('primary_image')) {
-            $path = $request->file('primary_image')->storeAs('productos', str_replace(" ","-",$request->file('primary_image')->getClientOriginalName()));
+            $path = $request->file('primary_image')->storeAs('public/productos', str_replace(" ","-",$request->file('primary_image')->getClientOriginalName()));
             $image = $product->images()->create(['path' => $path,]);
             $product->update(['product_image_id' => $image->id]);
         }
 
         if ($request->images) {
             foreach ($request->images as $image) {
-                $path = $image->storeAs('productos', $image->getClientOriginalName());
+                $path = $image->storeAs('public/productos', $image->getClientOriginalName());
                 $image = $product->images()->create(['path' => $path,]);
             }
         }
@@ -338,7 +338,7 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
 
-            $path = $request->file('image')->storeAs('productos', $request->file('image')->getClientOriginalName());
+            $path = $request->file('image')->storeAs('public/productos', $request->file('image')->getClientOriginalName());
 
             if ($galery) {
                 $image = ProductGaleryImage::create([

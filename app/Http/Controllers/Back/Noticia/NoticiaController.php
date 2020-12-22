@@ -138,7 +138,7 @@ class NoticiaController extends Controller
                                         $elemento = $request->file('bloques.' . $idioma_id . '.' . $key . '.' . $tipo . '.foto');
                                         // Sube y le da un nombre único
                                         $nombreImagen = sha1(time() . Str::random(4)) . '.' . $elemento->getClientOriginalExtension();
-                                        $path = $elemento->storeAs(config('app.route_uploads.noticias-imagenes'), $nombreImagen, 'public_uploads');
+                                        $path = $elemento->storeAs('public/' . config('app.route_uploads.noticias-imagenes'), $nombreImagen, 'public_uploads');
 
                                         $datos['imagen'] = $nombreImagen;
                                     }
@@ -155,7 +155,7 @@ class NoticiaController extends Controller
                                         $elemento = $request->file('bloques.' . $idioma_id . '.' . $key . '.' . $tipo . '.foto');
                                         // Sube y le da un nombre único
                                         $nombreImagen = sha1(time() . Str::random(4)) . '.' . $elemento->getClientOriginalExtension();
-                                        $path = $elemento->storeAs(config('app.route_uploads.noticias-imagenes'), $nombreImagen, 'public_uploads');
+                                        $path = $elemento->storeAs('public/' . config('app.route_uploads.noticias-imagenes'), $nombreImagen, 'public_uploads');
 
                                         $datos['imagen'] = $nombreImagen;
                                     }
@@ -192,7 +192,7 @@ class NoticiaController extends Controller
                                         $elemento = $request->file('bloques.' . $idioma_id . '.' . $key . '.' . $tipo . '.puntero');
                                         // Sube y le da un nombre único
                                         $nombreImagen = sha1(time() . Str::random(4)) . '.' . $elemento->getClientOriginalExtension();
-                                        $path = $elemento->storeAs(config('app.route_uploads.noticias-imagenes'), $nombreImagen, 'public_uploads');
+                                        $path = $elemento->storeAs('public/' . config('app.route_uploads.noticias-imagenes'), $nombreImagen, 'public_uploads');
 
                                         $datos['imagen_puntero'] = $nombreImagen;
                                     }
@@ -217,7 +217,7 @@ class NoticiaController extends Controller
                                         $elemento = $request->file('bloques.' . $idioma_id . '.' . $key . '.' . $tipo . '.puntero');
                                         // Sube y le da un nombre único
                                         $nombreImagen = sha1(time() . Str::random(4)) . '.' . $elemento->getClientOriginalExtension();
-                                        $path = $elemento->storeAs(config('app.route_uploads.noticias-imagenes'), $nombreImagen, 'public_uploads');
+                                        $path = $elemento->storeAs('public/' . config('app.route_uploads.noticias-imagenes'), $nombreImagen, 'public_uploads');
 
                                         $datos['imagen_puntero'] = $nombreImagen;
                                     }

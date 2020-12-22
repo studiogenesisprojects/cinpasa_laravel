@@ -46,14 +46,14 @@ class LabController extends Controller
         $newLab->slug = $request->slug;
 
         if ($request->hasFile('primary_image')) {
-            $path = $request->file('primary_image')->storeAs('labs', $request->file('primary_image')->getClientOriginalName());
+            $path = $request->file('primary_image')->storeAs('public/labs', $request->file('primary_image')->getClientOriginalName());
             $newLab->image = $path;
         } else {
             $newLab->image = 'no image';
         }
 
         if ($request->hasFile('secondary_image')) {
-            $path = $request->file('secondary_image')->storeAs('labs', $request->file('secondary_image')->getClientOriginalName());
+            $path = $request->file('secondary_image')->storeAs('public/labs', $request->file('secondary_image')->getClientOriginalName());
             $newLab->secondary_image = $path;
         }
 
@@ -103,12 +103,12 @@ class LabController extends Controller
 
 
         if ($request->hasFile('primary_image')) {
-            $path = $request->file('primary_image')->storeAs('labs', $request->file('primary_image')->getClientOriginalName());
+            $path = $request->file('primary_image')->storeAs('public/labs', $request->file('primary_image')->getClientOriginalName());
             $lab->image = $path;
         }
 
         if ($request->hasFile('secondary_image')) {
-            $path = $request->file('secondary_image')->storeAs('labs', $request->file('secondary_image')->getClientOriginalName());
+            $path = $request->file('secondary_image')->storeAs('public/labs', $request->file('secondary_image')->getClientOriginalName());
             $lab->secondary_image = $path;
         }
 

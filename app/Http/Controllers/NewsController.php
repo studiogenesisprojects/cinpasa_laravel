@@ -47,7 +47,7 @@ class NewsController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('noticias', $imageName);
+            $request->file('image')->storeAs('public/noticias', $imageName);
             $news->update(["image" => $imageName]);
             //TODO generat thumbnail
         }
@@ -60,7 +60,7 @@ class NewsController extends Controller
         if ($request->hasFile('image')) {
             $filename = $request->file('image')->getClientOriginalName();
             //TODO check if there is duplicated
-            $request->file('image')->storeAs('noticias', $filename);
+            $request->file('image')->storeAs('public/noticias', $filename);
             $url = url('storage/noticias/' . $filename);
             return response()->json($url);
         }
@@ -87,7 +87,7 @@ class NewsController extends Controller
 
         if ($request->hasFile('image')) {
             $imageName = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('noticias', $imageName);
+            $request->file('image')->storeAs('public/noticias', $imageName);
             $news->update(["image" => $imageName]);
             //TODO generat thumbnail
             //TODO remove old image,

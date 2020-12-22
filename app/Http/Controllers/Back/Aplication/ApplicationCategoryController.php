@@ -50,12 +50,12 @@ class ApplicationCategoryController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->storeAs('applications', str_replace(" ","-",$request->file('image')->getClientOriginalName()));
+            $path = $request->file('image')->storeAs('public/applications', str_replace(" ","-",$request->file('image')->getClientOriginalName()));
             $applicationCategory->update(['image' => $path]);
         }
 
         if ($request->hasFile('list_image')) {
-            $path = $request->file('list_image')->storeAs('applications', str_replace(" ","-",$request->file('list_image')->getClientOriginalName()));
+            $path = $request->file('list_image')->storeAs('public/applications', str_replace(" ","-",$request->file('list_image')->getClientOriginalName()));
             $applicationCategory->update(['list_image' => $path]);
         }
 
@@ -97,12 +97,12 @@ class ApplicationCategoryController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->storeAs('applications', str_replace(" ","-",$request->file('image')->getClientOriginalName()));
+            $path = $request->file('image')->storeAs('public/applications', str_replace(" ","-",$request->file('image')->getClientOriginalName()));
             $applicationCategory->update(['image' => $path]);
         }
 
         if ($request->hasFile('list_image')) {
-            $path = $request->file('list_image')->storeAs('applications', str_replace(" ","-",$request->file('list_image')->getClientOriginalName()));
+            $path = $request->file('list_image')->storeAs('public/applications', str_replace(" ","-",$request->file('list_image')->getClientOriginalName()));
             $applicationCategory->update(['list_image' => $path]);
         }
 

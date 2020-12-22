@@ -34,12 +34,12 @@ class AplicationController extends Controller
         $app = Aplication::create($request->all());
 
         if ($request->hasFile('section_image')) {
-            $path = $request->file('section_image')->storeAs('aplicaciones', $request->file('section_image')->getClientOriginalName());
+            $path = $request->file('section_image')->storeAs('public/aplicaciones', $request->file('section_image')->getClientOriginalName());
             $app->primary_image = $path;
         }
 
         if ($request->hasFile('list_image')) {
-            $path = $request->file('list_image')->storeAs('aplicaciones', $request->file('list_image')->getClientOriginalName());
+            $path = $request->file('list_image')->storeAs('public/aplicaciones', $request->file('list_image')->getClientOriginalName());
             $app->list_image = $path;
         }
 
@@ -67,12 +67,12 @@ class AplicationController extends Controller
         $aplication = Aplication::findOrFail($id);
         $aplication->order = $request->order;
         if ($request->hasFile('section_image')) {
-            $path = $request->file('section_image')->storeAs('aplicaciones', $request->file('section_image')->getClientOriginalName());
+            $path = $request->file('section_image')->storeAs('public/aplicaciones', $request->file('section_image')->getClientOriginalName());
             $aplication->primary_image = $path;
         }
 
         if ($request->hasFile('list_image')) {
-            $path = $request->file('list_image')->storeAs('aplicaciones', $request->file('list_image')->getClientOriginalName());
+            $path = $request->file('list_image')->storeAs('public/aplicaciones', $request->file('list_image')->getClientOriginalName());
             $aplication->list_image = $path;
         }
 
