@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 Route::redirect("/universotipos/", "/", 301);
 Route::redirect("/tipo/", "/", 301);
