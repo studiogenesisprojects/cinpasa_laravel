@@ -42,7 +42,7 @@
 
                                         <td><strong>{{ $category->name }}</strong></td>
                                         <td>
-                                            <button  product_id="{{ $category->id }}" type="btn" class="toggle btn btn-small @if($category->active) btn-danger @else btn-success @endif ">@if($category->active) Desactivar @else Activar @endif</button>
+                                            <button id="categorias"  product_id="{{ $category->id }}" type="btn" class="toggle btn btn-small @if($category->active) btn-danger @else btn-success @endif ">@if($category->active) Desactivar @else Activar @endif</button>
                                         </td>
                                         <td>{{$category->sup_product_category ? $category->father->lang()->name : 'No tiene'}} </td>
                                         <td class="td-acciones">
@@ -134,9 +134,9 @@
         } );
 
         // DataTable
-        // var table = $('#categorias').DataTable({
-        //     "searcher_order": [[ 0, "asc" ]]
-        // });
+        var table = $('#categorias').DataTable({
+            "searcher_order": [[ 0, "asc" ]]
+        });
 
         // Apply the search
         table.columns().every( function () {
