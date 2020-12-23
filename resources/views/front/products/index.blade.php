@@ -20,6 +20,7 @@
                     $fathers = $fathers->sortBy('order');
                 @endphp
                 @foreach ($fathers as $father)
+                @if($father->active == 1)
                 <div class="d-flex flex-column ml-4">
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
                         "productCategory" => $father,
@@ -37,6 +38,7 @@
                         @endforeach
                     </div>
                 </div>
+                @endif
                 @endforeach
 
             </div>

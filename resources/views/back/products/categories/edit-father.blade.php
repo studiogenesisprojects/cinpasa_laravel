@@ -24,6 +24,21 @@
                                         <h5 class="element-inner-header">Información de la categoría</h5>
                                     </div>
                                 </div>
+                                <div class="float-right" style="margin-top: -30px; text-align: end;">
+                                    <label for="">Desactivar categoria: <input type="checkbox" style="
+                                        width: 13px;
+                                        height: 13px;
+                                        padding: 0;
+                                        margin:0;
+                                        vertical-align: bottom;
+                                        position: relative;
+                                        top: -3px;
+                                        *
+                                        overflow: hidden;
+                                    " name="active" {{$category->active == 0 ? 'checked' : ''}}></label>
+                                    <br>
+                                    <small><i>Si desactivas una categoria padre, todas las categorías hijas se desactivaran también!</i></small>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">

@@ -62,6 +62,20 @@ class CategoryController extends Controller
         $category = ProductCategory::findOrFail($id);
         $category->update($request->toArray());
 
+        if($category->sup_product_category == null){
+            if($request->active){
+                $category->active = 0;
+                foreach($category->childrens as $children) {
+                    $children->active = 0;
+                    $children->save();
+                }
+            } else {
+                $category->active = 1;
+            }
+
+            $category->save();
+        }
+
         foreach ($request->productCategoryLanguages as $language) {
             if ($category->lang((int) $language['language_id'])) {
                 $category->lang((int) $language['language_id'])->update($language);

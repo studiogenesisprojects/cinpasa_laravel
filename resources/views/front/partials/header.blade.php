@@ -204,6 +204,7 @@
                         $fathers = $fathers->sortBy('order');
                     @endphp
                     @foreach ($fathers as $father)
+                    @if($father->active == 1)
                     <div class="col-2 d-flex flex-column">
                         <a class="font-bold"
                             href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" => $father->slug])}}">{!! $father->name !!}</a>
@@ -216,6 +217,7 @@
                             href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" =>$children->slug])}}">{!! $children->name !!}</a>
                         @endforeach
                     </div>
+                    @endif
                     @endforeach
             </div>
         </div>

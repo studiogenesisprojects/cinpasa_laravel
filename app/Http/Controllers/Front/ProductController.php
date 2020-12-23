@@ -32,6 +32,10 @@ class ProductController extends Controller
 
     public function show(ProductCategory $productCategory)
     {
+        if($productCategory->active == 0){
+            abort(404);
+        }
+
         $more_info_trigger = 1;
         if ($productCategory->father == null) {
             $productCategoryChildrens = $productCategory->childrens;
@@ -44,6 +48,9 @@ class ProductController extends Controller
 
     public function showProduct(ProductCategory $productCategory, Product $product)
     {
+        if($product->active == 0){
+            abort(404);
+        }
         $finishedColumns = [];
         $finisheds = $product->finisheds;
         $finisheds = $finisheds->sortBy('order');
