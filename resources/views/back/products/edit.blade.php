@@ -132,11 +132,15 @@
                                     <label for="">Activo: <input type="checkbox" name="active" {{ !$product->active ? "": "checked" }}></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="">Outlet: <input type="checkbox" name="outlet" {{ !$product->outlet ? "": "checked" }}></label>
+                                    <label for="" id="outlet" >Outlet: <input type="checkbox" name="outlet" {{ !$product->outlet ? "": "checked" }}></label>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="">Orden</label>
                                     <input class="form-control" type="number" name="order" value="{{$product->order}}">
+                                </div>
+                                <div class="col-md-6 {{ !$product->outlet ? "d-none": "" }}" id="outlet-text">
+                                    <label for="">Descuento: (%)</label>
+                                    <input class="form-control" type="number" name="discount" value="{{$product->discount}}">
                                 </div>
                             </div>
                             <div class="row pb-3">
@@ -443,6 +447,16 @@
         function deleteRow(num){
             $('#row_' + num).remove();
         }
+
+        $('#outlet').click(function(){
+            if($( "#outlet-text" ).hasClass("d-none")){
+                $('#outlet-text').prop('required',true);
+                $('#outlet-text').removeClass('d-none');
+            } else {
+                $('#outlet-text').prop('required',false);
+                $('#outlet-text').addClass('d-none');
+            }
+        });
 
     </script>
 @endsection

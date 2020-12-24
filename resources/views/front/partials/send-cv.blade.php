@@ -11,7 +11,7 @@
                         <p class="mt-3">{{__('Contacta.send_cv-text')}}</p>
                     </div>
                     <div class="col-md-12 col-6 offset-md-0 offset-3 d-md-flex d-none align-items-end">
-                        <img class="w-100" src="{{ asset('front/img/curriculum.jpg') }}" alt="imagen mujer señalando">
+                        <img class="w-100" src="{{ asset('front/img/17039883_s.jpg') }}" alt="imagen mujer señalando">
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="col-md-12 col-6 offset-md-0 offset-3 d-md-none d-flex align-items-end">
-                        <img class="w-100" src="{{ asset('front/img/curriculum.jpg') }}" alt="imagen mujer señalando">
+                        <img class="w-100" src="{{ asset('front/img/17039883_s.jpg') }}" alt="imagen mujer señalando">
                     </div>
                 </div>
             </div>

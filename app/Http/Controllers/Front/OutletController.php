@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Carousel;
+use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
@@ -15,10 +17,11 @@ class OutletController extends Controller
      */
     public function index()
     {
-        $productCategory = ProductCategory::find(47734);
-        $productCategory = $productCategory->childrens[0];
-
-        return view('front.products.show', compact('productCategory'));
+        $higherDiscount = Product::where('active', 1)->where('outlet', 1)->orderBy('discount', 'desc')->take(5)->get();
+        $idHigher = $higherDiscount->pluck('id');
+        $bottomOnes = Product::where('active', 1)->whereNotIn('id', $idHigher)->where('outlet', 1)->orderBy('discount', 'desc')->get();
+        $carousel = Carousel::find(26);
+        return view('front.outlet.index', compact('higherDiscount', 'bottomOnes','carousel'));
     }
 
     /**
