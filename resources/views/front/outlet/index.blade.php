@@ -52,7 +52,7 @@
                                         @if($higherDiscount[0]->galeries->first())
                                             @foreach ($higherDiscount[0]->galeries->first()->images as $image)
                                                 <div class="carousel-item {{($loop->first) ? 'active' : ''}}">
-                                                    <img class="w-100" src="@if(!empty($image->path)){{Storage::url($image->path)}}@else{{Storage::url('/img/nofoto.png')}}@endif" alt="@empty($image->alt) {{ $product->name }} @else {{  $image->alt}} @endempty" class="box-product__carousel">
+                                                    <img class="w-100" src="@if(!empty($image->path)){{Storage::url($image->path)}}@else{{Storage::url('/img/nofoto.png')}}@endif" alt="@empty($image->alt) {{ $higherDiscount[0]->lang()->name }} @else {{  $image->alt}} @endempty" class="box-product__carousel">
                                                 </div>
                                             @endforeach
                                         @endif
