@@ -22,7 +22,7 @@ class OutletController extends Controller
         $idHigher = $higherDiscount->pluck('id');
         $bottomOnes = Product::where('active', 1)->whereNotIn('id', $idHigher)->where('outlet', 1)->orderBy('discount', 'desc')->get();
         $carousel = Carousel::find(26);
-        $banner = Banner::take(1)->inRandomOrder()->first();
+        $banner = Banner::where('active', 1)->take(1)->inRandomOrder()->first();
 
         return view('front.outlet.index', compact('higherDiscount', 'bottomOnes','carousel', 'banner'));
     }
