@@ -111,7 +111,9 @@
                 </div>
             </div>
         </div>
+        @if(isset($banner))
         <img src="{{ Storage::url($banner->image) }}" alt="imagen banner" class="w-100 border-img mt-5">
+        @endif
         <div class="row mt-5">
             @foreach($bottomOnes as $product)
             <div class="col-lg-3 col-md-4 col-sm-6 mt-4">

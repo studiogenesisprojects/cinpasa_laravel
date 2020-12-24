@@ -35,7 +35,7 @@
                                     top: -3px;
                                     *
                                     overflow: hidden;
-                                " name="active" ></label>
+                                " name="active" {{$banner->active == 1 ? 'checked' : ''}}></label>
                                 <br>
                                 <small><i>Los banners se eligen de forma aleatoria. Desactivar un banner hará que no pueda mostrarse.</i></small>
                             </div>
