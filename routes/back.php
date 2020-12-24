@@ -239,3 +239,7 @@ Route::group(['prefix' => 'carousel'], function () {
     Route::post('slide-image/{id}', 'Back\Carousel\CarouselController@updateSlideImage');
 });
 Route::post('home-aplications/sync', 'ApplicationHomeController@sync');
+
+//Banners
+Route::resource('outlet', 'Back\Outlet\OutletController');
+Route::get('/outlet/destroy/{id}', 'Back\Outlet\OutletController@destroy')->name('outlet.destroy');

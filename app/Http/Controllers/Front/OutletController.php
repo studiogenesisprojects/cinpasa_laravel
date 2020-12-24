@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Carousel;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -21,7 +22,9 @@ class OutletController extends Controller
         $idHigher = $higherDiscount->pluck('id');
         $bottomOnes = Product::where('active', 1)->whereNotIn('id', $idHigher)->where('outlet', 1)->orderBy('discount', 'desc')->get();
         $carousel = Carousel::find(26);
-        return view('front.outlet.index', compact('higherDiscount', 'bottomOnes','carousel'));
+        $banner = Banner::take(1)->inRandomOrder()->first();
+
+        return view('front.outlet.index', compact('higherDiscount', 'bottomOnes','carousel', 'banner'));
     }
 
     /**
