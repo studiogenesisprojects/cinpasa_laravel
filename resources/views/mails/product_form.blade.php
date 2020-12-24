@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
             <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Lato:300,400,700&display=swap" rel="stylesheet">
-            <title>Liasa, la industrial algodonera</title>
+            <title>Cinpasa</title>
 
 
             <style>
@@ -44,7 +44,7 @@
         </head>
         <body style="-webkit-text-size-adjust:none;background-color:#fff;width:650px;font-family:Lato, sans-serif;color:#555454;font-size:13px;line-height:18px;margin:auto">
             <table border="0" cellspacing="0" style="width: 100%; margin-top: 10px; -moz-box-shadow: 0 0 5px #afafaf; -webkit-box-shadow: 0 0 5px #afafaf; -o-box-shadow: 0 0 5px #afafaf; box-shadow: 0 0 5px #afafaf; filter: progid:DXImageTransform.Microsoft.Shadow(color=#afafaf,Direction=134,Strength=5);">
-                
+
 
                 <thead>
                     <tr>
@@ -70,29 +70,18 @@
                     <tr>
                         <td colspan="1">
                             <address>
-                               <p class="foot-title"> LIASA-OFICINES</p>
+                               <p class="foot-title"> CINPASA-OFICINES</p>
                                 <p class="foot-text">Raval de Sant Rafael 21</p>
 
                                 <p class="foot-title">Contáctanos en:</p>
-                                 <p class="foot-text"><a href="mailto:comercial@laindustrialalgodonera.com">comercial@laindustrialalgodonera.com</a></p>
+                                 <p class="foot-text"><a href="mailto:marketing@cinpasa.com">marketing@cinpasa.com</a></p>
                             </address>
-                        </td>
-
-                        <td colspan="1">
-                            <p class="foot-title">At. Cliente:</p>
-                            <p class="foot-text">977 844 000</p>
-
-                            <p class="foot-title">Compras:</p>
-                            <p class="foot-text">977 844 002</p>
-
-                            <p class="foot-title">Administración y RRHH:</p>
-                            <p class="foot-text">977 844 375</p>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
                             <hr>
-                            <p class="foot-text deco-none"><a href="https://www.laindustrialalgodonera.com/politica-de-privacidad" target="_blank">Política de privadesa </a>· <a href="https://www.laindustrialalgodonera.com/aviso-legal" target="_blank">Avís legal</a></p>
+                            <p class="foot-text deco-none"><a href="https://cinpasa.com/politica-privacidad" target="_blank">Política de privadesa </a>· <a href="https://cinpasa.com/aviso-legal" target="_blank">Avís legal</a></p>
                         </td>
                     </tr>
                 </tfoot>

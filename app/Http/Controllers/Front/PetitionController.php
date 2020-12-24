@@ -53,7 +53,7 @@ class PetitionController extends Controller
             'origen' => $request->origen,
         ]);
 
-        $email_catalan_spanish = "diego.agudoal@gmail.com";
+        $email_catalan_spanish = "marketing@cinpasa.com";
         // $email_others = "diego.agudoal@gmail.com";
         // $locale = $request->locale;
         // if ($locale == "es" || $locale == "ca") {
@@ -61,7 +61,7 @@ class PetitionController extends Controller
         // } else {
         //     Mail::to($email_others)->send(new ProductFormSended($petition));
         // }
-            dd('j');
+
         $carousel = Carousel::where('section_id', 18)->where('active', 1)->where('main', 1)->first();
         return view('front.contact.form-ok', compact('petition', 'carousel', 'request'));
     }
