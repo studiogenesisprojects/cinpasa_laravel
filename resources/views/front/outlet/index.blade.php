@@ -42,7 +42,7 @@
             <div class="col-12 mb-4">
                 <h5 class="color-primary">Mostrando {{sizeof($higherDiscount) + sizeof($bottomOnes)}} productos</h5>
             </div>
-            @if($higherDiscount[0])
+            @if(isset($higherDiscount[0]))
                 <div class="col-lg-6">
                     <div class="border-card p-3 h-100">
                         <div class="position-relative">
