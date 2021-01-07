@@ -61,9 +61,11 @@ Route::group([
     Route::get(LaravelLocalization::transRoute('routes.products.searchProducts'), 'Front\ProductController@search')->name('searcher');
     Route::get('get-search-results/{locale}', 'Front\ProductController@getSearchResults');
 
+    Route::post('/filter','Front\ProductController@filter_alph')->name('back.product_filters');
+
     Route::get(LaravelLocalization::transRoute('routes.products.showProductRe'), 'Front\ProductController@showProductRedirect');
     Route::get(LaravelLocalization::transRoute('routes.products.index'), 'Front\ProductController@index')->name('product-index');
-    Route::get(LaravelLocalization::transRoute('routes.products.show'), 'Front\ProductController@show');
+    Route::any(LaravelLocalization::transRoute('routes.products.show'), 'Front\ProductController@show');
     Route::get(LaravelLocalization::transRoute('routes.products.showProduct'), 'Front\ProductController@showProduct');
 
     /**

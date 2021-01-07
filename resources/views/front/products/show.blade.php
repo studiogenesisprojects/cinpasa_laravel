@@ -58,13 +58,18 @@
                             <p class="color-blue font-bold">{{$productCategory->name}}</p>
                         </a>
                     </div>
-                    {{-- <div class="col-4 px-0 d-flex justify-content-between">
+                    <div class="col-4 px-0 d-flex justify-content-between">
                         <hr class="hr-vertical background-blue">
-                        <select class="form-control p-0 px-4 w-auto mr-5 border-0" id="">
-                            <option>Z-A</option>
-                            <option>A-Z</option>
-                        </select>
-                    </div> --}}
+                        <form action="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
+                            "productCategory" => $productCategory,
+                            ])}}" method="POST" id="filter_form">
+                            @csrf
+                            <select class="form-control p-0 px-4 w-auto mr-5 border-0" name="filter" id="filter">
+                                <option value="2" {{$filter == 2 ? 'selected' : ''}}>Z-A</option>
+                                <option value="1"{{$filter == 1 ? 'selected' : ''}}>A-Z</option>
+                            </select>
+                        </form>
+                    </div>
                 </div>
                 @if($productCategory->lang())
                 <div class="row px-3 pt-4 pb-5 border-card-left">
@@ -73,7 +78,7 @@
                 @endif
                 {{-- AQUI HAS DE MOSTRAR ELS PRODUCTES --}}
                 <div class="row">
-                    @foreach($productCategory->products as $product)
+                    @foreach($products as $product)
                     @if($product->active == 1)
                         <div class="col-md-4 col-sm-6 p-3 border-card">
                             <div class="position-relative">
@@ -132,6 +137,12 @@
         @endif
     </div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $('#filter').change(function(){
+        $('#filter_form').submit();
+    });
+</script>
 @endsection
 
 @push('js')

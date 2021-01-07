@@ -30,20 +30,41 @@ class ProductController extends Controller
         return response()->json($categories);
     }
 
-    public function show(ProductCategory $productCategory)
+    public function show(ProductCategory $productCategory, Request $request)
     {
         if($productCategory->active == 0){
             abort(404);
         }
 
-        $more_info_trigger = 1;
-        if ($productCategory->father == null) {
-            $productCategoryChildrens = $productCategory->childrens;
-            $fathers = ProductCategory::where('sup_product_category', null)->get();
-            return view('front.products.showFather', compact('productCategory', 'productCategoryChildrens', 'fathers', 'more_info_trigger'));
+        if($request->filter) {
+            $filter = $request->filter;
+        } else {
+            $filter = 0;
         }
 
-        return view('front.products.show', compact('productCategory', 'more_info_trigger'));
+        $more_info_trigger = 1;
+        if ($productCategory->father == null) {
+            $products = $productCategory->childrens;
+            if($filter == 1) {
+                $products = $products->sortBy('name');
+            } elseif($filter == 2) {
+                $products = $products->sortByDesc('name');
+            } else {
+                $products = $products->sortByDesc('order');
+            }
+            $productCategoryChildrens = $productCategory->childrens;
+            $fathers = ProductCategory::where('sup_product_category', null)->get();
+            return view('front.products.showFather', compact('productCategory', 'filter','productCategoryChildrens', 'fathers', 'products','more_info_trigger'));
+        }
+        $products = $productCategory->products;
+        if($filter == 1) {
+            $products = $products->sortBy('name');
+        } elseif($filter == 2) {
+            $products = $products->sortByDesc('name');
+        } else {
+            $products = $products->sortByDesc('order');
+        }
+        return view('front.products.show', compact('productCategory', 'products','filter','more_info_trigger'));
     }
 
     public function showProduct(ProductCategory $productCategory, Product $product)
