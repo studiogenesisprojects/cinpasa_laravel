@@ -58,7 +58,7 @@
                             <p class="color-blue font-bold">{{$productCategory->name}}</p>
                         </a>
                     </div>
-                    @if(!$isLab)
+                    @if(isset($isLab) && !$isLab)
                     <div class="col-4 px-0 d-flex justify-content-between">
                         <hr class="hr-vertical background-blue">
                         <form action="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
