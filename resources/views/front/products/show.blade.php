@@ -58,6 +58,7 @@
                             <p class="color-blue font-bold">{{$productCategory->name}}</p>
                         </a>
                     </div>
+                    @if(!$isLab)
                     <div class="col-4 px-0 d-flex justify-content-between">
                         <hr class="hr-vertical background-blue">
                         <form action="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
@@ -65,11 +66,12 @@
                             ])}}" method="POST" id="filter_form">
                             @csrf
                             <select class="form-control p-0 px-4 w-auto mr-5 border-0" name="filter" id="filter">
-                                <option value="2" {{$filter == 2 ? 'selected' : ''}}>Z-A</option>
-                                <option value="1"{{$filter == 1 ? 'selected' : ''}}>A-Z</option>
+                                <option value="2" {{isset($filter) && $filter == 2 ? 'selected' : ''}}>Z-A</option>
+                                <option value="1"{{isset($filter) && $filter == 1 ? 'selected' : ''}}>A-Z</option>
                             </select>
                         </form>
                     </div>
+                    @endif
                 </div>
                 @if($productCategory->lang())
                 <div class="row px-3 pt-4 pb-5 border-card-left">
