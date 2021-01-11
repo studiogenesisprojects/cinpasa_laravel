@@ -144,7 +144,7 @@
                             <thead>
                                 <tr>
                                     @if(in_array(!null, $references->toArray()))
-                                        <th>{{__('Productos.referencias')}}</th>
+                                        <th>{{__('Productos.referencia')}}</th>
                                     @endif
                                     @if(in_array(!null, $width->toArray()))
                                         <th>{{__('Productos.ancho')}}</th>
