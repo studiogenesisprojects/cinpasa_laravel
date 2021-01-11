@@ -124,7 +124,7 @@
                         <div class="position-relative">
                             <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.outlet.show', [
                                 "product" => $product
-                                ])}}" title="Accede al artículo"><img class="w-100 border-img" src="{{ Storage::url($product->image) }}" alt="imagen outlet"></a>
+                                ])}}" title="Accede al artículo"><img class="w-100 border-img" src="{{ Storage::url($product->getPrimaryImageUrlAttribute()) }}" alt="imagen outlet"></a>
                             <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
                                 <p class="btn-pink mr-1">-{{$product->higherDiscount->discount}}%</p>
                                 <a href="javascript:;" title="Comparte el artículo"><img class="btn-products p-1 mr-1" src="{{ asset('front/img/icon-share.svg') }}" alt="icono compartir"></a>
