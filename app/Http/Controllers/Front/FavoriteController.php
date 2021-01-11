@@ -108,7 +108,8 @@ class FavoriteController extends Controller
             "count" => $ps->count(),
             "action" =>  $request->session()->exists('product-' . $request->value) ? "0" : "1",
             "product" => $product,
-            "link" => $link
+            "link" => $link,
+            "image_" => $product->getPrimaryImageUrlAttribute()
         ]);
     }
 

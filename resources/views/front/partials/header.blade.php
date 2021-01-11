@@ -195,7 +195,7 @@
                     <hr class="mt-3 `+item.id+`">
                     <div class="row align-items-center mt-3 `+item.id+`">
                         <div class="col-3">
-                            <a href="`+item.link+`" title="Accede al producto favorito"><img class="w-100 border-img" src="{{ Storage::url('`+item.image+`') }}" alt="imagen favoritos"></a>
+                            <a href="`+item.link+`" title="Accede al producto favorito"><img class="w-100 border-img" src="{{ Storage::url('`+item.image_+`') }}" alt="imagen favoritos"></a>
                         </div>
                         <div class="col-7 px-0">
                             <a href="`+item.link+`" title="Accede al producto favorito">
