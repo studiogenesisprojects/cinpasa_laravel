@@ -34,14 +34,14 @@
         <div class="row justify-content-between align-items-center py-3 px-sm-5 px-4">
             <div class="d-lg-block d-flex justify-content-between w-md-100">
                 <a href="{{\LaravelLocalization::localizeURL('/')}}" title="Accede al apartado inicio"><img class="my-3 logo" src="{{ asset('front/img/logo-cinpasa.svg') }}" alt="logotipo Cinpasa"></a>
-                {{-- <div class="d-flex d-lg-none justify-content-end align-items-center">
+                <div class="d-flex d-lg-none justify-content-end align-items-center">
                     <div class="position-relative">
                         <a class="icon-fav" href="#" title="Accede a tus productos favoritos"><img class="icon-nav" src="{{ asset('front/img/icon-fav.svg') }}" alt="icono favoritos"></a>
-                        <div class="num-fav">4</div>
+                        <div class="num-fav">{{$favorites->count()}}</div>
                     </div>
-                    <a class="icon-search" href="#" title="Busca por palabras clave"><img class="icon-nav ml-sm-3 ml-3" src="{{ asset('front/img/icon-search.svg') }}" alt="icono búsqueda"></a>
-                    <a id="icon-menu" href="#" title="Busca por palabras clave"><img class="icon-nav ml-sm-3 ml-3" src="{{ asset('front/img/icon-menu.svg') }}" alt="icono búsqueda"></a>
-                </div> --}}
+                    {{-- <a class="icon-search" href="#" title="Busca por palabras clave"><img class="icon-nav ml-sm-3 ml-3" src="{{ asset('front/img/icon-search.svg') }}" alt="icono búsqueda"></a>
+                    <a id="icon-menu" href="#" title="Busca por palabras clave"><img class="icon-nav ml-sm-3 ml-3" src="{{ asset('front/img/icon-menu.svg') }}" alt="icono búsqueda"></a> --}}
+                </div>
                 <div id="menu" class="">
                     <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.company.index')}}" title="Accede al apartado empresa">{{strtoupper(__('Menu.business'))}}</a>
                     <a id="productos_submenu" class="ml-sm-5 a-stagger" href="#" title="Accede al apartado productos">{{strtoupper(__('Menu.products'))}} <img src="{{ asset('front/img/icon-arrow-down-blue.svg') }}" alt="icono flecha abajo"></a>
@@ -65,13 +65,13 @@
                 </div>
             </div>
             <div class="position-relative">
-                {{-- <div class="justify-content-end mb-4 d-lg-flex d-none">
+                <div class="justify-content-end mb-4 d-lg-flex d-none">
                     <div class="position-relative">
                         <a id="icon-fav" href="#" title="Accede a tus productos favoritos"><img class="icon-nav" src="{{ asset('front/img/icon-fav.svg') }}" alt="icono favoritos"></a>
-                        <div class="num-fav pointer-events-none">4</div>
+                        <div class="num-fav pointer-events-none">{{$favorites->count()}}</div>
                     </div>
-                    <a id="icon-search" href="#" title="Busca por palabras clave"><img class="icon-nav ml-3" src="{{ asset('front/img/icon-search.svg') }}" alt="icono búsqueda"></a>
-                </div> --}}
+                    {{-- <a id="icon-search" href="#" title="Busca por palabras clave"><img class="icon-nav ml-3" src="{{ asset('front/img/icon-search.svg') }}" alt="icono búsqueda"></a> --}}
+                </div>
                 <nav id="nav_a" class="justify-content-end mt-4 d-lg-flex d-none">
                     <a class="ml-3 {{Str::contains($currentUrl, "empresa") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.company.index')}}" title="Accede al apartado empresa">{{strtoupper(__('Menu.business'))}}</a>
                     <a class="ml-3 hover-dropdown {{Str::contains($currentUrl, "productos") ? "active": ""}}" href="javascript:;" title="Accede al apartado productos">{{strtoupper(__('Menu.products'))}}</a>
@@ -141,59 +141,13 @@
                         <a href="#" title="Más resultados de tu búsqueda" class="color-blue small font-bold">Más resultados <img class="ml-2" src="{{ asset('front/img/icon-arrow-right-blue.svg') }}" alt="icono vectorial flecha derecha"></a>
                     </div>
                 </div> --}}
-                {{-- <div id="favorito_modal" class="row position-absolute r-0 t-2 card pt-4 width-auto vw-lg-40 vw-md-50 vw-sm-60 vw-xs-90">
+                <div id="favorito_modal" class="row position-absolute r-0 t-2 card pt-4 width-auto vw-lg-40 vw-md-50 vw-sm-60 vw-xs-90">
                     <section id="close-favorito" class="vh-100 vw-100 position-fixed t-0 l-0"></section>
                     <div class="col-12 px-4">
-                        <p class="font-bold color-black">3 productos</p>
-                        <hr class="mt-3">
-                        <div class="row align-items-center mt-3">
-                            <div class="col-3">
-                                <a href="#" title="Accede al producto favorito"><img class="w-100 border-img" src="{{ asset('front/img/favoritos-1.jpg') }}" alt="imagen favoritos"></a>
-                            </div>
-                            <div class="col-7 px-0">
-                                <a href="#" title="Accede al producto favorito">
-                                    <p class="small color-blue">PASAMANERÍA</p>
-                                    <p class="small color-black font-bold">Aro embellecedor 42mm</p>
-                                </a>
-                            </div>
-                            <a href="#" title="Elimina el producto de tus favoritos" class="col-2 d-flex">
-                                <img class="w-50" src="{{ asset('front/img/icon-delete.svg') }}" alt="icono vectorial eliminar">
-                            </a>
-                        </div>
-                        <hr class="mt-3">
-                        <div class="row align-items-center mt-3">
-                            <div class="col-3">
-                                <a href="#" title="Accede al producto favorito"><img class="w-100 border-img" src="{{ asset('front/img/favoritos-1.jpg') }}" alt="imagen favoritos"></a>
-                            </div>
-                            <div class="col-7 px-0">
-                                <a href="#" title="Accede al producto favorito">
-                                    <p class="small color-blue">CINTAS</p>
-                                    <p class="small color-black font-bold">Bandolera</p>
-                                </a>
-                            </div>
-                            <a href="#" title="Elimina el producto de tus favoritos" class="col-2 d-flex">
-                                <img class="w-50" src="{{ asset('front/img/icon-delete.svg') }}" alt="icono vectorial eliminar">
-                            </a>
-                        </div>
-                        <hr class="mt-3">
-                        <div class="row align-items-center mt-3">
-                            <div class="col-3">
-                                <a href="#" title="Accede al producto favorito"><img class="w-100 border-img" src="{{ asset('front/img/favoritos-1.jpg') }}" alt="imagen favoritos"></a>
-                            </div>
-                            <div class="col-7 px-0">
-                                <a href="#" title="Accede al producto favorito">
-                                    <p class="small color-blue">CORDONES</p>
-                                    <p class="small color-black font-bold">Cordón retorcido de papel</p>
-                                </a>
-                            </div>
-
-                            <a href="#" title="Elimina el producto de tus favoritos" class="col-2 d-flex">
-                                <img class="w-50" src="{{ asset('front/img/icon-delete.svg') }}" alt="icono vectorial eliminar">
-                            </a>
-                        </div>
-                        <a href="favoritos.php" title="Ver todos tus productos favoritos" class="btn btn-fav w-100 my-4 py-2">VER FAVORITOS</a>
+                        <p class="font-bold color-black"><strong id="favorites_count">{{$favorites->count()}}</strong> {{__('Menu.products')}}<a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.favorites.index')}}" title="Ver todos tus productos favoritos" class="btn btn-fav w-100 my-4 py-2">VER FAVORITOS</a></p>
+                        <div id="favorites_place"></div>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
         <hr>
@@ -222,6 +176,92 @@
             </div>
         </div>
     </div>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        data = '{{$favorites}}';
+
+        $.ajax({
+            method: "POST",
+            url: '{{ route('fav.getProducts') }}',
+            data: {'values': data, "_token": "{{ csrf_token() }}"},
+            success : function(data){
+                data.forEach(function(item){
+                    $('#favorites_place').html($('#favorites_place').html() + `
+                    <hr class="mt-3 `+item.id+`">
+                    <div class="row align-items-center mt-3 `+item.id+`">
+                        <div class="col-3">
+                            <a href="`+item.link+`" title="Accede al producto favorito"><img class="w-100 border-img" src="{{ Storage::url('`+item.image+`') }}" alt="imagen favoritos"></a>
+                        </div>
+                        <div class="col-7 px-0">
+                            <a href="`+item.link+`" title="Accede al producto favorito">
+                                <p class="small color-black font-bold">`+item.name+`</p>
+                            </a>
+                        </div>
+                        <a href="javascript:;" onClick="setFavorite(`+item.id+`)" title="Elimina el producto de tus favoritos" class="col-2 d-flex">
+                            <img class="w-50" src="{{ asset('front/img/icon-delete.svg') }}" alt="icono vectorial eliminar">
+                        </a>
+                    </div>
+                    `);
+                });
+            },
+            error : function(xhr, status){
+                console.log(xhr,status);
+            }
+        });
+
+
+    function setFavorite(id) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#' + id).attr("src","{{ asset('front/img/fav-active.svg') }}");
+        $('#' + id).css("padding",".45rem");
+
+        $.ajax({
+            method: "POST",
+            url: '{{ route('fav') }}',
+            data: {'value': id, "_token": "{{ csrf_token() }}"},
+            success : function(data){
+                $('.num-fav').html(data.count);
+                if(data.action == 0) {
+                    $('#favorites_count').html(parseInt($('#favorites_count').html()) + 1);
+                    $('#favorites_place').html($('#favorites_place').html() + `
+                    <hr class="mt-3 `+data.product.id+`">
+                    <div class="row align-items-center mt-3 `+data.product.id+`">
+                        <div class="col-3">
+                            <a href="`+data.link+`" title="Accede al producto favorito"><img class="w-100 border-img" src="{{ Storage::url('`+data.product.image+`') }}" alt="imagen favoritos"></a>
+                        </div>
+                        <div class="col-7 px-0">
+                            <a href="`+data.link+`" title="Accede al producto favorito">
+                                <p class="small color-black font-bold">`+data.product.name+`</p>
+                            </a>
+                        </div>
+                        <a href="" onClick="setFavorite(`+data.product.id+`)" title="Elimina el producto de tus favoritos" class="col-2 d-flex">
+                            <img class="w-50" src="{{ asset('front/img/icon-delete.svg') }}" alt="icono vectorial eliminar">
+                        </a>
+                    </div>
+                    `);
+                } else {
+                    $('#' + id).attr("src","{{ asset('front/img/icon-favorito.svg') }}");
+                    $('#' + id).css("padding",".25rem");
+                    $('.' + id).remove();
+                    $('#favorites_count').html(parseInt($('#favorites_count').html()) - 1);
+                }
+            },
+            error : function(xhr, status){
+                console.log(xhr,status);
+            }
+        });
+    }
+    </script>
 </header>
 
 <section id="header" class="background-white w-100 z-100 opacity-0">

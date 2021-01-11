@@ -138,12 +138,6 @@
                                     <label for="">Orden</label>
                                     <input class="form-control" type="number" name="order" value="{{$product->order}}">
                                 </div>
-                                <div class="col-md-6 {{ !$product->outlet ? "d-none": "" }}" id="outlet-text">
-                                    <label for="">Descuento: (%)</label>
-                                    <input class="form-control" type="number" name="discount" value="{{$product->discount}}">
-                                </div>
-                            </div>
-                            <div class="row pb-3">
                                 <div class="col-md-6">
                                     <label>Etiquetas</label>
                                     <select class="select2" name="labels[]" multiple="true" >
@@ -225,6 +219,7 @@
                                                 <th>Ancho/Diámetro</th>
                                                 <th>Observaciones</th>
                                                 <th>Orden</th>
+                                                <th>Descuento</th>
                                                 <th class="td-acciones">Acciones</th>
                                             </tr>
                                         </thead>
@@ -261,6 +256,9 @@
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control " value="{{$caracteristic->order}}" name="order_car[]">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control discount" value="{{$caracteristic->discount}}" name="discount[]">
                                                 </td>
                                                 <td class="acciones">
                                                     <div class="btn-group">
@@ -414,6 +412,9 @@
                 <td>
                     <input type="number" class="form-control " name="order_car[]">
                 </td>
+                <td>
+                    <input type="number" class="form-control discount " name="discount[]">
+                </td>
                 <td class="acciones">
                     <div class="btn-group">
                         <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
@@ -448,15 +449,18 @@
             $('#row_' + num).remove();
         }
 
-        $('#outlet').click(function(){
-            if($( "#outlet-text" ).hasClass("d-none")){
-                $('#outlet-text').prop('required',true);
-                $('#outlet-text').removeClass('d-none');
+        if($("input[name=outlet]").is(':checked')) {
+            $(".discount").prop("disabled",false);
+        } else {
+            $(".discount").prop("disabled",true);
+        }
+
+        $('#outlet').change(function(){
+            if($("input[name=outlet]").is(':checked')){
+                $(".discount").prop("disabled",false);
             } else {
-                $('#outlet-text').prop('required',false);
-                $('#outlet-text').addClass('d-none');
+                $(".discount").prop("disabled",true);
             }
         });
-
     </script>
 @endsection

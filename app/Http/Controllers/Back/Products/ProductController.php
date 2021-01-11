@@ -82,7 +82,7 @@ class ProductController extends Controller
 
     public function store(RequestCategory $request)
     {
-
+        $request->slug = str_replace(" ","-",$request->slug);
         $product = Product::create($request->all());
         if(isset($request->references2)){
             for($i = 0; $i < sizeOf($request->references2); $i++){
@@ -100,7 +100,11 @@ class ProductController extends Controller
                 $product_caracteristic->flecortin_head = $request->flecortin_head;
                 $product_caracteristic->flecortin_width = $request->flecortin_width;
                 $product_caracteristic->order = $request->order_car[$i];
-
+                if(isset($request->discount[$i])){
+                    $product_caracteristic->discount = abs($request->discount[$i]);
+                } else {
+                    $product_caracteristic->discount = null;
+                }
                 $product_caracteristic->save();
             }
         }
@@ -215,6 +219,11 @@ class ProductController extends Controller
                 $product_caracteristic->flecortin_head = $request->flecortin_head;
                 $product_caracteristic->flecortin_width = $request->flecortin_width;
                 $product_caracteristic->order = $request->order_car[$i];
+                if(isset($request->discount[$i])){
+                    $product_caracteristic->discount = abs($request->discount[$i]);
+                } else {
+                    $product_caracteristic->discount = null;
+                }
 
                 $product_caracteristic->save();
             }
@@ -222,6 +231,7 @@ class ProductController extends Controller
 
 
         foreach ($request->productLanguages as $language) {
+            $language['slug'] = str_replace(" ","-",$language['slug']);
             $language["active"] = isset($language["active"]);
             $lang = $product->lang((int) $language['language_id']);
             if ($lang) {

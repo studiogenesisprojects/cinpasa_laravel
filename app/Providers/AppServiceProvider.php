@@ -6,6 +6,7 @@ use App\Http\View\Composers\HeaderComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
             'App\\Validators\\ReCaptcha@validate'
         );
         view()->composer('*', HeaderComposer::class);
+        Paginator::useBootstrap();
     }
 }

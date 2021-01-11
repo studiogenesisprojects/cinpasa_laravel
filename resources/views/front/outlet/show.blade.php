@@ -17,8 +17,8 @@
                         </li>
                         <li class="breadcrumb-item text-uppercase text-muted ">
                             <a
-                                href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.show', ['productCategory' => $productCategory->lang(App::getLocale())->slug])}}">
-                                {{$productCategory->lang()->name}} </a>
+                                href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.show', ['productCategory' => $product->categories[0]->lang(App::getLocale())->slug])}}">
+                                {{$product->categories[0]->lang()->name}} </a>
                         </li>
                         <li class="breadcrumb-item text-uppercase text-muted active"> {{$product->name}}</li>
                     </ol>
@@ -170,6 +170,7 @@
                                     @if(in_array(!null, $observations->toArray()))
                                         <th>{{__('Productos.observaciones')}}</th>
                                     @endif
+                                    <th>{{__('Productos.descuento')}}</th>
                                 </tr>
                             </thead>
                             <tbody id="caracteristics_body">
@@ -221,6 +222,9 @@
                                                 <input type="text" class="form-control " value="{{$observations[$i]}}" name="observations[]">
                                             </td>
                                         @endif
+                                        <td>
+                                            <span>-{{$product_caracteristics[$i]->discount}}%</span>
+                                        </td>
                                     </tr>
                                 </div>
                                 @endfor
@@ -285,97 +289,4 @@
         </div>
     </div>
 </section>
-
-
-
-@if ($relateds)
-    @include('front.partials.related')
-@endif
-
-{{-- @include('front.common.partials.mid-banner') --}}
-@include('front.common.modals.color')
 @endsection
-
-@push('js')
-<script>
-
-    $('[data-toggle="popover"]').popover({
-        trigger: "hover"
-       });
-
-    $('.favorit').each( (i, e) => {
-        $(e).click( ev => {
-            ev.preventDefault();
-            const id = $(ev.currentTarget).attr('id');
-            axios.post('/fav', {
-                value: id,
-            })
-            .then(r => {
-                if (r.data.action == 'added') {
-                    // $(ev.currentTarget).addClass('active')
-                    $(ev.currentTarget).html('<i class="far fa-trash-alt mr-3"></i></i>' + "{{__('Productos.producto_mostrar_no_favorito')}}")
-                }else{
-                    // $(ev.currentTarget).removeClass('active')
-                    $(ev.currentTarget).html('<i class="far fa-heart mr-3"></i>' + "{{__('Productos.producto_mostrar_favoritos')}}")
-                }
-
-                $('#header-fav-count').html(`(${r.data.count})`)
-            })
-            .catch(e => console.log(e.response))
-        })
-    })
-
-    $('.show-color-modal').each( (i, v) => {
-        $(v).click( e => {
-            var search = "";
-            var id = $(e.currentTarget).attr('id')
-            var cc = $(e.currentTarget).attr('cc')
-            $('#modal-color').modal('toggle')
-
-            axios.get('/colors/ajax/'+id +'/' + cc)
-            .then(r => {
-                $('#color-modal-name').html(r.data.color.name)
-                $('#color-modal-pantone').html(r.data.color.pantone)
-                $('#color-modal-description').html(r.data.description);
-                $('#color-modal-color').css('background-color', '#' + r.data.color.hex_color)
-                $('#color-modal-products').html('');
-                if (r.data.products.length > 0) {
-                    $('#color-modal-products').append(`
-                    <div class="col-12">
-                        <hr>
-                    </div>
-                    `)
-
-                    for(i = 0 ; i < 4; i++){
-
-                        search = "?color=" + r.data.color.id;
-
-                        var image = r.data.products[i]['primaryImage'].path.length != 0 ? encodeURI(r.data.products[i]['primaryImage'].path) : '/img/nofoto.png';
-                        var alt = r.data.products[i]['primaryImage'].alt.length != 0 ? r.data.products[i]['primaryImage'].alt : r.data.products[i]['name'];
-
-                        $('#color-modal-products').append(`
-
-                        <div class="col-md-3 col-6">
-                            <div class="box-product">
-                                <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProductRe', [
-                                    'product' => '${ r.data.products[i].slug}'
-                                ])}}">
-                                    <figure class="border mb-0 square box-product__figure ${ r.data.products[i].class}">
-                                        <img src="{{Storage::url('${image}')}}" class="box-product__img" alt="${r.data.products[i]['name']}">
-                                    </figure>
-                                    <div class="box-product-info">
-                                        <p class="text-primary"><strong>${r.data.products[i]['name']}</strong></p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        `)
-                    }
-                }
-            })
-            .catch(e => console.log(e.response))
-        })
-    })
-
-</script>
-@endpush

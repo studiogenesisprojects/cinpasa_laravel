@@ -31,8 +31,8 @@ class PetitionController extends Controller
             $comentaris = $comentaris . ' Cantidades: ' . $request->cantidades;
         }
 
-        if(isset($request->comentaris)){
-            $comentaris = $comentaris . ' Comentarios: ' . $request->comentaris;
+        if(isset($request->comentarios)){
+            $comentaris = $comentaris . ' Comentarios: ' . $request->comentarios;
         }
 
         if(isset($request->activity)){
@@ -52,6 +52,15 @@ class PetitionController extends Controller
             'comment' => $comentaris,
             'origen' => $request->origen,
         ]);
+
+        if ($request->productsIds) {
+            $productsIds = json_decode($request->productsIds);
+            foreach ($productsIds as $id) {
+                $petition->petitionProducts()->create([
+                    "product_id" => $id
+                ]);
+            }
+        }
 
         $email_catalan_spanish = "marketing@cinpasa.com";
         // $email_others = "diego.agudoal@gmail.com";

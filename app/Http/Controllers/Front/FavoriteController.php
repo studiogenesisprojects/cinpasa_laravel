@@ -7,7 +7,10 @@ use App\Models\Petition;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class FavoriteController extends Controller
 {
@@ -24,8 +27,27 @@ class FavoriteController extends Controller
                 return \str_replace('product-', '', $key);
             })->toArray()
         );
-        $products = Product::findMany($ps);
-        return view('front.favorites.index', compact('products'));
+
+        $products = new Collection;
+        $categories = new Collection;
+        $text = strtoupper(__('Menu.products'));
+
+        foreach($ps as $item){
+            $product = Product::find($item);
+
+            if(!$product){
+                $category = ProductCategory::find($item);
+                $categories->push($category);
+                $text = $text . '\n' . $category->name . ':';
+            } else {
+                $products->push($product);
+                $text = $text . '\n' . $product->name . ':';
+            }
+        }
+
+        $favorite_info = true;
+
+        return view('front.favorites.index', compact('products', 'text','categories', 'favorite_info'));
     }
 
     public function info(Request $request)
@@ -64,8 +86,19 @@ class FavoriteController extends Controller
             $request->session()->put('product-' . $request->value);
         }
 
-        $ps =
-            collect($request->session()->all())->filter(function ($e, $key) {
+        $product = Product::find($request->value);
+
+        if(!$product){
+            $product = ProductCategory::find($request->value);
+            $link = LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.show', ["productCategory" => $product]);
+        } else {
+            $link = LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
+                "productCategory" => $product->categories[0],
+                "product" => $product
+                ]);
+        }
+
+        $ps = collect($request->session()->all())->filter(function ($e, $key) {
                 return Str::contains($key, 'product-');
             })->map(function ($e, $key) {
                 return \str_replace('product-', '', $key);
@@ -73,7 +106,32 @@ class FavoriteController extends Controller
 
         return response()->json([
             "count" => $ps->count(),
-            "action" =>  $request->session()->exists('product-' . $request->value) ? "added" : "removed",
+            "action" =>  $request->session()->exists('product-' . $request->value) ? "0" : "1",
+            "product" => $product,
+            "link" => $link
         ]);
+    }
+
+    public function getProducts(Request $request) {
+        $values = str_replace("&quot;",'"',$request->values);
+        $array = [];
+
+        foreach(json_decode($values) as $id){
+            $product = Product::find($id);
+
+            if(!$product){
+                $product = ProductCategory::find($id);
+                $link = LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.show', ["productCategory" => $product]);
+            } else {
+                $link = LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
+                    "productCategory" => $product->categories[0],
+                    "product" => $product
+                    ]);
+            }
+
+            $array[] = array_merge($product->toArray(), ['link' => $link]);
+        }
+
+        return $array;
     }
 }

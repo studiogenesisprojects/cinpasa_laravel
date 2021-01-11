@@ -50,11 +50,6 @@ tl_favorito.set("#favorito_modal", {
     .to(".w-0", {
         width: "100%"
     })
-    .set("#icon-fav .icon-nav, .icon-fav .icon-nav", {
-        attr: {
-            src: "img/icon-fav-pink.svg"
-        }
-    }, 0)
 
 $("#icon-fav, .icon-fav").click(function () {
     event.preventDefault();

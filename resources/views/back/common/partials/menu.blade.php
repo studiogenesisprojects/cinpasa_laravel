@@ -250,7 +250,7 @@
                             <ul class="sub-menu">
                                 <li><a href="{{route('cvs.index')}}">CVs recibidos</a></li>
                                 <li><a href="{{route('ofertas-trabajo.index')}}">Ofertas</a></li>
-                                <li><a href="{{route('inscritos.index')}}">Inscritos</a></li>
+                                {{-- <li><a href="{{route('inscritos.index')}}">Inscritos</a></li> --}}
                             </ul>
                         </div>
                     </div>
@@ -277,7 +277,7 @@
             @endif
 
             @if(Auth()->user()->role->canRead(App\Models\Section::find(2)))
-                <li class="selected has-sub-menu no-sub-menu">
+            <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('lab')}}">
                     <div class="icon-w">
                         <div class="ti-image"></div>
@@ -286,7 +286,14 @@
                 </a>
             </li>
             @endif
-
+            <li class="selected has-sub-menu no-sub-menu">
+                <a href="{{route('outlet.index')}}">
+                    <div class="icon-w">
+                        <div class="ti-layout-list-large-image"></div>
+                    </div>
+                    <span>Outlet</span>
+                </a>
+            </li>
             </ul>
         </div>
     </div>
@@ -481,7 +488,6 @@
                 </div>
             </li>
             @endif
-            @if(1 == 0)
             @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
             <li class="selected has-sub-menu">
                 <a href="javascript:void(0)">
@@ -495,12 +501,11 @@
                         <ul class="sub-menu">
                             <li><a href="{{route('cvs.index')}}">CVs recibidos</a></li>
                             <li><a href="{{route('ofertas-trabajo.index')}}">Ofertas</a></li>
-                            <li><a href="{{route('inscritos.index')}}">Inscritos</a></li>
+                            {{-- <li><a href="{{route('inscritos.index')}}">Inscritos</a></li> --}}
                         </ul>
                     </div>
                 </div>
             </li>
-            @endif
             @endif
             @if(1 == 0)
             @if(Auth()->user()->role->canRead(App\Models\Section::find(15)))
@@ -523,7 +528,7 @@
             @endif
             @endif
             @if(Auth()->user()->role->canRead(App\Models\Section::find(2)))
-                <li class="selected has-sub-menu no-sub-menu">
+            <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('lab')}}">
                     <div class="icon-w">
                         <div class="ti-image"></div>
@@ -532,5 +537,13 @@
                 </a>
             </li>
             @endif
+            <li class="selected has-sub-menu no-sub-menu">
+                <a href="{{route('outlet.index')}}">
+                    <div class="icon-w">
+                        <div class="ti-layout-list-large-image"></div>
+                    </div>
+                    <span>Outlet</span>
+                </a>
+            </li>
         </ul>
     </div>

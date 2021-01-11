@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     @include('front.partials.head')
     <body class="menu-position-side menu-side-left full-screen with-content-panel">
         <!-- Google Tag Manager (noscript) -->
@@ -39,6 +40,27 @@
                     scrollTop: $("#contact-form-products").offset().top
                 }, 2000);
             });
+
+            // $('.num-fav').html(6);
+
+            // console.log({{Cookie::get('favorites')}});
+            // $.ajaxSetup({
+            //     headers: {
+            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //     }
+            // });
+
+            // $.ajax({
+            //     method: "POST",
+            //     url: '{{ route('front.getFavorites') }}',
+            //     data: {'values':'{{Cookie::get('favorites')}}', "_token": "{{ csrf_token() }}"},
+            //     success : function(data){
+            //         document.write(data);
+            //     },
+            //     error : function(xhr, status){
+            //         console.log(xhr,status);
+            //     }
+            // });
         </script>
     </body>
 </html>

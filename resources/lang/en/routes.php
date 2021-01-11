@@ -73,7 +73,8 @@ return [
         'show' => 'work-with-us/{jobOffer}',
     ],
     'outlet' => [
-        'index' => 'outlet'
+        'index' => 'outlet',
+        'show' => 'outlet/{product}',
     ],
     'lab' => [
         'index' => 'lab',

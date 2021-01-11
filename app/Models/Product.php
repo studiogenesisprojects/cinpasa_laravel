@@ -143,6 +143,11 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
         return $this->belongsToMany(Lab::class, 'product_labs', 'product_id', 'lab_id');
     }
 
+    public function higherDiscount()
+    {
+        return $this->hasOne(ProductCaracteristics::class)->orderBy('discount', 'desc')->take(1);
+    }
+
     public function relateds()
     {
         $relateds = Product::whereHas('categories',function($q) {

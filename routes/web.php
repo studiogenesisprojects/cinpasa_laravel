@@ -126,6 +126,7 @@ Route::group([
      * Outlet
      */
     Route::get(LaravelLocalization::transRoute('routes.outlet.index'), 'Front\OutletController@index');
+    Route::get(LaravelLocalization::transRoute('routes.outlet.show'), 'Front\OutletController@show');
     Route::get('/outlet', 'Front\OutletController@index')->name('outlet');
 
     /**
@@ -134,8 +135,8 @@ Route::group([
     Route::get(LaravelLocalization::transRoute('routes.lab.index'), 'Front\LabController@index');
     Route::get(LaravelLocalization::transRoute('routes.lab.show_products'), 'Front\LabController@showProducts');
 
-
-    Route::post('fav', 'Front\FavoriteController@fav');
+    Route::post('fav', 'Front\FavoriteController@fav')->name('fav');
+    Route::post('fav2', 'Front\FavoriteController@getProducts')->name('fav.getProducts');
     Route::post('search', 'Front\ProductController@filter');
     //searchers
     Route::post('endings/search', 'Front\EndingController@search');
@@ -163,3 +164,4 @@ Route::post('work-with-us', 'Front\WorkWithUsController@store')->name('work-with
 Route::get('materials/{locale}', 'Front\MaterialController@fetch');
 Route::get('categories/{sup}/{locale}', 'Front\ProductController@fetchCategories');
 Route::get('eco-page-url/{locale}', 'Front\EcologyController@getPageUrl');
+Route::post('get-favorites', 'Front\FavoritesController@getFavorites')->name('front.getFavorites');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Back\Outlet;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\FeaturedProduct;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OutletController extends Controller
@@ -16,7 +18,12 @@ class OutletController extends Controller
     public function index()
     {
         $banners = Banner::all();
-        return view('back.outlet.index', compact('banners'));
+        $products = Product::where('active', 1)->where('outlet', 1)
+                        ->whereHas('caracteristics',function($q) {
+                            $q->whereNotNull('discount');
+                        })->get();
+        $featured = FeaturedProduct::all();
+        return view('back.outlet.index', compact('banners', 'products', 'featured'));
     }
 
     /**
@@ -96,5 +103,19 @@ class OutletController extends Controller
         $banner = Banner::find($id);
         $banner->delete();
         return redirect()->route('outlet.index')->with('message', 'Banner borrat correctament!');
+    }
+
+    public function featuredProducts(Request $request){
+        FeaturedProduct::whereNotNull('id')->delete();
+
+        foreach($request->productos_destacados as $featured) {
+            if($featured){
+                $product = new FeaturedProduct;
+                $product->product_id = $featured;
+                $product->save();
+            }
+        }
+
+        return redirect()->route('outlet.index')->with('message', 'Productos destacados cambiados correctamente.');
     }
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Carousel;
+use App\Models\FeaturedProduct;
 use App\Models\Product;
+use App\Models\ProductCaracteristics;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
@@ -18,13 +20,24 @@ class OutletController extends Controller
      */
     public function index()
     {
-        $higherDiscount = Product::where('active', 1)->where('outlet', 1)->orderBy('discount', 'desc')->take(5)->get();
-        $idHigher = $higherDiscount->pluck('id');
-        $bottomOnes = Product::where('active', 1)->whereNotIn('id', $idHigher)->where('outlet', 1)->orderBy('discount', 'desc')->get();
+        $featureds = FeaturedProduct::all();
+        $idHigher = $featureds->pluck('product_id');
+        $bottomOnes = ProductCategory::whereHas('products', function($q) use($idHigher) {
+            $q->where('active', 1)->where('outlet', 1)->whereNotIn('products.id', $idHigher);
+        })->orderBy('order', 'desc')->get();
+
+        $products_sorted = [];
+        foreach($bottomOnes as $category){
+            $products = $category->outlet_products->where('active', 1)->where('outlet', 1)->whereNotIn('id', $idHigher)->sortBy('order');
+            $products_sorted[] = $products;
+        }
+
+        $bottomOnes = $products_sorted;
+
         $carousel = Carousel::find(26);
         $banner = Banner::where('active', 1)->take(1)->inRandomOrder()->first();
 
-        return view('front.outlet.index', compact('higherDiscount', 'bottomOnes','carousel', 'banner'));
+        return view('front.outlet.index', compact('featureds', 'bottomOnes','carousel', 'banner'));
     }
 
     /**
@@ -54,9 +67,47 @@ class OutletController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        if($product->active == 0){
+            abort(404);
+        }
+        $finishedColumns = [];
+        $finisheds = $product->finisheds;
+        $finisheds = $finisheds->sortBy('order');
+        foreach ($finisheds as $index => $f) {
+            $finishedColumns[$index / 7][] = $f;
+        }
+
+        $colorCategories = $product->colorCategories->filter(function ($value, $key) {
+            return $value->active == 1;
+        });
+
+        $applicationCategories = $product->applications->groupBy(function ($item, $k) {
+            return $item->applicationCategories->first()->name ?? "";
+        });
+
+        $product_caracteristics = ProductCaracteristics::where('product_id', $product->id)->whereNotNull('discount')->orderBy('discount', 'desc')->orderBy('order')->get();
+
+        $references = $product_caracteristics->pluck('references');
+        $width = $product_caracteristics->pluck('width');
+        $bags = $product_caracteristics->pluck('bags');
+        $laces = $product_caracteristics->pluck('laces');
+        $rapport = $product_caracteristics->pluck('rapport');
+        $diameter = $product_caracteristics->pluck('diameter');
+        $length = $product_caracteristics->pluck('length');
+        $width_diameter = $product_caracteristics->pluck('width_diameter');
+        $observations = $product_caracteristics->pluck('observations');
+
+        $relateds = $product->relateds();
+        $more_info_trigger = 1;
+
+        return view('front.outlet.show', compact('relateds',
+         'product_caracteristics',
+         'references', 'width', 'bags', 'laces', 'rapport', 'diameter', 'length', 'width_diameter', 'observations',
+         'product', 'finishedColumns',
+           'colorCategories',
+           'applicationCategories', 'more_info_trigger'));
     }
 
     /**

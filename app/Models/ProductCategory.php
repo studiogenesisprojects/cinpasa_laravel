@@ -29,6 +29,13 @@ class ProductCategory extends TranslatedModel implements LocalizedUrlRoutable
         return $this->belongsToMany(Product::class);
     }
 
+    public function outlet_products()
+    {
+        return $this->belongsToMany(Product::class)->whereHas('caracteristics',function($q) {
+            $q->whereNotNull('discount');
+        });
+    }
+
     public function father()
     {
         return $this->belongsTo(ProductCategory::class, 'sup_product_category');

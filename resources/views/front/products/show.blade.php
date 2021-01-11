@@ -101,10 +101,7 @@
                                         "productCategory" => $product->categories[0],
                                         "product" => $product
                                         ])}}" title="Obten información de este artículo"><img class="btn-products p-1 mr-1" src="{{ asset('front/img/icon-info.svg') }}" alt="icono información"></a>
-                                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
-                                        "productCategory" => $product->categories[0],
-                                        "product" => $product
-                                        ])}}" title="Añade a favoritos este artículo"><img class="btn-products p-1" src="{{ asset('front/img/icon-favorito.svg') }}" alt="icono favoritos"></a>
+                                    <a href="javascript:;" onClick="setFavorite({{$product->id}})" title="Añade a favoritos este artículo"><img class="btn-products" style="{{request()->session()->exists('product-' . $product->id) ? 'padding: .45rem' : 'padding: .25rem'}}" id="{{$product->id}}" src="{{request()->session()->exists('product-' . $product->id) ? asset('front/img/fav-active.svg') : asset('front/img/icon-favorito.svg') }}" alt="icono favoritos"></a>
                                 </div>
                             </div>
                             <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [

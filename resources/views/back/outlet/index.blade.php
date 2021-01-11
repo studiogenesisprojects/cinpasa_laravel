@@ -52,14 +52,42 @@
                         </tfoot>
                     </table>
                 </div>
+                <form action="{{route('outlet.featured')}}" method="post">
+                    @csrf
+                    <h4>
+                        Productos destacados:
+                    </h4>
+                    <div class="row" id="noticias">
+                        @for($i = 0; $i < 5; $i++)
+                        <div class="col-sm-4">
+                            <label>Producto número {{$i + 1}}</label>
+                            <select name="productos_destacados[]" class="form-control select2">
+                                <option value="">Selecciona un producto de la lista</option>
+                                @foreach($products as $product)
+                                    <option value="{{$product->id}}" {{isset($featured[$i]) && $product->id == $featured[$i]->product_id ? 'selected' : ''}}>{{$product->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @endfor
+                    </div>
+                    <div class="form-buttons-w">
+                        <button class="btn btn-success" type="submit">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script>
+    $('.select2').select2();
+</script>
 @include('back.common.modals.modal-delete')
 @endsection
 
-@section('swal.error.text', "El LAB no se ha podido borrar porque se esta usando")
+@section('swal.error.text', "El Banner no se ha podido borrar porque se esta usando")
 
 @section('js')
     <script>

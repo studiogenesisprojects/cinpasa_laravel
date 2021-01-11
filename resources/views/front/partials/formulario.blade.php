@@ -2,6 +2,11 @@
     <div class="container mt-5" id="contact-form-products">
         <form action="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.contact.store')}}" method="POST">
             @csrf
+            @if(isset($favorite_info))
+            <input type="hidden" name="productsIds" value="{{$products->map(function ($product){
+                return $product->id;
+            })}}">
+            @endif
             <div class="row">
                 <div class="col-lg-5 col-md-6 mt-5">
                     <h3 class="before-title">{{__('ContactaFooter.titulo')}}</h3>
@@ -109,7 +114,7 @@
                         </div>
                         <div class="col-12 mt-3 d-none" id="comentarios-text">
                             <div class="form-group">
-                                <textarea class="form-control background-blue-light" name="comentarios" rows="3"></textarea>
+                                <textarea class="form-control background-blue-light" name="comentarios" id="comentarios-text-new" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="col-12 mt-3">

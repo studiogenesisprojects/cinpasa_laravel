@@ -71,7 +71,9 @@ return [
         'show' => 'работать-с-нами/{jobOffer}',
     ],
     'outlet' => [
-        'index' => 'выход'
+        'index' => 'выход',
+        'show' => 'выход/{product}',
+
     ],
     'lab' => [
         'index' => 'лаборатория',
