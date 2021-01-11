@@ -108,8 +108,7 @@ class FavoriteController extends Controller
             "count" => $ps->count(),
             "action" =>  $request->session()->exists('product-' . $request->value) ? "0" : "1",
             "product" => $product,
-            "link" => $link,
-            "image_" => $product->getPrimaryImageUrlAttribute()
+            "link" => $link
         ]);
     }
 
@@ -123,14 +122,16 @@ class FavoriteController extends Controller
             if(!$product){
                 $product = ProductCategory::find($id);
                 $link = LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.show', ["productCategory" => $product]);
+                $image =  $product->image;
             } else {
                 $link = LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
                     "productCategory" => $product->categories[0],
                     "product" => $product
                     ]);
+                $image = $product->getPrimaryImageUrlAttribute();
             }
 
-            $array[] = array_merge($product->toArray(), ['link' => $link]);
+            $array[] = array_merge($product->toArray(), ['link' => $link, 'image_' => $image]);
         }
 
         return $array;
