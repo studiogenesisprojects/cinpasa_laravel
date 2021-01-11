@@ -113,7 +113,7 @@
                     </div>
                     <hr>
                     <div class="d-flex justify-content-end py-3">
-                        <button onClick="setFavorite({{$product->id}})" class="btn btn-third">Añadir a favoritos</button>
+                        <button onClick="setFavorite({{$product->id}})" class="btn btn-third"><img src="{{asset('front/img/fav-active.svg')}}">Añadir a favoritos</button>
                     </div>
                     <hr>
                 </div>
@@ -241,7 +241,7 @@
                         <a href="#" title="Más información sobre el color" class="card-color p-2 mr-3 mt-2 show-color-modal" data-toggle="modal" cc="{{$colorCategory->id}}" id="{{$color->id}}"
                             data-target="#modal-color" >
                             <div class="color" style="background:#{{$color->hex_color}}">
-                                <img class="position-absolute t-0 r-0 background-blue p-1 icon-plus-color" src="{{ asset('front/img/icon-plus.svg') }}" alt="icono más">
+                                <img class="position-absolute t-0 r-0 background-blue p-1 icon-plus-color" src="{{request()->session()->exists('product-' . $product->id) ? asset('front/img/icon-plus.svg') : ''}}" alt="icono más">
                             </div>
                             <p class="small-xs font-semibold mt-2">{{$color->name}}</p>
                         </a>
