@@ -113,7 +113,7 @@
                     </div>
                     <hr>
                     <div class="d-flex justify-content-end py-3">
-                        <p class="btn btn-third">Añadir a favoritos</p>
+                        <button onClick="setFavorite({{$product->id}})" class="btn btn-third">Añadir a favoritos</button>
                     </div>
                     <hr>
                 </div>

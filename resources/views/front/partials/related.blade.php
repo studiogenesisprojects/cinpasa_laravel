@@ -18,7 +18,7 @@
                             </a>
                             <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
                                 <a href="#" title="Compartir este artículo"><img class="btn-products p-1 mr-1" src="{{ asset('front/img/icon-share.svg') }}" alt="icono compartir"></a>
-                                <a href="#" title="Añade a favoritos este artículo"><img class="btn-products p-1" src="{{ asset('front/img/icon-favorito.svg') }}" alt="icono favoritos"></a>
+                                <a href="javascript:;" onClick="setFavorite({{$related->id}})" title="Añade a favoritos este artículo"><img class="btn-products p-1" src="{{ asset('front/img/icon-favorito.svg') }}" alt="icono favoritos"></a>
                             </div>
                         </div>
                         <p class="font-bold color-black mt-4">{{$related->name}}</p>
