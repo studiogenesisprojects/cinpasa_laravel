@@ -18,7 +18,7 @@
                                 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
                                             "productCategory" => $product->categories[0],
                                             "product" => $product
-                                        ])}}" title="Accede al producto favorito"><img class="w-100 border-img" src="{{Storage::url($product->image)}}" alt="icono favorito"></a>
+                                        ])}}" title="Accede al producto favorito"><img class="w-100 border-img" src="{{Storage::url($product->getPrimaryImageUrlAttribute())}}" alt="icono favorito"></a>
                             </div>
                             <div class="col-9">
                                 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
