@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
     @include('front.partials.head')
     <body class="menu-position-side menu-side-left full-screen with-content-panel">
         <!-- Google Tag Manager (noscript) -->

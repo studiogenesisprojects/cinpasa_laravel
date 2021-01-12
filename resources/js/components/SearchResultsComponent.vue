@@ -128,6 +128,7 @@ export default {
     }
   },
   async mounted() {
+      console.log('hola');
     const query = window.location.search;
     const response = await axios.get(
       "/get-search-results/" + this.locale + "/" + query

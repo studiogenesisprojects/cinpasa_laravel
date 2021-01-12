@@ -16,14 +16,13 @@
     </div>
 </div>
 <section class="intro-text py-5">
-    <div class="container">
+    <div class="container" id="app">
         <search-results-component :favorites='{{ $favorites }}'
         :locale="'{{ App::getLocale() }}'"
         :title="'{{addslashes((__('Productos.buscador_productos_titulo')))}}'"
         :nresults="'{{addslashes(__('Buscador.sin_resultados'))}}'"></search-results-component>
     </div>
 </section>
-
 @endsection
 @push('js')
 <script>
