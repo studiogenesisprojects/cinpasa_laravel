@@ -1,6 +1,6 @@
 @extends('front.common.main')
-@section('meta-title', $product->lang(App::getLocale())->seo_title ?? $product->lang(App::getLocale())->title)
-@section('meta-description', $product->lang(App::getLocale())->seo_description ?? $product->lang(App::getLocale())->description )
+@section('meta-title', $product->lang(App::getLocale())->seo_title ?? $product->lang(App::getLocale())->seo_title)
+@section('meta-description', $product->lang(App::getLocale())->seo_description ?? $product->lang(App::getLocale())->seo_description )
 
 @section('content')
 <section id="home">

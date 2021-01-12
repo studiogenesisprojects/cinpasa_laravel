@@ -1,7 +1,8 @@
 @extends('front.common.main')
-@section('meta-title', $productCategory->lang(App::getLocale())->seo_title ?? '')
-@section('meta-description', $productCategory->lang(App::getLocale())->seo_description ?? "" )
+@section('meta-title', $productCategory->lang(App::getLocale())->seo_title ?? $productCategory->lang(App::getLocale())->seo_title)
+@section('meta-description', $productCategory->lang(App::getLocale())->seo_description ?? $productCategory->lang(App::getLocale())->seo_description )
 @section('content')
+
 <section>
     <div class="container-fluid">
         <div class="row">
