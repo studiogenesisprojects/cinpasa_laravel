@@ -223,6 +223,7 @@
         });
 
         $('#' + id).attr("src","{{ asset('front/img/fav-active.svg') }}");
+        $('#fav_button').attr("src","{{ asset('front/img/fav-active.svg') }}");
         $('#' + id).css("padding",".45rem");
 
         $.ajax({
@@ -251,6 +252,7 @@
                     `);
                 } else {
                     $('#' + id).attr("src","{{ asset('front/img/icon-favorito.svg') }}");
+                    $('#fav_button').attr("src","");
                     $('#' + id).css("padding",".25rem");
                     $('.' + id).remove();
                     $('#favorites_count').html(parseInt($('#favorites_count').html()) - 1);

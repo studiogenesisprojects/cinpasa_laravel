@@ -113,7 +113,7 @@
                     </div>
                     <hr>
                     <div class="d-flex justify-content-end py-3">
-                        <button onClick="setFavorite({{$product->id}})" class="btn btn-third"><img src="{{request()->session()->exists('product-' . $product->id) ? asset('front/img/fav-active.svg') : ''}}">Añadir a favoritos</button>
+                        <button onClick="setFavorite({{$product->id}})" class="btn btn-third"><img id="fav_button" src="{{request()->session()->exists('product-' . $product->id) ? asset('front/img/fav-active.svg') : ''}}">Añadir a favoritos</button>
                     </div>
                     <hr>
                 </div>
