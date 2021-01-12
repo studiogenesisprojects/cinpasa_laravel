@@ -17,4 +17,6 @@
     {!! htmlScriptTagJsApi(['lang' => 'es']) !!}
 
     <title>Cinpasa</title>
+    <meta name="title" content="@yield('meta-title')">
+    <meta name="description" content="@yield('meta-description')">
 </head>
