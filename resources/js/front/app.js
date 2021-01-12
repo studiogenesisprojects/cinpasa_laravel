@@ -57,7 +57,7 @@ Vue.component(
 
 Vue.component(
     "search-results-component",
-    require("../components/SearchResultsComponent").default
+    require("../components/SearchResultsComponent.vue").default
 );
 
 const app = new Vue({
