@@ -17,7 +17,6 @@
                             <img class="w-100 border-img" src="{{ Storage::url($related->getPrimaryImageUrlAttribute()) }}" alt="imagen relacionada">
                             </a>
                             <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
-                                <a href="#" title="Compartir este artículo"><img class="btn-products p-1 mr-1" src="{{ asset('front/img/icon-share.svg') }}" alt="icono compartir"></a>
                                 <a href="javascript:;" onClick="setFavorite({{$related->id}})" title="Añade a favoritos este artículo"><img class="btn-products" style="{{request()->session()->exists('product-' . $related->id) ? 'padding: .45rem' : 'padding: .25rem'}}" id="{{$related->id}}" src="{{request()->session()->exists('product-' . $related->id) ? asset('front/img/fav-active.svg') : asset('front/img/icon-favorito.svg') }}" alt="icono favoritos"></a>
                             </div>
                         </div>
