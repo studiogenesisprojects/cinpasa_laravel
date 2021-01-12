@@ -1,12 +1,16 @@
 @extends('front.common.main')
 
 @section('content')
-
+@if(isset($isLab))
+    @include('front.home.carousel2')
+@else
+    <br><br><br>
+@endif
 <div class="container">
     <div class="row">
         <div class="col-12">
             <div id="searcher-menu">
-                @include('front.common.partials.searcher')
+                @include('front.home.barra-busqueda')
             </div>
         </div>
     </div>
