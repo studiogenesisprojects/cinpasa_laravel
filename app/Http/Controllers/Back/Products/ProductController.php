@@ -348,7 +348,7 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
 
-            $path = $request->file('image')->storeAs('public/productos', $request->file('image')->getClientOriginalName());
+            $path = $request->file('image')->storeAs('productos', $request->file('image')->getClientOriginalName());
 
             if ($galery) {
                 $image = ProductGaleryImage::create([
