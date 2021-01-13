@@ -40,6 +40,11 @@ Vue.component(
     require("./components/admin/Application.vue").default
 );
 
+Vue.component(
+    "search-results-component",
+    require("./components/SearchResultsComponent.vue").default
+);
+
 const app = new Vue({
     el: "#app"
 })

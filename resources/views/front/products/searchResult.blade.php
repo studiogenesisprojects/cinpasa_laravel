@@ -6,15 +6,7 @@
 @else
     <br><br><br>
 @endif
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div id="searcher-menu">
-                @include('front.home.barra-busqueda')
-            </div>
-        </div>
-    </div>
-</div>
+@include('front.home.barra-busqueda')
 <section class="intro-text py-5">
     <div class="container" id="app">
         <search-results-component :favorites='{{ $favorites }}'

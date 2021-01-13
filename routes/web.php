@@ -59,7 +59,7 @@ Route::group([
      */
     //no mover de aqui, sino no funciona
     Route::get(LaravelLocalization::transRoute('routes.products.searchProducts'), 'Front\ProductController@search')->name('searcher');
-    Route::get('get-search-results/{locale}', 'Front\ProductController@getSearchResults');
+    Route::get('get-search-results/{locale}', 'Front\ProductController@getSearchResults')->name('searcherv2');
 
     Route::post('/filter','Front\ProductController@filter_alph')->name('back.product_filters');
 

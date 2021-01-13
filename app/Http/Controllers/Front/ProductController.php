@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Carousel;
+use App\Models\Material;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Models\Product;
 use App\Models\ProductCaracteristics;
+use App\Models\ProductColor;
 use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
@@ -36,6 +38,10 @@ class ProductController extends Controller
             abort(404);
         }
 
+        $categories = ProductCategory::where('active', 1)->get();
+        $materials = Material::where('active', 1)->get();
+        $colors = ProductColor::where('active', 1)->get();
+
         if($request->filter) {
             $filter = $request->filter;
         } else {
@@ -54,7 +60,7 @@ class ProductController extends Controller
             }
             $productCategoryChildrens = $productCategory->childrens;
             $fathers = ProductCategory::where('sup_product_category', null)->get();
-            return view('front.products.showFather', compact('productCategory', 'filter','productCategoryChildrens', 'fathers', 'products','more_info_trigger'));
+            return view('front.products.showFather', compact('productCategory', 'categories','materials','colors','filter','productCategoryChildrens', 'fathers', 'products','more_info_trigger'));
         }
         $products = $productCategory->products;
         if($filter == 1) {
@@ -64,7 +70,7 @@ class ProductController extends Controller
         } else {
             $products = $products->sortByDesc('order');
         }
-        return view('front.products.show', compact('productCategory', 'products','filter','more_info_trigger'));
+        return view('front.products.show', compact('productCategory', 'categories','materials','colors','products','filter','more_info_trigger'));
     }
 
     public function showProduct(ProductCategory $productCategory, Product $product)
@@ -146,21 +152,29 @@ class ProductController extends Controller
 
     public function search(Request  $request)
     {
-        return view('front.products.searchResult');
+        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
+        $materials = Material::where('active', 1)->get();
+        $colors = ProductColor::where('active', 1)->get();
+
+        return view('front.products.searchResult', compact('categories', 'materials', 'colors'));
     }
 
     public function getSearchResults(Request $request, $locale)
     {
+
         app()->setLocale($locale);
         $results = Product::where('active', true)->whereHas('languages', function ($q) use ($locale) {
             $q->where('language_id', Product::getLangIndex($locale))->where('active', true);
         })->with(['primaryImage', 'ecoLogos'])->orderBy('order');
+
         $append = [];
+        //Nombre
         if ($request->input('name')) {
             $results = $results->whereHas('languages', function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->input('name') . '%')
                     ->orWhere('description', 'like', '%' . $request->input('name') . '%');
             });
+
             if ($results->count() === 0) {
                 $results = Product::where('active', true)->whereHas('languages', function ($q) {
                     $q->where('active', true);
@@ -172,69 +186,60 @@ class ProductController extends Controller
             $append["name"] = $request->input('name');
         }
 
+        //Ancho
+        if ($request->input('width')) {
+            $results = $results->whereHas('caracteristics', function ($q) use ($request) {
+                $q->where('width', $request->input('width'));
+            });
+
+            $append["width"] = $request->input('width');
+        }
+
+        //Tipo
+        if ($request->input('application')) {
+            $results = $results->whereHas('categories', function ($q) use ($request) {
+                $q->where('product_categories.id', $request->input('application'));
+            });
+
+            $append["application"] = $request->input('application');
+        }
+
+        //Material
         if ($request->input('material')) {
             $results = $results->whereHas('materials', function ($q) use ($request) {
-                $q->whereHas('categories', function ($q2) use ($request) {
-                    $q2->where('material_categories.id', $request->input('material'));
-                });
+                $q->where('materials.id', $request->input('material'));
             });
+
             $append["material"] = $request->input('material');
         }
 
+        //Bolsas
+        if ($request->input('bags')) {
+            $results = $results->whereHas('caracteristics', function ($q) use ($request) {
+                $q->where('bags', $request->input('bags'));
+            });
+
+            $append["bags"] = $request->input('bags');
+        }
+
+        //Ratios
+
+        //Cordones
+        if ($request->input('laces')) {
+            $results = $results->whereHas('caracteristics', function ($q) use ($request) {
+                $q->where('laces', $request->input('laces'));
+            });
+
+            $append["laces"] = $request->input('laces');
+        }
+
+        //Color
         if ($request->input('color')) {
             $results = $results->whereHas('categoryColors', function ($q) use ($request) {
                 $q->whereHas('colors', function ($q) use ($request) {
                     $q->where('product_colors.id', $request->input("color"));
                 });
             });
-        }
-
-        if ($request->input('application')) {
-            $results = $results->whereHas('applications', function ($q) use ($request) {
-                $q->where('aplications.id', $request->input('application'));
-            });
-            $append["application"] = $request->input('application');
-        }
-        if ($request->input('shade')) {
-            $results = $results->whereHas('colorCategories', function ($q) use ($request) {
-                $q->whereHas('colors', function ($q) use ($request) {
-                    $q->whereHas('shades', function ($q) use ($request) {
-                        $q->where('product_color_shades.id', $request->input('shade'));
-                    });
-                });
-            });
-            $append["shade"] = $request->input('shade');
-        }
-
-        if ($request->input('category')) {
-            $results = $results->whereHas('categories', function ($q) use ($request) {
-                $q->where('product_categories.id', $request->input('category'));
-            });
-            $append["category"] = $request->input('category');
-        }
-
-        if ($request->input('braid')) {
-            $results = $results->where('brided_id', $request->input('braid'));
-            $append["braid"] = $request->input('braid');
-        }
-
-        if ($request->input('form')) {
-            $results = $results->where('form_id', $request->input('form'));
-            $append["form"] = $request->input('form');
-        }
-
-        if ($request->input('ending')) {
-            $results = $results->whereHas('finisheds', function ($q) use ($request) {
-                $q->where('finisheds.id', $request->input('ending'));
-            });
-            $append["ending"] = $request->input('ending');
-        }
-
-        if ($request->input('diameter')) {
-            $results = $results->whereHas('references', function ($q) use ($request) {
-                $q->where('diametro', $request->input('diameter'));
-            });
-            $append["diameter"] = $request->input('diameter');
         }
 
         $results = $results->paginate(8);

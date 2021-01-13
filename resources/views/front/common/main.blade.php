@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     @include('front.partials.head')
     <body class="menu-position-side menu-side-left full-screen with-content-panel">
         <!-- Google Tag Manager (noscript) -->
@@ -20,6 +20,7 @@
             </a>
         @endif
         @yield('content')
+        <script src="{{asset('js/front/app.js')}}"></script>
         @if(!isset($no_contact))
         @include('front.partials.formulario')
         @endif

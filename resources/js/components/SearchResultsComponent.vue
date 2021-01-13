@@ -2,7 +2,6 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-12">
-        <img src="/storage/img/bar.svg" alt="bar" class="img-fluid my-4" />
         <h2 v-if="items.length > 0" class="title-xl text-primary">{{ title }}</h2>
         <div class="py-5" v-else-if="items.lenth == 0 && firstLoadDone">
           <h2 class="title-xl text-danger">{{ nresults }}</h2>
@@ -16,7 +15,7 @@
             <img
               @click.stop="goTo(product)"
               v-if="product.primary_image"
-              :src="`/storage/${product.primary_image.path}`"
+              :src="`/storage/public/${product.primary_image.path}`"
               :alt="product.primary_image.alt.length > 0 ? product.primary_image.alt : product.name"
               class="box-product__img"
             />
@@ -128,7 +127,6 @@ export default {
     }
   },
   async mounted() {
-      console.log('hola');
     const query = window.location.search;
     const response = await axios.get(
       "/get-search-results/" + this.locale + "/" + query
