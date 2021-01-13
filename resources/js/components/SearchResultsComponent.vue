@@ -59,6 +59,7 @@
             </div>
           </a>
         </div>
+        <br>
       </div>
       <div class="col-md-12 text-center">
         <infinite-loading v-if="nextUrl" class="text-center" spinner="spiral" @infinite="fetchNext">
