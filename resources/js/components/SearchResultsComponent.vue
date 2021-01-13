@@ -45,12 +45,12 @@
                 </span>
               </a>
             </div>
-            <span
+            <!-- <span
               :class="'add-product bg-light favorit ' + (favs.filter(f => f == product.id).length > 0 ? 'active' : '')"
               @click.stop="favorite(product)"
             >
               <i class="far fa-heart text-primary"></i>
-            </span>
+            </span> -->
           </figure>
           <a :id="`product_${product.id}`" :href="`${product.url}`">
             <div class="box-product-info">
