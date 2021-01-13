@@ -41,7 +41,7 @@ export default {
             uid: image.id,
             name: "imagen",
             status: "done",
-            url: "/storage/" + image.path,
+            url: "/storage/" + image.path.replace('public/', ''),
             languages: this.languages.map(language => {
               const ml = image.languages.filter(
                 l => l.language_id === language.id
