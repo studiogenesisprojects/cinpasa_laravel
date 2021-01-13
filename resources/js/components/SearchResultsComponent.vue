@@ -2,12 +2,13 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-12">
-        <h2 v-if="items.length > 0" class="title-xl text-primary">{{ title }}</h2>
+        <h3 v-if="items.length > 0">{{ title }}</h3>
         <div class="py-5" v-else-if="items.lenth == 0 && firstLoadDone">
-          <h2 class="title-xl text-danger">{{ nresults }}</h2>
+          <h3>{{ nresults }}</h3>
         </div>
       </div>
     </div>
+    <br>
     <div class="row" v-if="items.length>0">
       <div class="col-md-3" v-for="product in items" :key="product.id">
         <div class="box-product">
@@ -53,13 +54,8 @@
           </figure>
           <a :id="`product_${product.id}`" :href="`${product.url}`">
             <div class="box-product-info">
-              <p class="text-primary">
-                <strong>{{product.name}}</strong>
-              </p>
-              <p
-                class="description text-muted"
-                v-html="product.description.substring(0,142).trim() + '...'"
-              ></p>
+            <p class="small color-blue mt-3">{{ product.categories[0].name }}</p>
+            <p class="font-bold color-black">{{ product.name }}</p>
             </div>
           </a>
         </div>

@@ -7,7 +7,7 @@
     <br><br><br>
 @endif
 @include('front.home.barra-busqueda')
-<section class="intro-text py-5">
+<section class="intro-text">
     <div class="container" id="app">
         <search-results-component :favorites='{{ $favorites }}'
         :locale="'{{ App::getLocale() }}'"
