@@ -79,9 +79,10 @@ export default {
       axios
         .post(url, formData)
         .then(r => {
+            var url = r.data.path.replace('public/', '');
           this.$set(this.fileList, this.fileList.length - 1, {
             uid: r.data.id,
-            url: "/storage/" + r.data.path,
+            url: "/storage/" + url,
             name: "image",
             status: "done",
             languages: this.languages.map(language => ({
