@@ -155,8 +155,9 @@ class ProductController extends Controller
         $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
         $materials = Material::where('active', 1)->get();
         $colors = ProductColor::where('active', 1)->get();
+        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
 
-        return view('front.products.searchResult', compact('categories', 'materials', 'colors'));
+        return view('front.products.searchResult', compact('categories', 'materials', 'colors', 'rapports'));
     }
 
     public function getSearchResults(Request $request, $locale)
@@ -223,6 +224,13 @@ class ProductController extends Controller
         }
 
         //Ratios
+        if ($request->input('rapport')) {
+            $results = $results->whereHas('caracteristics', function ($q) use ($request) {
+                $q->where('rapport', 'LIKE', '%'.$request->input('rapport').'%');
+            });
+
+            $append["rapport"] = $request->input('rapport');
+        }
 
         //Cordones
         if ($request->input('laces')) {

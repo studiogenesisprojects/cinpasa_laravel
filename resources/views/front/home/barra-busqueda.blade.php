@@ -24,8 +24,11 @@
                 </div>
                 <div id="buscador_avanzado" class="form-group">
                     <input type="number" class="form-control form-control-border-bottom" value="{{isset($_GET['bags']) ? $_GET['bags'] : ''}}" name="bags" placeholder="Nº Bolsas">
-                    <select class="form-control form-control-border-bottom" name="ratios" id="FormControlAncho">
+                    <select class="form-control form-control-border-bottom" name="rapport" id="FormControlAncho">
                         <option value="">Ratios</option>
+                        @foreach($rapports as $rapport)
+                            <option value="{{$rapport}}" {{isset($_GET['rapport']) && $_GET['rapport'] == $rapport ? 'selected' : ''}}>{{$rapport}}</option>
+                        @endforeach
                     </select>
                     <input type="number" class="form-control form-control-border-bottom" value="{{isset($_GET['laces']) ? $_GET['laces'] : ''}}" name="laces" placeholder="Nº Cordones">
                     <select class="form-control form-control-border-bottom" name="color" id="FormControlTipo">
