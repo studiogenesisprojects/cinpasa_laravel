@@ -16,7 +16,7 @@
             <img
               @click.stop="goTo(product)"
               v-if="product.primary_image"
-              :src="`/storage/public/${product.primary_image.path}`"
+              :src="`/storage/${product.primary_image.path}`"
               :alt="product.primary_image.alt.length > 0 ? product.primary_image.alt : product.name"
               class="box-product__img"
             />
