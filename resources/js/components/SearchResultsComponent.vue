@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-10 col-12">
         <h3 v-if="items.length > 0">{{ title }}</h3>
-        <div class="py-5" v-else-if="items.length == 0 && firstLoadDone">
+        <div v-else-if="items.length == 0 && firstLoadDone">
             <section>
                 <div class="container mt-5">
                     <div class="row">
