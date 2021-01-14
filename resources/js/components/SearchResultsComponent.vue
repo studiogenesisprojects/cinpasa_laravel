@@ -3,8 +3,27 @@
     <div class="row">
       <div class="col-md-10 col-12">
         <h3 v-if="items.length > 0">{{ title }}</h3>
-        <div class="py-5" v-else-if="items.lenth == 0 && firstLoadDone">
-          <h3>{{ nresults }}</h3>
+        <div class="py-5" v-else-if="items.length == 0 && firstLoadDone">
+            <section>
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-7">
+                            <h3>{{ noresult_title }}</h3>
+                            <p class="mt-3">{{ noresult_subtitle }}</p>
+                            <p class="mt-2">{{ noresult_sugg }}</p>
+                            <ul class="ml-3 mt-3">
+                                <li class="mt-2">{{ noresult_sugg1 }}</li>
+                                <li class="mt-2">{{ noresult_sugg2 }}</li>
+                            </ul>
+                            <p class="color-primary"><strong>{{ noresult_nofound }}</strong></p>
+                            <a href="#" title="¿No encuentras lo que buscas? Contacta con nosotros y te ayudaremos" class="btn btn-third mt-4 px-3">{{noresult_contact}}</a>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-5 col-8 offset-lg-1 d-md-flex d-none align-items-center">
+                            <img class="w-100" :src="img" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
       </div>
     </div>
@@ -45,12 +64,6 @@
                 </span>
               </a>
             </div>
-            <!-- <span
-              :class="'add-product bg-light favorit ' + (favs.filter(f => f == product.id).length > 0 ? 'active' : '')"
-              @click.stop="favorite(product)"
-            >
-              <i class="far fa-heart text-primary"></i>
-            </span> -->
           </figure>
           <a :id="`product_${product.id}`" :href="`${product.url}`">
             <div class="box-product-info">
@@ -78,7 +91,7 @@ export default {
   components: {
     InfiniteLoading
   },
-  props: ["locale", "favorites", "title", "nresults"],
+  props: ["locale", "favorites","img", "title", "nresults", 'noresult_title', 'noresult_subtitle', 'noresult_sugg1', 'noresult_sugg2', 'noresult_nofound', 'noresult_contact'],
 
   name: "search-result-component",
   data() {

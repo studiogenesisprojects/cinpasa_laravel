@@ -12,6 +12,14 @@
         <search-results-component :favorites='{{ $favorites }}'
         :locale="'{{ App::getLocale() }}'"
         :title="'{{addslashes((__('Productos.buscador_productos_titulo')))}}'"
+        :noresult_title="'{{addslashes((__('Productos.noresult_title2')))}}'"
+        :noresult_subtitle="'{{addslashes((__('Productos.noresult_title')))}}'"
+        :noresult_sugg="'{{addslashes((__('Productos.noresult_sugg')))}}'"
+        :noresult_sugg1="'{{addslashes((__('Productos.noresult_sugg1')))}}'"
+        :noresult_sugg2="'{{addslashes((__('Productos.noresult_sugg2')))}}'"
+        :noresult_nofound="'{{addslashes((__('Productos.noresult_nofound')))}}'"
+        :noresult_contact="'{{addslashes((__('Menu.contact')))}}'"
+        :img="'{{asset('front/img/search.svg')}}'"
         :nresults="'{{addslashes(__('Buscador.sin_resultados'))}}'"></search-results-component>
     </div>
 </section>
