@@ -16,7 +16,7 @@
                                 <li class="mt-2">{{ noresult_sugg2 }}</li>
                             </ul>
                             <p class="color-primary"><strong>{{ noresult_nofound }}</strong></p>
-                            <a href="#" title="¿No encuentras lo que buscas? Contacta con nosotros y te ayudaremos" class="btn btn-third mt-4 px-3">{{noresult_contact}}</a>
+                            <a :href="link" title="¿No encuentras lo que buscas? Contacta con nosotros y te ayudaremos" class="btn btn-third mt-4 px-3">{{noresult_contact}}</a>
                         </div>
                         <div class="col-xl-3 col-lg-4 col-md-5 col-8 offset-lg-1 d-md-flex d-none align-items-center">
                             <img class="w-100" :src="img" alt="">
@@ -91,7 +91,7 @@ export default {
   components: {
     InfiniteLoading
   },
-  props: ["locale", "favorites","img", "title", "nresults", 'noresult_title', 'noresult_subtitle', 'noresult_sugg1', 'noresult_sugg2', 'noresult_nofound', 'noresult_contact'],
+  props: ["locale", "favorites","img", "title", "nresults", 'noresult_title', 'noresult_subtitle', 'noresult_sugg1', 'noresult_sugg2', 'noresult_nofound', 'noresult_contact', 'link'],
 
   name: "search-result-component",
   data() {

@@ -20,6 +20,7 @@
         :noresult_nofound="'{{addslashes((__('Productos.noresult_nofound')))}}'"
         :noresult_contact="'{{addslashes((__('Menu.contact')))}}'"
         :img="'{{asset('front/img/search.svg')}}'"
+        :link="'{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}'"
         :nresults="'{{addslashes(__('Buscador.sin_resultados'))}}'"></search-results-component>
     </div>
 </section>
