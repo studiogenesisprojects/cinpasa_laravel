@@ -5,7 +5,7 @@
         <h3 v-if="items.length > 0">{{ title }}</h3>
         <div v-else-if="items.length == 0 && firstLoadDone">
             <section>
-                <div class="container mt-5">
+                <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-7">
                             <h3>{{ noresult_title }}</h3>
