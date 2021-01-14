@@ -237,24 +237,23 @@
             @endif
 
             @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
-
-                <li class="selected has-sub-menu">
-                    <a href="#">
-                        <div class="icon-w">
-                            <div class=" ti-bookmark-alt "></div>
-                        </div>
-                        <span>Ofertas de trabajo</span>
-                    </a>
-                    <div class="sub-menu-w">
-                        <div class="sub-menu-i">
-                            <ul class="sub-menu">
-                                <li><a href="{{route('cvs.index')}}">CVs recibidos</a></li>
-                                <li><a href="{{route('ofertas-trabajo.index')}}">Ofertas</a></li>
-                                {{-- <li><a href="{{route('inscritos.index')}}">Inscritos</a></li> --}}
-                            </ul>
-                        </div>
+            <li class="selected">
+                <a href="{{route('cvs.index')}}">
+                    <div class="icon-w">
+                        <i class=" ti-bookmark-alt "></i>
                     </div>
-                </li>
+                    <span>CVs recibidos</span>
+                </a>
+                {{-- <div class="sub-menu-w">
+                    <div class="sub-menu-i">
+                        <ul class="sub-menu">
+                            <li><a href="{{route('cvs.index')}}">CVs recibidos</a></li>
+                            <li><a href="{{route('ofertas-trabajo.index')}}">Ofertas</a></li>
+                            <li><a href="{{route('inscritos.index')}}">Inscritos</a></li>
+                        </ul>
+                    </div>
+                </div> --}}
+            </li>
             @endif
 
             @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
@@ -489,22 +488,22 @@
             </li>
             @endif
             @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
-            <li class="selected has-sub-menu">
-                <a href="javascript:void(0)">
+            <li class="selected">
+                <a href="{{route('cvs.index')}}">
                     <div class="icon-w">
                         <i class=" ti-bookmark-alt "></i>
                     </div>
-                    <span>Ofertas de trabajo</span>
+                    <span>CVs recibidos</span>
                 </a>
-                <div class="sub-menu-w">
+                {{-- <div class="sub-menu-w">
                     <div class="sub-menu-i">
                         <ul class="sub-menu">
                             <li><a href="{{route('cvs.index')}}">CVs recibidos</a></li>
                             <li><a href="{{route('ofertas-trabajo.index')}}">Ofertas</a></li>
-                            {{-- <li><a href="{{route('inscritos.index')}}">Inscritos</a></li> --}}
+                            <li><a href="{{route('inscritos.index')}}">Inscritos</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
             </li>
             @endif
             @if(1 == 0)

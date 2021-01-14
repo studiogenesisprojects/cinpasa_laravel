@@ -38,9 +38,10 @@ class WorkWithUsController extends Controller
 
     public function index()
     {
+        $no_contact = 1;
         $offers = JobOffer::all();
         $carousel = Carousel::find(25);
-        return view('front.work-with-us.index', compact('offers', 'carousel'));
+        return view('front.work-with-us.index', compact('offers', 'carousel', 'no_contact'));
     }
 
     public function store(WorkWithUsRequest $request)
@@ -73,7 +74,7 @@ class WorkWithUsController extends Controller
 
     public function show(JobOffer $jobOffer)
     {
-        $no_contact = 1;
+
         return view('front.work-with-us.show', ['offer' => $jobOffer, 'no_contact' => $no_contact]);
     }
 
