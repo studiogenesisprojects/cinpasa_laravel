@@ -302,7 +302,7 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
             "es" => 1,
             "ca" => 2,
             "en" => 3,
-            "it" => 5,
+            "ru" => 5,
             "fr" => 4,
         ];
         return $indexes[$code];

@@ -110,7 +110,7 @@ export default {
   data() {
     return {
       hasErrors: false,
-      languageCodes: ["ES", "CA", "EN", "FR", "IT"],
+      languageCodes: ["ES", "CA", "EN", "FR", "RU"],
       visiblePreview: false
     };
   },
@@ -156,3 +156,4 @@ export default {
   }
 };
 </script>
+
