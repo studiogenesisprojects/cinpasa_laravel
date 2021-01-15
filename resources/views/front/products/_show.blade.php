@@ -28,13 +28,6 @@
                 <div id="carousel-token" class="carousel slide carousel-token" data-ride="carousel"
                     data-interval="false">
                     <div class="carousel-inner">
-                        {{-- @if ($product->primaryImage)
-                        <div class="carousel-item active">
-                            <figure class="bg-cover bg-lg box-list__figure">
-                                <img src="@if(!empty($product->primaryImage->path)){{ route('carousel.getImage', str_replace("/",";",$product->primaryImage->path))}}@else{{Storage::url('/img/nofoto.png')}}@endif" alt="@empty($product->primaryImage->alt) {{ $product->name }} @else {{  $product->primaryImage->alt}} @endempty" class="box-product__carousel">
-                            </figure>
-                        </div>
-                        @endif --}}
                         @if($product->galeries->first())
                         @foreach ($product->galeries->first()->images as $image)
                         <div class="carousel-item {{($loop->first) ? 'active' : ''}}">
@@ -72,10 +65,10 @@
                         @endif
                         @if($product->video)
                         <li data-target="#carousel-token"
-                            data-slide-to="{{ $product->galeries->first()->images->count() +1  }}" class="col">
+                            data-slide-to="{{ $product->galeries->first()->images->count() }}" class="col">
                             <figure class="bg-cover bg-sm"
                                 style="background-image: url(https://img.youtube.com/vi/{{$product->video}}/default.jpg)">
-                                <span class="video"><img src="{{Storage::url('/img/video.svg')}}" alt="video"
+                                <span class="video"><img src="https://img.youtube.com/vi/{{$product->video}}/default.jpg" alt="video"
                                         class="img-fluid"></span>
                             </figure>
                         </li>
