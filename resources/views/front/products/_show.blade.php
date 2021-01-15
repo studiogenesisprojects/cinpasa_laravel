@@ -40,7 +40,7 @@
                         @if($product->video)
                         <div class="carousel-item">
                             <figure class="bg-cover bg-lg">
-                                <iframe title="video producto" width="100%" height="100%"
+                                <iframe title="video producto" width="100%" height="400px"
                                     src="https://www.youtube.com/embed/{{$product->video}}" frameborder="0"
                                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen></iframe>
