@@ -191,6 +191,8 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
+                                        <small>*El formato de vídeo tiene que ser este: si el link que queremos introducir es este: https://youtu.be/T0OwfFHzNnA, se tendría que introducir la última parte, quedando así: T0OwfFHzNnA</small>
+                                        <br>
                                         <label>Video</label>
                                         <input class="form-control" type="text" name="video" value="{{$product->video}}">
                                     </div>
