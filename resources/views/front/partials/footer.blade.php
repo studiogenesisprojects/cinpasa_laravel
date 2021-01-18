@@ -108,8 +108,18 @@
 
 
             </div>
+            <div class="container">
+                <div class="row my-5 align-items-end">
+                   <div class="mt-md-0 mt-5">
+                    <img class="ml-3 mb-1" src="{{ asset('front/img/unio-europea.png') }}" style="border:1px solid #CCCCCC;" alt="icono twitter">
+                    </div>
+                    <div class="col-md-9 ml-4">
+                        <p class="color-white text-left">{{__('Footer.text-fondo-europeo')}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row justify-content-center py-5 mt-5">
+        <div class="row justify-content-center py-5 mt-2">
             <a href="https://www.studiogenesis.es/" target="_blank" class="before-title-center position-relative" title="Studiogenesis, diseño web y desarrollo"><img class="mt-3" src="{{ asset('front/img/studiogenesis.svg') }}" alt="logotipo studiogenesis"></a>
         </div>
     </div>
