@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Carousel;
 use App\Models\Lab;
+use App\Models\Material;
+use App\Models\ProductCaracteristics;
+use App\Models\ProductCategory;
+use App\Models\ProductColor;
 use Illuminate\Http\Request;
 
 class LabController extends Controller
@@ -31,8 +35,12 @@ class LabController extends Controller
         $productCategory = $lab;
         $products = $productCategory->products;
         $isLab = true;
+        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
+        $materials = Material::where('active', 1)->get();
+        $colors = ProductColor::where('active', 1)->get();
+        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
         $carousel = Carousel::where('lab_id', $lab->id)->first();
-        return view('front.products.show', compact('products', 'productCategory','isLab', 'carousel'));
+        return view('front.products.show', compact('categories', 'rapports', 'materials', 'colors','products', 'productCategory','isLab', 'carousel'));
     }
 
     /**

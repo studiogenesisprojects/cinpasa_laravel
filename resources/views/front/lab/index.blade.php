@@ -3,7 +3,7 @@
 @section('content')
 @include('front.home.carousel2')
 <a href="contacta.php" title="Accede a la categoría contacta" class="btn-fixed">
-    <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">¿MÁS INFORMACIÓN?
+    <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">¿{{__('Lab.more-info')}}?
 </a>
 <section id="aplicaciones">
     <div class="container">
@@ -25,7 +25,7 @@
                     <p class="color-white">{{ $lab->description }}</p>
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
                     ["slug" => $lab->slug
-                ])}}" title="saber más sobre CINTech" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">MÁS INFORMACIÓN <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
+                ])}}" title="saber más sobre CINTech" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">{{__('Lab.titulo')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
                 </div>
             </div>
             @elseif($key == 1)
@@ -36,7 +36,7 @@
                     <p class="color-white">{{ $lab->description }}</p>
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
                     ["slug" => $lab->slug
-                ])}}" title="saber más sobre CINHome" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">MÁS INFORMACIÓN <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
+                ])}}" title="saber más sobre CINHome" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">{{__('Lab.titulo')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
                 </div>
             </div>
             @elseif($key % 2 == 0)
@@ -47,7 +47,7 @@
                     <p class="color-white">{{ $lab->description }}</p>
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
                     ["slug" => $lab->slug
-                ])}}" title="saber más sobre CINTech" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">MÁS INFORMACIÓN <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
+                ])}}" title="saber más sobre CINTech" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">{{__('Lab.titulo')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
                 </div>
             </div>
             @else
@@ -58,7 +58,7 @@
                     <p class="color-white">{{ $lab->description }}</p>
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
                     ["slug" => $lab->slug
-                ])}}" title="saber más sobre CINHome" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">MÁS INFORMACIÓN <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
+                ])}}" title="saber más sobre CINHome" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">{{__('Lab.titulo')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
                 </div>
             </div>
             @endif

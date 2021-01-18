@@ -9,15 +9,15 @@ return [
     ],
     'products' => [
         'index' => 'Индекс',
-        'show' => 'показать/{productCategory}',
-        'showProduct' => 'показать/{productCategory}/{product}',
-        'showProductRe' => 'показать/re/{product}',
-        'searchProducts' => 'показать/ricerca/filtro'
+        'show' => 'Индекс/{productCategory}',
+        'showProduct' => 'Индекс/{productCategory}/{product}',
+        'showProductRe' => 'Индекс/re/{product}',
+        'searchProducts' => 'Индекс/ricerca/filtro'
     ],
     'applications' => [
         "index" => 'приложения',
-        "show" => 'приложения/{applicationCategory}',
-        "_show" => 'приложения/{applicationCategory}/{aplication}',
+        "show" => 'приложени/{applicationCategory}',
+        "_show" => 'приложени/{applicationCategory}/{aplication}',
     ],
     'distribute' => [
         'index' => 'раздавать',

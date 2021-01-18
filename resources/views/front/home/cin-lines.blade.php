@@ -9,7 +9,7 @@
         <p class="font-bold color-black">{{$lab->name}}</p>
         <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
         ["slug" => $lab->slug
-        ])}}" class="small color-black">Ver productos<img class="ml-3" src="{{ asset('front/img/icon-arrow-right-black.svg') }}" alt="icono flecha derecha"></a>
+        ])}}" class="small color-black">{{__('Inicio.ver-productos')}}<img class="ml-3" src="{{ asset('front/img/icon-arrow-right-black.svg') }}" alt="icono flecha derecha"></a>
     </div>
 </a>
 </div>

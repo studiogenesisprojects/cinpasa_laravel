@@ -26,7 +26,7 @@ tl_busqueda.set("#buscador_modal", {
     })
     .set("#icon-search .icon-nav, .icon-search .icon-nav", {
         attr: {
-            src: "img/icon-search-pink.svg"
+
         }
     }, 0)
 

@@ -8,9 +8,12 @@ use App\Models\ApplicationCategory;
 use App\Models\Carousel;
 use App\Models\Customer;
 use App\Models\Lab;
+use App\Models\Material;
 use App\Models\Noticia;
 use App\Models\NoticiaPrincipal;
+use App\Models\ProductCaracteristics;
 use App\Models\ProductCategory;
+use App\Models\ProductColor;
 use App\NewsFeatured;
 use Illuminate\Http\Request;
 
@@ -35,6 +38,11 @@ class HomeController extends Controller
 
         $labs = Lab::all();
 
+        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
+        $materials = Material::where('active', 1)->get();
+        $colors = ProductColor::where('active', 1)->get();
+        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
+
         $customers = Customer::all();
 
         $carousel = Carousel::with(['slides' => function ($q) {
@@ -43,6 +51,6 @@ class HomeController extends Controller
 
         $featuredNews = NewsFeatured::all();
 
-        return view('front.home.index', compact('applicationCategories', 'featuredNews', 'carousel', 'customers', "homeApps", 'labs'));
+        return view('front.home.index', compact('categories', 'materials', 'colors','rapports','applicationCategories', 'featuredNews', 'carousel', 'customers', "homeApps", 'labs'));
     }
 }

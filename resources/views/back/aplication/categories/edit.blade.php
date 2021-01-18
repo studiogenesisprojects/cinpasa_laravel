@@ -57,7 +57,6 @@
                         </div>
                         <div class="tab-content">
                             @foreach($languages as $language)
-                            @if($applicationCategory->lang($language->code))
                             <div class="tab-pane @if($loop->first){{ 'active' }}@endif" id="tab_{{$language->code}}">
                                 <input type="hidden" name="applications[{{ $language->id }}][language_id]" value="{{$language->id}}">
                                 <div class="row">
@@ -104,7 +103,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @endif
                             @endforeach
                         </div>
                         <div>

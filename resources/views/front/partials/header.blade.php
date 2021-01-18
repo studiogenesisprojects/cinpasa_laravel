@@ -159,7 +159,7 @@
                     @endphp
                     @foreach ($fathers as $father)
                     @if($father->active == 1)
-                    <div class="col-2 d-flex flex-column">
+                    <div class=" {{!$loop->first ? 'ml-3' : ''}} d-flex flex-column">
                         <a class="font-bold"
                             href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" => $father->slug])}}">{!! $father->name !!}</a>
                         @php

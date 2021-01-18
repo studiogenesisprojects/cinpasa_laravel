@@ -17,11 +17,15 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $categories = ProductCategory::where('sup_product_category', null)->get();
+        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
+        $materials = Material::where('active', 1)->get();
+        $colors = ProductColor::where('active', 1)->get();
+        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
+
         $carousel = Carousel::with(['slides' => function ($q) {
             $q->orderBy('order', 'asc');
         }])->where('section_id', 4)->where('active', 1)->where('main', 1)->first();
-        return view('front.products.index', compact('categories', 'carousel'));
+        return view('front.products.index', compact('categories', 'carousel', 'materials', 'colors', 'rapports'));
     }
 
     public function fetchCategories($sup, $locale)
@@ -38,9 +42,10 @@ class ProductController extends Controller
             abort(404);
         }
 
-        $categories = ProductCategory::where('active', 1)->get();
+        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
         $materials = Material::where('active', 1)->get();
         $colors = ProductColor::where('active', 1)->get();
+        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
 
         if($request->filter) {
             $filter = $request->filter;
@@ -60,7 +65,7 @@ class ProductController extends Controller
             }
             $productCategoryChildrens = $productCategory->childrens;
             $fathers = ProductCategory::where('sup_product_category', null)->get();
-            return view('front.products.showFather', compact('productCategory', 'categories','materials','colors','filter','productCategoryChildrens', 'fathers', 'products','more_info_trigger'));
+            return view('front.products.showFather', compact('productCategory', 'categories','rapports','materials','colors','filter','productCategoryChildrens', 'fathers', 'products','more_info_trigger'));
         }
         $products = $productCategory->products;
         if($filter == 1) {
@@ -70,7 +75,7 @@ class ProductController extends Controller
         } else {
             $products = $products->sortByDesc('order');
         }
-        return view('front.products.show', compact('productCategory', 'categories','materials','colors','products','filter','more_info_trigger'));
+        return view('front.products.show', compact('productCategory', 'categories','rapports','materials','colors','products','filter','more_info_trigger'));
     }
 
     public function showProduct(ProductCategory $productCategory, Product $product)

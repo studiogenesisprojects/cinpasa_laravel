@@ -73,13 +73,13 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="">Nombre</label>
-                                                        <input id="name" type="text" class="form-control" value="{{$category->lang($idioma->id)->name ?? ""}}" name="productCategoryLanguages[{{ $idioma->id }}][name]" required>
+                                                        <input id="name" type="text" class="form-control name" value="{{$category->lang($idioma->id)->name ?? ""}}" name="productCategoryLanguages[{{ $idioma->id }}][name]" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="">Slug</label>
-                                                        <input id="name" type="text" pattern="^[a-zA-Z0-9\-]+$" value="{{$category->lang($idioma->id)->slug ?? ""}}" class="form-control" name="productCategoryLanguages[{{ $idioma->id }}][slug]" required>
+                                                        <input id="slug" type="text" value="{{$category->lang($idioma->id)->slug ?? ""}}" class="slug form-control" name="productCategoryLanguages[{{ $idioma->id }}][slug]" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
@@ -148,6 +148,14 @@
     <script>
         $(document).ready(function() {
             $('.select2').select2()
+            $('.name').each( (i, v) => {
+                $(v).keyup( e => {
+                    var val = e.currentTarget.value
+                    var slug = $(e.currentTarget).parent().parent().parent().find('.slug');
+
+                    $(slug).val(val.toLowerCase().split(' ').join('-'));
+                })
+            });
         })
     </script>
     @endsection

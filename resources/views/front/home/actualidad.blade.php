@@ -1,7 +1,7 @@
 @foreach($featuredNews as $news)
 <div class="col-md-4">
     <div class="row mx-0 flex-column align-items-center">
-        <img class="w-100 border-img" src="{{ route('carousel.getNewsImage', str_replace("/",";",$news->news->image)) }}" alt="imagen noticia actualidad">
+        <img class="w-100 border-img" src="{{ Storage::url($news->news->image) }}" alt="imagen noticia actualidad">
         <div class="col-sm-11 transform-t-20">
             <div class="card d-block p-4">
                 <p class="small">{{\Carbon\Carbon::parse($news->news->created_at)->format('d/m/Y')}}</p>
