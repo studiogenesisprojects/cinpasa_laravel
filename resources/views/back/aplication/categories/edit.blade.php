@@ -63,13 +63,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group @if($errors->has('applications.'.$language->id.'.name')){{ 'has-error' }}@endif">
                                             <label for="">Nombre</label>
-                                            <input id="title" type="text" class="form-control title" value="{{$applicationCategory->lang($language->code)->name}}" name="applications[{{ $language->id }}][name]" >
+                                            <input id="title" type="text" class="form-control title" value="{{isset($applicationCategory->lang($language->code)->name) ? $applicationCategory->lang($language->code)->name : ''}}" name="applications[{{ $language->id }}][name]" >
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group @if($errors->has('applications.'.$language->id.'.slug')){{ 'has-error' }}@endif">
                                             <label for="">Slug</label>
-                                            <input id="slug" class="form-control slug" type="text" value="{{$applicationCategory->lang($language->code)->slug}}" name="applications[{{ $language->id }}][slug]">
+                                            <input id="slug" class="form-control slug" type="text" value="{{isset($applicationCategory->lang($language->code)->slug) ? $applicationCategory->lang($language->code)->slug : ''}}" name="applications[{{ $language->id }}][slug]">
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group @if($errors->has('applications.'.$language->id.'.lite_description')){{ 'has-error' }}@endif">
                                             <label for="">Etiqueta alt</label>
-                                            <input type="text" name="applications[{{ $language->id }}][alt]" class="form-control" value="{{ $applicationCategory->lang($language->code)->alt }}">
+                                            <input type="text" name="applications[{{ $language->id }}][alt]" class="form-control" value="{{ isset($applicationCategory->lang($language->code)->alt) ? $applicationCategory->lang($language->code)->alt : '' }}">
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group @if($errors->has('applications.'.$language->id.'.description')){{ 'has-error' }}@endif">
                                             <label for="">Descripción completa</label>
-                                            <textarea class="item form-control"  name="applications[{{ $language->id }}][description]"  cols="30" rows="8">{{$applicationCategory->lang($language->code)->description}}</textarea>
+                                            <textarea class="item form-control"  name="applications[{{ $language->id }}][description]"  cols="30" rows="8">{{isset($applicationCategory->lang($language->code)->description) ? $applicationCategory->lang($language->code)->description : ''}}</textarea>
                                         </div>
                                     </div>
                                 </div>
