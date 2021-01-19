@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\ApplicationHome;
 use Illuminate\Database\Eloquent\Model;
-use Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 use App\TranslatedModel;
 
 class Aplication extends TranslatedModel implements LocalizedUrlRoutable

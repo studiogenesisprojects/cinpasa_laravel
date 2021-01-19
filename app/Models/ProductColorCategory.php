@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 use App\TranslatedModel;
 use App\Models\Product;
 use Illuminate\Support\Facades\Log;

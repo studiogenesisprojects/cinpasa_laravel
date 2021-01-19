@@ -11,6 +11,8 @@
 |
 */
 
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 include 'redirects.php';
 
 //Redirects a QR

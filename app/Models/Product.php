@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 use App\TranslatedModel;
 use Illuminate\Support\Facades\Log;
 

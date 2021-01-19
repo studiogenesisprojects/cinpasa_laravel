@@ -174,6 +174,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class
+
 
     ],
 
@@ -227,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
+        'LaravelLocalization' => App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
     ],
 
 ];

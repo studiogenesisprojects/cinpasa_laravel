@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\NoticiaCategoriaLang;
-use Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 use App\TranslatedModel;
 
 class NoticiaCategoria extends TranslatedModel implements LocalizedUrlRoutable

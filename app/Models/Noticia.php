@@ -8,7 +8,7 @@ use App\Models\NoticiaLang;
 use App\Models\NoticiaRelacionada;
 use App\Models\NoticiaBloque;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 use App\TranslatedModel;
 
 class Noticia extends TranslatedModel implements LocalizedUrlRoutable

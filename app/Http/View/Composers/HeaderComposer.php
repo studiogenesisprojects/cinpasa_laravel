@@ -4,7 +4,7 @@ namespace App\Http\View\Composers;
 
 use Illuminate\View\View;
 use App\Models\ProductCategory;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Support\Str;
 
 class HeaderComposer

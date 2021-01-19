@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\NoticiaEtiquetaLang;
 use Illuminate\Database\Eloquent\Model;
-use Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 use App\TranslatedModel;
 
 class NoticiaEtiqueta extends TranslatedModel implements LocalizedUrlRoutable
