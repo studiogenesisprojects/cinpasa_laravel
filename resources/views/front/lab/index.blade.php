@@ -2,7 +2,7 @@
 
 @section('content')
 @include('front.home.carousel2')
-<a href="contacta.php" title="Accede a la categoría contacta" class="btn-fixed">
+<a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede a la categoría contacta" class="btn-fixed">
     <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">¿{{__('Lab.more-info')}}?
 </a>
 <section id="aplicaciones">
