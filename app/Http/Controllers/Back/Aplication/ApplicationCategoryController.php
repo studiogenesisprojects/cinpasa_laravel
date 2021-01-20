@@ -92,7 +92,7 @@ class ApplicationCategoryController extends Controller
             if ($lang) {
                 $lang->update($language);
             } else {
-                $lang->create($language);
+                $applicationCategory->languages()->create($language);
             }
         }
 
