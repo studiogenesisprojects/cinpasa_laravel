@@ -1,6 +1,21 @@
 @extends('front.common.main')
 
 @section('content')
+<section id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 my-5 d-flex align-items-center">
+                <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.news.index')}}" title="Acceder al apartado noticias" class="mr-1 color-grey">Noticias</a> / {{$news->lang()->title}}
+            </div>
+            <div class="col-12 position-relative">
+                <img class="w-100 border-img" src="{{ Storage::url('noticias/' . $news->image) }}" alt="imagen mascarilla">
+                <div class="position-absolute t-1 r-2 d-flex align-items-center background-white border-radius-200">
+                    <img src="{{ asset('front/img/perfil-1.png') }}" alt="imagen perfil">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <section id="aplicaciones">
     <div class="container">
         <div class="row">
@@ -10,19 +25,6 @@
                 <p class="mt-3">{!! $news->lang()->content !!}</p>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-10 offset-lg-1 offset-md-0 offset-sm-1 offset-0 mt-5">
-                {{-- <div class="card background-blue px-3 py-4">
-                    <h5 class="color-white">SUSCRÍBETE A NUESTRO NEWSLETTER</h5>
-                    <p class="color-white mt-3 small">Quidem excepturi repellendus adipisci ut maxime blanditiis. Laborum nisi repellendus nemo et. </p>
-                    <hr class="w-50 mt-3">
-                    <input type="text" class="form-control mt-3 border-0 background-white-opacity" id="" placeholder="Escribe tu e-mail…">
-                    <div class="custom-control custom-checkbox mt-3">
-                        <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked>
-                        <label class="custom-control-label color-white small" for="defaultChecked2">He leído y acepto la política de privacidad.</label>
-                    </div>
-                    <a href="#" title="Suscríbete a nuestro Newsletter" class="btn btn-primary mt-3">
-                        SUSCRIBIRME<img class="ml-4 mb-1" src="img/icon-arrow-right.svg" alt="icono flecha derecha">
-                    </a>
-                </div> --}}
                 <hr class="mt-5">
                 <h5 class="color-black font-bold mt-4">CATEGORÍAS</h5>
                 @foreach ($news->categories as $cat)
