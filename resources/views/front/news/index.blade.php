@@ -18,8 +18,8 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-lg-7 col-md-10">
-                <h2 class="before-title">Noticias</h2>
-                <p class="mt-3">Quo quia saepe quod. Dolorem eligendi soluta nostrum ut. Voluptatem veritatis eum modi est. Inventore enim optio ipsum molestiae dolorem eos.</p>
+                <h2 class="before-title">{{__('Noticias.seccion1_titulo')}}</h2>
+                <p class="mt-3">{{__('Noticias.seccion1_texto')}}</p>
             </div>
         </div>
         <div class="row mt-5">
@@ -30,7 +30,6 @@
                         <img class="w-100 border-img hover-shadow" src="{{ Storage::url('noticias/' . $new->image) }}" alt="imagen noticia artículo">
                         <div class="position-absolute t-1 l-1 d-flex align-items-center background-white perfil-container">
                             <img src="{{ asset('front/img/perfil-1.png') }}" alt="imagen perfil">
-                            <p class="ml-2 small pr-2">Marqueting Cinpasa</p>
                         </div>
                     </div>
                     <div class="col-12 transform-t-20 cursor-pointer">
@@ -38,7 +37,7 @@
                             <p class="small">{{date('d/m/Y', strtotime($new->created_at))}}</p>
                             <h4 class="mt-2">{{$new->lang()->title}}</h4>
                             <p class="mt-3 lineheight-small"><small>{{ strip_tags(substr($new->lang()->content, 0, 120)) . '...'}}</small></p>
-                            <p class="btn mt-4 p-0 font-bold">Leer más<img class="ml-2" src="{{ asset('front/img/icon-arrow-right-black.svg') }}" alt="icono flecha derecha"></p>
+                            <p class="btn mt-4 p-0 font-bold">{{__('Noticias.noticias_boton')}}<img class="ml-2" src="{{ asset('front/img/icon-arrow-right-black.svg') }}" alt="icono flecha derecha"></p>
                             <div class="tag-noticia t-0 r-1 transform-t-n50">Home</div>
                         </a>
                     </div>
