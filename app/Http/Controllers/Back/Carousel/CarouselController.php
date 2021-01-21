@@ -31,7 +31,6 @@ class CarouselController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = json_decode($request->carousel, true);
         $carousel = Carousel::create($data);
         foreach ($data['slides'] as $i => $slide) {
