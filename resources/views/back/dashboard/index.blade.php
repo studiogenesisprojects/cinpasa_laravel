@@ -39,7 +39,7 @@
                         <tbody>
                             @foreach ($petitions as $petition)
                             <tr>
-                                <td><a href="{{route('peticiones.show', $petition->id)}}">{{$petition->origen}}</a></td>
+                                <td><a href="{{route('peticiones.show', $petition->id)}}">{{urldecode($petition->origen)}}</a></td>
                                 <td>{{$petition->company}}</td>
                                 <td>{{$petition->email}}</td>
                                 <td>{{$petition->phone_number}}</td>

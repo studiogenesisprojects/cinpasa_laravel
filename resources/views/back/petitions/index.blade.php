@@ -36,7 +36,7 @@
                         <tbody>
                             @foreach ($petitions as $petition)
                             <tr>
-                                <td><a href="{{route('peticiones.show', $petition->id)}}">{{$petition->origen}}</a></td>
+                                <td><a href="{{route('peticiones.show', $petition->id)}}">{{urldecode($petition->origen)}}</a></td>
                                 <td>{{$petition->company}}</td>
                                 <td>{{$petition->email}}</td>
                                 <td>{{$petition->phone_number}}</td>
@@ -48,7 +48,7 @@
                                             <i class="icon-options-vertical"></i>
                                         </button>
                                         <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{route('peticiones.show', $petition->id)}}" class="dropdown-item"><i class="ti-pencil"></i>Ver</a> 
+                                            <a href="{{route('peticiones.show', $petition->id)}}" class="dropdown-item"><i class="ti-pencil"></i>Ver</a>
                                             <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{route('peticiones.destroy', $petition->id)}}"><i class="ti-trash"></i> Eliminar</a>
                                         </div>
                                     </div>

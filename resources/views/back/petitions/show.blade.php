@@ -25,7 +25,7 @@
                         <strong>Origen: </strong>
                     </div>
                     <div class="col-md-6">
-                        <span>{{$petition->origen}} </span>
+                        <span>{{urldecode($petition->origen)}} </span>
                     </div>
                 </div>
                 <div class="row pb-3">
