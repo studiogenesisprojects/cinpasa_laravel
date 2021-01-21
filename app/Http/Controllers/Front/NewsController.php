@@ -32,7 +32,7 @@ class NewsController extends Controller
         $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
 
         $featuredNews = NewsFeatured::all();
-        $news = News::paginate(9);
+        $news = News::orderBy('created_at', 'desc')->paginate(9);
 
         $carousel = new Carousel;
         $slideCarousel = new Slide;
