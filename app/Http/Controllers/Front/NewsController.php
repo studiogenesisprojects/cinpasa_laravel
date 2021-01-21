@@ -38,7 +38,7 @@ class NewsController extends Controller
         $slideCarousel = new Slide;
         $slideCarousel->title = $featuredNews[0]->news->lang()->title;
         $slideCarousel->text = $featuredNews[0]->news->lang()->content;
-        $slideCarousel->image = Storage::url($featuredNews[0]->news->image);
+        $slideCarousel->image = Storage::url('noticias/'.$featuredNews[0]->news->image);
         $carousel->setRelation('slides', [$slideCarousel]);
 
         return view('front.news.index', compact('news', 'featuredNews','categories', 'materials', 'colors','rapports', 'carousel', 'slideCarousel'));
