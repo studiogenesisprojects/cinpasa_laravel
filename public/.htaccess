@@ -588,7 +588,6 @@
     redirect 301 /noticias/page/12 https://www.cinpasa.com/noticias
     redirect 301 /noticias/page/11 https://www.cinpasa.com/noticias
     redirect 301 /noticias/page/10 https://www.cinpasa.com/noticias
-    redirect 301 /noticias https://www.cinpasa.com/noticias
     redirect 301 /muestrario-de-cordones-profesional https://www.cinpasa.com/noticias
     redirect 301 /muestrario-de-cintas https://www.cinpasa.com/noticias
     redirect 301 /motorizar-una-cortina https://www.cinpasa.com/noticias
@@ -1337,7 +1336,6 @@
     redirect 301 /rubans-techniques-rideaux/barra-forja-12-20-28 https://www.cinpasa.com/fr/produits/passementerie
     redirect 301 /rubans-techniques-rideaux/bande-retractile https://www.cinpasa.com/fr/produits/rubans-sangles-bandes
     redirect 301 /rubans-techniques-rideaux/bande-elastique-crochet https://www.cinpasa.com/fr/produits/rubans-sangles-bandes
-    redirect 301 /noticias https://www.cinpasa.com/fr/produits/ruban-de-renfort-pour-rideaux
     redirect 301 /rubans-techniques-rideaux/cin https://www.cinpasa.com/fr/produits/rubans-sangles-bandes
     redirect 301 /rubans-de-rideaux/cintas-cortina-de-refuerzo/armadoras-sin-bolsas https://www.cinpasa.com/fr/produits/ruban-de-renfort-pour-rideaux
     redirect 301 /cintas-elasticas https://www.cinpasa.com/fr/produits/rubans-sangles-bandes
