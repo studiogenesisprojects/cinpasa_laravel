@@ -5,13 +5,13 @@
             <div class="carousel-inner position-relative">
             @foreach ($carousel->slides as $slide)
                 <div class="carousel-item position-relative overflow-hidden bg-cover bg-xl {{$loop->first == 1 ? 'active' : ''}}" style="background-image: url('{{Storage::url('app/'. $slide->image)}}');">
-                    <img src="{{ Storage::url($slide->image) }}" class="d-block w-100 w-lg-150 w-sm-200 w-xs-400" alt="primero slide">
+                    <img src="{{isset($news) ? $featuredNews[0]->news->image : Storage::url($slide->image) }}" class="d-block w-100 w-lg-150 w-sm-200 w-xs-400" alt="primero slide">
                     <div class="position-absolute d-flex justify-content-center align-items-center w-100 h-100 t-0 l-0 z-1">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6 col-md-8 col-10 offset-xl-0 offset-1">
-                                    <h1 class="before-title">{{$slide->lang()->title}}</h1>
-                                    <p class="color-white">{{$slide->lang()->text}}</p>
+                                    <h1 class="before-title">{{isset($news) ? $featuredNews[0]->news->lang()->title : $slide->lang()->title}}</h1>
+                                    <p class="color-white">{{isset($news) ? $featuredNews[0]->news->lang()->description : $slide->lang()->text}}</p>
                                     @if (count($carousel->slides) > 1)
                                     <ol class="carousel-indicators mb-5">
                                         @foreach ($carousel->slides as $key => $slide)
