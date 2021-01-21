@@ -5,7 +5,7 @@
             <div class="carousel-inner position-relative">
             @foreach ($carousel->slides as $slide)
                 <div class="carousel-item position-relative overflow-hidden bg-cover bg-xl {{$loop->first == 1 ? 'active' : ''}}" style="background-image: url('{{Storage::url($slide->image)}}');">
-                    <img src="{{isset($news) ? Storage::url($featuredNews[0]->news->image) : Storage::url($slide->image) }}" class="d-block w-100 w-lg-150 w-sm-200 w-xs-400" alt="primero slide">
+                    <img src="{{isset($news) ? Storage::url('noticias/'.$featuredNews[0]->news->image) : Storage::url($slide->image) }}" class="d-block w-100 w-lg-150 w-sm-200 w-xs-400" alt="primero slide">
                     <div class="position-absolute d-flex justify-content-center align-items-center w-100 h-100 t-0 l-0 z-1">
                         <div class="container">
                             <div class="row">
