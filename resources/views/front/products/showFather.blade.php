@@ -2,21 +2,23 @@
 @section('meta-title', $productCategory->lang(App::getLocale())->seo_title ?? $productCategory->lang(App::getLocale())->seo_title)
 @section('meta-description', $productCategory->lang(App::getLocale())->seo_description ?? $productCategory->lang(App::getLocale())->seo_description )
 @section('content')
-
+@if(isset($isLab))
+    @include('front.home.carousel2')
+@else
+    <br><br><br>
+@endif
+{{-- @include('front.home.barra-busqueda') --}}
 <section>
     <div class="container-fluid">
         <div class="row">
             <div class="col-3 px-5 pb-3 d-lg-block d-none">
-                <p class="color-black"><strong>Filtrar productos</strong></p>
-            </div>
-            <div class="col-9 px-0 pb-3 d-flex align-items-center ml-lg-0 ml-3">
-                <a href="productos.php" title="Accede a la sección productos" class="mr-1 color-grey">Productos </a> / <a href="productos.php" title="Accede a la categoría" class="mx-1 color-grey"> Categorías</a>
+                <p class="color-black"><strong>{{__('Productos.filter')}}</strong></p>
             </div>
         </div>
         <hr class="vw-100">
         <div class="row">
             <div id="menu_categorias" class="col-lg-3 col-sm-7 col-10 d-lg-block flex-column px-lg-5 mt-5 background-white z-1">
-                <p class="color-blue mb-4 d-flex align-items-center ml-lg-0 ml-3 mt-lg-0 mt-5"><img class="mr-3 mb-1 d-lg-inline-block d-none" src="{{ asset('front/img/icon-categorias.svg') }}" alt="icono menu categorías"><strong>CATEGORÍAS</strong></p>
+                <p class="color-blue mb-4 d-flex align-items-center ml-lg-0 ml-3 mt-lg-0 mt-5"><img class="mr-3 mb-1 d-lg-inline-block d-none" src="{{ asset('front/img/icon-categorias.svg') }}" alt="icono menu categorías"><strong>{{__('Productos.categorias')}}</strong></p>
                 @php
                     $fathers = $fathers->sortBy('order');
                 @endphp
