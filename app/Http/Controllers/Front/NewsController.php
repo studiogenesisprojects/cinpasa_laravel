@@ -57,7 +57,7 @@ class NewsController extends Controller
             $q->where('slug', $noticiaEtiqueta);
         })->first();
         $title = $noticiaEtiqueta;
-        $news = $noticiaEtiqueta->news()->paginate(18);
+        $news = $noticiaEtiqueta->news()->orderBy('created_at', 'DESC')->paginate(18);
         $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
         $materials = Material::where('active', 1)->get();
         $colors = ProductColor::where('active', 1)->get();
@@ -71,7 +71,7 @@ class NewsController extends Controller
                             $q->where('slug', $noticiaCategoria);
                         })->first();
         $title = $noticiaCategoria;
-        $news = $noticiaCategoria->news()->paginate(18);
+        $news = $noticiaCategoria->news()->orderBy('created_at', 'DESC')->paginate(18);
         $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
         $materials = Material::where('active', 1)->get();
         $colors = ProductColor::where('active', 1)->get();
