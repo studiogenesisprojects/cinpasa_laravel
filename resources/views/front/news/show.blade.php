@@ -46,7 +46,7 @@
                 </div>
                 @if(sizeof($news->categories) > 0)
                     <hr class="mt-5">
-                    <h5 class="color-black font-bold mt-4">CATEGORÍAS</h5>
+                    <h5 class="color-black font-bold mt-4">{{__('Noticias.categorias')}}</h5>
                     @foreach ($news->categories as $cat)
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.categories', [
                         "newsCategory" => $cat->lang(app()->getLocale())->slug,
@@ -59,7 +59,7 @@
                     <hr class="mt-5">
                 @endif
                 @if(sizeof($news->tags) > 0)
-                    <h5 class="color-black font-bold mt-4">TAGS</h5>
+                    <h5 class="color-black font-bold mt-4">{{__('Noticias.tags')}}</h5>
                     <div class="d-flex flex-row flex-wrap mt-3">
                         @foreach ($news->tags as $tag)
                         <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.tags', [
@@ -70,7 +70,7 @@
                     <hr class="mt-5">
                 @endif
                 @if(sizeof($news->relatedNews) > 0)
-                    <h5 class="color-black font-bold mt-4">NOTÍCIAS RELACIONADAS</h5>
+                    <h5 class="color-black font-bold mt-4">{{__('Noticias.noticias-relacionadas')}}</h5>
                     <div class="d-flex flex-row flex-wrap mt-3">
                         @foreach ($news->relatedNews as $related)
                         <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.show', ["news" => $related])}}" class="btn-noticia mt-3 px-3 py-2 ml-1">{{$related->lang(App::getLocale())->title}}</a>
