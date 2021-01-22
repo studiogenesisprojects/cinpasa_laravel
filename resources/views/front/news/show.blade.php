@@ -44,29 +44,41 @@
                         <script id="embed_script" type="text/javascript"  src="https://d1nn1beycom2nr.cloudfront.net/news/scripts/form.script.js"></script>
                     </form>
                 </div>
-                <hr class="mt-5">
-                <h5 class="color-black font-bold mt-4">CATEGORÍAS</h5>
-                @foreach ($news->categories as $cat)
-                    <p class="color-black mb-3">{{$cat->lang(app()->getLocale())->title}}</p>
-                @if(!$loop->last) / @endif
-                @endforeach
-                <hr class="mt-5">
-                <h5 class="color-black font-bold mt-4">TAGS</h5>
-                <div class="d-flex flex-row flex-wrap mt-3">
-                    @foreach ($news->tags as $tag)
-                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.tags', [
-                        "noticiaEtiqueta" => $tag->lang(App::getLocale())->slug
-                    ])}}" class="btn-noticia mt-3 px-3 py-2 ml-1">#{{$tag->lang(App::getLocale())->title}}</a>
+                @if(sizeof($news->categories) > 0)
+                    <hr class="mt-5">
+                    <h5 class="color-black font-bold mt-4">CATEGORÍAS</h5>
+                    @foreach ($news->categories as $cat)
+                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.categories', [
+                        "noticiaCategoria" => $cat->lang(app()->getLocale())->slug,
+                        "newsCategory" => $cat->lang(app()->getLocale())->slug,
+                    ])}}" title="Accede a la categoría Decoración" class="d-flex justify-content-between align-items-center mt-2">
+                        <p class="color-black mb-3">{{$cat->lang(app()->getLocale())->title}}</p>
+                        <img src="{{ asset('front/img/arrow-right.svg') }}" alt="icono flecha derecha">
+                    </a>
+                    @if(!$loop->last) / @endif
                     @endforeach
-                </div>
-                <hr class="mt-5">
-                <h5 class="color-black font-bold mt-4">NOTÍCIAS RELACIONADAS</h5>
-                <div class="d-flex flex-row flex-wrap mt-3">
-                    @foreach ($news->relatedNews as $related)
-                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.show', ["news" => $related])}}" class="btn-noticia mt-3 px-3 py-2 ml-1">{{$related->lang(App::getLocale())->title}}</a>
-                    @endforeach
-                </div>
-
+                    <hr class="mt-5">
+                @endif
+                @if(sizeof($news->tags) > 0)
+                    <h5 class="color-black font-bold mt-4">TAGS</h5>
+                    <div class="d-flex flex-row flex-wrap mt-3">
+                        @foreach ($news->tags as $tag)
+                        <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.tags', [
+                            "noticiaEtiqueta" => $tag->lang(App::getLocale())->slug,
+                            "newsTag" => $tag->lang(App::getLocale())->slug,
+                        ])}}" class="btn-noticia mt-3 px-3 py-2 ml-1">#{{$tag->lang(App::getLocale())->title}}</a>
+                        @endforeach
+                    </div>
+                    <hr class="mt-5">
+                @endif
+                @if(sizeof($news->relatedNews) > 0)
+                    <h5 class="color-black font-bold mt-4">NOTÍCIAS RELACIONADAS</h5>
+                    <div class="d-flex flex-row flex-wrap mt-3">
+                        @foreach ($news->relatedNews as $related)
+                        <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.show', ["news" => $related])}}" class="btn-noticia mt-3 px-3 py-2 ml-1">{{$related->lang(App::getLocale())->title}}</a>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
     </div>

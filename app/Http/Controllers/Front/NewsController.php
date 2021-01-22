@@ -52,13 +52,21 @@ class NewsController extends Controller
     public function showTag(NoticiaEtiqueta $noticiaEtiqueta)
     {
         $news = $noticiaEtiqueta->news;
-        return view('front.news.tags.index', compact('news', 'noticiaEtiqueta'));
+        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
+        $materials = Material::where('active', 1)->get();
+        $colors = ProductColor::where('active', 1)->get();
+        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
+        return view('front.news.tags.index', compact('categories', 'rapports', 'materials', 'colors','news', 'noticiaEtiqueta'));
     }
 
     public function showCategory(NoticiaCategoria $noticiaCategoria)
     {
         $news = $noticiaCategoria->news;
-        return view('front.news.categories.index', compact('news', 'noticiaCategoria'));
+        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
+        $materials = Material::where('active', 1)->get();
+        $colors = ProductColor::where('active', 1)->get();
+        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
+        return view('front.news.categories.index', compact('categories', 'rapports', 'materials', 'colors','news', 'noticiaCategoria'));
     }
 
 
