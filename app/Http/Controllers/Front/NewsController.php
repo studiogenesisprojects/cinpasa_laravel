@@ -16,7 +16,9 @@ use App\Models\ProductCategory;
 use App\Models\ProductColor;
 use App\Models\Slide;
 use App\News;
+use App\NewsCategory;
 use App\NewsFeatured;
+use App\NewsTag;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Concerns\ToArray;
@@ -49,24 +51,32 @@ class NewsController extends Controller
         return view('front.news.show', compact('news'));
     }
 
-    public function showTag(NoticiaEtiqueta $noticiaEtiqueta)
+    public function showTag($noticiaEtiqueta)
     {
-        $news = $noticiaEtiqueta->news;
+        $noticiaEtiqueta = NewsTag::whereHas('languages', function ($q) use($noticiaEtiqueta) {
+            $q->where('slug', $noticiaEtiqueta);
+        })->first();
+        $title = $noticiaEtiqueta;
+        $news = $noticiaEtiqueta->news()->paginate(18);
         $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
         $materials = Material::where('active', 1)->get();
         $colors = ProductColor::where('active', 1)->get();
         $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
-        return view('front.news.tags.index', compact('categories', 'rapports', 'materials', 'colors','news', 'noticiaEtiqueta'));
+        return view('front.news.showCategory_Tag', compact('categories', 'rapports', 'materials', 'colors','news', 'title'));
     }
 
-    public function showCategory(NoticiaCategoria $noticiaCategoria)
+    public function showCategory($noticiaCategoria)
     {
-        $news = $noticiaCategoria->news;
+        $noticiaCategoria = NewsCategory::whereHas('languages', function ($q) use($noticiaCategoria) {
+                            $q->where('slug', $noticiaCategoria);
+                        })->first();
+        $title = $noticiaCategoria;
+        $news = $noticiaCategoria->news()->paginate(18);
         $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
         $materials = Material::where('active', 1)->get();
         $colors = ProductColor::where('active', 1)->get();
         $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
-        return view('front.news.categories.index', compact('categories', 'rapports', 'materials', 'colors','news', 'noticiaCategoria'));
+        return view('front.news.showCategory_Tag', compact('categories', 'rapports', 'materials', 'colors','news', 'title'));
     }
 
 

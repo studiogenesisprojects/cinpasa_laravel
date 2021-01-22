@@ -49,7 +49,6 @@
                     <h5 class="color-black font-bold mt-4">CATEGORÍAS</h5>
                     @foreach ($news->categories as $cat)
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.categories', [
-                        "noticiaCategoria" => $cat->lang(app()->getLocale())->slug,
                         "newsCategory" => $cat->lang(app()->getLocale())->slug,
                     ])}}" title="Accede a la categoría Decoración" class="d-flex justify-content-between align-items-center mt-2">
                         <p class="color-black mb-3">{{$cat->lang(app()->getLocale())->title}}</p>
@@ -64,7 +63,6 @@
                     <div class="d-flex flex-row flex-wrap mt-3">
                         @foreach ($news->tags as $tag)
                         <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.tags', [
-                            "noticiaEtiqueta" => $tag->lang(App::getLocale())->slug,
                             "newsTag" => $tag->lang(App::getLocale())->slug,
                         ])}}" class="btn-noticia mt-3 px-3 py-2 ml-1">#{{$tag->lang(App::getLocale())->title}}</a>
                         @endforeach

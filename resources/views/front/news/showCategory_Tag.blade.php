@@ -18,8 +18,7 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-lg-7 col-md-10">
-                <h2 class="before-title">{{__('Noticias.seccion1_titulo')}}</h2>
-                <p class="mt-3">{{__('Noticias.seccion1_texto')}}</p>
+                <h2 class="before-title">{{__('Noticias.seccion1_titulo')}} - {{$title->lang()->title}}</h2>
             </div>
         </div>
         <div class="row mt-5">
@@ -44,6 +43,7 @@
                 </div>
             </div>
             @endforeach
+            {{$news->links()}}
         </div>
     </div>
 </section>
