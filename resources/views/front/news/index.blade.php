@@ -27,7 +27,7 @@
             <div class="col-xl-4 col-md-6">
                 <div class="row mx-0 flex-column align-items-center hover-noticia">
                     <div class="position-relative w-100">
-                        @if(Storage::exists('noticias/' . $new->image))
+                        @if(Storage::exists('public/noticias/' . $new->image))
                             <img class="w-100 border-img hover-shadow" src="{{ Storage::url('noticias/' . $new->image) }}" alt="imagen noticia artículo">
                         @else
                             <img class="w-100 border-img hover-shadow" src="{{ asset('front/img/no-foto.jpg') }}" alt="imagen noticia artículo">
