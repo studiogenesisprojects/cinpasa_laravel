@@ -66,7 +66,7 @@ class ProductController extends Controller
         } else {
             $products = $products->sortByDesc('order');
         }
-        return view('front.products.show', compact('productCategory', 'categories','rapports','materials','colors','products','filter','more_info_trigger'));
+        return view('front.products.show', compact('productCategory', 'products','filter','more_info_trigger'));
     }
 
     public function showProduct(ProductCategory $productCategory, Product $product)
