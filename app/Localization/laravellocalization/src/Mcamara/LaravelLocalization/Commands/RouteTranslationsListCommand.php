@@ -1,9 +1,9 @@
 <?php
 
-namespace Mcamara\LaravelLocalization\Commands;
+namespace App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Commands;
 
-use Mcamara\LaravelLocalization\LaravelLocalization;
-use Mcamara\LaravelLocalization\Traits\TranslatedRouteCommandContext;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\LaravelLocalization;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Traits\TranslatedRouteCommandContext;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Console\RouteListCommand;
 use Symfony\Component\Console\Input\InputArgument;

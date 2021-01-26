@@ -1,8 +1,8 @@
 <?php
 
-namespace Mcamara\LaravelLocalization\Commands;
+namespace App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Commands;
 
-use Mcamara\LaravelLocalization\Traits\TranslatedRouteCommandContext;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Traits\TranslatedRouteCommandContext;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 

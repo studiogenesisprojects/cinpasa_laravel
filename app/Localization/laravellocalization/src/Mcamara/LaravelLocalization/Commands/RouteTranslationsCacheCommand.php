@@ -1,10 +1,10 @@
 <?php
 
-namespace Mcamara\LaravelLocalization\Commands;
+namespace App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Commands;
 
 use Illuminate\Foundation\Console\RouteCacheCommand;
-use Mcamara\LaravelLocalization\LaravelLocalization;
-use Mcamara\LaravelLocalization\Traits\TranslatedRouteCommandContext;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\LaravelLocalization;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Traits\TranslatedRouteCommandContext;
 use Illuminate\Routing\RouteCollection;
 
 class RouteTranslationsCacheCommand extends RouteCacheCommand

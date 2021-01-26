@@ -23,14 +23,10 @@ class ApplicationController extends Controller
     public function index()
     {
         $carousel = Carousel::where('section_id', 7)->where('active', 1)->where('main', 1)->first();
-        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
-        $materials = Material::where('active', 1)->get();
-        $colors = ProductColor::where('active', 1)->get();
-        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
         //en el index mostramos aplicaciones padres
         $applicationCategories = ApplicationHome::orderBy('order')->get();
 
-        return view('front.applications.index', compact(['categories', 'materials', 'colors','rapports','applicationCategories', 'carousel']));
+        return view('front.applications.index', compact(['applicationCategories', 'carousel']));
     }
 
     public function show(ApplicationCategory $applicationCategory)
@@ -54,27 +50,18 @@ class ApplicationController extends Controller
                 break;
         }
 
-        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
-        $materials = Material::where('active', 1)->get();
-        $colors = ProductColor::where('active', 1)->get();
-        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
-
         $applications = $applicationCategory->aplications()->where('active', true)->orderBy('order')->get();
-        return view('front.applications.show', compact('categories', 'materials', 'colors','rapports','applicationCategory', 'applications', 'carousel'));
+        return view('front.applications.show', compact('applicationCategory', 'applications', 'carousel'));
     }
 
     public function _show(ApplicationCategory $applicationCategory, Aplication $aplication)
     {
-        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
-        $materials = Material::where('active', 1)->get();
-        $colors = ProductColor::where('active', 1)->get();
-        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
 
         $products = Product::whereHas('applications', function ($q) use ($aplication) {
             $q->where('aplications.id', $aplication->id);
         })->where('active', true)->whereHas('languages', function ($q) {
             $q->where("language_id", Product::getLangIndex(app()->getLocale()))->where('active', true);
         })->orderBy('order')->get();
-        return view('front.applications._show', compact('categories', 'materials', 'colors','rapports','aplication', 'applicationCategory', 'products'));
+        return view('front.applications._show', compact('aplication', 'applicationCategory', 'products'));
     }
 }

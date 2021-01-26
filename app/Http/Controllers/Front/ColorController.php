@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Carousel;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\ProductColor;
 use Illuminate\Http\Request;
 use App\Models\ProductColorCategory;
@@ -27,6 +28,22 @@ class ColorController extends Controller
 
         $productColorCategories = ProductColorCategory::where('active', 1)->orderBy('order')->get();
         return view('front.colors.show', compact('productCategoryColor', 'productColorCategories'));
+    }
+
+    public function getProductColor(Request $request)
+    {
+        $category = ProductCategory::find($request->id);
+        $colors = [];
+
+        foreach($category->products as $product) {
+            foreach($product->colors as $color){
+                if(!in_array($color->name, $colors)){
+                    $colors[$color->id] = $color->name;
+                }
+            }
+        }
+
+        return $colors;
     }
 
     public function ajaxColor($colorID, $productColorCategoryId)

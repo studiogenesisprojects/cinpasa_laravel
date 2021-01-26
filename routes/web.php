@@ -157,6 +157,7 @@ Route::group([
 Route::get('/login', 'Back\LoginController@index');
 Route::post('/handlelogin', 'Back\LoginController@handleLogin');
 Route::get('/colors/ajax/{colorID}/{productColorCategoryId}', 'Front\ColorController@ajaxColor');
+Route::post('/get-colors', 'Front\ColorController@getProductColor')->name('product.color');
 
 Route::get('/get-image-{image}', 'Back\Carousel\CarouselController@getImage')->name('carousel.getImage');
 Route::get('/get-news-image-{image}', 'Back\Carousel\CarouselController@getNewsImage')->name('carousel.getNewsImage');

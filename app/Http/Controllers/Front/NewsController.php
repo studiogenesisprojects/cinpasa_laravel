@@ -28,11 +28,6 @@ class NewsController extends Controller
 
     public function index()
     {
-        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
-        $materials = Material::where('active', 1)->get();
-        $colors = ProductColor::where('active', 1)->get();
-        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
-
         $featuredNews = NewsFeatured::all();
         $news = News::orderBy('created_at', 'desc')->paginate(9);
 
@@ -43,7 +38,7 @@ class NewsController extends Controller
         $slideCarousel->image = Storage::url('noticias/'.$featuredNews[0]->news->image);
         $carousel->setRelation('slides', [$slideCarousel]);
 
-        return view('front.news.index', compact('news', 'featuredNews','categories', 'materials', 'colors','rapports', 'carousel', 'slideCarousel'));
+        return view('front.news.index', compact('news', 'featuredNews','carousel', 'slideCarousel'));
     }
 
     public function show(News $news)
@@ -58,11 +53,7 @@ class NewsController extends Controller
         })->first();
         $title = $noticiaEtiqueta;
         $news = $noticiaEtiqueta->news()->orderBy('created_at', 'DESC')->paginate(18);
-        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
-        $materials = Material::where('active', 1)->get();
-        $colors = ProductColor::where('active', 1)->get();
-        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
-        return view('front.news.showCategory_Tag', compact('categories', 'rapports', 'materials', 'colors','news', 'title'));
+        return view('front.news.showCategory_Tag', compact('news', 'title'));
     }
 
     public function showCategory($noticiaCategoria)
@@ -72,11 +63,7 @@ class NewsController extends Controller
                         })->first();
         $title = $noticiaCategoria;
         $news = $noticiaCategoria->news()->orderBy('created_at', 'DESC')->paginate(18);
-        $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
-        $materials = Material::where('active', 1)->get();
-        $colors = ProductColor::where('active', 1)->get();
-        $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
-        return view('front.news.showCategory_Tag', compact('categories', 'rapports', 'materials', 'colors','news', 'title'));
+        return view('front.news.showCategory_Tag', compact('news', 'title'));
     }
 
 

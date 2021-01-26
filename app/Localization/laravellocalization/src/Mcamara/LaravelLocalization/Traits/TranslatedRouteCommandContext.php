@@ -1,6 +1,6 @@
 <?php
 
-namespace Mcamara\LaravelLocalization\Traits;
+namespace App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Traits;
 
 trait TranslatedRouteCommandContext
 {
