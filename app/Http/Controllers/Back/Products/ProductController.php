@@ -82,8 +82,11 @@ class ProductController extends Controller
 
     public function store(RequestCategory $request)
     {
+
         $request->slug = str_replace(" ","-",$request->slug);
-        $product = Product::create($request->all());
+
+        $product = Product::create($request->only(['active', 'outlet', 'liasa_code', 'video', 'galery_id']));
+
         if(isset($request->references2)){
             for($i = 0; $i < sizeOf($request->references2); $i++){
                 $product_caracteristic = new ProductCaracteristics;
@@ -199,6 +202,7 @@ class ProductController extends Controller
 
     public function update(RequestCategory $request, $id)
     {
+
         $product = Product::findOrFail($id);
 
         $product->caracteristics()->delete();
