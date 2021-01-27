@@ -52,7 +52,7 @@ class ProductController extends Controller
             } elseif($filter == 2) {
                 $products = $products->sortByDesc('name');
             } else {
-                $products = $products->sortByDesc('order');
+                $products = $products->sortBy('order');
             }
             $productCategoryChildrens = $productCategory->childrens;
             $fathers = ProductCategory::where('sup_product_category', null)->get();
@@ -64,7 +64,7 @@ class ProductController extends Controller
         } elseif($filter == 2) {
             $products = $products->sortByDesc('name');
         } else {
-            $products = $products->sortByDesc('order');
+            $products = $products->sortBy('order');
         }
         return view('front.products.show', compact('productCategory', 'products','filter','more_info_trigger'));
     }
