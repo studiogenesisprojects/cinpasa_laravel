@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Facades\App;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 
 class News extends TranslatedModel implements LocalizedUrlRoutable

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization as FacadesLaravelLocalization;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -290,7 +291,7 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
 
     public function getUrlAttribute()
     {
-        return  LaravelLocalization::getURLFromRouteNameTranslated(app()->getLocale(), 'routes.products.showProduct', [
+        return  FacadesLaravelLocalization::getURLFromRouteNameTranslated(app()->getLocale(), 'routes.products.showProduct', [
             "productCategory" => $this->categories->first(),
             "product" => $this
         ]);

@@ -9,7 +9,7 @@ use App\Models\Product;
 use App\Models\ProductLang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class RedirectController extends Controller
 {

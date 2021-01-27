@@ -10,7 +10,7 @@ use App\Models\ProductCategory;
 use App\Models\Product;
 use App\Models\ProductCaracteristics;
 use App\Models\ProductColor;
-use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 class ProductController extends Controller

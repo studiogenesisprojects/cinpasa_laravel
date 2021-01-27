@@ -7,7 +7,7 @@ use App\Models\Language;
 use App\Models\NoticiaLang;
 use App\Models\NoticiaRelacionada;
 use App\Models\NoticiaBloque;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 use App\TranslatedModel;
 
