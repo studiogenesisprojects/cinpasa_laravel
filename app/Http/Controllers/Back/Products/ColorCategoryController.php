@@ -98,7 +98,7 @@ class ColorCategoryController extends Controller
     {
         $colorCategory = ProductColorCategory::findOrFail($id);
 
-        $colorCategory->update($request->toArray());
+        $colorCategory->update(array_merge($request->all(), ["active" => isset($request->active)]));
 
         foreach ($request->colorLanguages as $language) {
             if ($colorCategory->lang((int) $language['language_id']) === null) {

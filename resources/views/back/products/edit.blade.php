@@ -187,7 +187,7 @@
                                     <input type="file" name="list_image" class="form-control" for="list_image">
                                     @if ($product->list_image)
                                         <img src="{{Storage::url($product->list_image)}}" alt="">
-                                        @endif
+                                    @endif
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">

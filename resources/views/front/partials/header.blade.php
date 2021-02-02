@@ -1,3 +1,4 @@
+
 <header class="position-fixed background-white w-100 z-100">
     <div id="nav-none" class="container-fluid position-relative z-2 px-0 d-md-block d-none">
         <div class="row justify-content-between py-3 px-5 header-social">
@@ -37,8 +38,8 @@
                         <a class="icon-fav" href="#" title="Accede a tus productos favoritos"><img class="icon-nav" src="{{ asset('front/img/icon-fav.svg') }}" alt="icono favoritos"></a>
                         <div class="num-fav">{{$favorites->count()}}</div>
                     </div>
-                    {{-- <a class="icon-search" href="#" title="Busca por palabras clave"><img class="icon-nav ml-sm-3 ml-3" src="{{ asset('front/img/icon-search.svg') }}" alt="icono búsqueda"></a>
-                    <a id="icon-menu" href="#" title="Busca por palabras clave"><img class="icon-nav ml-sm-3 ml-3" src="{{ asset('front/img/icon-menu.svg') }}" alt="icono búsqueda"></a> --}}
+                    <a class="icon-search" href="#" title="Busca por palabras clave"><img class="icon-nav ml-sm-3 ml-3" src="{{ asset('front/img/icon-search.svg') }}" alt="icono búsqueda"></a>
+                    <a id="icon-menu" href="#" title="Busca por palabras clave"><img class="icon-nav ml-sm-3 ml-3" src="{{ asset('front/img/icon-menu.svg') }}" alt="icono búsqueda"></a>
                 </div>
                 <div id="menu" class="">
                     <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.company.index')}}" title="Accede al apartado empresa">{{strtoupper(__('Menu.business'))}}</a>
@@ -68,7 +69,7 @@
                         <a id="icon-fav" href="#" title="Accede a tus productos favoritos"><img class="icon-nav" src="{{ asset('front/img/icon-fav.svg') }}" alt="icono favoritos"></a>
                         <div class="num-fav pointer-events-none">{{$favorites->count()}}</div>
                     </div>
-                    {{-- <a id="icon-search" href="#" title="Busca por palabras clave"><img class="icon-nav ml-3" src="{{ asset('front/img/icon-search.svg') }}" alt="icono búsqueda"></a> --}}
+                    <a id="icon-search" href="#" title="Busca por palabras clave"><img class="icon-nav ml-3" src="{{ asset('front/img/icon-search.svg') }}" alt="icono búsqueda"></a>
                 </div>
                 <nav id="nav_a" class="justify-content-end mt-4 d-lg-flex d-none">
                     <a class="ml-3 {{Str::contains($currentUrl, "empresa") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.company.index')}}" title="Accede al apartado empresa">{{strtoupper(__('Menu.business'))}}</a>
@@ -83,62 +84,28 @@
 
                 </nav>
 
-                {{-- <div id="buscador_modal" class="row position-absolute r-0 t-2 card width-auto vw-lg-40 vw-md-50 vw-sm-60 vw-xs-90 background-blue-light">
+                <div id="buscador_modal" class="row position-absolute r-0 t-2 card width-auto vw-lg-40 vw-md-50 vw-sm-60 vw-xs-90 background-blue-light">
                     <section id="close-busqueda" class="vh-100 vw-100 position-fixed t-0 l-0"></section>
                     <div class="col-12 px-4 pt-4 background-white">
                         <p class="font-bold color-blue">Buscador</p>
                     </div>
-                    <div class="col-12 px-4 background-white">
-                        <div class="row align-items-center justify-content-between">
-                            <div class="col-8">
-                                <div class="form-group">
-                                    <input type="text" class="form-control px-0 w-100" id="" placeholder="Introduce alguna palabra clave…">
+                    <form action="{{route('searcher')}}" method="GET">
+                        @csrf
+                        <div class="col-12 px-4 background-white">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control px-0 w-100" name="name" id="" placeholder="Introduce alguna palabra clave…">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <button type="submit" title="Busca por palabra clave" class="btn btn-busqueda">BUSCAR</button>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <a href="#" title="Busca por palabra clave" class="btn btn-busqueda">BUSCAR</a>
-                            </div>
+                            <hr class="w-0 mb-4">
                         </div>
-                        <hr class="w-0 mb-4">
-                    </div>
-                    <div class="col-12 px-0 px-4 pb-5">
-                        <p class="color-blue mt-3">Resultados</p>
-                        <div class="row mt-3 align-items-center">
-                            <div class="col-3">
-                                <a href="#" title="Accede al produto relacionado"><img class="w-100 border-img" src="{{ asset('front/img/favoritos-1.jpg') }}" alt="imagen búsquedas relacionadas"></a>
-                            </div>
-                            <div class="col-9 px-0"><a href="#" title="Accede al produto relacionado">
-                                    <p class="small color-blue">PASAMANERÍA</p>
-                                    <p class="small color-black font-bold">Aro embellecedor 42mm</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row mt-3 align-items-center">
-                            <div class="col-3">
-                                <a href="#" title="Accede al produto relacionado"><img class="w-100 border-img" src="{{ asset('front/img/favoritos-1.jpg') }}" alt="imagen búsquedas relacionadas"></a>
-                            </div>
-                            <div class="col-9 px-0"><a href="#" title="Accede al produto relacionado">
-                                    <p class="small color-blue">CORDONES</p>
-                                    <p class="small color-black font-bold">Cordón retorcido de papel</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row mt-3 align-items-center">
-                            <div class="col-3">
-                                <a href="#" title="Accede al produto relacionado"><img class="w-100 border-img" src="{{ asset('front/img/favoritos-1.jpg') }}" alt="imagen búsquedas relacionadas"></a>
-                            </div>
-                            <div class="col-9 px-0"><a href="#" title="Accede al produto relacionado">
-                                    <p class="small color-blue">CINTAS</p>
-                                    <p class="small color-black font-bold">Bandolera</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="background-blue-light">
-                    <div class="col-12 px-4 py-3">
-                        <a href="#" title="Más resultados de tu búsqueda" class="color-blue small font-bold">Más resultados <img class="ml-2" src="{{ asset('front/img/icon-arrow-right-blue.svg') }}" alt="icono vectorial flecha derecha"></a>
-                    </div>
-                </div> --}}
+                    </form>
+                </div>
                 <div id="favorito_modal" class="row position-absolute r-0 t-2 card pt-4 width-auto vw-lg-40 vw-md-50 vw-sm-60 vw-xs-90">
                     <section id="close-favorito" class="vh-100 vw-100 position-fixed t-0 l-0"></section>
                     <div class="col-12 px-4">

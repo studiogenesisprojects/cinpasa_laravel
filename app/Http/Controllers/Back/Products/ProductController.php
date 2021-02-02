@@ -202,7 +202,6 @@ class ProductController extends Controller
 
     public function update(RequestCategory $request, $id)
     {
-
         $product = Product::findOrFail($id);
 
         $product->caracteristics()->delete();
@@ -259,6 +258,15 @@ class ProductController extends Controller
             $path = $request->file('primary_image')->storeAs('public/productos', str_replace(" ","-",$request->file('primary_image')->getClientOriginalName()));
             $image = $product->images()->create(['path' => $path,]);
             $product->update(['product_image_id' => $image->id]);
+        }
+
+        if ($request->hasFile('list_image')) {
+
+            $path = $request->file('list_image')->storeAs('public/productos', str_replace(" ","-",$request->file('list_image')->getClientOriginalName()));
+            $image = $product->images()->create(['path' => $path,]);
+
+            $product->list_image = $path;
+            $product->save();
         }
 
         if ($request->images) {

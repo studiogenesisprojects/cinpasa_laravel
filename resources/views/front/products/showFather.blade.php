@@ -7,7 +7,7 @@
 @else
     <br><br><br>
 @endif
-{{-- @include('front.home.barra-busqueda') --}}
+@include('front.home.barra-busqueda')
 <section>
     <div class="container-fluid">
         <div class="row">

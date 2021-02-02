@@ -9,7 +9,7 @@
         <br><br><br>
     @endif
 
-    {{-- @include('front.home.barra-busqueda') --}}
+    @include('front.home.barra-busqueda')
     <div class="container-fluid">
         <div class="row">
             <div class="col-3 px-5 pb-3 d-lg-block d-none">

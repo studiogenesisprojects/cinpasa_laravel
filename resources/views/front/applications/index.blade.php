@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 @include('front.home.carousel2')
-{{-- @include('front.home.barra-busqueda') --}}
+@include('front.home.barra-busqueda')
 <section id="aplicaciones">
     <div class="container">
         <div class="row mt-4">
