@@ -4,22 +4,22 @@
         <div class="col-11">
             <div class="overflow-hidden position-relative search-bar row flex-column transform-t-n50px z-1">
                 <div class="d-flex form-group">
-                    <input type="search" class="form-control form-control-border-bottom" value="{{isset($_GET['name']) ? $_GET['name'] : ''}}" name="name" placeholder="Nombre del producto / Referencia">
+                    <input type="search" class="form-control form-control-border-bottom" value="{{isset($_GET['name']) ? $_GET['name'] : ''}}" name="name" placeholder="{{__('Productos.nombre')}} / {{__('Productos.referencia')}}">
                     {{-- <input type="number" class="form-control form-control-border-bottom" value="{{isset($_GET['width']) ? $_GET['width'] : ''}}" name="width" placeholder="Ancho"> --}}
                     <select class="form-control form-control-border-bottom" name="width" id="FormControlMaterial">
-                        <option value="">Ancho</option>
+                        <option value="">{{__('Productos.ancho')}}</option>
                         @foreach($anchos as $ancho)
                             <option value="{{$ancho}}" {{isset($_GET['width']) && $_GET['width'] == $ancho ? 'selected' : ''}}>{{$ancho}}</option>
                         @endforeach
                     </select>
                     <select class="form-control form-control-border-bottom type" name="application" id="type_searcher">
-                        <option value="">Tipo</option>
+                        <option value="">{{ucfirst(strtolower(__('Productos.categorias')))}}</option>
                         @foreach($categories as $category)
                             <option value="{{$category->id}}" {{isset($_GET['application']) && $_GET['application'] == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
                         @endforeach
                     </select>
                     <select class="form-control form-control-border-bottom" name="material" id="FormControlAncho">
-                        <option value="">Material</option>
+                        <option value="">{{__('Productos.material')}}</option>
                         @foreach($materials as $material)
                             <option value="{{$material->id}}" {{isset($_GET['material']) && $_GET['material'] == $material->id ? 'selected' : ''}}>{{$material->name}}</option>
                         @endforeach
@@ -31,25 +31,25 @@
 
                 <div id="buscador_avanzado" class="form-group">
                     <select class="form-control form-control-border-bottom" name="bags" id="FormControlAncho">
-                        <option value="">Bolsas</option>
+                        <option value="">{{__('Productos.bolsas')}}</option>
                         @foreach($bags as $bag)
                             <option value="{{$bag}}" {{isset($_GET['bags']) && $_GET['bags'] == $bag ? 'selected' : ''}}>{{$bag}}</option>
                         @endforeach
                     </select>
                     <select class="form-control form-control-border-bottom" name="rapport" id="FormControlAncho">
-                        <option value="">Ratios</option>
+                        <option value="">{{__('Productos.rapport')}}</option>
                         @foreach($rapports as $rapport)
                             <option value="{{$rapport}}" {{isset($_GET['rapport']) && $_GET['rapport'] == $rapport ? 'selected' : ''}}>{{$rapport}}</option>
                         @endforeach
                     </select>
                     <select class="form-control form-control-border-bottom" name="laces" id="FormControlAncho">
-                        <option value="">Cordones</option>
+                        <option value="">{{__('Productos.cordones')}}</option>
                         @foreach($laces as $lace)
                             <option value="{{$lace}}" {{isset($_GET['laces']) && $_GET['laces'] == $lace && $_GET['laces'] != '' ? 'selected' : ''}}>{{$lace}}</option>
                         @endforeach
                     </select>
                     <select class="form-control form-control-border-bottom" name="color" id="color_searcher">
-                        <option value="">Color</option>
+                        <option value="">{{ucfirst(strtolower(__('Productos.producto_mostrar_colores')))}}</option>
                         @foreach($colors as $color)
                             <option value="{{$color->id}}" {{isset($_GET['color']) && $_GET['color'] == $color->id ? 'selected' : ''}}>{{$color->name}}</option>
                         @endforeach
@@ -59,7 +59,7 @@
                     </a>
                 </div>
                 <div class="d-flex form-control">
-                    <a id="btn_buscador_avanzado" href="#" title="Abrir buscador avanzado" class="underline">Abrir buscador avanzado</a>
+                    <a id="btn_buscador_avanzado" href="#" title="Abrir buscador avanzado" class="underline">{{__('Productos.buscador_avanzado')}}</a>
                 </div>
             </div>
         </div>
