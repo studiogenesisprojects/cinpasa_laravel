@@ -148,7 +148,8 @@ $("#btn_buscador_avanzado, #btn_buscador_avanzado_mobile").click(function () {
         } else {
             tl_buscador_avanzado_mobile.play();
         };
-        $("#btn_buscador_avanzado").html("Cerrar buscador avanzado");
+        $(".btn_buscador_avanzado_cerrar").show();
+        $(".btn_buscador_avanzado_abrir").hide();
         bool_search_bar = false;
     } else {
         if (width >= 576) {
@@ -156,7 +157,8 @@ $("#btn_buscador_avanzado, #btn_buscador_avanzado_mobile").click(function () {
         } else {
             tl_buscador_avanzado_mobile.reverse();
         };
-        $("#btn_buscador_avanzado").html("Abrir buscador avanzado");
+        $(".btn_buscador_avanzado_abrir").show();
+        $(".btn_buscador_avanzado_cerrar").hide();
         bool_search_bar = true;
     }
 });

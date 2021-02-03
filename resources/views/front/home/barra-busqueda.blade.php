@@ -59,7 +59,8 @@
                     </a>
                 </div>
                 <div class="d-flex form-control">
-                    <a id="btn_buscador_avanzado" href="#" title="Abrir buscador avanzado" class="underline">{{__('Productos.buscador_avanzado')}}</a>
+                    <a id="btn_buscador_avanzado" href="#" title="Abrir buscador avanzado" class="btn_buscador_avanzado_abrir underline">{{__('Productos.buscador_avanzado')}}</a>
+                    <a id="btn_buscador_avanzado" href="#" title="Abrir buscador avanzado" style="display: none;" class="btn_buscador_avanzado_cerrar underline">{{__('Productos.buscador_avanzado_cerrar')}}</a>
                 </div>
             </div>
         </div>
