@@ -62,7 +62,7 @@ class PetitionController extends Controller
             }
         }
 
-        $email_catalan_spanish = "marketing@cinpasa.com";
+        $email_catalan_spanish = "ventas@cinpasa.com";
         // $email_others = "diego.agudoal@gmail.com";
         // $locale = $request->locale;
         // if ($locale == "es" || $locale == "ca") {
