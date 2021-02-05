@@ -183,13 +183,30 @@ class ProductController extends Controller
             $append["name"] = $request->input('name');
         }
 
-        //Ancho
-        if ($request->input('width')) {
+        //Caracteristics
+        if ($request->input('width') || $request->input('bags') || $request->input('rapport') || $request->input('laces')) {
             $results = $results->whereHas('caracteristics', function ($q) use ($request) {
-                $q->where('width', $request->input('width'));
-            });
+                if($request->input('width')){
+                    $q->where('width', $request->input('width'));
+                    $append["width"] = $request->input('width');
+                }
 
-            $append["width"] = $request->input('width');
+                if($request->input('bags')){
+                    $q->where('bags', $request->input('bags'));
+                    $append["bags"] = $request->input('bags');
+                }
+
+                if($request->input('rapport')){
+                    $q->where('rapport', $request->input('rapport'));
+                    $append["rapport"] = $request->input('rapport');
+                }
+
+                if($request->input('laces')){
+                    $q->where('laces', $request->input('laces'));
+                    $append["laces"] = $request->input('laces');
+                }
+
+            });
         }
 
         //Tipo
@@ -211,31 +228,31 @@ class ProductController extends Controller
         }
 
         //Bolsas
-        if ($request->input('bags')) {
-            $results = $results->whereHas('caracteristics', function ($q) use ($request) {
-                $q->where('bags', $request->input('bags'));
-            });
+        // if ($request->input('bags')) {
+        //     $results = $results->whereHas('caracteristics', function ($q) use ($request) {
+        //         $q->where('bags', $request->input('bags'));
+        //     });
 
-            $append["bags"] = $request->input('bags');
-        }
+        //     $append["bags"] = $request->input('bags');
+        // }
 
         //Ratios
-        if ($request->input('rapport')) {
-            $results = $results->whereHas('caracteristics', function ($q) use ($request) {
-                $q->where('rapport', 'LIKE', '%'.$request->input('rapport').'%');
-            });
+        // if ($request->input('rapport')) {
+        //     $results = $results->whereHas('caracteristics', function ($q) use ($request) {
+        //         $q->where('rapport', 'LIKE', '%'.$request->input('rapport').'%');
+        //     });
 
-            $append["rapport"] = $request->input('rapport');
-        }
+        //     $append["rapport"] = $request->input('rapport');
+        // }
 
         //Cordones
-        if ($request->input('laces')) {
-            $results = $results->whereHas('caracteristics', function ($q) use ($request) {
-                $q->where('laces', $request->input('laces'));
-            });
+        // if ($request->input('laces')) {
+        //     $results = $results->whereHas('caracteristics', function ($q) use ($request) {
+        //         $q->where('laces', $request->input('laces'));
+        //     });
 
-            $append["laces"] = $request->input('laces');
-        }
+        //     $append["laces"] = $request->input('laces');
+        // }
 
         //Color
         if ($request->input('color')) {
