@@ -57,7 +57,7 @@ class SearcherComposer
             'colors' => $colors,
             'rapports' => array_reverse($rapports->toArray()),
             'laces' => array_reverse($laces->toArray()),
-            'materials' => MaterialCategory::where('active', true)->orderBy('order')->get(),
+            'materials' => Material::where('active', true)->orderBy('order')->get(),
             'categories' => ProductCategory::where('active', true)->where('sup_product_category', '!=', null)->orderBy('searcher_order')->get(),
             'anchos' => ProductCaracteristics::whereNotNull('width')->orderBy('width', 'ASC')->get()->pluck('width')->unique(),
             'bags' => $bags,

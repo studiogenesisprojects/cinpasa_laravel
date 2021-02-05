@@ -96,6 +96,10 @@
                                 <p class="answer-text">{{ $petition->fullname }}</p>
                             </div>
                             <div class="answer-item">
+                                <p class="answer-title">Origen</p>
+                                <p class="answer-text">{{ $petition->origen }}</p>
+                            </div>
+                            <div class="answer-item">
                                 <p class="answer-title">Empresa</p>
                                 <p class="answer-text">{{ $petition->company }}</p>
                             </div>
