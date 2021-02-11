@@ -12,6 +12,7 @@ use App\Models\ProductCaracteristics;
 use App\Models\ProductColor;
 use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Models\MaterialCategory;
+use App\Models\ProductColorShade;
 
 class ProductController extends Controller
 {
@@ -232,40 +233,20 @@ class ProductController extends Controller
             $append["material"] = $request->input('material');
         }
 
-        //Bolsas
-        // if ($request->input('bags')) {
-        //     $results = $results->whereHas('caracteristics', function ($q) use ($request) {
-        //         $q->where('bags', $request->input('bags'));
-        //     });
-
-        //     $append["bags"] = $request->input('bags');
-        // }
-
-        //Ratios
-        // if ($request->input('rapport')) {
-        //     $results = $results->whereHas('caracteristics', function ($q) use ($request) {
-        //         $q->where('rapport', 'LIKE', '%'.$request->input('rapport').'%');
-        //     });
-
-        //     $append["rapport"] = $request->input('rapport');
-        // }
-
-        //Cordones
-        // if ($request->input('laces')) {
-        //     $results = $results->whereHas('caracteristics', function ($q) use ($request) {
-        //         $q->where('laces', $request->input('laces'));
-        //     });
-
-        //     $append["laces"] = $request->input('laces');
-        // }
-
         //Color
         if ($request->input('color')) {
-            $results = $results->whereHas('categoryColors', function ($q) use ($request) {
-                $q->whereHas('colors', function ($q) use ($request) {
-                    $q->where('product_colors.id', $request->input("color"));
+
+            $colorShade = ProductColorShade::find($request->input('color'));
+
+            $ids = $colorShade->colors->pluck('id');
+
+            $results = $results->whereHas('categoryColors', function ($q) use ($ids) {
+                $q->whereHas('colors', function ($q) use ($ids) {
+                    $q->whereIn('product_colors.id', $ids);
                 });
             });
+
+            $append["color"] = $request->input('color');
         }
 
         $results = $results->paginate(8);

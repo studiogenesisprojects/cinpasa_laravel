@@ -12,6 +12,7 @@ use App\Models\MaterialCategory;
 use App\Models\ProductBraided;
 use App\Models\ProductCaracteristics;
 use App\Models\ProductColor;
+use App\Models\ProductColorCategory;
 use App\Models\ProductColorShade;
 use App\Models\ProductForm;
 use Illuminate\Support\Facades\DB;
@@ -45,16 +46,16 @@ class SearcherComposer
             return $item;
         });
 
-        $colors = [];
-        $colors[] = ProductColor::find(22652);
-        $colors[] = ProductColor::find(22694);
-        $colors[] = ProductColor::find(22677);
-        foreach(ProductColor::where('active', 1)->whereNotIn('id', $colors)->get() as $color){
-            $colors[] = $color;
-        }
+        // $colors = [];
+        // $colors[] = ProductColor::find(22652);
+        // $colors[] = ProductColor::find(22694);
+        // $colors[] = ProductColor::find(22677);
+        // foreach(ProductColor::where('active', 1)->whereNotIn('id', $colors)->get() as $color){
+        //     $colors[] = $color;
+        // }
 
         $view->with([
-            'colors' => $colors,
+            'colors' => ProductColorShade::orderBy('searcher_order')->get(),
             'rapports' => array_reverse($rapports->toArray()),
             'laces' => array_reverse($laces->toArray()),
             'materials' => MaterialCategory::where('active', true)->orderBy('order')->get(),
