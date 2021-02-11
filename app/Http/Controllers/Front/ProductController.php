@@ -11,7 +11,7 @@ use App\Models\Product;
 use App\Models\ProductCaracteristics;
 use App\Models\ProductColor;
 use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
+use App\Models\MaterialCategory;
 
 class ProductController extends Controller
 {
@@ -220,8 +220,13 @@ class ProductController extends Controller
 
         //Material
         if ($request->input('material')) {
-            $results = $results->whereHas('materials', function ($q) use ($request) {
-                $q->where('materials.id', $request->input('material'));
+
+            $materialCategory = MaterialCategory::find($request->input('material'));
+
+            $ids = $materialCategory->materials->pluck('id');
+
+            $results = $results->whereHas('materials', function ($q) use ($ids) {
+                $q->whereIn('materials.id', $ids);
             });
 
             $append["material"] = $request->input('material');
