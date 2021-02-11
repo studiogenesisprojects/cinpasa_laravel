@@ -3,7 +3,30 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 @endsection
 @section('content')
-<br><br><br>
+<div class="container-fluid px-0">
+    <div class="position-relative">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
+            <div class="carousel-inner position-relative">
+                <div class="carousel-item position-relative overflow-hidden bg-cover bg-xl active" style="background-image: url('{{Storage::url($aplication->list_image ?? "")}}');">
+                    <img src="{{Storage::url($aplication->list_image ?? "")}}" class="d-block w-100 w-lg-150 w-sm-200 w-xs-400" alt="primero slide">
+                    <div class="position-absolute d-flex justify-content-center align-items-center w-100 h-100 t-0 l-0 z-1">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-8 col-10 offset-xl-0 offset-1">
+                                    <h1 class="before-title">{{$applicationCategory->name}}</h1>
+                                    <p class="color-white">{{$aplication->name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="position-absolute w-100 h-100">
+                    <img class="w-100 w-lg-150 w-sm-200 w-xs-400" src="{{ asset('front/img/home-carousel-degraded.png') }}" alt="degradado">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @include('front.home.barra-busqueda')
 <section class="products">
     <div class="container">

@@ -73,7 +73,7 @@
                 </div>
                 <nav id="nav_a" class="justify-content-end mt-4 d-lg-flex d-none">
                     <a class="ml-3 {{Str::contains($currentUrl, "empresa") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.company.index')}}" title="Accede al apartado empresa">{{strtoupper(__('Menu.business'))}}</a>
-                    <a class="ml-3 hover-dropdown {{Str::contains($currentUrl, "productos") ? "active": ""}}" href="javascript:;" title="Accede al apartado productos">{{strtoupper(__('Menu.products'))}}</a>
+                    <a class="ml-3 hover-dropdown {{Str::contains($currentUrl, "productos") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.index')}}" title="Accede al apartado productos">{{strtoupper(__('Menu.products'))}}</a>
                     <a class="ml-3 {{Str::contains($currentUrl, "aplicaciones") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Accede al apartado aplicaciones">{{strtoupper(strtoupper(__('Menu.aplications')))}}</a>
                     <a class="ml-3 {{Str::contains($currentUrl, "lab") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.index')}}" title="Accede al apartado LAB">LAB</a>
                     @if(1 == 0)

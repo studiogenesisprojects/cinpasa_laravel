@@ -231,7 +231,7 @@
             <div class="col-12 mt-5 d-flex flex-wrap">
                 @foreach ($colorCategories as $colorCategory)
                     @foreach ($colorCategory->colors as $color)
-                        <a href="#" title="Más información sobre el color" class="card-color p-2 mr-3 mt-2 show-color-modal" data-toggle="modal" cc="{{$colorCategory->id}}" id="{{$color->id}}"
+                        <a href="#" title="Más información sobre el color" style="width: 100px;" class="card-color p-2 mr-3 mt-2 show-color-modal" data-toggle="modal" cc="{{$colorCategory->id}}" id="{{$color->id}}"
                             data-target="#modal-color" >
                             <div class="color" style="background:#{{$color->hex_color}}">
                                 <img class="position-absolute t-0 r-0 background-blue p-1 icon-plus-color" src="{{ asset('front/img/icon-plus.svg') }}" alt="icono más">
