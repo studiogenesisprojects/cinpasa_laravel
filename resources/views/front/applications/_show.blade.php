@@ -8,7 +8,7 @@
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
             <div class="carousel-inner position-relative">
                 <div class="carousel-item position-relative overflow-hidden bg-cover bg-xl active">
-                    <img src="{{Storage::url($aplication->list_image ?? "")}}" style="height: 600px;" class="d-block w-100 w-lg-150 w-sm-200 w-xs-400" alt="primero slide">
+                    <img src="{{Storage::url($aplication->primary_image ?? "")}}" style="height: 600px;" class="d-block w-100 w-lg-150 w-sm-200 w-xs-400" alt="primero slide">
                     <div class="position-absolute d-flex justify-content-center align-items-center w-100 h-100 t-0 l-0 z-1">
                         <div class="container">
                             <div class="row">
