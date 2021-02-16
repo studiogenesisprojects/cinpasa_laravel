@@ -31,8 +31,8 @@ class PetitionController extends Controller
             $comentaris = $comentaris . ' Cantidades: ' . $request->cantidades;
         }
 
-        if(isset($request->comentarios)){
-            $comentaris = $comentaris . ' Comentarios: ' . $request->comentarios;
+        if(isset($request->comentaris)){
+            $comentaris = $comentaris . ' Comentarios: ' . $request->comentaris;
         }
 
         if(isset($request->activity)){

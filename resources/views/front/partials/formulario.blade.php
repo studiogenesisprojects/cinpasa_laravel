@@ -108,13 +108,13 @@
                                 </div>
                             </div>
                             <div class="custom-control custom-checkbox mt-3">
-                                <input type="checkbox" class="custom-control-input" id="comentarios">
-                                <label class="custom-control-label" for="comentarios">{{__('Contacta.comentarios')}}</label>
+                                <input type="checkbox" class="custom-control-input" id="comentaris">
+                                <label class="custom-control-label" for="comentaris">{{__('Contacta.comentarios')}}</label>
                             </div>
                         </div>
                         <div class="col-12 mt-3 d-none" id="comentarios-text">
                             <div class="form-group">
-                                <textarea class="form-control background-blue-light" name="comentarios" id="comentarios-text-new" rows="3"></textarea>
+                                <textarea class="form-control background-blue-light" name="comentaris" id="comentarios-text-new" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="col-12 mt-3">
@@ -155,7 +155,7 @@
         }
     });
 
-    $('#comentarios').click(function(){
+    $('#comentaris').click(function(){
         if($( "#comentarios-text" ).hasClass("d-none")){
             $('#comentarios-text').removeClass('d-none');
         } else {
