@@ -11,7 +11,7 @@ class Lab extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_labs');
+        return $this->belongsToMany(Product::class, 'product_labs')->orderBy('order');
     }
 
     public function lang(){
