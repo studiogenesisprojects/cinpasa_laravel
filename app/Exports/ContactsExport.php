@@ -4,8 +4,9 @@ namespace App\Exports;
 
 use App\Models\Petition;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ContactsExport implements FromCollection
+class ContactsExport implements FromCollection, ShouldAutoSize
 {
     /**
      * @return \Illuminate\Support\Collection
