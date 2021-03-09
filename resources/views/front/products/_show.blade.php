@@ -265,7 +265,7 @@
                 @foreach ($applicationCategories as $applicationCategory => $apps)
                     @foreach ($apps as $app)
                         <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.applications._show', [
-                            "applicationCategory" => $app->applicationCategories->first()->lang() ? $app->applicationCategories->first()->lang()->slug : "",
+                            "applicationCategory" => $app->applicationCategories->first() ? $app->applicationCategories->first()->lang()->slug : "",
                             "aplication" => $app
                         ])}}" title="Acceder a la aplicación" class="d-flex justify-content-between align-items-center">
                             <p class="color-black mb-3">{{$app->lang()->name}}</p>
