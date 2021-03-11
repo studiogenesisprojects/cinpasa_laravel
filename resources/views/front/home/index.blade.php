@@ -52,7 +52,7 @@
         </div>
     </section>
 
-    {{-- <section class="background-grey-light">
+    <section class="background-grey-light">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-10 mt-5">
@@ -66,5 +66,5 @@
                 @include('front.home.actualidad')
             </div>
         </div>
-    </section> --}}
+    </section>
 @endsection
