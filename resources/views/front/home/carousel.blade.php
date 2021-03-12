@@ -10,7 +10,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6 col-md-8 col-10 offset-xl-0 offset-1">
-                                    @if($key == 1)
+                                    @if($key == 0)
                                     <h1 class="before-title" style="color: white;">{{$slide->lang()->title}}</h1>
                                     @else
                                     <h2 class="before-title" style="color: white;">{{$slide->lang()->title}}</h2>
