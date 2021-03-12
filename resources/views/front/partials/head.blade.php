@@ -25,7 +25,7 @@
     <meta property=”og:type” content=”website”>
     <meta property=”og:description” content="@yield('meta-description')">
     @if(isset($product) && isset($product->galeries))
-        <meta property="og:image" content="{{asset('/storage/' . $product->galeries->first()->images[0]->path)}}">
+        <meta property="og:image" content="{{str_replace('public/', '',asset('/storage/' . $product->galeries->first()->images[0]->path))}}">
     @elseif(isset($news) && isset($news->lang()->title))
         <meta property="og:image" content="{{$news->image}}">
     @else
@@ -41,9 +41,9 @@
     <meta name=”twitter:title” content="@yield('meta-title')">
     <meta name=”twitter:description” content="@yield('meta-description')">
     @if(isset($product) && isset($product->galeries))
-        <meta property="twitter:image" content="{{asset('/storage/' . $product->galeries->first()->images[0]->path)}}">
+        <meta name="twitter:image" content="{{str_replace('public/', '',asset('/storage/' . $product->galeries->first()->images[0]->path))}}">
     @elseif(isset($news) && isset($news->lang()->title))
-        <meta property="twitter:image" content="{{$news->image}}">
+        <meta name="twitter:image" content="{{$news->image}}">
     @else
         <meta name="twitter:image" content="{{asset('front/img/logo-cinpasa.svg')}}">
     @endif
