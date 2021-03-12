@@ -20,12 +20,12 @@
     <meta name="title" content="@yield('meta-title')">
     <meta name="description" content="@yield('meta-description')">
 
-    @foreach(\App\Models\Language::all() as $language)
+    {{-- @foreach(\App\Models\Language::all() as $language)
         @if($language->code == 'es')
             <link rel="canonical" href="{{LaravelLocalization::getLocalizedURL($language->code)}}" />
         @else
             <link rel="alternate" hreflang="{{$language->code}}" href="{{LaravelLocalization::getLocalizedURL($language->code)}}" />
         @endif
-    @endforeach
+    @endforeach --}}
     {{-- <link rel="alternate" href="http://example.com/" hreflang="{{App::getLocale()}}" /> --}}
 </head>
