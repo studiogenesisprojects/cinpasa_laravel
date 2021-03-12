@@ -40,7 +40,7 @@
     <meta name=”twitter:url” contnet="{{\URL::current()}}">
     <meta name=”twitter:title” content="@yield('meta-title')">
     <meta name=”twitter:description” content="@yield('meta-description')">
-    @if(isset($product))
+    @if(isset($product) && isset($product->galeries))
         <meta property="twitter:image" content="{{asset('/storage/' . $product->galeries->first()->images[0]->path)}}">
     @elseif(isset($news) && isset($news->lang()->title))
         <meta property="twitter:image" content="{{$news->image}}">
