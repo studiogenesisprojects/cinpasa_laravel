@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row mt-4">
             <div class="col-lg-7 col-md-10">
-                <h1 class="before-title">{{$applicationCategory->lang()->name}}</h1>
+                <h2 class="before-title">{{$applicationCategory->lang()->name}}</h2>
                 <p class="mt-3">{!! $applicationCategory->lang()->description !!}</p>
             </div>
         </div>
