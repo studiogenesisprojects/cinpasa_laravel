@@ -24,7 +24,7 @@
     <meta property=”og:title” content="@yield('meta-title')">
     <meta property=”og:type” content=”website”>
     <meta property=”og:description” content="@yield('meta-description')">
-    @if(isset($product))
+    @if(isset($product) && isset($product->galeries))
         <meta property="og:image" content="{{asset('/storage/' . $product->galeries->first()->images[0]->path)}}">
     @elseif(isset($news) && isset($news->lang()->title))
         <meta property="og:image" content="{{$news->image}}">
