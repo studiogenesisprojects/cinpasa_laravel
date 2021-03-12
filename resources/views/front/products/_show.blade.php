@@ -88,7 +88,7 @@
             </div>
             <div class="col-lg-5 d-flex flex-column justify-content-between order-lg-2 order-1">
                 <div>
-                    <h3 class="font-bold before-title mt-4">{{$product->name}}</h3>
+                    <h1 class="font-bold before-title mt-4">{{$product->name}}</h1>
                     <p class="mt-3 p-small">{!! $product->lang()->description !!}</p>
                 </div>
                 <br>
