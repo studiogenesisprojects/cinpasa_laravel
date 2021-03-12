@@ -25,7 +25,7 @@
     <meta property=”og:type” content=”website”>
     <meta property=”og:description” content="@yield('meta-description')">
     @if(isset($product))
-        <meta property="og:image" content="{{Storage::url($product->galeries->first()->images[0]->path)}}">
+        <meta property="og:image" content="{{asset('/storage/' . $product->galeries->first()->images[0]->path)}}">
     @elseif(isset($news) && isset($news->lang()->title))
         <meta property="og:image" content="{{$news->image}}">
     @else
@@ -41,7 +41,7 @@
     <meta name=”twitter:title” content="@yield('meta-title')">
     <meta name=”twitter:description” content="@yield('meta-description')">
     @if(isset($product))
-        <meta property="twitter:image" content="{{Storage::url($product->galeries->first()->images[0]->path)}}">
+        <meta property="twitter:image" content="{{asset('/storage/' . $product->galeries->first()->images[0]->path)}}">
     @elseif(isset($news) && isset($news->lang()->title))
         <meta property="twitter:image" content="{{$news->image}}">
     @else
