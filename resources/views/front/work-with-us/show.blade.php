@@ -15,7 +15,7 @@
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-7">
-                <h2 class="before-title">{{$offer->lang()->name}}</h2>
+                <h1 class="before-title">{{$offer->lang()->name}}</h1>
                 {!! $offer->lang()->description !!}
                 <hr class="mt-4">
                 <div class="row mt-5">

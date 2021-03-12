@@ -22,7 +22,7 @@
 
             <div class="col-md-7 offset-xl-1 mt-5">
                 <p class="small">{{date('d/m/Y', strtotime($news->created_at))}}</p>
-                <h2 class="mt-5 font-bold before-title">{{$news->lang()->title}}</h2>
+                <h1 class="mt-5 font-bold before-title">{{$news->lang()->title}}</h1>
                 <p class="mt-3">{!! $news->lang()->content !!}</p>
             </div>
             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-10 offset-lg-1 offset-md-0 offset-sm-1 offset-0 mt-5">

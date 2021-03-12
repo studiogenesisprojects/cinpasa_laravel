@@ -5,6 +5,7 @@ namespace App\Models;
 use App\ApplicationHome;
 use App\TranslatedModel;
 use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
+use Illuminate\Support\Facades\App;
 
 class ApplicationCategory extends TranslatedModel implements LocalizedUrlRoutable
 {
@@ -26,6 +27,11 @@ class ApplicationCategory extends TranslatedModel implements LocalizedUrlRoutabl
             $last = ApplicationCategory::orderBy('order', 'DESC')->first();
             $a->order = $last ? $last->order + 1 : 0;
         });
+    }
+
+    public function getLang()
+    {
+        return $this->hasOne(ApplicationCategoryLang::class)->where('language_id', $this->langCodeIds[App::getLocale()]);
     }
 
     public function aplications()

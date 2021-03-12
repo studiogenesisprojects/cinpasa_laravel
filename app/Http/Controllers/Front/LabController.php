@@ -33,7 +33,7 @@ class LabController extends Controller
     {
         $lab = Lab::where('slug', $lab)->first();
         $productCategory = $lab;
-        $products = $productCategory->products;
+        $products = $productCategory->products()->paginate(10);
         $isLab = true;
         $carousel = Carousel::where('lab_id', $lab->id)->first();
         return view('front.products.show', compact('products', 'productCategory','isLab', 'carousel'));

@@ -61,7 +61,7 @@ class ApplicationController extends Controller
             $q->where('aplications.id', $aplication->id);
         })->where('active', true)->whereHas('languages', function ($q) {
             $q->where("language_id", Product::getLangIndex(app()->getLocale()))->where('active', true);
-        })->orderBy('order')->get();
+        })->orderBy('order')->paginate(24);
         return view('front.applications._show', compact('aplication', 'applicationCategory', 'products'));
     }
 }

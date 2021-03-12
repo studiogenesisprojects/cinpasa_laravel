@@ -20,6 +20,35 @@
     <meta name="title" content="@yield('meta-title')">
     <meta name="description" content="@yield('meta-description')">
 
+    {{-- Facebook --}}
+    <meta property=”og:title” content="@yield('meta-title')">
+    <meta property=”og:type” content=”website”>
+    <meta property=”og:description” content="@yield('meta-description')">
+    @if(isset($product))
+        <meta property="og:image" content="{{Storage::url($product->galeries->first()->images[0]->path)}}">
+    @elseif(isset($news) && isset($news->lang()->title))
+        <meta property="og:image" content="{{$news->image}}">
+    @else
+        <meta property="og:image" content="{{asset('front/img/logo-cinpasa.svg')}}">
+    @endif
+    <meta property="og:url" content="{{\URL::current()}}">
+    <meta property=”og:site_name” content=”Cinpasa.com”>
+    <meta property="og:locale" content="{{App::getLocale()}}">
+
+    {{-- Twitter --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name=”twitter:url” contnet="{{\URL::current()}}">
+    <meta name=”twitter:title” content="@yield('meta-title')">
+    <meta name=”twitter:description” content="@yield('meta-description')">
+    @if(isset($product))
+        <meta property="twitter:image" content="{{Storage::url($product->galeries->first()->images[0]->path)}}">
+    @elseif(isset($news) && isset($news->lang()->title))
+        <meta property="twitter:image" content="{{$news->image}}">
+    @else
+        <meta name="twitter:image" content="{{asset('front/img/logo-cinpasa.svg')}}">
+    @endif
+
+
     {{-- @foreach(\App\Models\Language::all() as $language)
         @if($language->code == 'es')
             <link rel="canonical" href="{{LaravelLocalization::getLocalizedURL($language->code)}}" />

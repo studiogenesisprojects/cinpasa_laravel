@@ -15,7 +15,7 @@
                     <select class="form-control form-control-border-bottom type" name="application" id="type_searcher">
                         <option value="">{{ucfirst(strtolower(__('Productos.categorias')))}}</option>
                         @foreach($categories as $category)
-                            <option value="{{$category->id}}" {{isset($_GET['application']) && $_GET['application'] == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                            <option value="{{$category->id}}" {{isset($_GET['application']) && $_GET['application'] == $category->id ? 'selected' : ''}}>{{$category->getLang->name}}</option>
                         @endforeach
                     </select>
                     <select class="form-control form-control-border-bottom" name="material" id="FormControlAncho">

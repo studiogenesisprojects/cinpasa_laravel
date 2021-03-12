@@ -5,17 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 use App\TranslatedModel;
+use Illuminate\Support\Facades\App;
 
 class ProductCategory extends TranslatedModel implements LocalizedUrlRoutable
 {
-
-
     protected $fillable = [
         "sup_product_category",
         "image",
         'searcher_order',
         'active',
         'order'
+    ];
+
+    protected $langCodeIds = [
+        "es" => 1,
+        "ca" => 2,
+        "en" => 3,
+        "ru" => 5,
+        "fr" => 4,
     ];
 
     protected $appends = [
@@ -47,6 +54,11 @@ class ProductCategory extends TranslatedModel implements LocalizedUrlRoutable
     }
 
     //attributes
+    public function getLang()
+    {
+        return $this->hasOne(ProductCategoryLang::class)->where('language_id', $this->langCodeIds[App::getLocale()]);
+    }
+
     public function getNameAttribute()
     {
         return $this->lang()->name;

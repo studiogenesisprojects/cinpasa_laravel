@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-lg-7 col-md-10">
-                <h2 class="before-title">{{__('Noticias.seccion1_titulo')}}</h2>
+                <h1 class="before-title">{{__('Noticias.seccion1_titulo')}}</h1>
                 <p class="mt-3">{{__('Noticias.seccion1_texto')}}</p>
             </div>
         </div>

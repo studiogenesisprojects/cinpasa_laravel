@@ -19,7 +19,7 @@
             @csrf
             <div class="row">
                 <div class="col-lg-5 col-md-6 mt-5">
-                    <h3 class="before-title">{{__('Distribuir.titulo_form')}}</h3>
+                    <h1 class="before-title">{{__('Distribuir.titulo_form')}}</h1>
                     <div class="row mt-3">
                         <div class="col-xl-10">
                             <p>{{__('Distribuir.subtitulo_form')}}</p>

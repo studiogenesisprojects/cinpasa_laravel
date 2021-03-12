@@ -10,7 +10,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6 col-md-8 col-10 offset-xl-0 offset-1">
-                                    <h1 class="before-title">{{$slide->lang()->title}}</h1>
+                                    <h1 class="before-title" style="color: white;">{{$slide->lang()->title}}</h1>
                                     <p class="color-white">{{$slide->lang()->text}}</p>
                                     @if($key == 0)
                                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [

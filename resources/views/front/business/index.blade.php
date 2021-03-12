@@ -6,7 +6,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 mt-lg-5">
-                <h3>{{__('Empresa.titulo')}}</h3>
+                <h1>{{__('Empresa.titulo')}}</h1>
                 <hr class="mt-3">
             </div>
         </div>

@@ -179,7 +179,7 @@ body {
 
 h1 {
     font-size: calc(32px + (50 - 32) * ((100vw - 320px) / (1920 - 320)));
-    color: var(--color-white);
+    /* color: var(--color-white); */
     font-weight: 900;
     position: relative;
 }

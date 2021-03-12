@@ -5,12 +5,18 @@ namespace App\Models;
 use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 use App\TranslatedModel;
 use App\Models\Product;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 
 class ProductColorShade extends TranslatedModel implements LocalizedUrlRoutable
 {
-
-
+    protected $langCodeIds = [
+        "es" => 1,
+        "ca" => 2,
+        "en" => 3,
+        "ru" => 5,
+        "fr" => 4,
+    ];
 
     protected $languageModel = ProductColorShadeLang::class;
 
@@ -25,6 +31,11 @@ class ProductColorShade extends TranslatedModel implements LocalizedUrlRoutable
     }
 
     //included attributes
+    public function getLang()
+    {
+        return $this->hasOne(ProductColorShadeLang::class)->where('language_id', $this->langCodeIds[App::getLocale()]);
+    }
+
     public function getNameAttribute()
     {
         if (!$this->lang()) {

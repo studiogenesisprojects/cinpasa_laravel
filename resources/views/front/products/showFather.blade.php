@@ -52,8 +52,8 @@
             <div class="col-lg-9">
                 <div class="row background-blue-light border-card py-2">
                     <div class="col-8 d-flex align-items">
-                        <a id="menu_filtrar_productos" href="#" title="Despliega el menú filtrar productos" class="d-flex align-items"><img class="mr-2 d-lg-none d-inline-block" src="img/icon-categorias.svg" alt="icono menu categorías">
-                            <p class="color-blue font-bold">{{$productCategory->name}}</p>
+                        <a id="menu_filtrar_productos" href="#" title="Despliega el menú filtrar productos" class="d-flex align-items"><img class="mr-2 d-lg-none d-inline-block" src="{{ asset('front/img/icon-categorias.svg') }}" alt="icono menu categorías">
+                            <p class="color-blue font-bold"><h1 style="font-size: 25px">{{$productCategory->name}}</h1></p>
                         </a>
                     </div>
                     <div class="col-4 px-0 d-flex justify-content-between">

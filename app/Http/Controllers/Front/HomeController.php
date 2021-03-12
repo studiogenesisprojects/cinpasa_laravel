@@ -22,23 +22,13 @@ class HomeController extends Controller
     public function index()
     {
         $applicationCategories = ApplicationCategory::orderBy('order')->take(6)->get();
-        $homeApps = [];
-        $homeApps[] = ProductCategory::find(47734);
-        $homeApps[] = ProductCategory::find(47748);
-        $homeApps[] = ProductCategory::find(47753);
-        $homeApps[] = ProductCategory::find(47747);
+        $idHomeApps = [47734, 47748, 47753, 47747, 47737, 25338, 47736];
 
-        $homeApps[] = ProductCategory::find(47737);
-        $homeApps[] = ProductCategory::find(25338);
-        $homeApps[] = ProductCategory::find(47736);
-        $homeApps[] = ApplicationCategory::find(25339);
+        $homeApps = ProductCategory::whereIn('id', $idHomeApps)->with('getLang')->get();
 
-
-        // $homeApps = ApplicationHome::orderBy('order')->take(8)->get();
+        $homeApps[] = ApplicationCategory::with('getLang')->find(25339);
 
         $labs = Lab::all();
-
-        $customers = Customer::all();
 
         $carousel = Carousel::with(['slides' => function ($q) {
             $q->orderBy('order', 'asc');
@@ -46,6 +36,6 @@ class HomeController extends Controller
 
         $featuredNews = NewsFeatured::all();
 
-        return view('front.home.index', compact('applicationCategories', 'featuredNews', 'carousel', 'customers', "homeApps", 'labs'));
+        return view('front.home.index', compact('applicationCategories', 'featuredNews', 'carousel', "homeApps", 'labs'));
     }
 }

@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-lg-7 col-md-10">
-                <h2 class="before-title mt-5">{{__('Favoritos.titulo')}}</h2>
+                <h1 class="before-title mt-5">{{__('Favoritos.titulo')}}</h1>
                 <p class="mt-3">{{__('Favoritos.subtitulo')}}</p>
             </div>
         </div>

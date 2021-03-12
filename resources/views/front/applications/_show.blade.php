@@ -32,7 +32,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-12">
-                <h3 class="title-md mt-5">{{$aplication->lang(App::getLocale())->name ?? ""}}</h3>
+                <h1 class="title-md mt-5">{{$aplication->lang(App::getLocale())->name ?? ""}}</h1>
                 <br>
                 <h2 class="title-xl">{{$aplication->lang(App::getLocale())->subtitle ?? ""}}</h2>
                 <p class="text text-default">{!! $aplication->lang(App::getLocale())->description??"" !!}</p>
@@ -66,6 +66,8 @@
                 @endif
             @endforeach
         </div>
+        <br>
+        {{$products->links()}}
     </div>
 </section>
 @endsection

@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 mt-5">
-                <h2 class="mt-5 font-bold before-title">Productos</h2>
+                <h1 class="mt-5 font-bold before-title">Productos</h1>
                 <p class="mt-3">Últimos stocks, no pierdas la oportunidad.</p>
                 {{-- <form>
                     <div class="row">
