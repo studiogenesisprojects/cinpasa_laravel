@@ -9,7 +9,11 @@
     <div class="container">
         <div class="row mt-4">
             <div class="col-lg-7 col-md-10">
+                @if($carousel)
                 <h2 class="before-title">{{$applicationCategory->lang()->name}}</h2>
+                @else
+                <h1 class="before-title">{{$applicationCategory->lang()->name}}</h1>
+                @endif
                 <p class="mt-3">{!! $applicationCategory->lang()->description !!}</p>
             </div>
         </div>

@@ -10,7 +10,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6 col-md-8 col-10 offset-xl-0 offset-1">
-                                    <h1 class="before-title" style="color: white;">{{isset($news) ? $featuredNews[0]->news->lang()->title : $slide->lang()->title}}</h1>
+                                    <h2 class="before-title" style="color: white;">{{isset($news) ? $featuredNews[0]->news->lang()->title : $slide->lang()->title}}</h2>
                                     <p class="color-white">{{isset($news) ? $featuredNews[0]->news->lang()->description : $slide->lang()->text}}</p>
                                     @if (count($carousel->slides) > 1)
                                     <ol class="carousel-indicators mb-5">

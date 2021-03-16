@@ -20,6 +20,15 @@
     <meta name="title" content="@yield('meta-title')">
     <meta name="description" content="@yield('meta-description')">
 
+    @if(isset($products) && method_exists($products, 'links'))
+        @if($products->nextPageUrl() != null)
+            <link rel="next" href="{{$products->nextPageUrl()}}">
+        @endif
+        @if($products->previousPageUrl() != null)
+            <link rel="prev" href="{{$products->previousPageUrl()}}">
+        @endif
+    @endif
+
 
     {{-- @foreach(\App\Models\Language::all() as $language)
         @if($language->code == 'es')
