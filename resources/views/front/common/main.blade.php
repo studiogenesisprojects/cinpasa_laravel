@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
     <script src="https://kit.fontawesome.com/62992c8b48.js" crossorigin="anonymous"></script>
     @include('front.partials.head')
     <body class="menu-position-side menu-side-left full-screen with-content-panel">
