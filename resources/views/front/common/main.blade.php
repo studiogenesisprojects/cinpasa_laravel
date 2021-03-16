@@ -21,7 +21,7 @@
             </a>
         @endif
         @yield('content')
-        <script src="{{asset('js/front/app.js')}}"></script>
+
         @if(!isset($no_contact))
         @include('front.partials.formulario')
         @endif

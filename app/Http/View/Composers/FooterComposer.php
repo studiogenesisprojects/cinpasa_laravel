@@ -20,8 +20,8 @@ class FooterComposer
     public function compose(View $view)
     {
         $view->with([
-            "productCategories" => ProductCategory::where('active', true)->where('sup_product_category', null)->get()->take(5),
-            "aplications" => Aplication::orderBy('order')->get()->take(5)
+            // "productCategories" => ProductCategory::where('active', true)->where('sup_product_category', null)->with('getLang')->get()->take(5),
+            // "aplications" => Aplication::orderBy('order')->get()->take(5)
         ]);
     }
 }

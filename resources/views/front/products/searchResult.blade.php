@@ -7,6 +7,7 @@
     <br><br><br>
 @endif
 @include('front.home.barra-busqueda')
+
 <section class="intro-text">
     <div class="container" id="app">
         <search-results-component :favorites='{{ $favorites }}'
@@ -26,6 +27,7 @@
 </section>
 @endsection
 @push('js')
+<script src="{{asset('js/front/app.js')}}"></script>
 <script>
     $('[data-toggle="popover"]').popover({
         trigger: "hover"
