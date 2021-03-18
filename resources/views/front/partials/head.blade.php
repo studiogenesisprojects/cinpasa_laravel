@@ -21,7 +21,9 @@
     <meta name="description" content="@yield('meta-description')">
 
     @if(isset($products) && method_exists($products, 'links'))
-        @if($products->nextPageUrl() != null)
+        @if(!isset($_GET['page']))
+            <link rel="next" href="{{Request::url() . '?page=1'}}">
+        @elseif($products->nextPageUrl() != null)
             <link rel="next" href="{{$products->nextPageUrl()}}">
         @endif
         @if($products->previousPageUrl() != null)
