@@ -2,6 +2,9 @@
 @section('css')
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 @endsection
+@section('meta-title', $applicationCategory->lang(App::getLocale())->seo_title ?? $applicationCategory->lang(App::getLocale())->seo_title)
+@section('meta-description', $applicationCategory->lang(App::getLocale())->seo_description ?? $applicationCategory->lang(App::getLocale())->seo_description )
+
 @section('content')
 <div class="container-fluid px-0">
     <div class="position-relative">
