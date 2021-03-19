@@ -26,7 +26,9 @@
         @elseif($products->nextPageUrl() != null)
             <link rel="next" href="{{$products->nextPageUrl()}}">
         @endif
-        @if($products->previousPageUrl() != null)
+        @if($products->previousPageUrl() == null && isset($_GET['page']))
+            <link rel="prev" href="{{Request::url()}}">
+        @elseif($products->previousPageUrl() != null)
             <link rel="prev" href="{{$products->previousPageUrl()}}">
         @endif
     @endif
