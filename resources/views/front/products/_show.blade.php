@@ -106,30 +106,33 @@
                     </div>
                     <hr>
                     <div class="d-flex justify-content-end py-3">
-                        <button onClick="setFavorite({{$product->id}})" class="btn btn-third"><img id="fav_button" src="{{request()->session()->exists('product-' . $product->id) ? asset('front/img/fav-active.svg') : ''}}">Añadir a favoritos</button>
+                        <button onClick="setFavorite({{$product->id}})" class="btn btn-third"><img id="fav_button" src="{{request()->session()->exists('product-' . $product->id) ? asset('front/img/fav-active.svg') : ''}}">{{__('Productos.ficha_producto_anadir_favoritos')}}</button>
                     </div>
                     <hr>
                 </div>
             </div>
         </div>
         @if(isset($product_caracteristics))
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-md-12">
                 <hr>
                 <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_caracteristicas')}}</p>
-                <div class="row mt-4">
+                <div class="row mt-3">
                     @if($product->materials)
                     <div class="col-12">
                         <p class="color-black">{{__('Productos.producto_mostrar_materiales')}}
                         @foreach($product->materials as $material)
-                            <span class="color-primary">{{$material->name}}</span>
+                            <span class="color-primary"><strong>{{$material->name}}</strong></span>
                         @endforeach
                         </p>
                     </div>
                     @endif
                 </div>
             </div>
+        </div>
+        <div class="row mt-3">
             <div class="col-md-12">
+                <hr>
                 <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_referencias')}}</p>
                    <p class="d-sm-none d-block">{{__('Productos.scroll')}}</p>
                     <div class="table-responsive mt-3">
@@ -171,7 +174,7 @@
                                     <tr id="row_0">
                                         @if(in_array(!null, $references->toArray()))
                                             <td>
-                                                <span class="color-primary">{{$references[$i]}}</span>
+                                                <span class="color-primary"><strong>{{$references[$i]}}</strong></span>
                                             </td>
                                         @endif
                                         @if(in_array(!null, $width->toArray()))
@@ -223,12 +226,12 @@
             </div>
         </div>
         @endif
-        <div class="row">
-            <div class="col-12 mt-5">
+        <div class="row mt-5">
+            <div class="col-12">
                 <p class="font-bold color-black"><strong>{{__('Productos.producto_mostrar_colores')}}</strong></p>
                 <p class="mt-3">{{__('Productos.producto_mostrar_colores_texto2')}}</p>
             </div>
-            <div class="col-12 mt-5 d-flex flex-wrap">
+            <div class="col-12 mt-2 d-flex flex-wrap">
                 @foreach ($colorCategories as $colorCategory)
                     @foreach ($colorCategory->colors as $color)
                         <a href="#" title="Más información sobre el color" style="width: 100px;" class="card-color p-2 mr-3 mt-2 show-color-modal" data-toggle="modal" cc="{{$colorCategory->id}}" id="{{$color->id}}"
@@ -243,7 +246,7 @@
             </div>
         </div>
 
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-12">
                 <hr>
                 <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_acabados')}}</p>
@@ -257,8 +260,10 @@
             </div>
             @endforeach
         </div>
-        <div class="row mt-5">
+
+        <div class="row mt-3">
             <div class="col-12">
+                <hr>
                 <p class="font-bold color-black">{{__('Productos.producto_mostrar_aplicaciones')}}</p>
             </div>
             <div class="col-lg-4 col-md-6 mt-5">
@@ -274,6 +279,28 @@
                     @endforeach
                 @endforeach
                 <hr>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="trio-iconos">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <p><img src="{{ asset('front/img/ico-tamanos.svg') }}" alt="" class="img-fluid"></p>
+                <hr>
+                <p>Diferentes tamaños</p>
+            </div>
+            <div class="col-sm-4">
+                <p><img src="{{ asset('front/img/ico-calidad.svg') }}" alt="" class="img-fluid"></p>
+                <hr>
+                <p>Calidad superior</p>
+            </div>
+            <div class="col-sm-4">
+                <p><img src="{{ asset('front/img/ico-colores.svg') }}" alt="" class="img-fluid"></p>
+                <hr>
+                <p>Diferentes colores</p>
             </div>
         </div>
     </div>
