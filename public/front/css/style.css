@@ -1380,6 +1380,8 @@ section.trio-iconos {
     padding-top: 75px;
     padding-bottom: 75px;
     text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 section.trio-iconos hr {
     width: 50px;

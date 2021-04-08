@@ -299,25 +299,4 @@
         </div>
     </div>
 </section>
-<section class="trio-iconos">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <p><img src="{{ asset('front/img/ico-tamanos.svg') }}" alt="" class="img-fluid"></p>
-                <hr>
-                <p>Diferentes tamaños</p>
-            </div>
-            <div class="col-sm-4">
-                <p><img src="{{ asset('front/img/ico-calidad.svg') }}" alt="" class="img-fluid"></p>
-                <hr>
-                <p>Calidad superior</p>
-            </div>
-            <div class="col-sm-4">
-                <p><img src="{{ asset('front/img/ico-colores.svg') }}" alt="" class="img-fluid"></p>
-                <hr>
-                <p>Diferentes colores</p>
-            </div>
-        </div>
-    </div>
-</section>
 @endsection
