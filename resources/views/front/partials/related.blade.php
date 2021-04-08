@@ -1,9 +1,9 @@
-<section>
+<section class="productos-relacionados">
     <div class="container">
         <hr class="mt-5">
         <div class="row">
             <div class="col-12 mt-5">
-                <p class="color-black font-bold">PRODUCTOS RELACIONADOS</p>
+                <p class="color-black font-bold">{{__('Productos.producto_mostrar_relacionados')}}</p>
             </div>
             @foreach($relateds as $related)
             @if($related->active == 1)

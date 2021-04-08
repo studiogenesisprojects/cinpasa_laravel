@@ -865,7 +865,7 @@ footer label {
 }
 
 .color {
-    width: 70px;
+    width: 100%;
     height: 70px;
     border-radius: .25rem;
     position: relative;
@@ -1392,3 +1392,7 @@ section.trio-iconos hr {
 section.trio-iconos p {color: #656E91; font-size: 1.2rem;}
 
 
+section.productos-relacionados {
+    padding-bottom: 4rem;
+    border-bottom: 2px solid #A4AED4;
+}
