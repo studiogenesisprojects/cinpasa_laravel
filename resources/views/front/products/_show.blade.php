@@ -120,9 +120,9 @@
                 <div class="row mt-3">
                     @if($product->materials)
                     <div class="col-12">
-                        <p class="color-black">{{__('Productos.producto_mostrar_materiales')}}
+                        <p class="color-black">
                         @foreach($product->materials as $material)
-                            <span class="color-primary"><strong>{{$material->name}}</strong></span>
+                            <span class="color-primary"><strong>{{$material->name}}</strong></span> / 
                         @endforeach
                         </p>
                     </div>
@@ -131,7 +131,7 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-12">
+            <div class="col-md-12 mt-5">
                 <hr>
                 <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_referencias')}}</p>
                    <p class="d-sm-none d-block">{{__('Productos.scroll')}}</p>
@@ -227,7 +227,8 @@
         </div>
         @endif
         <div class="row mt-5">
-            <div class="col-12">
+            <div class="col-12 mt-5">
+                <hr>
                 <p class="font-bold color-black"><strong>{{__('Productos.producto_mostrar_colores')}}</strong></p>
                 <p class="mt-3">{{__('Productos.producto_mostrar_colores_texto2')}}</p>
             </div>
@@ -247,14 +248,14 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col-12">
+            <div class="col-12 mt-5">
                 <hr>
                 <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_acabados')}}</p>
             </div>
             @foreach ($finishedColumns as $cols)
             <div class="col-lg-4 col-sm-6 mt-5">
                     @foreach ($cols as $finished)
-                    <p class="color-black mb-3">{{$finished->lang()->name}}</p>
+                    <p class="color-black mb-3 mt-2">{{$finished->lang()->name}}</p>
                     <hr>
                     @endforeach
             </div>
@@ -262,7 +263,7 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col-12">
+            <div class="col-12 mt-5">
                 <hr>
                 <p class="font-bold color-black">{{__('Productos.producto_mostrar_aplicaciones')}}</p>
             </div>
@@ -276,9 +277,10 @@
                             <p class="color-black mb-3">{{$app->lang()->name}}</p>
                             <img class="mr-sm-0 mr-3" src="{{ asset('front/img/arrow-right.svg') }}" alt="icono flecha derecha">
                         </a>
+                        <hr>
                     @endforeach
                 @endforeach
-                <hr>
+                
             </div>
         </div>
     </div>
