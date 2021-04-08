@@ -253,7 +253,7 @@
                 <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_acabados')}}</p>
             </div>
             @foreach ($finishedColumns as $cols)
-            <div class="col-lg-4 col-sm-6 mt-5">
+            <div class="col-lg-4 col-sm-6 mt-3">
                     @foreach ($cols as $finished)
                     <p class="color-black mb-3 mt-2">{{$finished->lang()->name}}</p>
                     <hr>
@@ -267,7 +267,7 @@
                 <hr>
                 <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_aplicaciones')}}</p>
             </div>
-            <div class="col-lg-4 col-md-6 mt-5">
+            <div class="col-lg-4 col-md-6 mt-2">
                 @foreach ($applicationCategories as $applicationCategory => $apps)
                     @foreach ($apps as $app)
                         <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.applications._show', [
