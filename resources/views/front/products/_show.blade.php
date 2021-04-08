@@ -229,7 +229,7 @@
         <div class="row mt-5">
             <div class="col-12 mt-5">
                 <hr>
-                <p class="font-bold color-black"><strong>{{__('Productos.producto_mostrar_colores')}}</strong></p>
+                <p class="font-bold color-black mt-4"><strong>{{__('Productos.producto_mostrar_colores')}}</strong></p>
                 <p class="mt-3">{{__('Productos.producto_mostrar_colores_texto2')}}</p>
             </div>
             <div class="col-12 mt-2 d-flex flex-wrap">
@@ -265,7 +265,7 @@
         <div class="row mt-3">
             <div class="col-12 mt-5">
                 <hr>
-                <p class="font-bold color-black">{{__('Productos.producto_mostrar_aplicaciones')}}</p>
+                <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_aplicaciones')}}</p>
             </div>
             <div class="col-lg-4 col-md-6 mt-5">
                 @foreach ($applicationCategories as $applicationCategory => $apps)
@@ -274,7 +274,7 @@
                             "applicationCategory" => $app->applicationCategories->first() ? $app->applicationCategories->first()->lang()->slug : "",
                             "aplication" => $app
                         ])}}" title="Acceder a la aplicación" class="d-flex justify-content-between align-items-center">
-                            <p class="color-black mb-3">{{$app->lang()->name}}</p>
+                            <p class="color-black mb-3 mt-2">{{$app->lang()->name}}</p>
                             <img class="mr-sm-0 mr-3" src="{{ asset('front/img/arrow-right.svg') }}" alt="icono flecha derecha">
                         </a>
                         <hr>
