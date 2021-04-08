@@ -97,11 +97,11 @@
                     <div class="d-flex justify-content-between">
                         <p class="small py-3">Compartir</p>
                         <div class="share-btn mt-2">
-                            <a class="btn-whatsapp" title="comparteix a whatsapp" href="whatsapp://send?text=<?php echo URL::current(); ?>" data-action="share/whatsapp/share" target="_blank"><img  class="mr-3" src="{{ asset('front/img/whatsapp.svg') }}" alt="icono whatsapp"></a>
-                            <a class="btn-facebook" title="comparteix a facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-facebook.svg') }}" alt="icono facebook"></a>
-                            <a class="btn-twitter" title="comparteix a twitter" href="https://twitter.com/home?status=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-twitter.svg') }}" alt="icono twitter"></a>
-                            <a class="btn-linkedin" title="comparteix a linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=<?php echo URL::current(); ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn-pinterest" title="comparteix a pinterest" href="https://pinterest.com/pin/create/button/?url=<?php echo URL::current(); ?>&media=&description=<?php echo URL::current(); ?>"><img class="mr-3" src="{{ asset('front/img/icon-pinterest.svg') }}" alt="icono pinterest"></a>
+                            <a class="btn-whatsapp" title="comparteix a whatsapp" href="whatsapp://send?text=<?php echo URL::current(); ?>" data-action="share/whatsapp/share" target="_blank"><img  class="mr-3" src="{{ asset('front/img/whatsapp.svg') }}" alt="whatsapp"></a>
+                            <a class="btn-facebook" title="comparteix a facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-facebook.svg') }}" alt="facebook"></a>
+                            <a class="btn-twitter" title="comparteix a twitter" href="https://twitter.com/home?status=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-twitter.svg') }}" alt="twitter"></a>
+                            <a class="btn-linkedin" title="comparteix a linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/linkedin.svg') }}" alt="linkedin"></a>
+                            <a class="btn-pinterest" title="comparteix a pinterest" href="https://pinterest.com/pin/create/button/?url=<?php echo URL::current(); ?>&media=&description=<?php echo URL::current(); ?>"><img class="mr-3" src="{{ asset('front/img/icon-pinterest.svg') }}" alt="pinterest"></a>
                         </div>
                     </div>
                     <hr>
