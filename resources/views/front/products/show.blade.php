@@ -112,10 +112,10 @@
                         </div>
                         @endif
                     @endforeach
-                    @if(isset($products) && method_exists($products, 'links'))
-                        {{$products->links()}}
-                    @endif
                 </div>
+                @if(isset($products) && method_exists($products, 'links'))
+                    {{$products->links()}}
+                @endif
             </div>
         </div>
 
