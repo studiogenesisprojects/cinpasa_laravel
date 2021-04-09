@@ -865,7 +865,7 @@ footer label {
 }
 
 .color {
-    width: 70px;
+    width: 100%;
     height: 70px;
     border-radius: .25rem;
     position: relative;
@@ -1024,6 +1024,15 @@ footer label {
 
 .carousel-indicators li {
     background-color: #A4AED4;
+}
+
+.carousel-indicators-productos {
+    padding-left: 0;
+    margin-left: 0;
+    overflow: hidden;
+    overflow-x: scroll;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .carousel-indicators-productos li {
@@ -1362,4 +1371,28 @@ figure.box-list__figure {
 .carousel-inner-multi .carousel-item-right,
 .carousel-inner-multi .carousel-item-left {
     transform: translateX(0);
+}
+
+
+/* ficha producto, trio iconos */
+section.trio-iconos {
+    background-color: #F2F3F8;
+    padding-top: 75px;
+    padding-bottom: 75px;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+section.trio-iconos hr {
+    width: 50px;
+    border: none;
+    border: 2px solid #a4aed4;
+    margin: 10px auto;
+}
+section.trio-iconos p {color: #656E91; font-size: 1.2rem;}
+
+
+section.productos-relacionados {
+    padding-bottom: 4rem;
+    border-bottom: 2px solid #A4AED4;
 }

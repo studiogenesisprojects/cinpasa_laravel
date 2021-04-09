@@ -104,39 +104,42 @@
                     <div class="d-flex justify-content-between">
                         <p class="small py-3">Compartir</p>
                         <div class="share-btn mt-2">
-                            <a class="btn-whatsapp" title="comparteix a whatsapp" href="whatsapp://send?text=<?php echo URL::current(); ?>" data-action="share/whatsapp/share" target="_blank"><img  class="mr-3" src="{{ asset('front/img/whatsapp.svg') }}" alt="icono whatsapp"></a>
-                            <a class="btn-facebook" title="comparteix a facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-facebook.svg') }}" alt="icono facebook"></a>
-                            <a class="btn-twitter" title="comparteix a twitter" href="https://twitter.com/home?status=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-twitter.svg') }}" alt="icono twitter"></a>
-                            <a class="btn-linkedin" title="comparteix a linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=<?php echo URL::current(); ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn-pinterest" title="comparteix a pinterest" href="https://pinterest.com/pin/create/button/?url=<?php echo URL::current(); ?>&media=&description=<?php echo URL::current(); ?>"><img class="mr-3" src="{{ asset('front/img/icon-pinterest.svg') }}" alt="icono pinterest"></a>
+                            <a class="btn-whatsapp" title="comparteix a whatsapp" href="whatsapp://send?text=<?php echo URL::current(); ?>" data-action="share/whatsapp/share" target="_blank"><img  class="mr-3" src="{{ asset('front/img/whatsapp.svg') }}" alt="whatsapp"></a>
+                            <a class="btn-facebook" title="comparteix a facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-facebook.svg') }}" alt="facebook"></a>
+                            <a class="btn-twitter" title="comparteix a twitter" href="https://twitter.com/home?status=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/icon-twitter.svg') }}" alt="twitter"></a>
+                            <a class="btn-linkedin" title="comparteix a linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=<?php echo URL::current(); ?>" target="_blank"><img class="mr-3" src="{{ asset('front/img/linkedin.svg') }}" alt="linkedin"></a>
+                            <a class="btn-pinterest" title="comparteix a pinterest" href="https://pinterest.com/pin/create/button/?url=<?php echo URL::current(); ?>&media=&description=<?php echo URL::current(); ?>"><img class="mr-3" src="{{ asset('front/img/icon-pinterest.svg') }}" alt="pinterest"></a>
                         </div>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-end py-3">
-                        <p class="btn btn-third">Añadir a favoritos</p>
+                        <p class="btn btn-third">{{__('Productos.ficha_producto_anadir_favoritos')}}</p>
                     </div>
                     <hr>
                 </div>
             </div>
         </div>
         @if(isset($product_caracteristics))
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-md-12">
                 <hr>
                 <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_caracteristicas')}}</p>
-                <div class="row mt-4">
+                <div class="row mt-3">
                     @if($product->materials)
                     <div class="col-12">
-                        <p class="color-black">{{__('Productos.producto_mostrar_materiales')}}
+                        <p class="color-black">
                         @foreach($product->materials as $material)
-                            <span class="color-primary">{{$material->name}}</span>
+                            <span class="color-primary"><strong>{{$material->name}}</strong></span> / 
                         @endforeach
                         </p>
                     </div>
                     @endif
                 </div>
             </div>
+        </div>
+        <div class="row mt-3">
             <div class="col-md-12">
+                <hr>
                 <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_referencias')}}</p>
                    <p class="d-sm-none d-block">{{__('Productos.scroll')}}</p>
                     <div class="table-responsive mt-3">
@@ -179,7 +182,7 @@
                                     <tr id="row_0">
                                         @if(in_array(!null, $references->toArray()))
                                             <td>
-                                                <span class="color-primary">{{$references[$i]}}</span>
+                                                <span class="color-primary"><strong>{{$references[$i]}}</strong></span>
                                             </td>
                                         @endif
                                         @if(in_array(!null, $width->toArray()))
@@ -234,12 +237,13 @@
             </div>
         </div>
         @endif
-        <div class="row">
-            <div class="col-12 mt-5">
+        <div class="row mt-5">
+            <div class="col-12">
+                <hr>
                 <p class="font-bold color-black"><strong>{{__('Productos.producto_mostrar_colores')}}</strong></p>
                 <p class="mt-3">{{__('Productos.producto_mostrar_colores_texto2')}}</p>
             </div>
-            <div class="col-12 mt-5 d-flex flex-wrap">
+            <div class="col-12 mt-2 d-flex flex-wrap">
                 @foreach ($colorCategories as $colorCategory)
                     @foreach ($colorCategory->colors as $color)
                         <a href="#" title="Más información sobre el color" class="card-color p-2 mr-3 mt-2 show-color-modal" data-toggle="modal" cc="{{$colorCategory->id}}" id="{{$color->id}}"
@@ -254,22 +258,28 @@
             </div>
         </div>
 
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-12">
                 <hr>
                 <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_acabados')}}</p>
             </div>
             @foreach ($finishedColumns as $cols)
-            <div class="col-lg-4 col-sm-6 mt-5">
+            <div class="col-lg-4 col-sm-6 mt-3">
+                <div class="row">
                     @foreach ($cols as $finished)
-                    <p class="color-black mb-3">{{$finished->lang()->name}}</p>
-                    <hr>
+                        <div class="col-sm-4">
+                            <p class="color-black">{{$finished->lang()->name}}</p>
+                            <hr>
+                        </div>
                     @endforeach
+                </div>
             </div>
             @endforeach
         </div>
-        <div class="row mt-5">
+
+        <div class="row mt-3">
             <div class="col-12">
+                <hr>
                 <p class="font-bold color-black">{{__('Productos.producto_mostrar_aplicaciones')}}</p>
             </div>
             <div class="col-lg-4 col-md-6 mt-5">
@@ -282,9 +292,9 @@
                             <p class="color-black mb-3">{{$app->lang()->name}}</p>
                             <img class="mr-sm-0 mr-3" src="{{ asset('front/img/arrow-right.svg') }}" alt="icono flecha derecha">
                         </a>
+                        <hr>
                     @endforeach
                 @endforeach
-                <hr>
             </div>
         </div>
     </div>
