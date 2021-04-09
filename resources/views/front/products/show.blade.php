@@ -116,6 +116,9 @@
 
             </div>
         </div>
+        @if(isset($products) && method_exists($products, 'links'))
+            {{$products->links()}}
+        @endif
         <hr class="hr-blue">
         <div class="row">
             <div class="col-md-9 offset-md-3 px-0 d-flex py-4">
