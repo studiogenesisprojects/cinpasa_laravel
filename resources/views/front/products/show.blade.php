@@ -112,12 +112,11 @@
                         </div>
                         @endif
                     @endforeach
+                    @if(isset($products) && method_exists($products, 'links'))
+                        {{$products->links()}}
+                    @endif
                 </div>
-
             </div>
-            @if(isset($products) && method_exists($products, 'links'))
-                {{$products->links()}}
-            @endif
         </div>
 
         <hr class="hr-blue">
