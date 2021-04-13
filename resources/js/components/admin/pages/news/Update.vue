@@ -31,10 +31,11 @@
               </div>
             </div>
             <a-alert
-              v-if="emptyTitleLanguages"
+              v-if="emptyTitleLanguages.length > 0"
               message="Cuidado!"
               :description="'Existen idiomas sin título.'"
               type="error"
+              style="margin-bottom: 10px;"
               show-icon
             />
             <a-tabs>
@@ -215,7 +216,7 @@
       </div>
     </div>
   </div>
-</template>    
+</template>
 <script>
 import Axios from "axios";
 import RichEditor from "./RichEditor";
@@ -280,6 +281,7 @@ export default {
           },
     };
   },
+
   methods: {
     handleGoBack() {
       this.$router.go(-1);

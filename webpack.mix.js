@@ -16,3 +16,8 @@ mix.js('resources/js/app.js', 'public/js')
         //
     ]);
 mix.js('resources/js/front/app.js', 'public/js/front');
+
+mix.js(
+    "resources/js/components/admin/pages/news/index.js",
+    "public/back/news/js/news.js"
+);
