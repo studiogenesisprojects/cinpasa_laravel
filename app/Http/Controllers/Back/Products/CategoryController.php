@@ -84,6 +84,15 @@ class CategoryController extends Controller
             }
         }
 
+        foreach($request->alt_text_image as $key => $image_text) {
+            foreach($image_text as $text) {
+                if($category->lang((int) $text['language_id'])) {
+                    $category->lang((int) $text['language_id'])->update(['alt_text_image_' . ($key + 1) => $text['alt_text']]);
+                } else {
+                    $category->languages()->create(['alt_text_image_' . ($key + 1) => $text['alt_text']]);
+                }
+            }
+        }
         if ($request->hasFile('image')) {
 
             if (Storage::exists($category->image)) {
@@ -92,6 +101,19 @@ class CategoryController extends Controller
 
             $path = $request->file('image')->storeAs('public/productos/categorias', $request->file('image')->getClientOriginalName());
             $category->update(['image' => $path,]);
+        }
+
+        for($i = 1; $i < 4; $i++) {
+            if ($request->hasFile('image_low_' . $i)) {
+
+
+                if (Storage::exists($category->image)) {
+                    Storage::delete($category->image);
+                }
+
+                $path = $request->file('image_low_' . $i)->storeAs('public/productos/categorias', $request->file('image_low_' . $i)->getClientOriginalName());
+                $category->update(['image_low_' . $i => $path,]);
+            }
         }
 
         return redirect()->route('categorias.index')->with('success', 'Categoría actualizada correctamente');

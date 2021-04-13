@@ -41,13 +41,6 @@
                                     <div class="help-block form-text with-errors form-control-feedback"></div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="">Descripción</label>
-                                    <input type="text" name="description" class="form-control" value="{{$lab->description}}" data-error="Introduzca un nombre" required>
-                                    <div class="help-block form-text with-errors form-control-feedback"></div>
-                                </div>
-                            </div>
                             <div class="col-md-6">
                                 <label for="">Orden</label>
                                 <input class="form-control" value="{{$lab->order}}" type="number" name="order">
@@ -64,8 +57,50 @@
                                 </label>
                                 <input type="file" name="secondary_image" class="form-control" for="secondary_image">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mt-4">
                                 <label for="">Activo: <input type="checkbox" name="active" {{$lab->active ? 'checked' : ''}}></label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="os-tabs-w">
+                                <div class="os-tabs-controls os-tabs-controls-cliente">
+                                    <ul class="nav nav-tabs upper">
+                                        @foreach($languages as $key => $language)
+                                        <li class="nav-item"><a style="border: unset"  aria-expanded="false" class="nav-link @if($key == 0){{'active'}}@endif" data-toggle="tab" href="#tab_{{$language->code}}">{{ strtoupper($language->code) }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-content">
+                                @foreach($languages as $key => $idioma)
+                                <div class="tab-pane @if($loop->first){{ 'active' }}@endif" id="tab_{{$idioma->code}}">
+                                    <input type="hidden" name="languages[{{ $idioma->id }}][language_id]" value="{{$idioma->id}}">
+                                    <div class="row">
+                                        <div class="row mb-3">
+                                            <div class="col-md-12">
+                                                <label>Título de SEO</label>
+                                                <textarea class="item form-control" name="languages[{{ $idioma->id }}][seo_title]" value="{{ isset($array_lang[$idioma->id]) ? $array_lang[$idioma->id]['seo_title'] : ''}}" cols="30" rows="6">{{isset($array_lang[$idioma->id]) ?$array_lang[$idioma->id]['seo_title'] : ''}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row ml-2 mb-3">
+                                            <div class="col-md-12">
+                                                <label>Descripción de SEO</label>
+                                                <textarea class="item form-control" name="languages[{{ $idioma->id }}][seo_description]" cols="30" rows="6">{{ isset($array_lang[$idioma->id]) ? $array_lang[$idioma->id]['seo_description'] : ''}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="">Claim</label>
+                                                <input type="text" name="languages[{{ $idioma->id }}][claim]" class="form-control" value="{{isset($array_lang[$idioma->id]) ? $array_lang[$idioma->id]['claim'] : ''}}" data-error="Introduzca un nombre" required>
+                                                <div class="help-block form-text with-errors form-control-feedback"></div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="form-buttons-w">

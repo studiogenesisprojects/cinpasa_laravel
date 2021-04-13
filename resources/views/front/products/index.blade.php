@@ -3,6 +3,8 @@
 <section>
     @include('front.home.carousel2')
     @include('front.home.barra-busqueda')
+    @section('meta-title', "{{__('Productos.titulo_seo')}}")
+    @section('meta-description', "{{__('Productos.descripcion_seo')}}")
     <div class="container-fluid">
         <div class="row">
             <div class="col-3 px-5 pb-3 d-lg-block d-none">

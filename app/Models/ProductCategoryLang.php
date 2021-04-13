@@ -14,6 +14,9 @@ class ProductCategoryLang extends Model
         'product_category_id',
         "slug",
         "seo_title",
+        'alt_text_image_1',
+        'alt_text_image_2',
+        'alt_text_image_3',
         "seo_description",
     ];
     public $timestamps = false;

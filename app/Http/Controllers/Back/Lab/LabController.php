@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Back\Lab;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lab;
+use App\Models\LabLang;
+use App\Models\Language;
 use Illuminate\Http\Request;
 
 class LabController extends Controller
@@ -81,7 +83,15 @@ class LabController extends Controller
      */
     public function edit(Lab $lab)
     {
-        return view('back.lab.edit', compact('lab'));
+        $languages = Language::all();
+        $lab_lang = $lab->langs();
+        $array_lang = [];
+
+        foreach($lab_lang as $lang) {
+            $array_lang[$lang->language_id] = ['seo_title' => $lang->seo_title, 'seo_description' => $lang->seo_description, 'claim' => $lang->claim];
+        }
+
+        return view('back.lab.edit', compact('lab', 'languages', 'array_lang'));
     }
 
     /**
@@ -110,6 +120,11 @@ class LabController extends Controller
         if ($request->hasFile('secondary_image')) {
             $path = $request->file('secondary_image')->storeAs('public/labs', $request->file('secondary_image')->getClientOriginalName());
             $lab->secondary_image = $path;
+        }
+
+        foreach ($request->languages as $language) {
+            $lab_lang = LabLang::where('language_id', $language['language_id'])->where('lab_id', $lab->id)->first();
+            $lab_lang ? $lab_lang->update($language) : LabLang::create(array_merge($language, ['lab_id' => $lab->id]));
         }
 
         $lab->save();

@@ -110,9 +110,46 @@
                                             </div>
                                         </div>
                                         @endforeach
-                                        </div>
                                     </div>
                                 </div>
+                                <h5 class="my-3">Imágenes inferiores</h5>
+                                <div class="col-sm-12">
+                                    @for ($i = 0; $i < 3; $i++)
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="">Imagen {{$i + 1}}</label>
+                                                <input class="form-control" type="file" name="image_low_{{$i + 1}}">
+                                                <div class="col-sm-12">
+                                                    <div class="os-tabs-w">
+                                                        <div class="os-tabs-controls os-tabs-controls-cliente">
+                                                            <ul class="nav nav-tabs upper">
+                                                                @foreach(\App\Models\Language::all() as $key => $language)
+                                                                <li class="nav-item"><a aria-expanded="false" class="nav-link @if($key == 0){{'active'}}@endif" data-toggle="tab" href="#tab_image_low_{{$i}}_{{$language->code}}">{{ strtoupper($language->code) }}</a></li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-content">
+                                                        @foreach(\App\Models\Language::all() as $idioma)
+                                                        <div class="tab-pane @if($loop->first){{ 'active' }}@endif" id="tab_image_low_{{$i}}_{{$idioma->code}}">
+                                                            <input type="hidden" name="alt_text_image[{{$i}}][{{ $idioma->id }}][language_id]" value="{{$idioma->id}}">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="">Texto</label>
+                                                                        <input id="name" type="text" class="form-control name" value="{{ $category->lang($idioma->id)->{'alt_text_image_' . ($i + 1)} }}" name="alt_text_image[{{$i}}][{{ $idioma->id }}][alt_text]">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endfor
+                                </div>
+                            </div>
 
                                 {{-- Error messages --}}
                                     @if ($errors->any())

@@ -122,7 +122,7 @@
                     <div class="col-12">
                         <p class="color-black">
                         @foreach($product->materials as $material)
-                            <span class="color-primary"><strong>{{$material->name}}</strong></span> / 
+                            <span class="color-primary"><strong>{{$material->name}}</strong></span> /
                         @endforeach
                         </p>
                     </div>
@@ -280,7 +280,7 @@
                         <hr>
                     @endforeach
                 @endforeach
-                
+
             </div>
         </div>
     </div>
@@ -290,19 +290,19 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <p><img src="{{ asset('front/img/ico-tamanos.svg') }}" alt="" class="img-fluid"></p>
+                <p><img src="{{ Storage::url($productCategory->image_low_1) }}" alt="" class="img-fluid"></p>
                 <hr>
-                <p>Diferentes tamaños</p>
+                <p>{{$productCategory->lang()->alt_text_image_1}}</p>
             </div>
             <div class="col-sm-4">
-                <p><img src="{{ asset('front/img/ico-calidad.svg') }}" alt="" class="img-fluid"></p>
+                <p><img src="{{ Storage::url($productCategory->image_low_2) }}" alt="" class="img-fluid"></p>
                 <hr>
-                <p>Calidad superior</p>
+                <p>{{$productCategory->lang()->alt_text_image_2}}</p>
             </div>
             <div class="col-sm-4">
-                <p><img src="{{ asset('front/img/ico-colores.svg') }}" alt="" class="img-fluid"></p>
+                <p><img src="{{ Storage::url($productCategory->image_low_3) }}" alt="" class="img-fluid"></p>
                 <hr>
-                <p>Diferentes colores</p>
+                <p>{{$productCategory->lang()->alt_text_image_3}}</p>
             </div>
         </div>
     </div>

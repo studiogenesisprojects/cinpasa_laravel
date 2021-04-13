@@ -2,6 +2,8 @@
 
 @section('content')
 @include('front.home.carousel2')
+@section('meta-title', "{{__('TrabajaConNosotros.titulo_seo')}}")
+@section('meta-description', "{{__('TrabajaConNosotros.descripcion_seo')}}")
 <section id="aplicaciones">
     <div class="container">
         <div class="row mt-5 justify-content-center">

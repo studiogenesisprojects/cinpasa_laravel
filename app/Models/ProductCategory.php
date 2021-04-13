@@ -14,6 +14,9 @@ class ProductCategory extends TranslatedModel implements LocalizedUrlRoutable
         "image",
         'searcher_order',
         'active',
+        'image_low_1',
+        'image_low_2',
+        'image_low_3',
         'order'
     ];
 

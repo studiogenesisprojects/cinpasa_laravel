@@ -5,6 +5,8 @@
 @section('content')
 @include('front.home.carousel2')
 @include('front.home.barra-busqueda')
+@section('meta-title', "{{__('aplications.titulo_seo')}}")
+@section('meta-description', "{{__('aplications.descripcion_seo')}}")
 <section id="aplicaciones">
     <div class="container">
         <div class="row mt-4">

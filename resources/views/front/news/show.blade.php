@@ -1,6 +1,8 @@
 @extends('front.common.main')
 
 @section('content')
+@section('meta-title', $news->lang()->seo_title)
+@section('meta-description', $news->lang()->seo_description)
 <section id="home">
     <div class="container">
         <div class="row">

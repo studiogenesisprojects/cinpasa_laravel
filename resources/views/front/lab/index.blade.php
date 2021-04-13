@@ -2,6 +2,8 @@
 
 @section('content')
 @include('front.home.carousel2')
+@section('meta-title', "{{__('Lab.titulo_seo')}}")
+@section('meta-description', "{{__('Lab.descripcion_seo')}}")
 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede a la categoría contacta" class="btn-fixed">
     <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">¿{{__('Lab.more-info')}}?
 </a>
@@ -22,7 +24,7 @@
                 <img class="w-100 border-bottom border-right" src="{{Storage::url($lab->secondary_image)}}" alt="CINTech">
                 <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xs-5">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
-                    <p class="color-white">{{ $lab->description }}</p>
+                    <p class="color-white">{{ $lab->lang(App::getLocale()) ? $lab->lang(App::getLocale())->claim : '' }}</p>
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
                     ["slug" => $lab->slug
                 ])}}" title="saber más sobre CINTech" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">{{__('Lab.titulo')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
@@ -33,7 +35,7 @@
                 <img class="w-100 border-left border-bottom border-top-resp" src="{{Storage::url($lab->secondary_image)}}" alt="CINHome">
                  <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xs-5">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
-                    <p class="color-white">{{ $lab->description }}</p>
+                    <p class="color-white">{{  $lab->lang(App::getLocale()) ? $lab->lang(App::getLocale())->claim : '' }}</p>
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
                     ["slug" => $lab->slug
                 ])}}" title="saber más sobre CINHome" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">{{__('Lab.titulo')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
@@ -44,7 +46,7 @@
                 <img class="w-100 border-bottom border-right" src="{{Storage::url($lab->secondary_image)}}" alt="CINTech">
                 <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xs-5">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
-                    <p class="color-white">{{ $lab->description }}</p>
+                    <p class="color-white">{{ $lab->lang(App::getLocale()) ? $lab->lang(App::getLocale())->claim : '' }}</p>
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
                     ["slug" => $lab->slug
                 ])}}" title="saber más sobre CINTech" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">{{__('Lab.titulo')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
@@ -55,7 +57,7 @@
                 <img class="w-100 border-left border-bottom border-top-resp" src="{{Storage::url($lab->secondary_image)}}" alt="CINHome">
                  <div class="position-absolute col-sm-8 z-1 t-0 l-0 p-xs-5">
                     <h2 class="color-white mt-lg-0 mt-md-5">{{ $lab->name }}</h2>
-                    <p class="color-white">{{ $lab->description }}</p>
+                    <p class="color-white">{{ $lab->lang(App::getLocale()) ? $lab->lang(App::getLocale())->claim : '' }}</p>
                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
                     ["slug" => $lab->slug
                 ])}}" title="saber más sobre CINHome" class="btn btn-secundary mt-sm-4 mt-3 scale-xs-08">{{__('Lab.titulo')}} <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>

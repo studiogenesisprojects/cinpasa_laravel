@@ -1,6 +1,6 @@
 @extends('front.common.main')
-@section('meta-title', isset($productCategory->lang(App::getLocale())->seo_title) ?? $productCategory->lang(App::getLocale())->seo_title)
-@section('meta-description',  isset($productCategory->lang(App::getLocale())->seo_description) ?? $productCategory->lang(App::getLocale())->seo_description )
+@section('meta-title', isset($productCategory->lang(App::getLocale())->seo_title) ? $productCategory->lang(App::getLocale())->seo_title : '')
+@section('meta-description',  isset($productCategory->lang(App::getLocale())->seo_description) ? $productCategory->lang(App::getLocale())->seo_description : '' )
 @section('content')
 <section>
     @if(isset($isLab))
@@ -72,9 +72,9 @@
                     </div>
                     @endif
                 </div>
-                @if($productCategory->lang())
+                @if($productCategory->lang(App::getLocale()))
                 <div class="row px-3 pt-4 pb-5 border-card-left">
-                    <p class="small">{{$productCategory->lang()->description}}</p>
+                    <p class="small">{{$productCategory->lang(App::getLocale())->description}}</p>
                 </div>
                 @endif
                 <div class="row">
@@ -126,10 +126,10 @@
             </div>
         </div>
         <hr class="hr-blue">
-        @if($productCategory->lang())
+        @if($productCategory->lang(App::getLocale()))
         <div class="row">
             <div class="col-md-8 offset-md-3 px-md-0 py-4">
-            <p class="small mt-2">{{$productCategory->lang()->footer_description}}</p>
+            <p class="small mt-2">{{$productCategory->lang(App::getLocale())->footer_description}}</p>
             </div>
         </div>
         <hr class="hr-blue">

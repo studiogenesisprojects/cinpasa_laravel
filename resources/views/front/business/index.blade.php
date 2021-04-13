@@ -2,6 +2,8 @@
 
 @section('content')
 @include('front.home.carousel2')
+@section('meta-title', "{{__('Empresa.titulo_seo')}}")
+@section('meta-description', "{{__('Empresa.descripcion_seo')}}")
 <section id="porque">
     <div class="container mt-5">
         <div class="row">
