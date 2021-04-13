@@ -33,7 +33,7 @@
             <a-alert
               v-if="emptyTitleLanguages.length > 0"
               message="Cuidado!"
-              :description="'Existen idiomas sin título.'"
+              :description="'Esta noticia no está traducida en todos los idiomas.'"
               type="error"
               style="margin-bottom: 10px;"
               show-icon
