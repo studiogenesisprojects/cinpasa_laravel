@@ -3,7 +3,9 @@
     <div class="element-wrapper">
       <h6 class="element-header">
         {{ this.item ? "Actualizar" : "Crear" }} noticia
-        <a-button class="btn btn-primary float-right" @click="handleGoBack">Volver</a-button>
+        <a-button class="btn btn-primary float-right" @click="handleGoBack"
+          >Volver</a-button
+        >
       </h6>
       <div class="row justify-content-around">
         <div class="col-md-8">
@@ -18,18 +20,28 @@
                       :beforeUpload="beforeUpload"
                     >
                       <a-button>
-                        <a-icon type="upload" :disabled="news.fileList.length === 0" />Selecciona imagen principal
+                        <a-icon
+                          type="upload"
+                          :disabled="news.fileList.length === 0"
+                        />Selecciona imagen principal
                       </a-button>
                     </a-upload>
                   </div>
                 </div>
               </div>
             </div>
+            <a-alert
+              v-if="emptyTitleLanguages"
+              message="Cuidado!"
+              :description="'Existen idiomas sin título.'"
+              type="error"
+              show-icon
+            />
             <a-tabs>
               <a-tab-pane
-                style="height: auto !important;"
+                style="height: auto !important"
                 v-for="(language, i) in news.languages"
-                :tab="languageCodes[language.language_id-1]"
+                :tab="languageCodes[language.language_id - 1]"
                 :key="i"
               >
                 <div class="row">
@@ -44,13 +56,22 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for>Título</label>
-                      <input class="form-control" type="text" v-model="language.title" />
+                      <input
+                        class="form-control"
+                        type="text"
+                        v-model="language.title"
+                      />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for>Slug</label>
-                      <input class="form-control" type="text" v-model="language.slug" disabled />
+                      <input
+                        class="form-control"
+                        type="text"
+                        v-model="language.slug"
+                        disabled
+                      />
                     </div>
                   </div>
                   <div class="col-md-12">
@@ -86,7 +107,11 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for>Título SEO</label>
-                      <input class="form-control" type="text" v-model="language.seo_title" />
+                      <input
+                        class="form-control"
+                        type="text"
+                        v-model="language.seo_title"
+                      />
                     </div>
                   </div>
                   <div class="col-md-12">
@@ -115,7 +140,12 @@
                   @select="handleSelectNews"
                   @deselect="handleDeselectNews"
                 >
-                  <a-select-option v-for="n in allnews" :key="'n'+n.id" :value="n.id">{{ n.title }}</a-select-option>
+                  <a-select-option
+                    v-for="n in allnews"
+                    :key="'n' + n.id"
+                    :value="n.id"
+                    >{{ n.title }}</a-select-option
+                  >
                 </a-select>
               </div>
             </div>
@@ -142,27 +172,38 @@
                       :value="writer.id"
                       v-for="writer in writers"
                       :key="writer.id"
-                    >{{ writer.name }}</a-select-option>
+                      >{{ writer.name }}</a-select-option
+                    >
                   </a-select>
                 </div>
                 <div class="form-group" v-if="!showBlockUi">
                   <label for>Categorías</label>
-                  <a-select class="form-control" v-model="news.categories" mode="multiple">
+                  <a-select
+                    class="form-control"
+                    v-model="news.categories"
+                    mode="multiple"
+                  >
                     <a-select-option
                       v-for="category in categories"
                       :key="category.id"
                       :value="category.id"
-                    >{{ category.title }}</a-select-option>
+                      >{{ category.title }}</a-select-option
+                    >
                   </a-select>
                 </div>
                 <div class="form-group" v-if="!showBlockUi">
                   <label for>Etiquetas</label>
-                  <a-select class="form-control" v-model="news.tags" mode="multiple">
+                  <a-select
+                    class="form-control"
+                    v-model="news.tags"
+                    mode="multiple"
+                  >
                     <a-select-option
                       v-for="tag in tags"
                       :key="tag.id"
                       :value="tag.id"
-                    >{{ tag.title }}</a-select-option>
+                      >{{ tag.title }}</a-select-option
+                    >
                   </a-select>
                 </div>
               </div>
@@ -182,7 +223,7 @@ import Application from "../../Application";
 export default {
   components: {
     RichEditor,
-    Application
+    Application,
   },
   props: ["item", "allnews"],
   data() {
@@ -195,18 +236,18 @@ export default {
       news: this.item
         ? {
             ...this.item,
-            relateds: this.item.related_news.map(r => r.id),
+            relateds: this.item.related_news.map((r) => r.id),
             fileList: [],
             active: this.item.active == 1,
-            categories: this.item.categories.map(c => c.id),
-            tags: this.item.tags.map(c => c.id),
+            categories: this.item.categories.map((c) => c.id),
+            tags: this.item.tags.map((c) => c.id),
             languages: this.item.languages
-              .map(l => {
+              .map((l) => {
                 return { ...l, active: l.active == 1 };
               })
               .sort((a, b) => {
                 return a.language_id > b.language_id ? 1 : -1;
-              })
+              }),
           }
         : {
             related: [],
@@ -217,29 +258,42 @@ export default {
             languages: [
               {
                 language_id: 1,
-                active: true
+                active: true,
               },
               {
                 language_id: 2,
-                active: true
+                active: true,
               },
               {
                 language_id: 3,
-                active: true
+                active: true,
               },
               {
                 language_id: 5,
-                active: true
+                active: true,
               },
               {
                 language_id: 4,
-                active: true
-              }
-            ]
-          }
+                active: true,
+              },
+            ],
+          },
     };
   },
-
+  computed: {
+    // Return languages without title
+    emptyTitleLanguages: function () {
+      let emptyLanguages = [];
+      this.news.languages.forEach((language) => {
+        if (language.title == null || language.title.trim() == null) {
+          // If is empty add to the array of empty languages
+          emptyLanguages.push(this.languageCodes[language.language_id - 1]);
+        }
+      });
+      // `this` points to the vm instance
+      return emptyLanguages;
+    },
+  },
   methods: {
     handleGoBack() {
       this.$router.go(-1);
@@ -259,11 +313,11 @@ export default {
       }
       axios
         .post(url, formData)
-        .then(r => {
+        .then((r) => {
           this.$message.success("Noticia guardada correctamente");
           this.$router.push({ name: "index" });
         })
-        .catch(e => {
+        .catch((e) => {
           this.$message.error("Error al guardar la noticia");
         })
         .finally(() => {
@@ -271,17 +325,17 @@ export default {
         });
     },
     async fetchWriters() {
-      return axios.get("news/writers").then(r => {
+      return axios.get("news/writers").then((r) => {
         this.writers = r.data;
       });
     },
     async fetchTags() {
-      return axios.get("news/tags").then(r => {
+      return axios.get("news/tags").then((r) => {
         this.tags = r.data;
       });
     },
     async fetchCategories() {
-      return axios.get("news/categories").then(r => {
+      return axios.get("news/categories").then((r) => {
         this.categories = r.data;
       });
     },
@@ -322,9 +376,9 @@ export default {
         axios
           .post("news/relateds", {
             related_news_id: news,
-            news_id: this.news.id
+            news_id: this.news.id,
           })
-          .catch(e =>
+          .catch((e) =>
             this.$message.error("Error al añadir noticia relacionada")
           );
       }
@@ -333,29 +387,29 @@ export default {
       if (this.news.id) {
         axios
           .delete("news/relateds/" + this.news.id + "/" + news)
-          .catch(e =>
+          .catch((e) =>
             this.$message.error("Error al eliminar noticia relacionada")
           );
       }
-    }
+    },
   },
 
   watch: {
     news: {
-      handler: function(newNews) {
+      handler: function (newNews) {
         newNews.languages.forEach((i, index) => {
           i.title &&
             i.title !== undefined &&
             this.$set(i, "slug", this.string_to_slug(i.title));
         });
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   async mounted() {
     if (!this.allnews) {
       this.$router.push({
-        name: "index"
+        name: "index",
       });
     }
     this.showBlockUi = true;
@@ -363,11 +417,11 @@ export default {
     await this.fetchTags();
     await this.fetchCategories();
     this.showBlockUi = false;
-  }
+  },
 };
 
 const columns = [
   { title: "title", dataIndex: "title", key: "title" },
-  { title: "Fecha de creación", dataIndex: "created_at", key: "created_at" }
+  { title: "Fecha de creación", dataIndex: "created_at", key: "created_at" },
 ];
 </script>
