@@ -280,20 +280,6 @@ export default {
           },
     };
   },
-  computed: {
-    // Return languages without title
-    emptyTitleLanguages: function () {
-      let emptyLanguages = [];
-      this.news.languages.forEach((language) => {
-        if (language.title == null || language.title.trim() == null) {
-          // If is empty add to the array of empty languages
-          emptyLanguages.push(this.languageCodes[language.language_id - 1]);
-        }
-      });
-      // `this` points to the vm instance
-      return emptyLanguages;
-    },
-  },
   methods: {
     handleGoBack() {
       this.$router.go(-1);
@@ -404,6 +390,20 @@ export default {
         });
       },
       deep: true,
+    },
+  },
+    computed: {
+    // Return languages without title
+    emptyTitleLanguages () {
+      let emptyLanguages = [];
+      this.news.languages.forEach((language) => {
+        if (language.title == null || language.title.trim() == null) {
+          // If is empty add to the array of empty languages
+          emptyLanguages.push(this.languageCodes[language.language_id - 1]);
+        }
+      });
+      // `this` points to the vm instance
+      return emptyLanguages;
     },
   },
   async mounted() {
