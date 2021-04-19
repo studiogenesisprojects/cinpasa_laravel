@@ -2,8 +2,8 @@
 
 @section('content')
 @include('front.home.carousel2')
-@section('meta-title', "{{__('Empresa.titulo_seo')}}")
-@section('meta-description', "{{__('Empresa.descripcion_seo')}}")
+@section('meta-title', __('Empresa.titulo_seo'))
+@section('meta-description', __('Empresa.descripcion_seo'))
 <section id="porque">
     <div class="container mt-5">
         <div class="row">
@@ -12,6 +12,7 @@
                 <hr class="mt-3">
             </div>
         </div>
+        {{-- {{dd(__('Empresa.titulo_seo'))}} --}}
         <div class="row mt-md-5">
             <div class="col-md-1 col-2  mt-md-0 mt-5">
                 <img src="{{ asset('front/img/icon-empresa-1.svg') }}" alt="icono referencias">

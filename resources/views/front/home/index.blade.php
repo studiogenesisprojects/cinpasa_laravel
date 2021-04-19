@@ -1,6 +1,8 @@
 @extends('front.common.main')
 
 @section('content')
+@section('meta-title', "Cinpasa")
+@section('meta-description', "Cinpasa")
     <section id="home">
             @include('front.home.carousel')
             @include('front.home.barra-busqueda')

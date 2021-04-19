@@ -2,8 +2,8 @@
 
 @section('content')
 @include('front.home.carousel2')
-@section('meta-title', "{{__('Contacta.titulo_seo')}}")
-@section('meta-description', "{{__('Contacta.descripcion_seo')}}")
+@section('meta-title', __('Contacta.titulo_seo'))
+@section('meta-description', __('Contacta.descripcion_seo'))
 <section id="aplicaciones">
     <div class="container">
         <form action="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.contact.store')}}" method="POST">

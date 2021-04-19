@@ -2,8 +2,8 @@
 
 @section('content')
 @include('front.home.carousel2')
-@section('meta-title', "{{__('Lab.titulo_seo')}}")
-@section('meta-description', "{{__('Lab.descripcion_seo')}}")
+@section('meta-title', __('Lab.titulo_seo'))
+@section('meta-description', __('Lab.descripcion_seo'))
 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede a la categoría contacta" class="btn-fixed">
     <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">¿{{__('Lab.more-info')}}?
 </a>

@@ -3,8 +3,6 @@
 @section('meta-description', __('Noticias.meta-description'))
 @section('content')
 @include('front.home.carousel2')
-@section('meta-title', "{{__('Noticias.meta-title')}}")
-@section('meta-description', "{{__('Noticias.meta-description')}}")
 <section class="slider">
     <div class="container">
         <div class="row">
