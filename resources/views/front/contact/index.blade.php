@@ -97,6 +97,7 @@
                 <div class="col-lg-3 offset-lg-1 mt-5">
                     <div class="row flex-lg-column justify-content-between h-100">
                         <div class="col-lg-12 flex-inherit col-6">
+                            <h1>{{__('Contacta.titulo')}}</h1>
                             <div class="d-flex mt-4 align-items-start">
                                 <img src="{{ asset('front/img/icon-loc.svg') }}" alt="icono localización">
                                 <p class="ml-3 color-blue"><small>{{__('Contacta.location')}}</small></p>

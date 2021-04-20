@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-3 px-5 pb-3 d-lg-block d-none">
-                <p class="color-black"><strong>Filtrar productos</strong></p>
+                <h1 style="font-size: 25px;" class="color-black"><strong>Filtrar productos</strong></h1>
             </div>
             <div class="col-9 px-0 pb-3 d-flex align-items-center ml-lg-0 ml-3">
                 <a href="javascript:;" title="Accede a la sección productos" class="mr-1 color-grey">Productos </a> / <a href="javascript:;" title="Accede a la categoría" class="mx-1 color-grey"> Categorías</a>

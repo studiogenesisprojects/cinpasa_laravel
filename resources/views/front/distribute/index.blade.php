@@ -2,11 +2,13 @@
 
 @section('content')
 @include('front.home.carousel2')
+@section('meta-title', __('Distribuir.titulo_seo'))
+@section('meta-description', __('Distribuir.descripcion_seo'))
 <section>
     <div class="container">
         <div class="row mt-5">
             <div class="col-lg-7 col-md-10 mt-5">
-                <h2 class="before-title">{{__('Distribuir.titulo_pag')}}</h2>
+                <h1 class="before-title">{{__('Distribuir.titulo_pag')}}</h1>
                 <p class="mt-3">{{__('Distribuir.text1_pag')}}</p>
             </div>
         </div>

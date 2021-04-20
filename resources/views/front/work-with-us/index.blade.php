@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row mt-5 justify-content-center">
             <div class="col-lg-7 mt-5">
-                <h2 class="before-title-center text-center">{{__('TrabajaConNosotros.titulo')}}</h2>
+                <h1 class="before-title-center text-center">{{__('TrabajaConNosotros.titulo')}}</h1>
                 <p class="mt-3 text-center">{{__('TrabajaConNosotros.subtitulo')}}</p>
             </div>
         </div>
