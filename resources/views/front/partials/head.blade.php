@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
     {!! htmlScriptTagJsApi(['lang' => 'es']) !!}
 
-    <title>Cinpasa</title>
-    {{-- <title>@yield('meta-title')</title> --}}
+    {{-- <title>Cinpasa</title> --}}
+    <title>@yield('meta-title')</title>
     <meta name="title" content="@yield('meta-title')">
     <meta name="description" content="@yield('meta-description')">
 
