@@ -2,12 +2,14 @@
 
 @section('content')
 @include('front.home.carousel2')
+@section('meta-title', __('Outlet.titulo_seo'))
+@section('meta-description', __('Outlet.descripcion_seo'))
 <section id="aplicaciones">
     <div class="container">
         <div class="row">
             <div class="col-12 mt-5">
-                <h1 class="mt-5 font-bold before-title">Productos</h1>
-                <p class="mt-3">Últimos stocks, no pierdas la oportunidad.</p>
+                <h1 class="mt-5 font-bold before-title">{{__('Menu.products')}}</h1>
+                <p class="mt-3">{{__('Outlet.stocks')}}</p>
                 {{-- <form>
                     <div class="row">
                         <div class="col-md-6 mt-3">
