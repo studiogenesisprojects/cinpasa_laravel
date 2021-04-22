@@ -230,7 +230,7 @@ export default {
   data() {
     return {
       showBlockUi: false,
-      languageCodes: ["ES", "CA", "EN", "FR", "IT"],
+      languageCodes: ["ES", "CA", "EN", "FR", "RU"],
       writers: [],
       tags: [],
       categories: [],
