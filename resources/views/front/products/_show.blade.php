@@ -32,7 +32,7 @@
                         @foreach ($product->galeries->first()->images as $image)
                         <div class="carousel-item {{($loop->first) ? 'active' : ''}}">
                             <figure class="bg-cover bg-lg box-list__figure">
-                                <img src="@if(!empty($image->path)){{Storage::url($image->path)}}@else{{Storage::url('/img/nofoto.png')}}@endif" alt="@empty($image->alt) {{ $product->name }} @else {{  $image->alt}} @endempty" class="box-product__carousel">
+                                <img src="@if(!empty($image->path)){{Storage::url($image->path)}}@else{{Storage::url('/img/nofoto.png')}}@endif" alt="@empty($image->alt) {{ $product->name }} @else {{  $image->alt}} @endempty" class="box-product__carousel img-fluid">
                             </figure>
                         </div>
                         @endforeach
