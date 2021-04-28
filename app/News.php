@@ -19,9 +19,9 @@ class News extends TranslatedModel implements LocalizedUrlRoutable
     ];
     protected $appends = [
         "title",
-        "url"
+        "url",
+        "codes_lang"
     ];
-
 
     public function writer()
     {
@@ -38,6 +38,34 @@ class News extends TranslatedModel implements LocalizedUrlRoutable
     public function relatedNews()
     {
         return $this->hasManyThrough(News::class, NewsRelatedNews::class, 'news_id', 'id', 'id', 'related_news_id');
+    }
+    public function getCodesLangAttribute(){
+        $codes = [];
+        $languagesObj = $this->languages;
+        $languagesObjFiltered = $languagesObj->filter(function ($value, $key) {
+            return !is_null($value['title']);
+        });
+        foreach ($languagesObjFiltered as $key => $value) {
+
+            switch ($value['language_id']) {
+                case 1:
+                    array_push($codes, 'es');
+                    break;
+                case 2:
+                    array_push($codes, 'ca');
+                    break;
+                case 3:
+                    array_push($codes, 'en');
+                    break;
+                case 4:
+                    array_push($codes, 'fr');
+                    break;
+                case 5:
+                    array_push($codes, 'ru');
+                    break;
+            }
+        }
+        return $codes;
     }
 
     //appends

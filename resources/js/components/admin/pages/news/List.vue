@@ -29,6 +29,11 @@
                   <a-button size="small" type="danger">Borrar</a-button>
                 </a-popconfirm>
               </span>
+
+              <span slot="codes_lang" slot-scope="codes_lang">
+                  <small>{{ codes_lang.join(", ") }}</small>
+              </span>
+
               <span slot="tags" slot-scope="tags">
                 <div color="gray" v-if="tags.length === 0">
                   <small>Sin etiquetas</small>
@@ -51,7 +56,7 @@
       </div>
     </div>
   </div>
-</template>    
+</template>
 <script>
 export default {
   data: function() {
@@ -62,6 +67,12 @@ export default {
           title: "Título",
           dataIndex: "title",
           scopedSlots: { customRender: "title" }
+        },
+        {
+          title: "Idioma",
+          dataIndex: "codes_lang",
+          key: "codes_lang",
+          scopedSlots: { customRender: "codes_lang" }
         },
         {
           title: "Redactor",
