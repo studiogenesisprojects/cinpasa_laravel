@@ -58,10 +58,10 @@ class News extends TranslatedModel implements LocalizedUrlRoutable
                     array_push($codes, 'en');
                     break;
                 case 4:
-                    array_push($codes, 'fr');
+                    array_push($codes, 'ru');
                     break;
                 case 5:
-                    array_push($codes, 'ru');
+                    array_push($codes, 'fr');
                     break;
             }
         }
