@@ -166,6 +166,7 @@
                                     @if(in_array(!null, $observations->toArray()))
                                         <th>{{__('Productos.observaciones')}}</th>
                                     @endif
+                                    <th>{{__('Productos.descuento')}}</th>
                                 </tr>
                             </thead>
                             <tbody id="caracteristics_body">
@@ -217,6 +218,9 @@
                                                 <input type="text" class="form-control " value="{{$observations[$i]}}" name="observations[]">
                                             </td>
                                         @endif
+                                        <td>
+                                            <span>-{{$product_caracteristics[$i]->discount ? $product_caracteristics[$i]->discount.'%':''}}</span>
+                                        </td>
                                     </tr>
                                 </div>
                                 @endfor

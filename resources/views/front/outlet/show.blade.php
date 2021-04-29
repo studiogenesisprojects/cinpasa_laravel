@@ -129,7 +129,7 @@
                     <div class="col-12">
                         <p class="color-black">
                         @foreach($product->materials as $material)
-                            <span class="color-primary"><strong>{{$material->name}}</strong></span> / 
+                            <span class="color-primary"><strong>{{$material->name}}</strong></span> /
                         @endforeach
                         </p>
                     </div>
@@ -226,7 +226,7 @@
                                             </td>
                                         @endif
                                         <td>
-                                            <span>-{{$product_caracteristics[$i]->discount}}%</span>
+                                            <span>-{{$product_caracteristics[$i]->discount ? $product_caracteristics[$i]->discount.'%':''}}</span>
                                         </td>
                                     </tr>
                                 </div>
