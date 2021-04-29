@@ -78,6 +78,8 @@ class ProductController extends Controller
         $finishedColumns = [];
         $finisheds = $product->finisheds;
         $finisheds = $finisheds->sortBy('order');
+        $finisheds = $finisheds->values();
+
         foreach ($finisheds as $index => $f) {
             $finishedColumns[$index / 7][] = $f;
         }
