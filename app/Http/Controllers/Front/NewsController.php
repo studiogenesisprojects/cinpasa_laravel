@@ -29,13 +29,13 @@ class NewsController extends Controller
     public function index()
     {
         $featuredNews = NewsFeatured::all();
-        $news = News::orderBy('created_at', 'desc')->paginate(9);
+        $news = News::orderBy('created_at', 'desc')->where('active', 1)->paginate(9);
 
         $carousel = new Carousel;
         $slideCarousel = new Slide;
-        $slideCarousel->title = $featuredNews[0]->news->lang()->title;
-        $slideCarousel->text = $featuredNews[0]->news->lang()->content;
-        $slideCarousel->image = Storage::url('noticias/'.$featuredNews[0]->news->image);
+        $slideCarousel->title = $featuredNews[0]->news ? $featuredNews[0]->news->lang()->title : 'No featured news';
+        $slideCarousel->text = $featuredNews[0]->news ? $featuredNews[0]->news->lang()->content : 'No featured content';
+        $slideCarousel->image = $featuredNews[0]->news ? Storage::url('noticias/'.$featuredNews[0]->news->image) : asset('front/img/no-foto.jpg');
         $carousel->setRelation('slides', [$slideCarousel]);
 
         return view('front.news.index', compact('news', 'featuredNews','carousel', 'slideCarousel'));
