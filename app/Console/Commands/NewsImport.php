@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Console\Commands;
-
 use App\Models\Noticia;
 use App\News;
 use App\NewsLang;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-
 class NewsImport extends Command
 {
     /**
@@ -17,14 +15,12 @@ class NewsImport extends Command
      * @var string
      */
     protected $signature = 'import:news';
-
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Command description';
-
     /**
      * Create a new command instance.
      *
@@ -34,7 +30,6 @@ class NewsImport extends Command
     {
         parent::__construct();
     }
-
     /**
      * Execute the console command.
      *
@@ -42,7 +37,6 @@ class NewsImport extends Command
      */
     public function handle()
     {
-
         $langCodeIds = [
             "es" => 1,
             "ca" => 2,
@@ -50,7 +44,9 @@ class NewsImport extends Command
             "it" => 5,
             "fr" => 4,
         ];
+
         NewsLang::truncate();
+        News::truncate();
 
         $news = DB::connection('importer')->table('wp_posts')
             ->select('*')
@@ -59,9 +55,7 @@ class NewsImport extends Command
             ->leftJoin('wp_icl_translations', 'wp_posts.ID', '=', 'wp_icl_translations.element_id')
             ->orderBy('ID')
             ->get();
-
-        foreach ($news as $n) {
-
+        foreach ($news as $key => $n) {
             $_news = News::find($n->trid);
             if (!$_news) {
                 $_news = News::create([
@@ -69,23 +63,23 @@ class NewsImport extends Command
                     "id" => $n->trid,
                     "image" => "",
                     "thumbnail" => "",
-                    "active" => true,
+                    "active" => false,
                     "writer_id" => 1,
                 ]);
                 foreach ([1, 2, 3, 4, 5] as $lid) {
                     $_news->languages()->create(["language_id" => $lid, "active" => false]);
                 }
             }
-
-            $_news->lang($langCodeIds[$n->language_code])->update([
-                "title" => $n->post_title,
-                "content" => $n->post_content,
-                "seo_title" => $n->post_title,
-                "seo_description" => strip_tags($n->post_content),
-                "slug" => Str::slug($n->post_title),
-                "active" => true,
-            ]);
-
+            if(isset($n->language_code) && $_news){
+                $_news->lang($langCodeIds[$n->language_code])->update([
+                    "title" => self::replace($n->post_title),
+                    "content" => self::replace($n->post_content),
+                    "seo_title" => self::replace($n->post_title),
+                    "seo_description" => self::replace(strip_tags($n->post_content)),
+                    "slug" => Str::slug($n->post_title),
+                    "active" => false,
+                ]);
+            }
             $alreadyExistingNews = Noticia::whereHas('languages', function ($q) use ($_news) {
                 $q->where('titulo', $_news->title);
             })->where('activo', 1)->first();
@@ -96,5 +90,15 @@ class NewsImport extends Command
                 ]);
             }
         }
+    }
+
+    public function replace($string){
+
+        $string = preg_replace('#\[(.*?)\]#', "", $string);
+        $string = preg_replace('#\<(.*?)\>#', "", $string);
+        $string = str_replace('&amp;', "&", $string);
+        $string = str_replace('&nbsp;', "", $string);
+
+        return $string;
     }
 }
