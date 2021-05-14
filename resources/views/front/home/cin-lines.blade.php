@@ -4,7 +4,7 @@
     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
         ["slug" => $lab->slug
         ])}}" class="small color-black">
-    <img class="w-100" src="{{ Storage::url($lab->image) }}">
+    <img class="w-100" src="{{ Storage::url($lab->image) }} alt="{{$lab->name}}">
     <div class="d-flex justify-content-between align-items-center py-4 px-3">
         <p class="font-bold color-black">{{$lab->name}}</p>
         <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.lab.show_products',
