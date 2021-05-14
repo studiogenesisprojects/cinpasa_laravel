@@ -196,6 +196,7 @@ h3 {
     font-weight: 600;
     position: relative;
 }
+#categorias h3 {font-size: calc(16px + (21 - 16) * ((100vw - 320px) / (1920 - 320)));}
 
 h4 {
     font-size: calc(22px + (28 - 22) * ((100vw - 320px) / (1920 - 320)));
@@ -1397,3 +1398,5 @@ section.productos-relacionados {
     padding-bottom: 4rem;
     border-bottom: 2px solid #A4AED4;
 }
+
+.label_out {position: absolute; left: -99999px;}

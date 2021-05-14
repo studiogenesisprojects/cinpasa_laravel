@@ -27,7 +27,7 @@
                 </div>
                 @endif
                 <div class="card col-8 position-absolute position-center-t75 text-center p-3">
-                    <h6>{{$category->application->lang()->name}}</h6>
+                    <h3>{{$category->application->lang()->name}}</h3>
                 </div>
             </a>
             @endforeach

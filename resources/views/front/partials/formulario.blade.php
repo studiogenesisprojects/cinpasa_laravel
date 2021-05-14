@@ -36,17 +36,20 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
+                                <label for="name" class="label_out">{{__('Contacta.name')}}</label>
                                 <input type="text" class="form-control background-blue-light" name="name" id="" placeholder="{{__('Contacta.name')}}">
                             </div>
                         </div>
                         <div class="col-6 mt-3">
                             <div class="form-group">
                                 <input type="hidden" name="origen" id="origen">
+                                <label for="email" class="label_out">{{__('Contacta.email')}}</label>
                                 <input type="email" class="form-control background-blue-light" name="email" id="" placeholder="{{__('Contacta.email')}}">
                             </div>
                         </div>
                         <div class="col-6 mt-3">
                             <div class="form-group">
+                                <label for="phone" class="label_out">{{__('Contacta.phone_form')}}</label>
                                 <input type="phone" class="form-control background-blue-light" name="phone" id="" placeholder="{{__('Contacta.phone_form')}}">
                             </div>
                         </div>
@@ -64,6 +67,7 @@
 
                             <div class="col-12 px-0 d-none" id="company">
                                 <div class="form-group">
+                                    <label for="company" class="label_out">{{__('Contacta.company')}}</label>
                                     <input type="text" name="company" class="form-control background-blue-light" placeholder="{{__('Contacta.company')}}">
                                 </div>
                             </div>
@@ -94,6 +98,7 @@
                         </div>
                         <div class="col-12 mt-3 d-none" id="cantidades-text">
                             <div class="form-group">
+                                <label for="cantidades" class="label_out">{{__('Contacta.cantidades')}}</label>
                                 <textarea class="form-control background-blue-light" name="cantidades" rows="3"></textarea>
                             </div>
                         </div>
@@ -104,6 +109,7 @@
                             </div>
                             <div class="col-12 mt-3 d-none" id="medidas-text">
                                 <div class="form-group">
+                                    <label for="cantidades" class="label_out">{{__('Contacta.medidas')}}</label>
                                     <textarea class="form-control background-blue-light" name="medidas" rows="3"></textarea>
                                 </div>
                             </div>
@@ -114,6 +120,7 @@
                         </div>
                         <div class="col-12 mt-3 d-none" id="comentarios-text">
                             <div class="form-group">
+                                <label for="cantidades" class="label_out">{{__('Contacta.comentarios')}}</label>
                                 <textarea class="form-control background-blue-light" name="comentaris" id="comentarios-text-new" rows="3"></textarea>
                             </div>
                         </div>
