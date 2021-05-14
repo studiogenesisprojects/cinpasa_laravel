@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                             <p class="mt-5 font-bold color-black">{{__('ContactaFooter.come')}}</p>
-                            <div style="width: 100%;margin: auto;margin-top: 10px;"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Cintas%20y%20Pasamanerias%20SA+(Cintas%20y%20Pasamaneria%20SA)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" title="abrir mapa de ubicación"></iframe><a href="https://www.mapsdirections.info/marcar-radio-circulo-mapa/"></a></div>
+                            <div style="width: 100%;margin: auto;margin-top: 10px;"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Cintas%20y%20Pasamanerias%20SA+(Cintas%20y%20Pasamaneria%20SA)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" title="abrir mapa de ubicación"></iframe><a href="https://www.mapsdirections.info/marcar-radio-circulo-mapa/" title="Cinpasa"></a></div>
                         </div>
                     </div>
                 </div>
