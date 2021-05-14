@@ -4,20 +4,20 @@
     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
                 "productCategory" => $homeApp,
             ])}}" class="col-lg-3 col-md-4 col-sm-6 position-relative mt-3">
-        <img class="w-100 border-img" src="{{ Storage::url($homeApp->image) }}" alt="categoria cintas de cortina">
+        <img class="w-100 border-img" src="{{ Storage::url($homeApp->image) }}" alt="{{$homeApp->getLang->name}}">
         <div class="card col-8 position-absolute position-center-t75 text-center p-3">
             <small>{{__('Inicio.seccion1_boton')}}</small>
-            <h6>{{$homeApp->getLang->name}}</h6>
+            <h3>{{$homeApp->getLang->name}}</h3>
         </div>
     </a>
 @else
     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.show', [
                 "applicationCategory" => $homeApp->getLang->slug
             ])}}" class="col-lg-3 col-md-4 col-sm-6 position-relative mt-3">
-        <img class="w-100 border-img" src="{{ Storage::url($homeApp->list_image) }}" alt="categoria cintas de cortina">
+        <img class="w-100 border-img" src="{{ Storage::url($homeApp->list_image) }}" alt="{{$homeApp->getLang->name}}">
         <div class="card col-8 position-absolute position-center-t75 text-center p-3">
             <small>{{__('Inicio.seccion1_boton')}}</small>
-            <h6>{{$homeApp->getLang->name}}</h6>
+            <h3>{{$homeApp->getLang->name}}</h3>
         </div>
     </a>
 @endif
