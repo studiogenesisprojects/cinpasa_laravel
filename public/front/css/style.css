@@ -1404,3 +1404,5 @@ section.productos-relacionados {
 
 .label_out {position: absolute; left: -99999px;}
 
+article.noticia-blog p {margin-bottom: 1rem;}
+article.noticia-blog ul, article.noticia-blog ol {margin-left: 1rem;}

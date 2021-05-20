@@ -19,6 +19,7 @@
     </div>
 </section>
 <section id="aplicaciones">
+    <article class="noticia-blog">
     <div class="container">
         <div class="row">
 
@@ -82,6 +83,7 @@
             </div>
         </div>
     </div>
+    </article>
     <hr class="mt-5">
 </section>
 @endsection
