@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "908247d21f15a1d9bbc1263b5577ec42",
+    "content-hash": "5d548139fea399dc5c1b4406694e7b2e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2386,6 +2386,58 @@
                 "translate"
             ],
             "time": "2020-10-02T20:48:10+00:00"
+        },
+        {
+            "name": "studiogenesis/sg-cookies",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://studiogenesis_developer@bitbucket.org/studiogenesis_developer/sg-cookies.git",
+                "reference": "0b18d7674c88c8ba17f74841c7dbdad6119f7156"
+            },
+            "require": {
+                "illuminate/support": "*",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.2",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "studiogenesis\\EuCookieConsent\\EuCookieConsentServiceProvider"
+                    ],
+                    "aliases": {
+                        "EuCookieConsent": "studiogenesis\\EuCookieConsent\\EuCookieConsentFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "studiogenesis\\EuCookieConsent\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "studiogenesis\\EuCookieConsent\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ],
+                "test-coverage": [
+                    "vendor/bin/phpunit --coverage-html coverage"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Banner aviso cookies con popup de activación/desactivación (nueva ley europea).",
+            "homepage": "https://www.studiogenesis.es",
+            "time": "2021-04-09T11:12:18+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -17,7 +17,8 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "mews/captcha": "^3.2",
-        "spatie/laravel-translation-loader": "^2.6"
+        "spatie/laravel-translation-loader": "^2.6",
+        "studiogenesis/sg-cookies": "^1.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -61,5 +62,11 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
+    },
+    "repositories": {
+        "sg-cookies": {
+            "type": "vcs",
+            "url": "https://studiogenesis_developer@bitbucket.org/studiogenesis_developer/sg-cookies.git"
+        }
     }
 }
