@@ -209,6 +209,9 @@ h5 {
     font-weight: 600;
     position: relative;
 }
+#aplicaciones h5 {
+    font-size: calc(14px + (24 - 18) * ((100vw - 320px) / (1920 - 320)));
+}
 
 h6 {
     font-size: calc(16px + (21 - 16) * ((100vw - 320px) / (1920 - 320)));
@@ -1400,3 +1403,4 @@ section.productos-relacionados {
 }
 
 .label_out {position: absolute; left: -99999px;}
+
