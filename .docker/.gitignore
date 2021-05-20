@@ -1,0 +1,3 @@
+# Gitignore mysql folder beucase contains the local data
+mysql
+!mysql/.gitkeep
