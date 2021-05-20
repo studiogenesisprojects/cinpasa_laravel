@@ -210,7 +210,7 @@ h5 {
     position: relative;
 }
 #aplicaciones h5 {
-    font-size: calc(14px + (24 - 18) * ((100vw - 320px) / (1920 - 320)));
+    font-size: calc(12px + (24 - 18) * ((100vw - 320px) / (1920 - 320)));
 }
 
 h6 {
