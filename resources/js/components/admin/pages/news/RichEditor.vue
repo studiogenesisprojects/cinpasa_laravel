@@ -86,7 +86,7 @@
           :class="{ 'is-active': isActive.bullet_list() }"
           @click="commands.bullet_list"
         >
-          <i class="fas fa-list-ol"></i>
+          <i class="fas fa-list-ul"></i>
         </a-button>
 
         <a-button
@@ -96,7 +96,7 @@
           :class="{ 'is-active': isActive.ordered_list() }"
           @click="commands.ordered_list"
         >
-          <i class="fas fa-list-ul"></i>
+            <i class="fas fa-list-ol"></i>
         </a-button>
 
         <a-button

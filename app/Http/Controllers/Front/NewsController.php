@@ -18,6 +18,7 @@ use App\Models\Slide;
 use App\News;
 use App\NewsCategory;
 use App\NewsFeatured;
+use App\NewsLang;
 use App\NewsTag;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
@@ -30,6 +31,7 @@ class NewsController extends Controller
     {
         $featuredNews = NewsFeatured::all();
         $news = News::orderBy('created_at', 'desc')->where('active', 1)->paginate(9);
+        // $newsLang = NewsLang::orderBy('created_at', 'desc')->where('active', 1)->paginate(9);
 
         $carousel = new Carousel;
         $slideCarousel = new Slide;
