@@ -22,9 +22,9 @@
                 <p class="color-blue mb-4 d-flex align-items-center ml-lg-0 ml-3 mt-lg-0 mt-5"><img
                         class="mr-3 mb-1 d-lg-inline-block d-none" src="{{ asset('front/img/icon-categorias.svg') }}"
                         alt="icono menu categorías"><strong>CATEGORÍAS</strong></p>
-                {{-- @php
-                $fathers = $fathers->sortBy('order');
-                @endphp --}}
+                @php
+                $categories = $categories->sortBy('order');
+                @endphp
                 @foreach ($categories as $father)
                 @if($father->active == 1)
                 <div class="d-flex flex-column ml-4">
