@@ -31,6 +31,12 @@ class News extends TranslatedModel implements LocalizedUrlRoutable
     {
         return $this->belongsToMany(NewsTag::class);
     }
+
+    public function newsLang()
+    {
+        return $this->hasMany(NewsLang::class);
+    }
+
     public function categories()
     {
         return $this->belongsToMany(NewsCategory::class);

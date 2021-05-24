@@ -21,6 +21,7 @@ use App\NewsFeatured;
 use App\NewsLang;
 use App\NewsTag;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Concerns\ToArray;
 
@@ -30,8 +31,10 @@ class NewsController extends Controller
     public function index()
     {
         $featuredNews = NewsFeatured::all();
-        $news = News::orderBy('created_at', 'desc')->where('active', 1)->paginate(9);
-        // $newsLang = NewsLang::orderBy('created_at', 'desc')->where('active', 1)->paginate(9);
+        $lang = Language::where('code', App::getLocale())->first();
+        $news = News::whereHas('newsLang', function ($q) use($lang){
+            $q->where('active',1)->where('language_id', $lang->id);
+        })->orderBy('created_at', 'desc')->where('active', 1)->paginate(9);
 
         $carousel = new Carousel;
         $slideCarousel = new Slide;
