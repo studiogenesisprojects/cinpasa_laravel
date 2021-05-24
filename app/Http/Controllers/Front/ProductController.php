@@ -18,11 +18,11 @@ class ProductController extends Controller
 {
     public function index()
     {
-
+        $categories = ProductCategory::where('sup_product_category', null)->get();
         $carousel = Carousel::with(['slides' => function ($q) {
             $q->orderBy('order', 'asc');
         }])->where('section_id', 4)->where('active', 1)->where('main', 1)->first();
-        return view('front.products.index', compact('carousel'));
+        return view('front.products.index', compact('categories', 'carousel'));
     }
 
     public function fetchCategories($sup, $locale)
