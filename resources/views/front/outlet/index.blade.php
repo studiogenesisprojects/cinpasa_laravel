@@ -42,7 +42,7 @@
         </div>
         <div class="row mt-5">
             <div class="col-12 mb-4">
-                <h5 class="color-primary">Mostrando {{sizeof($featureds) + sizeof($bottomOnes)}} productos</h5>
+                <h5 class="color-primary">{{__('Outlet.texto_productos')}} {{sizeof($featureds) + sizeof($bottomOnes)}} {{__('Menu.products')}}</h5>
             </div>
             @if(isset($featureds[0]->product))
                 <div class="col-lg-6">
