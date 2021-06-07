@@ -197,6 +197,7 @@ h3 {
     position: relative;
 }
 #categorias h3 {font-size: calc(16px + (21 - 16) * ((100vw - 320px) / (1920 - 320)));}
+#aplicaciones .card h3 {font-size: calc(20px + (36 - 28) * ((100vw - 320px) / (1920 - 320)));}
 
 h4 {
     font-size: calc(22px + (28 - 22) * ((100vw - 320px) / (1920 - 320)));
@@ -1262,6 +1263,7 @@ figure.box-list__figure {
     .p-xs-5 {
         padding: 3rem;
     }
+    #aplicaciones .card h3 {font-size: calc(16px + (36 - 28) * ((100vw - 320px) / (1920 - 320)));}
 }
 
 @media (max-width: 767px) {
