@@ -1214,6 +1214,7 @@ figure.box-list__figure {
     .p-xs-5 {
         padding: 4rem;
     }
+    #aplicaciones .card h3 {font-size: calc(16px + (36 - 28) * ((100vw - 320px) / (1920 - 320)));}
 }
 
 @media (max-width: 991px) {
