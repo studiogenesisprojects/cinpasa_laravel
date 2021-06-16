@@ -55,15 +55,17 @@
                         </div>
                         <div class="col-12 mt-3">
                             <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="empresa" name="inlineDefaultRadiosExample">
+                                <label class="custom-control-label" for="empresa">{{__('Contacta.empresa')}}</label>
+                            </div>
+
+
+                            <!-- Default inline 2-->
+                            <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" class="custom-control-input" id="particular" name="inlineDefaultRadiosExample" checked>
                                 <label class="custom-control-label" for="particular">{{__('Contacta.particular')}}</label>
                             </div>
 
-                            <!-- Default inline 2-->
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="empresa" name="inlineDefaultRadiosExample">
-                                <label class="custom-control-label" for="empresa">{{__('Contacta.empresa')}}</label>
-                            </div>
 
                             <div class="col-12 px-0 d-none" id="company">
                                 <div class="form-group">
@@ -88,7 +90,7 @@
                             </div>
                         </div>
                         <div class="col-12 mt-3">
-                            <label for="">{{__('Contacta.more_info')}}</label>
+                            <label for="">{{__('Contacta.more_info')}}<span class="text-danger">*</span></label>
                         </div>
                         <div class="col-12 mt-2">
                             <div class="custom-control custom-checkbox">
@@ -127,6 +129,9 @@
                         <div class="col-12 mt-3">
                             <br>
                             {!! htmlFormSnippet() !!}
+                            <div class="col-12 px-0 mt-3">
+                                <label for="">{{__('Contacta.mensaje_ventas')}}</label>
+                            </div>
                             <div class="custom-control custom-checkbox mt-3">
                                 <input type="checkbox" name="politics" class="custom-control-input" id="privacidad">
                                 <label class="custom-control-label" for="privacidad"><a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}">{{__('Contacta.privacy')}}</a></label>

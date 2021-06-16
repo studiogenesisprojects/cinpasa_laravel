@@ -24,19 +24,19 @@
                         </div>
                         <div class="col-6 pr-0 mt-3">
                             <div class="form-group">
-                                <input type="phone" name="phone" class="form-control background-blue-light" id="" placeholder="{{__('Contacta.phone_form')}} *">
+                                <input type="phone" name="phone" class="form-control background-blue-light" id="" placeholder="{{__('Contacta.phone_form')}}">
                             </div>
                         </div>
                         <div class="col-12 px-0 mt-3">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" checked id="particular" name="particular">
-                                <label class="custom-control-label" for="particular">{{__('Contacta.particular')}}</label>
+                                <input type="radio" class="custom-control-input" id="empresa" name="particular">
+                                <label class="custom-control-label" for="empresa">{{__('Contacta.empresa')}}</label>
                             </div>
 
                             <!-- Default inline 2-->
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="empresa" name="particular">
-                                <label class="custom-control-label" for="empresa">{{__('Contacta.empresa')}}</label>
+                                <input type="radio" class="custom-control-input" checked id="particular" name="particular">
+                                <label class="custom-control-label" for="particular">{{__('Contacta.particular')}}</label>
                             </div>
 
                             <div class="col-12 px-0 d-none" id="company">
@@ -61,16 +61,16 @@
                             </div>
                         </div>
                         <div class="col-12 px-0 mt-3">
-                            <label for="">{{__('Contacta.more_info')}}</label>
+                            <label for="">{{__('Contacta.more_info')}} <span class="text-danger">*</span></label>
                         </div>
                         <div class="col-12 px-0 mt-2">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" name="second" checked class="custom-control-input" id="cantidades">
-                                <label class="custom-control-label" checked for="cantidades">{{__('Contacta.cantidades')}}</label>
+                                <input type="radio" name="second"  class="custom-control-input" id="cantidades">
+                                <label class="custom-control-label"  for="cantidades">{{__('Contacta.cantidades')}}</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" name="second" class="custom-control-input" id="medidas">
-                                <label class="custom-control-label" for="medidas">{{__('Contacta.medidas')}}</label>
+                                <input type="radio" name="second" checked class="custom-control-input" id="medidas">
+                                <label class="custom-control-label" checked for="medidas">{{__('Contacta.medidas')}}</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" name="second" class="custom-control-input" id="comentarios">
@@ -83,6 +83,9 @@
                             </div>
                         </div>
                         <div class="col-12 px-0 mt-3">
+                            <div class="col-12 px-0 mt-3">
+                                <label for="">{{__('Contacta.mensaje_ventas')}}</label>
+                            </div>
                             <div class="custom-control custom-checkbox mt-3">
                                 <input type="checkbox" class="custom-control-input" name="politics" id="defaultChecked2" checked>
                                 <label class="custom-control-label" for="defaultChecked2"><a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}">{{__('Contacta.privacy')}}</a></label>
