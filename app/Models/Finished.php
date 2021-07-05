@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
-use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\sFacades\LaravelLocalization;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\TranslatedModel;
 
 class Finished extends TranslatedModel implements LocalizedUrlRoutable

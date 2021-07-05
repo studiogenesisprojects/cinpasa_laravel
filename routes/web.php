@@ -168,3 +168,6 @@ Route::get('materials/{locale}', 'Front\MaterialController@fetch');
 Route::get('categories/{sup}/{locale}', 'Front\ProductController@fetchCategories');
 Route::get('eco-page-url/{locale}', 'Front\EcologyController@getPageUrl');
 Route::post('get-favorites', 'Front\FavoritesController@getFavorites')->name('front.getFavorites');
+
+//Generador de SiteMap
+Route::get('sitemap', 'Front\SiteMapController@index')->name('sitemap');
