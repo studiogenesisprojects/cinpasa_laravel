@@ -175,7 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
-        App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class
+        App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class
 
 
     ],
@@ -231,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
         'LaravelLocalization' => App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];
