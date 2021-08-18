@@ -46,8 +46,7 @@ class LabelController extends Controller
                 ]);
             }
             DB::commit();
-
-            return redirect()->route('labelUpdate', $label->id);
+            return redirect()->route('labelIndex', $label->id);
         } catch (\Exception $e) {
             DB::rollback();
             Log::error('Error: ' . $e->getMessage() . ' ******* Fallo en ' . $e->getFile() . ' ------ En la línea ' . $e->getLine());

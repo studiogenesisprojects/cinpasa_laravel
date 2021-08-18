@@ -14,7 +14,7 @@ class EditProductTypeTable extends Migration
     public function up()
     {
         Schema::table('products_type', function (Blueprint $table) {
-            $table->boolean('active')->default(true);
+            $table->boolean('active')->default(true)->nullable();
         });
     }
 

@@ -66,7 +66,7 @@ class TypeController extends Controller
             }
             DB::commit();
 
-            return redirect()->route('typeUpdate', $type->id);
+            return redirect()->route('typeIndex', $type->id);
         } catch (\Exception $e) {
             DB::rollback();
             Log::error('Error: ' . $e->getMessage() . ' ******* Fallo en ' . $e->getFile() . ' ------ En la línea ' . $e->getLine());

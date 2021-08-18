@@ -50,7 +50,7 @@ class FormController extends Controller
                 $form = ProductForm::create($request->toArray());
 
                 foreach (Language::all() as $language) {
-                    $form->formLangs()->create([
+                    $form->languages()->create([
                         'form_id' => $form->id,
                         'language_id' => $language->id,
                         'name' => $request->name[$language->id - 1],

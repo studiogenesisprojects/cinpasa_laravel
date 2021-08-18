@@ -40,7 +40,6 @@ class ColorCategoryController extends Controller
      */
     public function store(Request $request)
     {
-
         $productColorCategory = ProductColorCategory::create([
             "active" => $request->active ?? 0,
         ]);
@@ -50,6 +49,7 @@ class ColorCategoryController extends Controller
             $productColorCategory->languages()->create($language);
         }
 
+        if(isset($request->colors)){
         $data = [];
         $i = 0;
         foreach ($request->colors as $color) {
@@ -59,6 +59,7 @@ class ColorCategoryController extends Controller
 
         $productColorCategory->colors()->sync($data);
 
+        }
         return redirect()->route('categorias-colores.index')->with('success', 'Muestrario creado correctamente!');
     }
 
@@ -107,7 +108,7 @@ class ColorCategoryController extends Controller
                 $colorCategory->lang((int) $language['language_id'])->update($language);
             }
         }
-
+        if(isset($request->colors)){
         $data = [];
         $i = 0;
         foreach ($request->colors as $color) {
@@ -115,6 +116,7 @@ class ColorCategoryController extends Controller
             $i++;
         }
         $colorCategory->colors()->sync($data);
+        }
         return redirect()->route('categorias-colores.index')->with('success', 'Muestrario actualizado correctamente');
     }
 

@@ -47,16 +47,30 @@ class ColorShadesController extends Controller
             $productColorCategory->languages()->create($language);
         }
 
+        if(isset($request->colors)){
         $data = [];
         $i = 0;
         foreach ($request->colors as $color) {
             $data[$color] = ["order" => $i];
             $i++;
         }
-
+        
         $productColorCategory->colors()->sync($data);
+        }
 
         return redirect()->route('tonalidades-colores.index')->with('success', 'Tonalidad creada correctamente!');
+    }
+
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
@@ -95,6 +109,7 @@ class ColorShadesController extends Controller
             }
         }
 
+        if(isset($request->colors)){
         $data = [];
         $i = 0;
         foreach ($request->colors as $color) {
@@ -103,6 +118,7 @@ class ColorShadesController extends Controller
         }
 
         $colorCategory->colors()->sync($data);
+        }
 
         return redirect()->route('tonalidades-colores.index')->with('success', 'Tonalidad actualizada correctamente');
     }
