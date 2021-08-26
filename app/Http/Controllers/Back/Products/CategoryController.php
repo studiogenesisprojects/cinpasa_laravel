@@ -84,15 +84,18 @@ class CategoryController extends Controller
             }
         }
 
-        foreach($request->alt_text_image as $key => $image_text) {
-            foreach($image_text as $text) {
-                if($category->lang((int) $text['language_id'])) {
-                    $category->lang((int) $text['language_id'])->update(['alt_text_image_' . ($key + 1) => $text['alt_text']]);
-                } else {
-                    $category->languages()->create(['alt_text_image_' . ($key + 1) => $text['alt_text']]);
+        if(isset($request->alt_text_image)) {
+            foreach($request->alt_text_image as $key => $image_text) {
+                foreach($image_text as $text) {
+                    if($category->lang((int) $text['language_id'])) {
+                        $category->lang((int) $text['language_id'])->update(['alt_text_image_' . ($key + 1) => $text['alt_text']]);
+                    } else {
+                        $category->languages()->create(['alt_text_image_' . ($key + 1) => $text['alt_text']]);
+                    }
                 }
             }
         }
+
         if ($request->hasFile('image')) {
 
             if (Storage::exists($category->image)) {
