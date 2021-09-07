@@ -1,6 +1,6 @@
 @extends('front.common.main')
-@section('meta-title', __('Noticias.meta-title'))
-@section('meta-description', __('Noticias.meta-description'))
+@section('meta-title', __('Noticias.titulo_seo'))
+@section('meta-description', __('Noticias.descripcion_seo'))
 @section('content')
 <br>
 <section class="slider mt-5">
