@@ -127,7 +127,7 @@ export default {
     },
     handleDelete(item) {
       axios
-        .delete("news/" + item.id)
+        .delete("/admin/news/" + item.id)
         .then(r => {
           this.$message.success("Noticia eliminada correctamente!");
           this.$delete(this.items, this.items.indexOf(item));
