@@ -36,7 +36,7 @@
                             <hr>
                             <draggable @change="handleOrderChange" v-model="selectedApps">
                                 <div class="row py-3 mb-3 border " v-for="app in selectedApps">
-                                    <div class="col-10"> 
+                                    <div class="col-10">
                                         @{{ app.name }}
                                     </div>
                                     <div class="col-2">
@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                             </draggable>
-                            
+
                         </div>
                     </div>
                     <hr>
@@ -56,21 +56,22 @@
                             <input type="radio" name="select_type" value="1" id="manual" @if($manual) checked @endif> Seleccionar 3 noticias manualmente
                         </div>
                         <div class="col-sm-3">
-                            <input type="radio" name="select_type" value="0" id="date" @if(!$manual) checked @endif>Seleccionar las 3 ultimas noticias
+                            <input type="radio" name="select_type" value="0" id="date" @if(!$manual) checked @endif> Seleccionar las 3 ultimas noticias
                         </div>
                     </div>
                     <br>
                     <div class="row" id="noticias">
-                        @foreach ($newsFeatured as $i => $nf)
+                        @for ($i = 0; $i < 3; $i++)
                         <div class="col-sm-4">
-                            <label>Notica numero {{ $i +1 }} </label>
+                            <label>Noticia número {{ $i +1 }} </label>
                             <select name="main_noticias[]" class="form-control select2">
+                                <option value=""></option>
                                 @foreach ($news as $n)
-                                <option value="{{$n->id}}" {{$nf->news_id === $n->id ? 'selected' : ''}}>{{$n->lang()->title}}</option>
+                                <option value="{{$n->id}}" {{ ((!empty($newsFeatured[$i])) && ($newsFeatured[$i]->news_id === $n->id)) ? 'selected' : ''}}>{{$n->lang()->title}}</option>
                                 @endforeach
                             </select>
                         </div>
-                        @endforeach
+                        @endfor
                     </div>
                     <div class="form-buttons-w">
                         <button class="btn btn-success" type="submit">Guardar</button>
@@ -166,7 +167,7 @@
 
     $(document).ready(function(){
         $('.select2').select2()
-        
+
         if ($('#date').is(":checked")) {
             $("#noticias").hide();
         }
