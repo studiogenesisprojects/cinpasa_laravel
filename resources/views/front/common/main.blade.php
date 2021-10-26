@@ -14,12 +14,12 @@
         {!! EuCookieConsent::getPopup() !!}
         @include('front.partials.header')
         @if(!isset($more_info_trigger))
-            <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede a la categoría contacta" class="btn-fixed">
-                <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">¿{{__('Lab.more-info')}}?
+            <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede a la categoría contacta" class="btn-fixed btn-more-info">
+                <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">{{__('Lab.more-info')}}
             </a>
         @else
-            <a href="javascript:;" title="Accede a la categoría contacta" id="contact-button" class="btn-fixed">
-                <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">¿{{__('Lab.more-info')}}?
+            <a href="javascript:;" title="Accede a la categoría contacta" id="contact-button" class="btn-fixed btn-more-info">
+                <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">{{__('Lab.more-info')}}
             </a>
         @endif
         @yield('content')

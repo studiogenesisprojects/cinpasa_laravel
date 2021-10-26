@@ -1409,3 +1409,7 @@ section.productos-relacionados {
 
 article.noticia-blog p {margin-bottom: 1rem;}
 article.noticia-blog ul, article.noticia-blog ol {margin-left: 1rem;}
+
+.btn-more-info {
+    background-color: #F2A616;
+}
