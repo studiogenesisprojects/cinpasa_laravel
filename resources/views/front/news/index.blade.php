@@ -42,7 +42,7 @@
                             <h4 class="mt-2">{{$new->lang()->title}}</h4>
                             <p class="mt-3 lineheight-small"><small>{{ strip_tags(substr($new->lang()->content, 0, 120)) . '...'}}</small></p>
                             <p class="btn mt-4 p-0 font-bold">{{__('Noticias.noticias_boton')}}<img class="ml-2" src="{{ asset('front/img/icon-arrow-right-black.svg') }}" alt="icono flecha derecha"></p>
-                            <div class="tag-noticia t-0 r-1 transform-t-n50">Home</div>
+                            <!-- div class="tag-noticia t-0 r-1 transform-t-n50">Home</div -->
                         </a>
                     </div>
                 </div>
