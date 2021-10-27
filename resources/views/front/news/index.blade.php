@@ -32,9 +32,9 @@
                         @else
                             <img class="w-100 border-img hover-shadow" src="{{ asset('front/img/no-foto.jpg') }}" alt="imagen noticia artículo">
                         @endif
-                        <div class="position-absolute t-1 l-1 d-flex align-items-center background-white perfil-container">
+                        <!--div class="position-absolute t-1 l-1 d-flex align-items-center background-white perfil-container">
                             <img src="{{ asset('front/img/perfil-1.png') }}" alt="imagen perfil">
-                        </div>
+                        </div-->
                     </div>
                     <div class="col-12 transform-t-20 cursor-pointer">
                         <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.show', ["news" => $new->lang()->slug])}}" title="Accede al artículo" class="card h-100 d-block p-4 hover-shadow">
