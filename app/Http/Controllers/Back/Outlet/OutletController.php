@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\FeaturedProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Str;
 
 class OutletController extends Controller
 {
@@ -49,7 +50,7 @@ class OutletController extends Controller
         $banner->active = isset($request->active);
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->storeAs('public/banners', $request->file('image')->getClientOriginalName());
+            $path = $request->file('image')->storeAs('public/banners', Str::slug($request->name).'.'.$request->file('image')->extension() );
             $banner->image = $path;
         }
 
@@ -84,7 +85,7 @@ class OutletController extends Controller
         $banner->active = isset($request->active);
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->storeAs('public/banners', $request->file('image')->getClientOriginalName());
+            $path = $request->file('image')->storeAs('public/banners', Str::slug($request->name).'.'.$request->file('image')->extension() );
             $banner->image = $path;
         }
 
