@@ -35,7 +35,7 @@ class OutletController extends Controller
         $bottomOnes = $products_sorted;
 
         $carousel = Carousel::find(26);
-        $banner = Banner::where('active', 1)->take(1)->inRandomOrder()->first();
+        $banner = Banner::where('active', 1)->inRandomOrder()->take(1)->first();
 
         return view('front.outlet.index', compact('featureds', 'bottomOnes','carousel', 'banner'));
     }

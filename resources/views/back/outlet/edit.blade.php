@@ -55,6 +55,7 @@
                                     Imagen
                                 </label>
                                 <input type="file" name="image" class="form-control" for="image">
+                                <img src="{{ Storage::url($banner->image) }}" alt="{{$banner->name}}">
                             </div>
                         </div>
                         <div class="form-buttons-w">
