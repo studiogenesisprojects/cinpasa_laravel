@@ -65,15 +65,6 @@
                                 <label for="">Orden</label>
                                 <input class="form-control" type="number" name="order" required data-error="Introduzca un orden">
                             </div>
-                            <div class="col-sm-4">
-                                <label for="product_id">Producto a enlazar</label>
-                                <select id="product_id" name="product_id" class="form-control select2" required data-error="Introduzca un producto a enlazar">
-                                    <option value="">Selecciona un producto de la lista</option>
-                                    @foreach($products as $product)
-                                        <option value="{{$product->id}}">{{$product->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
@@ -89,7 +80,12 @@
                                 <div class="tab-content">
                                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                     <div class="tab-pane @if($loop->first){{ 'active' }}@endif" id="tab_{{$localeCode}}">
-                                        <div class="col-md-12" style="max-width: 100%;">
+                                        <div class="col-md-6">
+                                            <label for="url-{{ $localeCode }}">Enlace</label>
+                                            <input class="form-control" type="url" name="url-{{ $localeCode }}" data-error="Introduzca un enlace correcto." placeholder="http://www.google.com" />
+                                            <div class="help-block form-text with-errors form-control-feedback"></div>
+                                        </div>
+                                        <div class="col-md-6" style="max-width: 100%;">
                                             <label for="image-{{ $localeCode }}">
                                                 Imagen
                                             </label>

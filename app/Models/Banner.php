@@ -13,10 +13,10 @@ class Banner extends Model
     use HasTranslations;
 
     protected $fillable = [
-        'name', 'active', 'image', 'order', 'product_id'
+        'name', 'active', 'image', 'order', 'url'
     ];
 
-    public $translatable = ['image'];
+    public $translatable = ['url','image'];
 
     public function product()
     {

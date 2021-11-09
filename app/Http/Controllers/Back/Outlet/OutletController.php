@@ -21,10 +21,7 @@ class OutletController extends Controller
     public function index()
     {
         $banners = Banner::all();
-        $products = Product::where('outlet', 1)
-                        ->whereHas('caracteristics',function($q) {
-                            $q->whereNotNull('discount');
-                        })->get();
+        $products = Product::where('outlet', 1)->get();
         return view('back.outlet.index', compact('banners', 'products'));
     }
 
@@ -35,12 +32,7 @@ class OutletController extends Controller
      */
     public function create()
     {
-        $products = Product::where('active', 1)->where('outlet', 1)
-                        ->whereHas('caracteristics',function($q) {
-                            $q->whereNotNull('discount');
-                        })->get();
-
-        return view('back.outlet.create', compact('products'));
+        return view('back.outlet.create');
     }
 
     /**
@@ -54,8 +46,6 @@ class OutletController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:banners|max:191',
             'order' => 'required',
-            'product_id' => 'required',
-            'image.*' => 'required'
         ]);
 
         $banner = new Banner;
@@ -66,9 +56,10 @@ class OutletController extends Controller
         } else {
             $banner->order = Banner::all()->count();
         }
-        $banner->product_id = $request->product_id;
 
         foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
+            $banner->setTranslation('url', $localeCode, $request['url-'.$localeCode]);
+
             if ($request->hasFile('image-'.$localeCode)) {
                 $path = $request->file('image-'.$localeCode)->storeAs('public/banners/'.$localeCode, Str::slug($request->name).'.'.$request->file('image-'.$localeCode)->extension() );
                 $banner->setTranslation('image', $localeCode, $path);
@@ -88,13 +79,8 @@ class OutletController extends Controller
      */
     public function edit($id)
     {
-        $products = Product::where('active', 1)->where('outlet', 1)
-                        ->whereHas('caracteristics',function($q) {
-                            $q->whereNotNull('discount');
-                        })->get();
-
         $banner = Banner::find($id);
-        return view('back.outlet.edit', compact('banner', 'products'));
+        return view('back.outlet.edit', compact('banner'));
     }
 
     /**
@@ -109,7 +95,6 @@ class OutletController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:191',
             'order' => 'required',
-            'product_id' => 'required',
         ]);
 
         $banner = Banner::find($id);
@@ -121,9 +106,9 @@ class OutletController extends Controller
         } else {
             $banner->order = Banner::all()->count();
         }
-        $banner->product_id = $request->product_id;
-
         foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
+            $banner->setTranslation('url', $localeCode, $request['url-'.$localeCode]);
+
             if ($request->hasFile('image-'.$localeCode)) {
                 $path = $request->file('image-'.$localeCode)->storeAs('public/banners/'.$localeCode, Str::slug($request->name).'.'.$request->file('image-'.$localeCode)->extension() );
                 $banner->setTranslation('image', $localeCode, $path);

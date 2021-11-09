@@ -16,10 +16,13 @@
             <div class="carousel-inner">
                 @foreach ($banners as $banner)
                 <div class="carousel-item {{ $loop->first?'active':'' }}" data-interval="10000">
-                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.outlet.show', [
-                        "product" => $banner->product
-                        ])}}" title="{{ $banner->product->lang()->name }}"><img src="{{ Storage::url($banner->image) }}" class="w-100" alt="{{ $banner->name }}">
+                    @if(!empty($banner->url))
+                    <a href="{{ $banner->url }}" title="{{ $banner->name }}">
+                        <img src="{{ Storage::url($banner->image) }}" class="w-100" alt="{{ $banner->name }}" />
                     </a>
+                    @else
+                    <img src="{{ Storage::url($banner->image) }}" class="w-100" alt="{{ $banner->name }}" />
+                    @endif
                 </div>
                 @endforeach
             </div>
