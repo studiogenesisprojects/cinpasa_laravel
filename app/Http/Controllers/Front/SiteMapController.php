@@ -270,8 +270,13 @@ class SiteMapController extends Controller
             }
         }
 
-        //Productos
+        //Productos y productos outlet
         foreach (Product::where('active', true)->get() as $product) {
+            if($product->outlet){
+                $route = 'routes.outlet.show';
+            } else {
+                $route = 'routes.products.showProduct';
+            }
             $m = 0;
             $n = 0;
             $imagesProduct = [];
@@ -279,7 +284,7 @@ class SiteMapController extends Controller
                 if (App::getLocale() != $language->code) {
                     $translationsProduct[$m] = [
                         'language' => $language->code,
-                        'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.products.showProduct', [
+                        'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, $route, [
                             "productCategory" => $product->categories->first(),
                             "product" => $product
                         ])
@@ -355,44 +360,7 @@ class SiteMapController extends Controller
             );
         }
 
-        //Outlet
-        foreach (FeaturedProduct::all() as $outlet) {
-            //Productos outlet
-            $productOutlet = $outlet->product;
-            if ($productOutlet->active) {
-                $i = 0;
-                $translations = [];
-                foreach ($languages as $language) {
-                    if (App::getLocale() != $language->code) {
-                        $translations[$i] = [
-                            'language' => $language->code,
-                            'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.outlet.show', [
-                                "product" => $productOutlet
-                            ])
-                        ];
-                    }
-                    $i++;
-                }
-                if (!empty($outlet->list_image)) {
-                    $images[0] = [
-                        'url' => Storage::url($outlet->list_image),
-                        'title' => (!empty($outlet->alt)) ? $outlet->alt : $outlet->lang()->seo_title,
-                        'caption' => $outlet->lang()->seo_description,
-                    ];
-                }
-                $sitemap->add(
-                    LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.outlet.show', [
-                        "product" => $productOutlet
-                    ]),
-                    $outlet->updated_at,
-                    0.8,
-                    'monthly',
-                    $images,
-                    null,
-                    $translations
-                );
-            }
-        }
+
 
         //LAB
         foreach (Lab::all() as $lab) {

@@ -1,4 +1,8 @@
 @extends('back.common.main')
+@section('css')
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+@endsection
+
 @section('content')
 <div class="content-box">
     <div class="element-wrapper">
@@ -7,6 +11,15 @@
                 class="os-icon os-icon-chevron-left"></i> Volver
             </a>
         </h6>
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="row">
             <div class="col-sm-12">
                 <div class="element-wrapper">
@@ -36,23 +49,55 @@
                                     overflow: hidden;
                                 " name="active" ></label>
                                 <br>
-                                <small><i>Los banners se eligen de forma aleatoria. Desactivar un banner hará que no pueda mostrarse.</i></small>
+                                <small><i>Desactivar un banner hará que no pueda mostrarse.</i></small>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="">Nombre</label>
                                     <input type="text" name="name" class="form-control" value="" data-error="Introduzca un nombre" required>
                                     <div class="help-block form-text with-errors form-control-feedback"></div>
                                 </div>
                             </div>
-                            <div class="col-md-6" style="max-width: 100%;">
-                                <label for="image">
-                                    Imagen
-                                </label>
-                                <input type="file" name="image" class="form-control" for="image">
+                            <div class="col-md-4">
+                                <label for="">Orden</label>
+                                <input class="form-control" type="number" name="order" required data-error="Introduzca un orden">
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="product_id">Producto a enlazar</label>
+                                <select id="product_id" name="product_id" class="form-control select2" required data-error="Introduzca un producto a enlazar">
+                                    <option value="">Selecciona un producto de la lista</option>
+                                    @foreach($products as $product)
+                                        <option value="{{$product->id}}">{{$product->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="os-tabs-w">
+                                    <div class="os-tabs-controls os-tabs-controls-cliente">
+                                        <ul class="nav nav-tabs upper">
+                                            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                            <li class="nav-item"><a style="border: unset"  aria-expanded="false" class="nav-link @if($loop->first){{ 'active' }}@endif" data-toggle="tab" href="#tab_{{$localeCode}}">{{ strtoupper($localeCode) }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tab-content">
+                                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                    <div class="tab-pane @if($loop->first){{ 'active' }}@endif" id="tab_{{$localeCode}}">
+                                        <div class="col-md-12" style="max-width: 100%;">
+                                            <label for="image-{{ $localeCode }}">
+                                                Imagen
+                                            </label>
+                                            <input type="file" name="image-{{ $localeCode }}" class="form-control" for="image-{{ $localeCode }}" accept="image/*" required data-error="Selecciona una imagen para el banner">
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                         <div class="form-buttons-w">
@@ -68,5 +113,7 @@
 @endsection
 @section('js')
 <script src="{{ asset('back-admin/bowser_components/plugins/ckeditor_4.6.1_full/ckeditor/ckeditor.js') }}"></script>
-
+<script>
+    $('.select2').select2();
+</script>
 @endsection

@@ -11,9 +11,10 @@
             </h6>
             <div class="element-box element-box-usuarios">
                 <div class="table-responsive" >
-                    <table width="100%" id="endings" class="table table-striped table-lightfont table-hover">
+                    <table width="100%" id="banners" class="table table-striped table-lightfont table-hover">
                         <thead>
                             <tr>
+                                <th>Orden</th>
                                 <th>Nombre</th>
                                 <th>Activo</th>
                                 <th class="td-acciones">Acciones</th>
@@ -22,8 +23,11 @@
                         <tbody>
                         @foreach($banners as $banner)
                             <tr role="row">
+                                <td>{{ $banner->order }}</td>
                                 <td>
-                                    <img src="{{ Storage::url($banner->image) }}" alt="" width="50px" height="auto">
+                                    @if(!empty($banner->image))
+                                    <img src="{{ Storage::url($banner->image) }}" alt="{{ $banner->name }}" width="50px" height="auto">
+                                    @endif
                                     <strong>{{ $banner->name }}</strong>
                                 </td>
                                 <td>{{$banner->active == 1 ? 'Sí' : 'No'}}</td>
@@ -44,36 +48,60 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Nombre</th>
                                 <th>Orden</th>
+                                <th>Nombre</th>
                                 <th>Activo</th>
                                 <th class="td-acciones">Acciones</th>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
-                <form action="{{route('outlet.featured')}}" method="post">
-                    @csrf
-                    <h4>
-                        Productos destacados:
-                    </h4>
-                    <div class="row" id="noticias">
-                        @for($i = 0; $i < 5; $i++)
-                        <div class="col-sm-4">
-                            <label>Producto número {{$i + 1}}</label>
-                            <select name="productos_destacados[]" class="form-control select2">
-                                <option value="">Selecciona un producto de la lista</option>
-                                @foreach($products as $product)
-                                    <option value="{{$product->id}}" {{isset($featured[$i]) && $product->id == $featured[$i]->product_id ? 'selected' : ''}}>{{$product->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        @endfor
-                    </div>
-                    <div class="form-buttons-w">
-                        <button class="btn btn-success" type="submit">Guardar</button>
-                    </div>
-                </form>
+            </div>
+        </div>
+        <div class="element-wrapper">
+            <h6 class="element-header">Productos outlet ({{ $products->count() }})
+                <a href="{{ route('productos-outlet.create') }}" class="btn btn-primary float-right"><i class="ti-plus"></i> Nuevo producto outlet</a>
+            </h6>
+            <div class="element-box element-box-usuarios">
+                <div class="table-responsive">
+                    <table width="100%" id="products" class="table table-striped table-lightfont table-hover">
+                        <thead>
+                            <tr role="row">
+                                <th>Orden</th>
+                                <th>Nombre</th>
+                                <th>Activo</th>
+                                <th class="acciones">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Orden</th>
+                                <th>Nombre</th>
+                                <th>Activo</th>
+                                <th class="acciones">Acciones</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach($products as $product)
+                            <tr role="row">
+                                <td>{{ $product->order }}</td>
+                                <td>{{ $product->name }}</td>
+                                <td>{!! $product->active ? '<span class="text-success">Sí</span>' : '<span class="text-danger">No</span>' !!}</td>
+
+                                <td class="acciones">
+                                    <div class="btn-group">
+                                        <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
+                                        <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu dropdown-menu-right">
+                                            <a href="{{ route('productos.edit', $product->id)}}" class="dropdown-item"><i class="ti-pencil"></i> Editar</a>
+                                            <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('products.destroy', $product->id) }}"><i class="ti-trash"></i> Eliminar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -92,29 +120,83 @@
 @section('js')
     <script>
     $(document).ready(function() {
-    // Setup - add a text input to each footer cell
-    $('#endings tfoot th').each( function () {
-        var title = $(this).text();
-        title!= "Acciones" && $(this).html( '<input class="form-control" type="text" placeholder="Buscar por '+title+'" />' );
-    } );
-
-    // DataTable
-    var table = $('#endings').DataTable({
-        "order": [[ 1, "asc" ]]
-    });
-
-    // Apply the search
-    table.columns().every( function () {
-        var that = this;
-
-        $( 'input', this.footer() ).on( 'keyup change clear', function () {
-            if ( that.search() !== this.value ) {
-                that
-                    .search( this.value )
-                    .draw();
-            }
+        // Setup - add a text input to each footer cell
+        $('#banners tfoot th').each( function () {
+            var title = $(this).text();
+            title!= "Acciones" && $(this).html( '<input class="form-control" type="text" placeholder="Buscar por '+title+'" />' );
         } );
-    } );
+
+        // DataTable
+        var table1 = $('#banners').DataTable({
+            "order": [[ 0, "asc" ]],
+            "columnDefs": [
+                {
+                    "targets": [ 2 ],
+                    "searchable": false,
+                    "orderable": false,
+                },
+                {
+                    "targets": [ 3 ],
+                    "searchable": false,
+                    "orderable": false,
+                },
+            ],
+            language: {
+      			url: 'https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'
+              }
+        });
+
+        // Apply the search
+        table1.columns().every( function () {
+            var that = this;
+
+            $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                if ( that.search() !== this.value ) {
+                    that
+                        .search( this.value )
+                        .draw();
+                }
+            } );
+        } );
+
+        // Setup - add a text input to each footer cell
+        $('#products tfoot th').each( function () {
+            var title = $(this).text();
+            title!= "Acciones" && $(this).html( '<input class="form-control" type="text" placeholder="Buscar por '+title+'" />' );
+        } );
+
+        // DataTable
+        var table2 = $('#products').DataTable({
+            "order": [[ 0, "asc" ]],
+            "columnDefs": [
+                {
+                    "targets": [ 2 ],
+                    "searchable": false,
+                    "orderable": false,
+                },
+                {
+                    "targets": [ 3 ],
+                    "searchable": false,
+                    "orderable": false,
+                },
+            ],
+            language: {
+      			url: 'https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json'
+              }
+        });
+
+        // Apply the search
+        table2.columns().every( function () {
+            var that = this;
+
+            $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                if ( that.search() !== this.value ) {
+                    that
+                        .search( this.value )
+                        .draw();
+                }
+            } );
+        } );
 } );
 </script>
 @endsection

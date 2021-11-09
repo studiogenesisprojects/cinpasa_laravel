@@ -32,6 +32,7 @@ use App\Models\ProductGaleryImageLang;
 
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use Log;
 
 class ProductController extends Controller
 {
@@ -39,7 +40,7 @@ class ProductController extends Controller
     public function index()
     {
         // Product::arreglarOrder();
-        return view('back.products.index', ['products' => Product::all()]);
+        return view('back.products.index', ['products' => Product::where('outlet', false)->get()]);
     }
 
     public function create()
@@ -83,6 +84,7 @@ class ProductController extends Controller
     public function store(RequestCategory $request)
     {
 
+
         $request->slug = str_replace(" ","-",$request->slug);
 
         $product = Product::create($request->only(['active', 'outlet', 'liasa_code', 'video', 'galery_id']));
@@ -107,6 +109,11 @@ class ProductController extends Controller
                     $product_caracteristic->discount = abs($request->discount[$i]);
                 } else {
                     $product_caracteristic->discount = null;
+                }
+                if(isset($request->stock[$i])){
+                    $product_caracteristic->stock = $request->stock[$i];
+                } else {
+                    $product_caracteristic->stock = null;
                 }
                 $product_caracteristic->save();
             }
@@ -202,6 +209,8 @@ class ProductController extends Controller
 
     public function update(RequestCategory $request, $id)
     {
+        Log::debug($request);
+
         $product = Product::findOrFail($id);
 
         $product->caracteristics()->delete();
@@ -226,6 +235,11 @@ class ProductController extends Controller
                     $product_caracteristic->discount = abs($request->discount[$i]);
                 } else {
                     $product_caracteristic->discount = null;
+                }
+                if(isset($request->stock[$i])){
+                    $product_caracteristic->stock = $request->stock[$i];
+                } else {
+                    $product_caracteristic->stock = null;
                 }
 
                 $product_caracteristic->save();

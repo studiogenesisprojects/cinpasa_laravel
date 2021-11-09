@@ -6,8 +6,8 @@
 
 <div class="content-box">
     <div class="element-wrapper" id="app">
-        <h6 class="element-header">Editar Producto
-            <a href="{{route('productos.index')}}" class="btn btn-white float-right"><i
+        <h6 class="element-header">Editar Producto {{ ($product->outlet)?'Outlet':'' }}
+            <a href="{{  ($product->outlet)?route('outlet.index'):route('productos.index') }}" class="btn btn-white float-right"><i
                 class="os-icon os-icon-chevron-left"></i> Volver</a>
             </h6>
             @if($errors->any())
@@ -26,6 +26,7 @@
                             <form id="formValidate" novalidate="true" method="post" action="{{route('productos.update', $product->id)}}" enctype="multipart/form-data" >
                             {{ csrf_field() }}
                             @method('PATCH')
+                            <input type="hidden" name="outlet" value="{{ $product->outlet }}" />
                             <div class="element-info">
                                 <div class="element-info-with-icon">
                                     <div class="element-info-icon">
@@ -126,13 +127,10 @@
                             </div>
                             <div class="row py-4 border-top">
                                 <div class="col-sm-12">
-                                    <h5 class="mb-4">Información del producto </h5>
+                                    <h5 class="mb-4">Información del producto  {{ ($product->outlet)?'Outlet':'' }}</h5>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="">Activo: <input type="checkbox" name="active" {{ !$product->active ? "": "checked" }}></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="" id="outlet" >Outlet: <input type="checkbox" name="outlet" {{ !$product->outlet ? "": "checked" }}></label>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="">Orden</label>
@@ -221,7 +219,10 @@
                                                 <th>Ancho/Diámetro</th>
                                                 <th>Observaciones</th>
                                                 <th>Orden</th>
+                                                @if($product->outlet)
                                                 <th>Descuento</th>
+                                                <th>Stock disponible</th>
+                                                @endif
                                                 <th class="td-acciones">Acciones</th>
                                             </tr>
                                         </thead>
@@ -259,9 +260,14 @@
                                                 <td>
                                                     <input type="number" class="form-control " value="{{$caracteristic->order}}" name="order_car[]">
                                                 </td>
+                                                @if($product->outlet)
                                                 <td>
-                                                    <input type="number" class="form-control discount" value="{{$caracteristic->discount}}" name="discount[]">
+                                                    <input type="number" class="form-control" value="{{$caracteristic->discount}}" name="discount[]">
                                                 </td>
+                                                <td>
+                                                    <input type="number" class="form-control" name="stock[]" value="{{$caracteristic->stock}}">
+                                                </td>
+                                                @endif
                                                 <td class="acciones">
                                                     <div class="btn-group">
                                                         <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
@@ -382,6 +388,11 @@
         });
 
         function addValues(){
+            @if($product->outlet)
+            var outlet = '<td><input type="number" class="form-control discount" name="discount[]"></td><td><input type="number" class="form-control" name="stock[]"></td>';
+            @else
+            var outlet = '';
+            @endif
             $('#caracteristics_body').append(`
             <tr id="row_`+counter+`">
                 <td>
@@ -413,10 +424,7 @@
                 </td>
                 <td>
                     <input type="number" class="form-control " name="order_car[]">
-                </td>
-                <td>
-                    <input type="number" class="form-control discount " name="discount[]">
-                </td>
+                </td>`+outlet+`
                 <td class="acciones">
                     <div class="btn-group">
                         <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
@@ -451,18 +459,6 @@
             $('#row_' + num).remove();
         }
 
-        if($("input[name=outlet]").is(':checked')) {
-            $(".discount").prop("disabled",false);
-        } else {
-            $(".discount").prop("disabled",true);
-        }
 
-        $('#outlet').change(function(){
-            if($("input[name=outlet]").is(':checked')){
-                $(".discount").prop("disabled",false);
-            } else {
-                $(".discount").prop("disabled",true);
-            }
-        });
     </script>
 @endsection

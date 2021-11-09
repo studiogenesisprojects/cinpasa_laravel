@@ -20,24 +20,30 @@ class OutletController extends Controller
      */
     public function index()
     {
-        $featureds = FeaturedProduct::all();
+        /*$featureds = FeaturedProduct::all();
         $idHigher = $featureds->pluck('product_id');
         $bottomOnes = ProductCategory::whereHas('products', function($q) use($idHigher) {
             $q->where('active', 1)->where('outlet', 1)->whereNotIn('products.id', $idHigher);
         })->orderBy('order', 'desc')->get();
 
-        $products_sorted = [];
-        foreach($bottomOnes as $category){
-            $products = $category->outlet_products->where('active', 1)->where('outlet', 1)->whereNotIn('id', $idHigher)->sortBy('order');
+        $products_sorted = [];*/
+
+        $categoriesOutlet = ProductCategory::whereHas('products', function($q) {
+            $q->where('active', 1)->where('outlet', 1);
+        })->orderBy('order', 'desc')->get();
+
+
+        foreach($categoriesOutlet as $category){
+            $products = $category->outlet_products->where('active', 1)->where('outlet', 1)->sortBy('order');
             $products_sorted[] = $products;
         }
 
-        $bottomOnes = $products_sorted;
+        $categoriesOutlet = $products_sorted;
 
         $carousel = Carousel::find(26);
-        $banner = Banner::where('active', 1)->inRandomOrder()->take(1)->first();
+        $banners = Banner::where('active', 1)->orderBy('order')->get();
 
-        return view('front.outlet.index', compact('featureds', 'bottomOnes','carousel', 'banner'));
+        return view('front.outlet.index', compact('categoriesOutlet','carousel', 'banners'));
     }
 
     /**

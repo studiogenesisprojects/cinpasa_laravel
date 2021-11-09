@@ -8,6 +8,8 @@ use App\Models\FeaturedProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Str;
+use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Log;
 
 class OutletController extends Controller
 {
@@ -19,12 +21,11 @@ class OutletController extends Controller
     public function index()
     {
         $banners = Banner::all();
-        $products = Product::where('active', 1)->where('outlet', 1)
+        $products = Product::where('outlet', 1)
                         ->whereHas('caracteristics',function($q) {
                             $q->whereNotNull('discount');
                         })->get();
-        $featured = FeaturedProduct::all();
-        return view('back.outlet.index', compact('banners', 'products', 'featured'));
+        return view('back.outlet.index', compact('banners', 'products'));
     }
 
     /**
@@ -34,7 +35,12 @@ class OutletController extends Controller
      */
     public function create()
     {
-        return view('back.outlet.create');
+        $products = Product::where('active', 1)->where('outlet', 1)
+                        ->whereHas('caracteristics',function($q) {
+                            $q->whereNotNull('discount');
+                        })->get();
+
+        return view('back.outlet.create', compact('products'));
     }
 
     /**
@@ -45,18 +51,33 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:banners|max:191',
+            'order' => 'required',
+            'product_id' => 'required',
+            'image.*' => 'required'
+        ]);
+
         $banner = new Banner;
         $banner->name = $request->name;
         $banner->active = isset($request->active);
+        if(!empty($request->order)){
+            $banner->order = $request->order;
+        } else {
+            $banner->order = Banner::all()->count();
+        }
+        $banner->product_id = $request->product_id;
 
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->storeAs('public/banners', Str::slug($request->name).'.'.$request->file('image')->extension() );
-            $banner->image = $path;
+        foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
+            if ($request->hasFile('image-'.$localeCode)) {
+                $path = $request->file('image-'.$localeCode)->storeAs('public/banners/'.$localeCode, Str::slug($request->name).'.'.$request->file('image-'.$localeCode)->extension() );
+                $banner->setTranslation('image', $localeCode, $path);
+            }
         }
 
         $banner->save();
 
-        return redirect()->route('outlet.index')->with('message', 'Banner creat correctament!');
+        return redirect()->route('outlet.index')->with('message', '¡Banner creado correctamente!');
     }
 
     /**
@@ -67,8 +88,13 @@ class OutletController extends Controller
      */
     public function edit($id)
     {
+        $products = Product::where('active', 1)->where('outlet', 1)
+                        ->whereHas('caracteristics',function($q) {
+                            $q->whereNotNull('discount');
+                        })->get();
+
         $banner = Banner::find($id);
-        return view('back.outlet.edit', compact('banner'));
+        return view('back.outlet.edit', compact('banner', 'products'));
     }
 
     /**
@@ -80,17 +106,32 @@ class OutletController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'name' => 'required|max:191',
+            'order' => 'required',
+            'product_id' => 'required',
+        ]);
+
         $banner = Banner::find($id);
         $banner->name = $request->name;
         $banner->active = isset($request->active);
 
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->storeAs('public/banners', Str::slug($request->name).'.'.$request->file('image')->extension() );
-            $banner->image = $path;
+        if(!empty($request->order)){
+            $banner->order = $request->order;
+        } else {
+            $banner->order = Banner::all()->count();
+        }
+        $banner->product_id = $request->product_id;
+
+        foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
+            if ($request->hasFile('image-'.$localeCode)) {
+                $path = $request->file('image-'.$localeCode)->storeAs('public/banners/'.$localeCode, Str::slug($request->name).'.'.$request->file('image-'.$localeCode)->extension() );
+                $banner->setTranslation('image', $localeCode, $path);
+            }
         }
 
         $banner->save();
-        return redirect()->route('outlet.index')->with('message', 'Banner modificat correctament!');
+        return redirect()->route('outlet.index')->with('message', '¡Banner modificado correctamente!');
     }
 
     /**
@@ -103,7 +144,7 @@ class OutletController extends Controller
     {
         $banner = Banner::find($id);
         $banner->delete();
-        return redirect()->route('outlet.index')->with('message', 'Banner borrat correctament!');
+        return redirect()->route('outlet.index')->with('message', '¡Banner elimiando correctamente!');
     }
 
     public function featuredProducts(Request $request){

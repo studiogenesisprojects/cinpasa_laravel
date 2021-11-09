@@ -21,5 +21,6 @@ class ProductCaracteristics extends Model
         "flecortin_head",
         "flecortin_width",
         'presentation',
+        'stock'
     ];
 }

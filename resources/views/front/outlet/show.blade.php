@@ -174,6 +174,7 @@
                                         <th>{{__('Productos.observaciones')}}</th>
                                     @endif
                                     <th>{{__('Productos.descuento')}}</th>
+                                    <th>{{__('Productos.stock')}}</th>
                                 </tr>
                             </thead>
                             <tbody id="caracteristics_body">
@@ -227,6 +228,9 @@
                                         @endif
                                         <td>
                                             <span>-{{$product_caracteristics[$i]->discount ? $product_caracteristics[$i]->discount.'%':''}}</span>
+                                        </td>
+                                        <td>
+                                            <span>{{$product_caracteristics[$i]->stock ? $product_caracteristics[$i]->stock.'u.':''}}</span>
                                         </td>
                                     </tr>
                                 </div>
