@@ -82,7 +82,8 @@
                                     <div class="tab-pane @if($loop->first){{ 'active' }}@endif" id="tab_{{$localeCode}}">
                                         <div class="col-md-6">
                                             <label for="url-{{ $localeCode }}">Enlace</label>
-                                            <input class="form-control" type="url" name="url-{{ $localeCode }}" data-error="Introduzca un enlace correcto." placeholder="http://www.google.com" />
+                                            <input class="form-control" type="url" name="url-{{ $localeCode }}" data-error="Introduzca un enlace correcto."  />
+                                            <small id="urlHelp" class="form-text text-muted">https://www.google.com/</small>
                                             <div class="help-block form-text with-errors form-control-feedback"></div>
                                         </div>
                                         <div class="col-md-6" style="max-width: 100%;">
