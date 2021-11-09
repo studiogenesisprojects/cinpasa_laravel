@@ -52,9 +52,6 @@
                             ])}}" title="{{$product->lang()->name}}">
                             <p class="small color-blue mt-4">{{$product->categories[0]->lang()->name}}</p>
                             <p class="font-bold color-black">{{$product->lang()->name}}</p>
-                            @if($product->caracteristics->min('stock') > 0)
-                            <p class="small color-blue mt-4">{{$product->caracteristics->min('stock') }} u.</p>
-                            @endif
                         </a>
                     </div>
                 </div>
