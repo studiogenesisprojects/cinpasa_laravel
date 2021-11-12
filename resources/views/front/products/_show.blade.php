@@ -290,6 +290,7 @@
     </div>
 </section>
 
+@if((!empty($productCategory->image_low_1)) ||  (!empty($productCategory->image_low_2)) || (!empty($productCategory->image_low_2)))
 <section class="trio-iconos">
     <div class="container">
         <div class="row">
@@ -311,6 +312,7 @@
         </div>
     </div>
 </section>
+@endif
 
 
 

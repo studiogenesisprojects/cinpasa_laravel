@@ -72,10 +72,10 @@
                         @endif
                         @if($product->video)
                         <li data-target="#carousel-token"
-                            data-slide-to="{{ $product->galeries->first()->images->count() +1  }}" class="col">
+                            data-slide-to="{{ $product->galeries->first()->images->count()  }}" class="col">
                             <figure class="bg-cover bg-sm"
                                 style="background-image: url(https://img.youtube.com/vi/{{$product->video}}/default.jpg)">
-                                <span class="video"><img src="{{Storage::url('/img/video.svg')}}" alt="video"
+                                <span class="video"><img src="https://img.youtube.com/vi/{{$product->video}}/default.jpg" alt="video"
                                         class="img-fluid"></span>
                             </figure>
                         </li>
