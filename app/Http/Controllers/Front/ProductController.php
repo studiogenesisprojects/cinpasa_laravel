@@ -88,7 +88,9 @@ class ProductController extends Controller
             return $value->active == 1;
         });
 
-        $applicationCategories = $product->applications->groupBy(function ($item, $k) {
+        $applicationCategories = $product->applications->filter(function ($value, $key) {
+            return $value->active == 1;
+        })->groupBy(function ($item, $k) {
             return $item->applicationCategories->first()->name ?? "";
         });
 
