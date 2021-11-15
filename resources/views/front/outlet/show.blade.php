@@ -230,7 +230,7 @@
                                             <span>-{{$product_caracteristics[$i]->discount ? $product_caracteristics[$i]->discount.'%':''}}</span>
                                         </td>
                                         <td>
-                                            <span>{{$product_caracteristics[$i]->stock ? $product_caracteristics[$i]->stock.'u.':''}}</span>
+                                            <span>{{$product_caracteristics[$i]->stock ? number_format($product_caracteristics[$i]->stock, 0, ',', '.').'m':''}}</span>
                                         </td>
                                     </tr>
                                 </div>
