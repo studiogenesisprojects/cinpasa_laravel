@@ -82,11 +82,20 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(RequestCategory $request)
+    public function store(Request $request)
     {
-
-
         $request->slug = Str::slug($request->slug);
+
+        $validated = $request->validate([
+            'productLanguages.*.name' => 'required|max:255',
+            'productLanguages.*.slug' => 'required|unique:product_langs,slug|max:255',
+            'productLanguages.*.lite_description' => 'max:160',
+            'productLanguages.*.seo_title' => 'max:191',
+            'categories' => 'required',
+            'colors' => 'required',
+            'finisheds' => 'required',
+            'applications' => 'required',
+        ]);
 
         $product = Product::create($request->only(['active', 'outlet', 'liasa_code', 'video', 'galery_id']));
 
@@ -210,6 +219,17 @@ class ProductController extends Controller
 
     public function update(RequestCategory $request, $id)
     {
+        $validated = $request->validate([
+            'productLanguages.*.name' => 'required|max:255',
+            'productLanguages.*.slug' => 'required|unique:product_langs,slug|max:255',
+            'productLanguages.*.lite_description' => 'max:160',
+            'productLanguages.*.seo_title' => 'max:191',
+            'categories' => 'required',
+            'colors' => 'required',
+            'finisheds' => 'required',
+            'applications' => 'required',
+        ]);
+
         $product = Product::findOrFail($id);
 
         $product->caracteristics()->delete();

@@ -115,13 +115,19 @@
 @include('back.common.modals.modal-delete')
 @endsection
 
-@section('swal.error.text', "El Banner no se ha podido borrar porque se esta usando")
+@section('swal.error.text', "El Banner no se ha podido borrar porque se está usando.")
 
 @section('js')
     <script>
     $(document).ready(function() {
         // Setup - add a text input to each footer cell
         $('#banners tfoot th').each( function () {
+            var title = $(this).text();
+            title!= "Acciones" && $(this).html( '<input class="form-control" type="text" placeholder="Buscar por '+title+'" />' );
+        } );
+
+         // Setup - add a text input to each footer cell
+         $('#products tfoot th').each( function () {
             var title = $(this).text();
             title!= "Acciones" && $(this).html( '<input class="form-control" type="text" placeholder="Buscar por '+title+'" />' );
         } );
@@ -151,19 +157,13 @@
             var that = this;
 
             $( 'input', this.footer() ).on( 'keyup change clear', function () {
-                if ( that.search() !== this.value ) {
-                    that
-                        .search( this.value )
-                        .draw();
-                }
+               //if ( that.search() !== this.value ) {
+                    that.search( this.value ).draw();
+                //}
             } );
         } );
 
-        // Setup - add a text input to each footer cell
-        $('#products tfoot th').each( function () {
-            var title = $(this).text();
-            title!= "Acciones" && $(this).html( '<input class="form-control" type="text" placeholder="Buscar por '+title+'" />' );
-        } );
+
 
         // DataTable
         var table2 = $('#products').DataTable({
@@ -187,14 +187,12 @@
 
         // Apply the search
         table2.columns().every( function () {
-            var that = this;
+            var column = this;
 
             $( 'input', this.footer() ).on( 'keyup change clear', function () {
-                if ( that.search() !== this.value ) {
-                    that
-                        .search( this.value )
-                        .draw();
-                }
+                //if ( column.search() !== this.value ) {
+                    column.search( this.value ).draw();
+                //}
             } );
         } );
 } );

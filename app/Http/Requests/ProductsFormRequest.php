@@ -31,7 +31,7 @@ class ProductsFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Porfavor indique un nombre porque es un campo requerido.',
+            'name.required' => 'Por favor indique un nombre porque es un campo requerido.',
         ];
     }
 }
