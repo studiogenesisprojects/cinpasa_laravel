@@ -74,7 +74,7 @@
                                                         name="productLanguages[{{ $idioma->id }}][slug]">
                                                         <div class="input-group-append">
                                                             @if(isset($product->categories[0]))
-                                                            <a href="{{LaravelLocalization::getURLFromRouteNameTranslated($idioma->code, 'routes.products.showProduct', [
+                                                            <a href="{{LaravelLocalization::getURLFromRouteNameTranslated($idioma->code, ($product->outlet)?'routes.outlet.show':'routes.products.showProduct', [
                                                                 "productCategory" => $product->categories[0],
                                                                 "product" => $product
                                                                 ])}}" target="_blank" id="preview" class="input-group-text"><i class="ti-eye"></i></a>
