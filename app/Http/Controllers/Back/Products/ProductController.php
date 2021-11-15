@@ -33,6 +33,7 @@ use App\Models\ProductGaleryImageLang;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use Log;
+use Str;
 
 class ProductController extends Controller
 {
@@ -85,7 +86,7 @@ class ProductController extends Controller
     {
 
 
-        $request->slug = str_replace(" ","-",$request->slug);
+        $request->slug = Str::slug($request->slug);
 
         $product = Product::create($request->only(['active', 'outlet', 'liasa_code', 'video', 'galery_id']));
 
@@ -209,8 +210,6 @@ class ProductController extends Controller
 
     public function update(RequestCategory $request, $id)
     {
-        Log::debug($request);
-
         $product = Product::findOrFail($id);
 
         $product->caracteristics()->delete();
@@ -248,7 +247,7 @@ class ProductController extends Controller
 
 
         foreach ($request->productLanguages as $language) {
-            $language['slug'] = str_replace(" ","-",$language['slug']);
+            $language['slug'] = Str::slug($language['slug']);
             $language["active"] = isset($language["active"]);
             $lang = $product->lang((int) $language['language_id']);
             if ($lang) {
@@ -303,10 +302,10 @@ class ProductController extends Controller
         $product->categories()->sync($this->getOrder($request->categories));
 
         $product->ecoLogos()->sync($request->ecos);
-        $product->update(array_merge($request->all(), ["active" => isset($request->active), "outlet" => isset($request->outlet)]));
+        $product->update(array_merge($request->all(), ["active" => isset($request->active), "outlet" => isset($request->outlet)?$request->outlet:false]));
         $this->assignCategories($product);
 
-        return redirect()->back()->with(["success" => "Product actualizado correctamente"]);
+        return redirect()->back()->with(["success" => "Producto actualizado correctamente"]);
     }
 
     public function destroy($id)
