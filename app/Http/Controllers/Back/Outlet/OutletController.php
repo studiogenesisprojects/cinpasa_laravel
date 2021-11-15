@@ -21,7 +21,7 @@ class OutletController extends Controller
     public function index()
     {
         $banners = Banner::all();
-        $products = Product::where('outlet', 1)->get();
+        $products = Product::where('outlet', true)->get();
         return view('back.outlet.index', compact('banners', 'products'));
     }
 
