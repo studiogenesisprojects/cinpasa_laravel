@@ -298,11 +298,11 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
 
     public function getUrlAttribute()
     {
-        if($this->outlet){
+        /*if($this->outlet){
             $route = 'routes.outlet.show';
-        } else {
+        } else {*/
             $route ='routes.products.showProduct';
-        }
+        //}
 
         return  FacadesLaravelLocalization::getURLFromRouteNameTranslated(app()->getLocale(), $route, [
             "productCategory" => $this->categories->first(),

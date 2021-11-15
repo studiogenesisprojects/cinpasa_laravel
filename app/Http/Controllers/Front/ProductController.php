@@ -165,7 +165,7 @@ class ProductController extends Controller
     {
 
         app()->setLocale($locale);
-        $results = Product::where('active', true)->whereHas('languages', function ($q) use ($locale) {
+        $results = Product::where('active', true)->where('outlet', true)->whereHas('languages', function ($q) use ($locale) {
             $q->where('language_id', Product::getLangIndex($locale))->where('active', true);
         })->with(['primaryImage', 'ecoLogos'])->orderBy('order');
 
