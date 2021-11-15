@@ -67,6 +67,7 @@ class ProductController extends Controller
         } else {
             $products = $products->sortBy('order');
         }
+        $products = $products->where('outlet', false);
         return view('front.products.show', compact('productCategory', 'products','filter','more_info_trigger'));
     }
 
