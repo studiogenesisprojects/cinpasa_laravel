@@ -34,6 +34,8 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use Log;
 use Str;
+use Illuminate\Support\Facades\DB;
+use Redirect;
 
 class ProductController extends Controller
 {
@@ -84,6 +86,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        Log::debug($request);
+
         $request->slug = Str::slug($request->slug);
 
         $validated = $request->validate([
@@ -97,78 +101,105 @@ class ProductController extends Controller
             'applications' => 'required',
         ]);
 
-        $product = Product::create($request->only(['active', 'outlet', 'liasa_code', 'video', 'galery_id']));
 
-        if(isset($request->references2)){
-            for($i = 0; $i < sizeOf($request->references2); $i++){
-                $product_caracteristic = new ProductCaracteristics;
-                $product_caracteristic->product_id = $product->id;
-                $product_caracteristic->references = $request->references2[$i];
-                $product_caracteristic->width = $request->width[$i];
-                $product_caracteristic->bags = $request->bags[$i];
-                $product_caracteristic->laces = $request->laces[$i];
-                $product_caracteristic->rapport = $request->rapport[$i];
-                $product_caracteristic->diameter = $request->diameter[$i];
-                $product_caracteristic->length = $request->length[$i];
-                $product_caracteristic->width_diameter = $request->width_diameter[$i];
-                $product_caracteristic->observations = $request->observations[$i];
-                $product_caracteristic->flecortin_head = $request->flecortin_head;
-                $product_caracteristic->flecortin_width = $request->flecortin_width;
-                $product_caracteristic->order = $request->order_car[$i];
-                if(isset($request->discount[$i])){
-                    $product_caracteristic->discount = abs($request->discount[$i]);
-                } else {
-                    $product_caracteristic->discount = null;
+
+        try {
+
+            DB::beginTransaction();
+
+            $product = Product::create($request->only(['active', 'outlet', 'liasa_code', 'video']));
+            $product->outlet = ($request->outlet)?1:0;
+            $product->save();
+
+            if(isset($request->references2)){
+                for($i = 0; $i < sizeOf($request->references2); $i++){
+                    $product_caracteristic = new ProductCaracteristics;
+                    $product_caracteristic->product_id = $product->id;
+                    $product_caracteristic->references = $request->references2[$i];
+                    $product_caracteristic->width = $request->width[$i];
+                    $product_caracteristic->bags = $request->bags[$i];
+                    $product_caracteristic->laces = $request->laces[$i];
+                    $product_caracteristic->rapport = $request->rapport[$i];
+                    $product_caracteristic->diameter = $request->diameter[$i];
+                    $product_caracteristic->length = $request->length[$i];
+                    $product_caracteristic->width_diameter = $request->width_diameter[$i];
+                    $product_caracteristic->observations = $request->observations[$i];
+                    $product_caracteristic->flecortin_head = $request->flecortin_head;
+                    $product_caracteristic->flecortin_width = $request->flecortin_width;
+                    $product_caracteristic->order = $request->order_car[$i];
+                    if(isset($request->discount[$i])){
+                        $product_caracteristic->discount = abs($request->discount[$i]);
+                    } else {
+                        $product_caracteristic->discount = null;
+                    }
+                    if(isset($request->stock[$i])){
+                        $product_caracteristic->stock = $request->stock[$i];
+                    } else {
+                        $product_caracteristic->stock = null;
+                    }
+                    $product_caracteristic->save();
                 }
-                if(isset($request->stock[$i])){
-                    $product_caracteristic->stock = $request->stock[$i];
-                } else {
-                    $product_caracteristic->stock = null;
+            }
+
+            if ($request->galery_id) {
+                $galery = ProductGalery::find($request->galery_id);
+                if ($galery) {
+                    $galery->update([
+                        "product_id" => $product->id
+                    ]);
                 }
-                $product_caracteristic->save();
             }
-        }
-        // ProductCaracteristics::create(array_merge($request->all(), ['product_id' => $product->id, "outlet" => isset($request->outlet)]));
 
-        if ($request->galery_id) {
-            $galery = ProductGalery::find($request->galery_id);
-            if ($galery) {
-                $galery->update([
-                    "product_id" => $product->id
-                ]);
+            if ($request->hasFile('primary_image')) {
+                $path = $request->file('primary_image')->storeAs('public/productos', $request->file('primary_image')->getClientOriginalName());
+                $image = $product->images()->create(['path' => $path,]);
+                $product->update(['product_image_id' => $image->id]);
             }
+
+
+            foreach ($request->productLanguages as $lang) {
+                $lang["active"] = isset($lang["active"]);
+                $product->languages()->create($lang);
+            }
+
+            //relación de referencias
+            $product->references()->sync($request->references);
+
+            $product->applications()->sync($request->applications);
+            $product->finisheds()->sync($request->finisheds);
+            $product->materials()->sync($request->materials);
+            $product->categories()->sync($request->categories);
+            $product->colorCategories()->sync($request->colors);
+            $product->labs()->sync($request->labs);
+
+            $product->labels()->sync($request->labels);
+            //
+            // $product->relateds()->sync($request->relateds);
+
+            $product->ecoLogos()->sync($request->ecos);
+            $this->assignCategories($product);
+
+            DB::commit();
+
+            //Si es un producto de outlet
+            if ($product->outlet){
+                $route = 'outlet.index';
+
+            } else {
+                $route = 'productos.index';
+            }
+
+            return redirect()->route($route)->with('success', 'Producto creado correctamente');
+
+        } catch(\Exception $ex){
+            DB::rollBack();
+            Log::error($ex);
+
+            $error = 'Se han producido errores al guardar el producto.';
         }
 
-        if ($request->hasFile('primary_image')) {
-            $path = $request->file('primary_image')->storeAs('public/productos', $request->file('primary_image')->getClientOriginalName());
-            $image = $product->images()->create(['path' => $path,]);
-            $product->update(['product_image_id' => $image->id]);
-        }
+        return Redirect::back()->withInput()->with('error', $error);
 
-
-        foreach ($request->productLanguages as $lang) {
-            $lang["active"] = isset($lang["active"]);
-            $product->languages()->create($lang);
-        }
-
-        //relación de referencias
-        $product->references()->sync($request->references);
-
-        $product->applications()->sync($request->applications);
-        $product->finisheds()->sync($request->finisheds);
-        $product->materials()->sync($request->materials);
-        $product->categories()->sync($request->categories);
-        $product->colorCategories()->sync($request->colors);
-        $product->labs()->sync($request->labs);
-
-        $product->labels()->sync($request->labels);
-        //
-        // $product->relateds()->sync($request->relateds);
-
-        $product->ecoLogos()->sync($request->ecos);
-        $this->assignCategories($product);
-
-        return redirect()->route('productos.index')->with('success', 'Producto creado correctamente');
     }
 
     public function edit(Request $request, $id)
@@ -221,7 +252,7 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'productLanguages.*.name' => 'required|max:255',
-            'productLanguages.*.slug' => 'required|unique:product_langs,slug|max:255',
+            'productLanguages.*.slug' => 'required|max:255',
             'productLanguages.*.lite_description' => 'max:160',
             'productLanguages.*.seo_title' => 'max:191',
             'categories' => 'required',
@@ -230,122 +261,164 @@ class ProductController extends Controller
             'applications' => 'required',
         ]);
 
-        $product = Product::findOrFail($id);
+        try {
 
-        $product->caracteristics()->delete();
+            DB::beginTransaction();
 
-        if(isset($request->references2)){
-            for($i = 0; $i < sizeOf($request->references2); $i++){
-                $product_caracteristic = new ProductCaracteristics;
-                $product_caracteristic->product_id = $product->id;
-                $product_caracteristic->references = $request->references2[$i];
-                $product_caracteristic->width = $request->width[$i];
-                $product_caracteristic->bags = $request->bags[$i];
-                $product_caracteristic->laces = $request->laces[$i];
-                $product_caracteristic->rapport = $request->rapport[$i];
-                $product_caracteristic->diameter = $request->diameter[$i];
-                $product_caracteristic->length = $request->length[$i];
-                $product_caracteristic->width_diameter = $request->width_diameter[$i];
-                $product_caracteristic->observations = $request->observations[$i];
-                $product_caracteristic->flecortin_head = $request->flecortin_head;
-                $product_caracteristic->flecortin_width = $request->flecortin_width;
-                $product_caracteristic->order = $request->order_car[$i];
-                if(isset($request->discount[$i])){
-                    $product_caracteristic->discount = abs($request->discount[$i]);
-                } else {
-                    $product_caracteristic->discount = null;
+            $product = Product::findOrFail($id);
+
+            $product->caracteristics()->delete();
+
+            if(isset($request->references2)){
+                for($i = 0; $i < sizeOf($request->references2); $i++){
+                    $product_caracteristic = new ProductCaracteristics;
+                    $product_caracteristic->product_id = $product->id;
+                    $product_caracteristic->references = $request->references2[$i];
+                    $product_caracteristic->width = $request->width[$i];
+                    $product_caracteristic->bags = $request->bags[$i];
+                    $product_caracteristic->laces = $request->laces[$i];
+                    $product_caracteristic->rapport = $request->rapport[$i];
+                    $product_caracteristic->diameter = $request->diameter[$i];
+                    $product_caracteristic->length = $request->length[$i];
+                    $product_caracteristic->width_diameter = $request->width_diameter[$i];
+                    $product_caracteristic->observations = $request->observations[$i];
+                    $product_caracteristic->flecortin_head = $request->flecortin_head;
+                    $product_caracteristic->flecortin_width = $request->flecortin_width;
+                    $product_caracteristic->order = $request->order_car[$i];
+                    if(isset($request->discount[$i])){
+                        $product_caracteristic->discount = abs($request->discount[$i]);
+                    } else {
+                        $product_caracteristic->discount = null;
+                    }
+                    if(isset($request->stock[$i])){
+                        $product_caracteristic->stock = $request->stock[$i];
+                    } else {
+                        $product_caracteristic->stock = null;
+                    }
+
+                    $product_caracteristic->save();
                 }
-                if(isset($request->stock[$i])){
-                    $product_caracteristic->stock = $request->stock[$i];
-                } else {
-                    $product_caracteristic->stock = null;
-                }
-
-                $product_caracteristic->save();
-            }
-        }
-
-
-        foreach ($request->productLanguages as $language) {
-            $language['slug'] = Str::slug($language['slug']);
-            $language["active"] = isset($language["active"]);
-            $lang = $product->lang((int) $language['language_id']);
-            if ($lang) {
-                $lang->update($language);
-            } else {
-                $product->languages()->create($language);
             }
 
-            if ($product->primaryImage) {
-                $lang = $product->primaryImage->lang((int) $language['language_id']);
+
+            foreach ($request->productLanguages as $language) {
+                $language['slug'] = Str::slug($language['slug']);
+                $language["active"] = isset($language["active"]);
+                $lang = $product->lang((int) $language['language_id']);
                 if ($lang) {
                     $lang->update($language);
                 } else {
-                    $product->primaryImage->languages()->create($language);
+                    $product->languages()->create($language);
+                }
+
+                if ($product->primaryImage) {
+                    $lang = $product->primaryImage->lang((int) $language['language_id']);
+                    if ($lang) {
+                        $lang->update($language);
+                    } else {
+                        $product->primaryImage->languages()->create($language);
+                    }
                 }
             }
-        }
 
 
-        if ($request->hasFile('primary_image')) {
-            $path = $request->file('primary_image')->storeAs('public/productos', str_replace(" ","-",$request->file('primary_image')->getClientOriginalName()));
-            $image = $product->images()->create(['path' => $path,]);
-            $product->update(['product_image_id' => $image->id]);
-        }
-
-        if ($request->hasFile('list_image')) {
-
-            $path = $request->file('list_image')->storeAs('public/productos', str_replace(" ","-",$request->file('list_image')->getClientOriginalName()));
-            $image = $product->images()->create(['path' => $path,]);
-
-            $product->list_image = $path;
-            $product->save();
-        }
-
-        if ($request->images) {
-            foreach ($request->images as $image) {
-                $path = $image->storeAs('public/productos', $image->getClientOriginalName());
+            if ($request->hasFile('primary_image')) {
+                $path = $request->file('primary_image')->storeAs('public/productos', str_replace(" ","-",$request->file('primary_image')->getClientOriginalName()));
                 $image = $product->images()->create(['path' => $path,]);
+                $product->update(['product_image_id' => $image->id]);
             }
+
+            if ($request->hasFile('list_image')) {
+
+                $path = $request->file('list_image')->storeAs('public/productos', str_replace(" ","-",$request->file('list_image')->getClientOriginalName()));
+                $image = $product->images()->create(['path' => $path,]);
+
+                $product->list_image = $path;
+                $product->save();
+            }
+
+            if ($request->images) {
+                foreach ($request->images as $image) {
+                    $path = $image->storeAs('public/productos', $image->getClientOriginalName());
+                    $image = $product->images()->create(['path' => $path,]);
+                }
+            }
+
+            $product->references()->sync($request->references);
+            $product->labels()->sync($this->getOrder($request->labels));
+            $product->materials()->sync($this->getOrder($request->materials));
+            $product->colorCategories()->sync($this->getOrder($request->colors));
+            $product->finisheds()->sync($this->getOrder($request->finisheds));
+            $product->applications()->sync($this->getOrder($request->applications));
+            // dd($request->labs);
+            $product->labs()->sync($request->labs);
+            // dd($product->applications);
+            // $product->relateds()->sync($this->getOrder($request->relateds));
+            $product->categories()->sync($this->getOrder($request->categories));
+
+            $product->ecoLogos()->sync($request->ecos);
+            $product->update(array_merge($request->all(), ["active" => isset($request->active), "outlet" => isset($request->outlet)?$request->outlet:false]));
+            $this->assignCategories($product);
+
+            DB::commit();
+
+            return redirect()->back()->with(["success" => "Producto actualizado correctamente"]);
+
+        } catch(\Exception $ex){
+            DB::rollBack();
+            Log::error($ex);
+
+            $error = 'Se han producido errores al actualizar el producto.';
         }
 
-        $product->references()->sync($request->references);
-        $product->labels()->sync($this->getOrder($request->labels));
-        $product->materials()->sync($this->getOrder($request->materials));
-        $product->colorCategories()->sync($this->getOrder($request->colors));
-        $product->finisheds()->sync($this->getOrder($request->finisheds));
-        $product->applications()->sync($this->getOrder($request->applications));
-        // dd($request->labs);
-        $product->labs()->sync($request->labs);
-        // dd($product->applications);
-        // $product->relateds()->sync($this->getOrder($request->relateds));
-        $product->categories()->sync($this->getOrder($request->categories));
+        return Redirect::back()->withInput()->with('error', $error);
 
-        $product->ecoLogos()->sync($request->ecos);
-        $product->update(array_merge($request->all(), ["active" => isset($request->active), "outlet" => isset($request->outlet)?$request->outlet:false]));
-        $this->assignCategories($product);
-
-        return redirect()->back()->with(["success" => "Producto actualizado correctamente"]);
     }
 
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
-        $product->caracteristics()->delete();
 
-        foreach($product->galeries as $galery) {
-            foreach($galery->images as $image){
-                $image->delete();
+        try {
+
+            DB::beginTransaction();
+
+            $product = Product::findOrFail($id);
+            $product->caracteristics()->delete();
+
+            foreach($product->galeries as $galery) {
+                foreach($galery->images as $image){
+                    $image->delete();
+                }
+                $galery->delete();
             }
-            $galery->delete();
+
+            $product->galeries()->delete();
+            $product->update(['product_image_id' => null]);
+            $product->images()->delete();
+
+            $product->languages()->delete();
+            $product->references()->delete();
+            $product->labels()->delete();
+            $product->materials()->delete();
+            $product->colorCategories()->delete();
+            $product->finisheds()->delete();
+            $product->applications()->delete();
+            $product->labs()->delete();
+            $product->categories()->delete();
+            $product->ecoLogos()->delete();
+
+            $product->delete();
+
+            DB::commit();
+
+            return response()->json("ok");
+
+        } catch(\Exception $ex){
+            DB::rollBack();
+            Log::error($ex);
+
+            return response()->json("error");
         }
-
-        $product->galeries()->delete();
-        $product->update(['product_image_id' => null]);
-        $product->images()->delete();
-        $product->delete();
-
-        return response()->json("ok");
     }
 
     public function order(Request $request)
@@ -389,44 +462,61 @@ class ProductController extends Controller
 
     public function handleGalery(Request $request)
     {
-        $galery = ProductGalery::find($request->galery_id);
 
-        if ($request->hasFile('image')) {
 
-            $path = $request->file('image')->storeAs('public/productos', $request->file('image')->getClientOriginalName());
+        try {
 
-            if ($galery) {
-                $image = ProductGaleryImage::create([
-                    "path" => $path,
-                    "product_galery_id" => $galery->id
-                ]);
+            DB::beginTransaction();
+
+            $galery = ProductGalery::find($request->galery_id);
+
+            if ($request->hasFile('image')) {
+
+                $path = $request->file('image')->storeAs('public/productos', $request->file('image')->getClientOriginalName());
+
+                if ($galery) {
+                    $image = ProductGaleryImage::create([
+                        "path" => $path,
+                        "product_galery_id" => $galery->id
+                    ]);
+                } else {
+                    $galery = ProductGalery::create(['product_id' => $request->product_id]);
+                    $image = ProductGaleryImage::create([
+                        "path" => $path,
+                        "product_galery_id" => $galery->id
+                    ]);
+                }
+                DB::commit();
+                return response()->json($image);
+
             } else {
-                $galery = ProductGalery::create(['product_id' => $request->product_id]);
-                $image = ProductGaleryImage::create([
-                    "path" => $path,
-                    "product_galery_id" => $galery->id
-                ]);
-            }
-            return response()->json($image);
-        } else {
-            //update the translations for ProductGaleryimage
-            if ($request->finished_galery_image_id) {
-                $productGaleryImage = ProductGaleryImage::findOrFail($request->finished_galery_image_id);
-                foreach ($request->languages as $language) {
-                    $lang = $productGaleryImage->lang((int) $language['language_id']);
+                //update the translations for ProductGaleryimage
+                if ($request->finished_galery_image_id) {
+                    $productGaleryImage = ProductGaleryImage::findOrFail($request->finished_galery_image_id);
+                    foreach ($request->languages as $language) {
+                        $lang = $productGaleryImage->lang((int) $language['language_id']);
 
-                    if ($lang) {
-                        $lang->update($language);
-                    } else {
-                        $productGaleryImage->languages()->create($language);
+                        if ($lang) {
+                            $lang->update($language);
+                        } else {
+                            $productGaleryImage->languages()->create($language);
+                        }
                     }
                 }
+
+                DB::commit();
+
+                return response()->json($productGaleryImage);
             }
 
-            return response()->json($productGaleryImage);
-        }
+            return response()->json($galery);
 
-        return response()->json($galery);
+        } catch(\Exception $ex){
+            DB::rollBack();
+            Log::error($ex);
+
+            return response()->json('error');
+        }
     }
 
     public function deleteGalery($id)
@@ -465,61 +555,73 @@ class ProductController extends Controller
     private function assignCategories(Product $product)
     {
 
-        $cordonMateriaReciclableCategory = ProductCategory::find(47729);
-        $cintaReciclabeCategory = ProductCategory::find(47731);
-        $cordonBIOCategory = ProductCategory::find(47730);
-        $cordonFIBRANATURALCategory = ProductCategory::find(47727);
-        $cordonMATERIARECICLADACategory = ProductCategory::find(47728);
-        if ($product->ecoLogos->contains(9)) {
-            if (strpos(strtolower($product->name), 'cord') !== false) {
+
+        try {
+
+            DB::beginTransaction();
+
+            $cordonMateriaReciclableCategory = ProductCategory::find(47729);
+            $cintaReciclabeCategory = ProductCategory::find(47731);
+            $cordonBIOCategory = ProductCategory::find(47730);
+            $cordonFIBRANATURALCategory = ProductCategory::find(47727);
+            $cordonMATERIARECICLADACategory = ProductCategory::find(47728);
+            if ($product->ecoLogos->contains(9)) {
+                if (strpos(strtolower($product->name), 'cord') !== false) {
 
 
-                if (!$product->categories->contains($cordonMateriaReciclableCategory)) {
-                    $product->categories()->attach($cordonMateriaReciclableCategory);
+                    if (!$product->categories->contains($cordonMateriaReciclableCategory)) {
+                        $product->categories()->attach($cordonMateriaReciclableCategory);
+                    };
+                } elseif (strpos(strtolower($product->name), 'cint') !== false) {
+                    if (!$product->categories->contains($cintaReciclabeCategory)) {
+                        $product->categories()->attach($cintaReciclabeCategory);
+                    };
+                }
+            }
+            if ($product->ecoLogos->contains(10)) {
+                if (!$product->categories->contains($cordonFIBRANATURALCategory)) {
+                    $product->categories()->attach($cordonFIBRANATURALCategory);
                 };
-            } elseif (strpos(strtolower($product->name), 'cint') !== false) {
-                if (!$product->categories->contains($cintaReciclabeCategory)) {
-                    $product->categories()->attach($cintaReciclabeCategory);
+            }
+            if ($product->ecoLogos->contains(8)) {
+
+                if (!$product->categories->contains($cordonMATERIARECICLADACategory)) {
+                    $product->categories()->attach($cordonMATERIARECICLADACategory);
+                }
+            }
+            if ($product->ecoLogos->contains(7)) {
+                if (!$product->categories->contains($cordonBIOCategory)) {
+                    $product->categories()->attach($cordonBIOCategory);
                 };
             }
-        }
-        if ($product->ecoLogos->contains(10)) {
-            if (!$product->categories->contains($cordonFIBRANATURALCategory)) {
-                $product->categories()->attach($cordonFIBRANATURALCategory);
-            };
-        }
-        if ($product->ecoLogos->contains(8)) {
 
-            if (!$product->categories->contains($cordonMATERIARECICLADACategory)) {
-                $product->categories()->attach($cordonMATERIARECICLADACategory);
+            //ASIGNAR SI ES de fibra natural
+            $materialALGODON = Material::find(23580);
+            $materialPAPEL = Material::find(23620);
+            $materialSISAL = Material::find(23700);
+            $materialCANAMO = Material::find(23705);
+            $materialYUTE = Material::find(23735);
+            $materialLINO = Material::find(48020);
+            $materialYUTELATEX = Material::find(51803);
+            if (
+                $product->materials->contains($materialALGODON) ||
+                $product->materials->contains($materialPAPEL) ||
+                $product->materials->contains($materialSISAL) ||
+                $product->materials->contains($materialCANAMO) ||
+                $product->materials->contains($materialYUTE) ||
+                $product->materials->contains($materialLINO) ||
+                $product->materials->contains($materialYUTELATEX)
+            ) {
+                if (!$product->categories->contains($cordonFIBRANATURALCategory)) {
+                    $product->categories()->attach($cordonFIBRANATURALCategory);
+                }
             }
-        }
-        if ($product->ecoLogos->contains(7)) {
-            if (!$product->categories->contains($cordonBIOCategory)) {
-                $product->categories()->attach($cordonBIOCategory);
-            };
-        }
 
-        //ASIGNAR SI ES de fibra natural
-        $materialALGODON = Material::find(23580);
-        $materialPAPEL = Material::find(23620);
-        $materialSISAL = Material::find(23700);
-        $materialCANAMO = Material::find(23705);
-        $materialYUTE = Material::find(23735);
-        $materialLINO = Material::find(48020);
-        $materialYUTELATEX = Material::find(51803);
-        if (
-            $product->materials->contains($materialALGODON) ||
-            $product->materials->contains($materialPAPEL) ||
-            $product->materials->contains($materialSISAL) ||
-            $product->materials->contains($materialCANAMO) ||
-            $product->materials->contains($materialYUTE) ||
-            $product->materials->contains($materialLINO) ||
-            $product->materials->contains($materialYUTELATEX)
-        ) {
-            if (!$product->categories->contains($cordonFIBRANATURALCategory)) {
-                $product->categories()->attach($cordonFIBRANATURALCategory);
-            }
+            DB::commit();
+
+        } catch(\Exception $ex){
+            DB::rollBack();
+            Log::error($ex);
         }
     }
 }
