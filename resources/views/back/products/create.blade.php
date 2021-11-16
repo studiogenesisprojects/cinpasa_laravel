@@ -58,46 +58,52 @@
                                             <div class="row">
                                                 <div class="col-md-12 pb-3">
                                                     <div class="custom-control custom-switch">
-                                                        <input checked type="checkbox" name="productLanguages[{{ $idioma->id }}][active]" class="custom-control-input" id="customSwitch{{ $idioma->id }}">
-                                                        <label class="custom-control-label" for="customSwitch{{ $idioma->id }}"> Publicar producto en <strong>{{$idioma->name}}</strong></label>
+                                                        <input checked type="checkbox" id="productLanguages[{{ $idioma->id }}][active]" name="productLanguages[{{ $idioma->id }}][active]" class="custom-control-input" id="customSwitch{{ $idioma->id }}">
+                                                        <label class="custom-control-label" for="productLanguages[{{ $idioma->id }}][active]"> Publicar producto en <strong>{{$idioma->name}}</strong></label>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="">Nombre</label>
-                                                        <input id="name-{{ $key }}" type="text" class="form-control title" name="productLanguages[{{ $idioma->id }}][name]" required>
+                                                        <input id="name-{{ $key }}" type="text" class="form-control title" name="productLanguages[{{ $idioma->id }}][name]" value="{{ old('productLanguages.'.$idioma->id.'.name') }}" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="">Slug</label>
-                                                        <input id="id-{{ $key }}" type="text" class="form-control slug" name="productLanguages[{{ $idioma->id }}][slug]" required>
+                                                        <input id="id-{{ $key }}" type="text" class="form-control slug" name="productLanguages[{{ $idioma->id }}][slug]" value="{{ old('productLanguages.'.$idioma->id.'.slug') }}" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row pb-3">
                                                 <div class="col-md-12">
                                                     <label>Descripción corta</label>
-                                                    <textarea class="form-control short_text" name="productLanguages[{{ $idioma->id }}][lite_description]" cols="30" rows="2"></textarea>
+                                                    <textarea class="form-control short_text" name="productLanguages[{{ $idioma->id }}][lite_description]" cols="30" rows="2">
+                                                        {{ old('productLanguages.'. $idioma->id .'.lite_description') }}
+                                                    </textarea>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-12">
                                                     <label>Descripción</label>
-                                                    <textarea class="item form-control" name="productLanguages[{{ $idioma->id }}][description]" cols="30" rows="6"></textarea>
+                                                    <textarea class="item form-control" name="productLanguages[{{ $idioma->id }}][description]" cols="30" rows="6">
+                                                        {{ old('productLanguages.'.$idioma->id.'.description') }}
+                                                    </textarea>
                                                 </div>
                                             </div>
                                             <h5 class="my-3">Meta etiquetas SEO</h5>
                                             <div class="row mb-3">
                                                 <div class="col-md-12">
                                                     <label>Título de SEO</label>
-                                                    <input class="item form-control" name="productLanguages[{{ $idioma->id }}][seo_title]" cols="30" rows="6"  />
+                                                    <input class="item form-control" name="productLanguages[{{ $idioma->id }}][seo_title]" value="{{ old('productLanguages.'.$idioma->id.'.seo_title') }}"  />
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-12">
                                                     <label>Descripción de SEO</label>
-                                                    <textarea class="item form-control" name="productLanguages[{{ $idioma->id }}][seo_description]" cols="30" rows="6"></textarea>
+                                                    <textarea class="item form-control" name="productLanguages[{{ $idioma->id }}][seo_description]" cols="30" rows="6">
+                                                        {{ old('productLanguages.'.$idioma->id.'.seo_description') }}
+                                                    </textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,17 +116,17 @@
                                     <h5 class="mb-4">Información del producto {{ (!empty($outlet))?'Outlet':'' }}</h5>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="">Activo: <input type="checkbox" name="active" checked></label>
+                                    <label for="">Activo: <input type="checkbox" name="active" {{ empty(old('active'))?'checked':old('active')?'checked':''}}></label>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="">Orden</label>
-                                    <input class="form-control" type="number" name="order">
+                                    <input class="form-control" type="number" name="order" value="{{ old('order') }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Etiquetas</label>
                                     <select class="select2" name="labels[]" multiple="true" >
                                         @foreach ($tags as $tag)
-                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                            <option value="{{$tag->id}}" {{ (old('labels.'.$loop->index) == $tag->id)?'selected':''}} >{{$tag->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -128,13 +134,13 @@
                                     <label>Eco Logos</label>
                                     <select class="select2" name="ecos[]" multiple="true" >
                                         @foreach ($ecos as $eco)
-                                            <option value="{{$eco->id}}">{{$eco->name}}</option>
+                                            <option value="{{$eco->id}}" {{ (old('ecos.'.$loop->index) == $eco->id)?'selected':''}} >{{$eco->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Codigo Cinpasa</label>
-                                    <input name="liasa_code" class="form-control" />
+                                    <input name="liasa_code" class="form-control" value="{{ old('liasa_code') }}" />
                                 </div>
                             </div>
 
@@ -145,21 +151,21 @@
                                     <label for="primary_image">
                                         Imagen Principal
                                     </label>
-                                    <input type="file" name="primary_image" class="form-control" for="primary_image">
+                                    <input type="file" name="primary_image" class="form-control" for="primary_image" accept="image/png, image/jpeg">
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label for="list_image">
                                         Imagen de listado
                                     </label>
-                                    <input type="file" name="list_image" class="form-control" for="list_image">
+                                    <input type="file" name="list_image" class="form-control" for="list_image" accept="image/png, image/jpeg">
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <small>*El formato de vídeo tiene que ser este: si el link que queremos introducir es este: https://youtu.be/T0OwfFHzNnA, se tendría que introducir la última parte, quedando así: T0OwfFHzNnA</small>
                                         <br>
                                         <label>Video</label>
-                                        <input class="form-control" type="text" name="video">
+                                        <input class="form-control" type="text" name="video" value="{{ old('video') }}">
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
@@ -196,41 +202,41 @@
                                             <div id="bloc_1">
                                                 <tr id="row_0">
                                                 <td>
-                                                    <input type="text" class="form-control " name="references2[]">
+                                                    <input type="text" class="form-control " name="references2[]" value="{{ old('references2.0]') }}" />
                                                 </td>
                                                 <td>
-                                                    <input type="number" class="form-control " name="width[]">
+                                                    <input type="number" class="form-control " name="width[]" value="{{ old('width.0') }}" />
                                                 </td>
                                                 <td>
-                                                    <input type="number" class="form-control " name="bags[]">
+                                                    <input type="number" class="form-control " name="bags[]" value="{{ old('bags.0') }}" />
                                                 </td>
                                                 <td>
-                                                    <input type="number" class="form-control " name="laces[]">
+                                                    <input type="number" class="form-control " name="laces[]" value="{{ old('laces.0') }}" />
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control " name="rapport[]">
+                                                    <input type="text" class="form-control " name="rapport[]" value="{{ old('rapport.0') }}" />
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control " name="diameter[]">
+                                                    <input type="text" class="form-control " name="diameter[]" value="{{ old('diameter.0') }}" />
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control " name="length[]">
+                                                    <input type="text" class="form-control " name="length[]" value="{{ old('length.0') }}" />
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control " name="width_diameter[]">
+                                                    <input type="text" class="form-control " name="width_diameter[]" value="{{ old('width_diameter.0') }}" />
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control " name="observations[]">
+                                                    <input type="text" class="form-control " name="observations[]" value="{{ old('observations.0') }}" />
                                                 </td>
                                                 <td>
-                                                    <input type="number" class="form-control " name="order_car[]">
+                                                    <input type="number" class="form-control " name="order_car[]" value="{{ old('order_car.0') }}" />
                                                 </td>
                                                 @if(!empty($outlet))
                                                 <td>
-                                                    <input type="number" class="form-control" name="discount[]">
+                                                    <input type="number" class="form-control" name="discount[]" value="{{ old('discount.0') }}" />
                                                 </td>
                                                 <td>
-                                                    <input type="number" class="form-control" name="stock[]">
+                                                    <input type="number" class="form-control" name="stock[]" value="{{ old('stock.0') }}" />
                                                 </td>
                                                 @endif
                                                 <td class="acciones">
@@ -258,24 +264,24 @@
                                     <label>Materiales</label>
                                     <select class="form-control select2" name="materials[]" multiple="true">
                                         @foreach ($materials as $material)
-                                            <option value="{{$material->id}}">{{$material->name}}</option>
+                                            <option value="{{$material->id}}" {{ (old('materials.'.$loop->index) == $material->id)?'selected':''}}>{{$material->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6 pb-3 mt-3">
                                     <label>Cabezal FleCortin</label>
-                                    <input type="text" class="form-control " name="flecortin_head">
+                                    <input type="text" class="form-control " name="flecortin_head" value="{{ old('flecortin_head') }}" />
                                 </div>
                                 <div class="col-md-6 pb-3">
                                     <label>Ancho FleCortin</label>
-                                    <input type="text" class="form-control " name="flecortin_width">
+                                    <input type="text" class="form-control " name="flecortin_width" value="{{ old('flecortin_width') }}" />
                                 </div>
                                 <div class="col-md-6 pb-3">
                                     <label>LAB</label>
                                     <select name="labs[]" class="form-control select2" multiple="multiple">
                                         <option value="">Elige un LAB</option>
                                         @foreach($labs as $lab)
-                                            <option value="{{$lab->id}}">{{$lab->name}}</option>
+                                            <option value="{{$lab->id}}" {{ (old('labs.'.$loop->index) == $lab->id)?'selected':''}}>{{$lab->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -299,7 +305,7 @@
                                     <label for="">Referencias</label>
                                     <select name="references[]" class="form-control select2" multiple >
                                         @foreach ($references as $reference)
-                                            <option value="{{$reference->id}}">{{$reference->referencia}}</option>
+                                            <option value="{{$reference->id}}" {{ (old('references.'.$loop->index) == $reference->id)?'selected':''}}>{{$reference->referencia}}</option>
                                         @endforeach
                                     </select>
                                 </div>
