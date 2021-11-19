@@ -29,7 +29,7 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
         'discount'
     ];
 
-    /*protected $appends = [
+    protected $appends = [
         'name',
         'slug',
         'images',
@@ -39,7 +39,7 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
         'primary_image_url',
         "class",
         "url"
-    ];*/
+    ];
 
     public static function boot()
     {
