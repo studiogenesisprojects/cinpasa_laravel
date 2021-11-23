@@ -287,19 +287,19 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label>Acabados</label>
-                                    <applications :name="'finisheds[]'" :items="{{$finishes}}" ></applications>
+                                    <applications :name="'finisheds[]'" :items="{{$finishes}}" :sitems="{{$finishes->whereIn('id', old('finisheds'))}}"></applications>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Aplicaciones</label>
-                                    <applications :name="'applications[]'" :items="{{$applications}}" ></applications>
+                                    <applications :name="'applications[]'" :items="{{$applications}}" :sitems="{{$applications->whereIn('id', old('applications'))}}"></applications>
                                 </div>
                                 <div class="col-md-6">
                                     <strong>Muestrarios</strong>
-                                    <applications :name="'colors[]'" :items="{{$colors}}" ></applications>
+                                    <applications :name="'colors[]'" :items="{{$colors}}" :sitems="{{$colors->whereIn('id', old('colors'))}}"></applications>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Categorías</label>
-                                    <applications :name="'categories[]'" :items="{{$categories}}"  ></applications>
+                                    <applications :name="'categories[]'" :items="{{$categories}}" :sitems="{{$categories->whereIn('id', old('categories'))}}" ></applications>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="">Referencias</label>

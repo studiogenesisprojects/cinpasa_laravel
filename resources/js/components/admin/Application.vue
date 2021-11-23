@@ -46,7 +46,8 @@ export default {
     return {
       options: [],
       selectedApps: this.sitems ? Object.values(this.sitems) : [],
-      apps: this.items
+      apps: this.items,
+      selected:false
     };
   },
   props: ["items", "sitems", "name", "placeholder"],
