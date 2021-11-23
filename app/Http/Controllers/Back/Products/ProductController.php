@@ -107,9 +107,11 @@ class ProductController extends Controller
 
             DB::beginTransaction();
 
-            $product = Product::create($request->only(['active', 'outlet', 'liasa_code', 'video']));
-            $product->outlet = ($request->outlet)?1:0;
-            $product->save();
+            // $product = Product::create($request->only(['active', 'outlet', 'liasa_code', 'video']));
+            // $product->outlet = ($request->outlet)?1:0;
+            // $product->save();
+            $productId = DB::table('products')->insertGetId(['active' => $request->active, 'liasa_code' => $request->liasa_code, 'video' => $request->video, 'outlet' => ($request->outlet)?1:0]);
+            $product = Product::findOrFail($productId);
 
             if(isset($request->references2)){
                 for($i = 0; $i < sizeOf($request->references2); $i++){
