@@ -124,17 +124,17 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label>Etiquetas</label>
-                                    <select class="select2" name="labels[]" multiple="true" >
+                                    <select class="select2" name="tags[]" multiple="multiple" >
                                         @foreach ($tags as $tag)
-                                            <option value="{{$tag->id}}" {{ (old('labels.'.$loop->index) == $tag->id)?'selected':''}} >{{$tag->name}}</option>
+                                            <option value="{{$tag->id}}" {{old('tags') != null && in_array($tag->id, old('tags')) ?'selected':''}} >{{$tag->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Eco Logos</label>
-                                    <select class="select2" name="ecos[]" multiple="true" >
+                                    <select name="ecos[]" class="form-control select2" multiple="multiple" >
                                         @foreach ($ecos as $eco)
-                                            <option value="{{$eco->id}}" {{ (old('ecos.'.$loop->index) == $eco->id)?'selected':''}} >{{$eco->name}}</option>
+                                        <option value="{{$eco->id}}" {{old('ecos') != null && in_array($eco->id, old('ecos')) ?'selected':''}}>{{$eco->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -202,7 +202,7 @@
                                             <div id="bloc_1">
                                                 <tr id="row_0">
                                                 <td>
-                                                    <input type="text" class="form-control " name="references2[]" value="{{ old('references2.0]') }}" />
+                                                    <input type="text" class="form-control " name="references2[]" value="{{ old('references2.0') }}" />
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control " name="width[]" value="{{ old('width.0') }}" />
@@ -262,9 +262,9 @@
 
                                 <div class="col-md-6 pb-3 mt-3">
                                     <label>Materiales</label>
-                                    <select class="form-control select2" name="materials[]" multiple="true">
+                                    <select name="materials[]" class="form-control select2" multiple="multiple">
                                         @foreach ($materials as $material)
-                                            <option value="{{$material->id}}" {{ (old('materials.'.$loop->index) == $material->id)?'selected':''}}>{{$material->name}}</option>
+                                            <option value="{{$material->id}}" {{old('materials') != null && in_array($material->id, old('materials')) ?'selected':''}}>{{$material->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -277,13 +277,36 @@
                                     <input type="text" class="form-control " name="flecortin_width" value="{{ old('flecortin_width') }}" />
                                 </div>
                                 <div class="col-md-6 pb-3">
+                                    <label>Presentación</label>
+                                    <select name="presentation" class="form-control">
+                                        <option value="">Elige una presentación</option>
+                                        <option value="0">Por unidades</option>
+                                        <option value="1">Por lotes</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 pb-3">
                                     <label>LAB</label>
                                     <select name="labs[]" class="form-control select2" multiple="multiple">
-                                        <option value="">Elige un LAB</option>
                                         @foreach($labs as $lab)
-                                            <option value="{{$lab->id}}" {{ (old('labs.'.$loop->index) == $lab->id)?'selected':''}}>{{$lab->name}}</option>
+                                            <option value="{{$lab->id}}" {{old('labs') != null && in_array($lab->id, old('labs')) ?'selected':''}}>{{$lab->name}}</option>
                                         @endforeach
                                     </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Referencias</label>
+                                    <select name="references[]" class="form-control select2" multiple="multiple" >
+                                        @foreach ($references as $reference)
+                                            <option value="{{$reference->id}}" {{old('references') != null && in_array($reference->id, old('references')) ?'selected':''}}>{{$reference->referencia}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Categorías</label>
+                                    <applications :name="'categories[]'" :items="{{$categories}}" :sitems="{{$categories->whereIn('id', old('categories'))}}" ></applications>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Muestrarios</label>
+                                    <applications :name="'colors[]'" :items="{{$colors}}" :sitems="{{$colors->whereIn('id', old('colors'))}}"></applications>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Acabados</label>
@@ -293,22 +316,9 @@
                                     <label>Aplicaciones</label>
                                     <applications :name="'applications[]'" :items="{{$applications}}" :sitems="{{$applications->whereIn('id', old('applications'))}}"></applications>
                                 </div>
-                                <div class="col-md-6">
-                                    <strong>Muestrarios</strong>
-                                    <applications :name="'colors[]'" :items="{{$colors}}" :sitems="{{$colors->whereIn('id', old('colors'))}}"></applications>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Categorías</label>
-                                    <applications :name="'categories[]'" :items="{{$categories}}" :sitems="{{$categories->whereIn('id', old('categories'))}}" ></applications>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="">Referencias</label>
-                                    <select name="references[]" class="form-control select2" multiple >
-                                        @foreach ($references as $reference)
-                                            <option value="{{$reference->id}}" {{ (old('references.'.$loop->index) == $reference->id)?'selected':''}}>{{$reference->referencia}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+
+
+
                             </div>
 
                             <div class="pt-4">
