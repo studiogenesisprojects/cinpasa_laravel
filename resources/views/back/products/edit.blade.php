@@ -347,18 +347,18 @@
                                     <applications :name="'categories[]'" :items="{{$categories}}" :sitems="{{$product->categories->sortBy('pivot.order')}}" ></applications>
                                 </div>
                                 <div class="col-md-6">
-                                    <strong>Muestrarios</strong>
+                                    <label>Muestrarios</label>
                                     <applications :name="'colors[]'" :items="{{$colors}}" :sitems="{{$product->categoryColors->sortBy('pivot.order')}}" ></applications>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <strong>Acabados</strong>
+                                    <label>Acabados</label>
                                     <applications :name="'finisheds[]'" :items="{{$finishes}}" :sitems="{{$product->finisheds}}" ></applications>
                                 </div>
                                 <div class="col-md-6">
-                                    <strong>Aplicaciones</strong>
+                                    <label>Aplicaciones</label>
                                     <applications :name="'applications[]'" :items="{{$applications}}" :sitems="{{$product->applications->sortBy('pivot.order')}}" ></applications>
                                 </div>
                                 {{-- <div class="col-md-6">
