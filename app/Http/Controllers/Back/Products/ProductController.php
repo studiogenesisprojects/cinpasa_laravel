@@ -86,7 +86,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        Log::debug($request);
 
         $request->slug = Str::slug($request->slug);
 
@@ -101,16 +100,11 @@ class ProductController extends Controller
             'applications' => 'required',
         ]);
 
-
-
         try {
 
             DB::beginTransaction();
 
-            // $product = Product::create($request->only(['active', 'outlet', 'liasa_code', 'video']));
-            // $product->outlet = ($request->outlet)?1:0;
-            // $product->save();
-            $productId = DB::table('products')->insertGetId(['active' => $request->active, 'liasa_code' => $request->liasa_code, 'video' => $request->video, 'outlet' => ($request->outlet)?1:0]);
+            $productId = DB::table('products')->insertGetId(['active' => $request->active, 'liasa_code' => $request->liasa_code, 'video' => $request->video, 'outlet' => ($request->outlet == 'true')]);
             $product = Product::findOrFail($productId);
 
             if(isset($request->references2)){
@@ -184,11 +178,9 @@ class ProductController extends Controller
             DB::commit();
 
             //Si es un producto de outlet
+            $route = 'productos.index';
             if ($product->outlet){
                 $route = 'outlet.index';
-
-            } else {
-                $route = 'productos.index';
             }
 
             return redirect()->route($route)->with('success', 'Producto creado correctamente');
@@ -399,15 +391,15 @@ class ProductController extends Controller
             $product->images()->delete();
 
             $product->languages()->delete();
-            $product->references()->delete();
-            $product->labels()->delete();
-            $product->materials()->delete();
-            $product->colorCategories()->delete();
-            $product->finisheds()->delete();
-            $product->applications()->delete();
-            $product->labs()->delete();
-            $product->categories()->delete();
-            $product->ecoLogos()->delete();
+            $product->references()->detach();
+            $product->labels()->detach();
+            $product->materials()->detach();
+            $product->colorCategories()->detach();
+            $product->finisheds()->detach();
+            $product->applications()->detach();
+            $product->labs()->detach();
+            $product->categories()->detach();
+            $product->ecoLogos()->detach();
 
             $product->delete();
 
