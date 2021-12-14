@@ -41,13 +41,17 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
         "url"
     ];
 
+    protected $casts = [
+        'outlet' => 'boolean',
+        'active' => 'boolean'
+    ];
+
     public static function boot()
     {
         parent::boot();
         static::creating(function ($a) {
             $last = Product::orderBy('order', 'DESC')->first();
             $a->order = $last ? $last->order + 1 : 0;
-            Log::debug($a);
         });
         static::updating(function ($a) {
             $a->active = $a->active === true;
