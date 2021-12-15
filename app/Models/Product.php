@@ -158,7 +158,7 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
     {
         $relateds = Product::whereHas('categories',function($q) {
                         $q->whereIn('product_categories.id', $this->categories->pluck('id'));
-                    })->where('id', '!=', $this->id)->inRandomOrder()->limit(4)->get();
+                    })->where('id', '!=', $this->id)->where('active', true)->where('outlet', $this->outlet)->inRandomOrder()->limit(4)->get();
 
         return $relateds;
     }
