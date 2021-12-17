@@ -250,7 +250,7 @@ class SiteMapController extends Controller
 
                 if (!empty($child->image)) {
                     $images[$j] = [
-                        'url' => Storage::url($child->image),
+                        'url' => asset(Storage::url($child->image)),
                         'title' => $child->lang()->seo_title,
                         'caption' => $child->lang()->seo_description,
                     ];
@@ -295,7 +295,7 @@ class SiteMapController extends Controller
 
             if (!empty($product->primaryImage)) {
                 $imagesProduct[$n] = [
-                    'url' => Storage::url($product->primaryImage->path),
+                    'url' => asset(Storage::url($product->primaryImage->path)),
                     'title' => (!empty($product->primaryImage->alt)) ? $product->primaryImage->alt : $product->lang()->seo_title,
                     'caption' => $product->lang()->seo_description,
                 ];
@@ -304,7 +304,7 @@ class SiteMapController extends Controller
             if ($product->galeries->first()) {
                 foreach ($product->galeries->first()->images as $image) {
                     $imagesProduct[$n] = [
-                        'url' => Storage::url($image->path),
+                        'url' => asset(Storage::url($image->path)),
                         'title' => (!empty($image->alt)) ? $image->alt : $product->lang()->seo_title,
                         'caption' => $product->lang()->seo_description,
                     ];
@@ -342,7 +342,7 @@ class SiteMapController extends Controller
             }
             if (!empty($applicationCategory->list_image)) {
                 $images[0] = [
-                    'url' => Storage::url($applicationCategory->list_image),
+                    'url' => asset(Storage::url($applicationCategory->list_image)),
                     'title' => (!empty($applicationCategory->alt)) ? $applicationCategory->alt : $applicationCategory->lang()->seo_title,
                     'caption' => $applicationCategory->lang()->seo_description,
                 ];
@@ -381,7 +381,7 @@ class SiteMapController extends Controller
                 }
                 if (!empty($lab->list_image)) {
                     $images[0] = [
-                        'url' => Storage::url($lab->list_image),
+                        'url' => asset(Storage::url($lab->list_image)),
                         'title' => (!empty($lab->alt)) ? $lab->alt : $lab->lang()->seo_title,
                         'caption' => $lab->lang()->seo_description,
                     ];
@@ -422,7 +422,7 @@ class SiteMapController extends Controller
                 }
                 if (!empty($application->list_image)) {
                     $images[0] = [
-                        'url' => Storage::url($application->list_image),
+                        'url' => asset(Storage::url($application->list_image)),
                         'title' => (!empty($application->alt)) ? $application->alt : $application->lang()->seo_title,
                         'caption' => $application->lang()->seo_description,
                     ];
@@ -551,7 +551,7 @@ class SiteMapController extends Controller
             }
             if (!empty($new->image)) {
                 $images = [[
-                    'url' => Storage::url("noticias/" . $new->image),
+                    'url' => asset(Storage::url("noticias/" . $new->image)),
                     'title' => $new->title,
                     'caption' => $new->description,
                 ]];
