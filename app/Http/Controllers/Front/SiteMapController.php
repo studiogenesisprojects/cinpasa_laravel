@@ -40,7 +40,6 @@ class SiteMapController extends Controller
 
         //Main routes
         foreach ($languages as $key => $language) {
-            if (App::getLocale() != $language->code) {
                 $homePageTrans[$key] = [
                     'language' => $language->code,
                     'url' => URL::to('/' . $language->code)
@@ -53,10 +52,6 @@ class SiteMapController extends Controller
                     'language' => $language->code,
                     'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.applications.index')
                 ];
-                // $endingsTranslations[$key] = [
-                //     'language' => $language->code,
-                //     'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.endings.index')
-                // ];
                 $newsTranslations[$key] = [
                     'language' => $language->code,
                     'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.news.index')
@@ -89,7 +84,6 @@ class SiteMapController extends Controller
                     'language' => $language->code,
                     'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.favorites.index')
                 ];
-            }
         }
 
         $sitemap->add(
@@ -155,15 +149,6 @@ class SiteMapController extends Controller
             null,
             $applicationsTranslations
         );
-        // $sitemap->add(
-        //     LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.endings.index'),
-        //     Finished::latest()->first()->updated_at,
-        //     '0.9',
-        //     'monthly',
-        //     [],
-        //     null,
-        //     $endingsTranslations
-        // );
 
 
         $sitemap->add(
@@ -209,14 +194,12 @@ class SiteMapController extends Controller
         foreach ($categories as $category) {
             $i = 0;
             foreach ($languages as $language) {
-                if (App::getLocale() != $language->code) {
                     $translations[$i] = [
                         'language' => $language->code,
                         'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.products.show', [
                             "productCategory" => $category,
                         ])
                     ];
-                }
                 $i++;
             }
             $sitemap->add(
@@ -237,22 +220,18 @@ class SiteMapController extends Controller
                 $j = 0;
                 $images = [];
                 foreach ($languages as $language) {
-                    if (App::getLocale() != $language->code) {
                         $translations[$i] = [
                             'language' => $language->code,
                             'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.products.show', [
                                 "productCategory" => $child,
                             ])
                         ];
-                    }
                     $i++;
                 }
 
                 if (!empty($child->image)) {
                     $images[$j] = [
-                        'url' => asset(Storage::url($child->image)),
-                        'title' => $child->lang()->seo_title,
-                        'caption' => $child->lang()->seo_description,
+                        'url' => asset(Storage::url($child->image))
                     ];
                 }
                 $sitemap->add(
@@ -281,7 +260,6 @@ class SiteMapController extends Controller
             $n = 0;
             $imagesProduct = [];
             foreach ($languages as $language) {
-                if (App::getLocale() != $language->code) {
                     $translationsProduct[$m] = [
                         'language' => $language->code,
                         'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, $route, [
@@ -289,25 +267,26 @@ class SiteMapController extends Controller
                             "product" => $product
                         ])
                     ];
-                }
                 $m++;
             }
 
             if (!empty($product->primaryImage)) {
                 $imagesProduct[$n] = [
-                    'url' => asset(Storage::url($product->primaryImage->path)),
-                    'title' => (!empty($product->primaryImage->alt)) ? $product->primaryImage->alt : $product->lang()->seo_title,
-                    'caption' => $product->lang()->seo_description,
+                    'url' => asset(Storage::url($product->primaryImage->path))
                 ];
+                if(!empty($product->primaryImage->alt)){
+                    $imagesProduct[$n]['title'] = $product->primaryImage->alt;
+                }
                 $n++;
             }
             if ($product->galeries->first()) {
                 foreach ($product->galeries->first()->images as $image) {
                     $imagesProduct[$n] = [
-                        'url' => asset(Storage::url($image->path)),
-                        'title' => (!empty($image->alt)) ? $image->alt : $product->lang()->seo_title,
-                        'caption' => $product->lang()->seo_description,
+                        'url' => asset(Storage::url($image->path))
                     ];
+                    if(!empty($image->alt)){
+                        $imagesProduct[$n]['title'] = $image->alt;
+                    }
                     $n++;
                 }
             }
@@ -328,7 +307,6 @@ class SiteMapController extends Controller
             $i = 0;
             $images = [];
             foreach ($languages as $language) {
-                if (App::getLocale() != $language->code) {
                     if (isset($applicationCategory->lang($language->code)->slug)) {
                         $translations[$i] = [
                         'language' => $language->code,
@@ -337,15 +315,15 @@ class SiteMapController extends Controller
                         ])
                     ];
                     }
-                }
                 $i++;
             }
             if (!empty($applicationCategory->list_image)) {
                 $images[0] = [
-                    'url' => asset(Storage::url($applicationCategory->list_image)),
-                    'title' => (!empty($applicationCategory->alt)) ? $applicationCategory->alt : $applicationCategory->lang()->seo_title,
-                    'caption' => $applicationCategory->lang()->seo_description,
+                    'url' => asset(Storage::url($applicationCategory->list_image))
                 ];
+                if (!empty($applicationCategory->alt)){
+                    $images[0]['title'] = $applicationCategory->alt;
+                }
             }
             $sitemap->add(
                 LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.applications.show', [
@@ -369,22 +347,21 @@ class SiteMapController extends Controller
                 $i = 0;
                 $translations = [];
                 foreach ($languages as $language) {
-                    if (App::getLocale() != $language->code) {
                         $translations[$i] = [
                             'language' => $language->code,
                             'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.lab.show_products', [
                                 "slug" => $lab->slug
                             ])
                         ];
-                    }
                     $i++;
                 }
                 if (!empty($lab->list_image)) {
                     $images[0] = [
-                        'url' => asset(Storage::url($lab->list_image)),
-                        'title' => (!empty($lab->alt)) ? $lab->alt : $lab->lang()->seo_title,
-                        'caption' => $lab->lang()->seo_description,
+                        'url' => asset(Storage::url($lab->list_image))
                     ];
+                    if (!empty($lab->alt)){
+                        $images[0]['title'] = $lab->alt;
+                    }
                 }
                 $sitemap->add(
                     LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.lab.show_products', [
@@ -407,7 +384,6 @@ class SiteMapController extends Controller
                 $i = 0;
                 $translations = [];
                 foreach ($languages as $language) {
-                    if (App::getLocale() != $language->code) {
                         if(isset($applicationCategory->lang($language->code)->slug)){
                                 $translations[$i] = [
                                 'language' => $language->code,
@@ -417,15 +393,15 @@ class SiteMapController extends Controller
                                 ])
                             ];
                         }
-                    }
                     $i++;
                 }
                 if (!empty($application->list_image)) {
                     $images[0] = [
                         'url' => asset(Storage::url($application->list_image)),
-                        'title' => (!empty($application->alt)) ? $application->alt : $application->lang()->seo_title,
-                        'caption' => $application->lang()->seo_description,
                     ];
+                    if(!empty($application->alt)){
+                        $images[0]['title'] = $application->alt;
+                    }
                 }
                 $sitemap->add(
                     LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.applications._show', [
@@ -442,91 +418,6 @@ class SiteMapController extends Controller
             }
         }
 
-        //Acabados
-        // foreach (Finished::where("active", 1)->orderBy('order')->get() as $finished) {
-        //     $i = 0;
-        //     $translations = [];
-        //     $images = [];
-
-        //     foreach ($languages as $language) {
-        //         if (App::getLocale() !== $language->code) {
-        //             $lang = DB::table('finisheds_langs')->where('finished_id', '=', $finished->id)->where('language_id', $language->id)->first();
-        //             $translations[$i] = [
-        //                 'language' => $language->code,
-        //                 'url' => LaravelLocalization::getURLFromRouteNameTranslated(
-        //                     $language->code,
-        //                     'routes.endings.show',
-        //                     ["finished" => $lang->slug]
-        //                 )
-        //             ];
-        //             // $translations[$i] = [
-        //             //     'language' => $language->code,
-        //             //     'url' => $finished->url
-        //             // ];
-        //         }
-        //         $i++;
-        //     }
-        //     if (!empty($finished->list_image)) {
-        //         $images[$i] = [
-        //             'url' => Storage::url($finished->list_image),
-        //             'title' => (!empty($finished->alt)) ? $finished->alt : $finished->lang()->seo_title,
-        //             'caption' => $finished->lang()->seo_description,
-        //         ];
-        //         $i++;
-        //     }
-        //     if (!empty($finished->section_image)) {
-        //         $images[$i] = [
-        //             'url' => Storage::url($finished->section_image),
-        //             'title' => (!empty($finished->alt)) ? $finished->alt : $finished->lang()->seo_title,
-        //             'caption' => $finished->lang()->seo_description,
-        //         ];
-        //         $i++;
-        //     }
-        //     if ($finished->galery) {
-        //         foreach ($finished->galery->images as $image) {
-        //             $images[$i] = [
-        //                 'url' => Storage::url($image->image),
-        //                 'title' => (!empty($finished->alt)) ? $finished->alt : $finished->lang()->seo_title,
-        //                 'caption' => $finished->lang()->seo_description,
-        //             ];
-        //             $i++;
-        //         }
-        //     }
-        //     $sitemap->add($finished->url, $finished->updated_at, 0.8, 'monthly', $images, null, $translations);
-        // }
-
-        //Categorías de materiales
-        // foreach (MaterialCategory::where('active', true)->get() as $category) {
-        //     foreach ($category->materials as $material) {
-        //         if ($material->products->count() > 0) {
-        //             $i = 0;
-        //             $translations = [];
-        //             foreach ($languages as $language) {
-        //                 if (App::getLocale() != $language->code) {
-        //                     $translations[$i] = [
-        //                         'language' => $language->code,
-        //                         'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.materials.show', [
-        //                             "material" => $material
-        //                         ])
-        //                     ];
-        //                 }
-        //                 $i++;
-        //             }
-        //             $sitemap->add(
-        //                 LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.materials.show', [
-        //                     "material" => $material
-        //                 ]),
-        //                 $material->updated_at,
-        //                 0.8,
-        //                 'monthly',
-        //                 [],
-        //                 null,
-        //                 $translations
-        //             );
-        //         }
-        //     }
-        // }
-
 
         //Noticias
         foreach (News::where('active', true)->get() as $new) {
@@ -534,7 +425,6 @@ class SiteMapController extends Controller
             $translations = [];
             $images = [];
             foreach ($languages as $language) {
-                if (App::getLocale() != $language->code) {
                     $langActive = DB::table('news_langs')->where('news_id', '=', $new->id)->where('language_id', $language->id)->where('active', '=', 1)->first();
                     if ($langActive != null) {
                         $translations[$i] = [
@@ -546,14 +436,11 @@ class SiteMapController extends Controller
                             )
                         ];
                     }
-                }
                 $i++;
             }
             if (!empty($new->image)) {
                 $images = [[
                     'url' => asset(Storage::url("noticias/" . $new->image)),
-                    'title' => $new->title,
-                    'caption' => $new->description,
                 ]];
             }
             $sitemap->add(
