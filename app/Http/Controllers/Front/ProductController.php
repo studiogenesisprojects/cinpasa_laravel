@@ -13,6 +13,7 @@ use App\Models\ProductColor;
 use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Models\MaterialCategory;
 use App\Models\ProductColorShade;
+use Log;
 
 class ProductController extends Controller
 {
@@ -154,11 +155,6 @@ class ProductController extends Controller
 
     public function search(Request  $request)
     {
-        // $categories = ProductCategory::where('active', 1)->whereNotNull('sup_product_category')->get();
-        // $materials = Material::where('active', 1)->get();
-        // $colors = ProductColor::where('active', 1)->get();
-        // $rapports = ProductCaracteristics::whereNotNull('rapport')->get()->pluck('rapport')->unique();
-
         return view('front.products.searchResult');
     }
 
@@ -253,6 +249,9 @@ class ProductController extends Controller
 
             $append["color"] = $request->input('color');
         }
+
+        Log::debug($results->toSql());
+        Log::debug($results->getBindings());
 
         $results = $results->paginate(8);
         return response()->json([

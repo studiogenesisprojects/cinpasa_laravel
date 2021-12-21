@@ -24,26 +24,13 @@ class RecapchaValidateRequest extends FormRequest
     public function rules()
     {
         return [
-            'politics' => 'accepted',
+            'company' => 'required',
             'name' => 'required|string',
-            'email' => 'required|email',
             'phone' => 'required|integer|min:9',
-        ];
-    }
+            'email' => 'nullable|email',
+            'web' => 'nullable|url',
+            'politics' => 'accepted',
 
-    public function messages()
-    {
-        return [
-            'g-recaptcha-response.recaptcha' => 'No has pasado el test de capcha',
-            'g-recaptcha-response.required' => 'No has pasado el test de capcha',
-            'politics.accepted' => 'Es necesario acceptar las politicas de privacidad',
-            'name.required' => 'El campo nombre es requerido',
-            'email.required' => 'El campo Email es obligatorio',
-            'email.email' => 'Email no válido',
-            'comentaris.required' => 'El campo Comentario es obligatorio',
-            'phone.required' => 'El campo Teléfono de contacto es obligatorio',
-            'phone.integer' => 'Teléfono de contacto no válido',
-            'phone.required' => 'Mínimo 9 números',
         ];
     }
 }

@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
             <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display|Lato:300,400,700&display=swap" rel="stylesheet">
-            <title>Cinpasa</title>
+            <title>{{ env('APP_NAME') }}</title>
 
 
             <style>
@@ -49,8 +49,8 @@
                 <thead>
                     <tr>
                         <th colspan="2">
-                            <a class="navbar-brand" href="https://www.laindustrialalgodonera.com/" title="liasa"><img
-                    src="{{ asset('storage/emails/liasa-logo_'.app()->getLocale().'.png') }}" alt="liasa logo"  width="204"></a>
+                            <a class="navbar-brand" href="{{ asset('/') }}" title="{{ env('APP_NAME') }}"><img
+                    src="{{ asset('/front/img/logo-cinpasa.svg') }}" alt="{{ env('APP_NAME') }} logo"  width="204"></a>
                     <hr>
                         </th>
                     </tr>
@@ -58,30 +58,8 @@
                 <tfoot bgcolor="#001A71">
                     <tr>
                         <td colspan="1">
-                            <a class="navbar-brand" href="https://www.laindustrialalgodonera.com/" title="liasa"><img
-                    src="{{ asset('storage/emails/liasa-foot_'.app()->getLocale().'.png') }}" alt="liasa logo"  width="154"></a>
-                        </td>
-                        <td colspan="1" align="right">
-                            <a style="margin-left: 10px" href="https://es-es.facebook.com/laindustrialalgodonera/" target="_blank"><img src="{{ asset('storage/emails/facebook-logo.png') }}" alt="facebook"></a>
-                            <a style="margin-left: 10px" href="https://es.linkedin.com/company/liasa-la-industrial-algodonera-s-a-?trk=public_profile_experience-item_result-card_image-click" target="_blank"><img src="{{ asset('storage/emails/linkedin-logo.png') }}" alt="linkedin"></a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="1">
-                            <address>
-                               <p class="foot-title"> CINPASA-OFICINES</p>
-                                <p class="foot-text">Raval de Sant Rafael 21</p>
-
-                                <p class="foot-title">Contáctanos en:</p>
-                                 <p class="foot-text"><a href="mailto:marketing@cinpasa.com">marketing@cinpasa.com</a></p>
-                            </address>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <hr>
-                            <p class="foot-text deco-none"><a href="https://cinpasa.com/politica-privacidad" target="_blank">Política de privadesa </a>· <a href="https://cinpasa.com/aviso-legal" target="_blank">Avís legal</a></p>
+                            <a class="navbar-brand" href="{{ asset('/') }}" title="{{ env('APP_NAME') }}"><img
+                    src="{{ asset('/front/img/logo-cinpasa.svg') }}" alt="{{ env('APP_NAME') }} logo"  width="154"></a>
                         </td>
                     </tr>
                 </tfoot>
@@ -89,7 +67,7 @@
                     <tr>
                         <td colspan="2">
                             <h1 class="title">Nou formulari rebut</h1>
-                            <p class="text">Rebut:  <b>{{$petition->created_at}}</b></p>
+                            <p class="text">Rebut:  <b>{{ date('d/m/Y H:i', strtotime($petition->created_at)) }}</b></p>
 
                             <div class="answer-item">
                                 <p class="answer-title">Nom i cognoms</p>
@@ -103,18 +81,22 @@
                                 <p class="answer-title">Empresa</p>
                                 <p class="answer-text">{{ $petition->company }}</p>
                             </div>
+                            {{--
                             <div class="answer-item">
                                 <p class="answer-title">Email</p>
                                 <p class="answer-text">{{ $petition->email }}</p>
                             </div>
+                            --}}
                             <div class="answer-item">
                                 <p class="answer-title">Telèfon</p>
                                 <p class="answer-text">{{ $petition->phone_number }}</p>
                             </div>
+                            {{--
                             <div class="answer-item">
                                 <p class="answer-title">País</p>
                                 <p class="answer-text">{{ $petition->country }}</p>
                             </div>
+                            --}}
                             <div class="answer-item">
                                 <p class="answer-title">Comentari</p>
                                 <p class="answer-text">{{ $petition->comment }}</p>
@@ -125,7 +107,7 @@
                         <td colspan="2"><p class="answer-title">PRODUCTES</p></td>
                     </tr>
                     <tr>
-                        <td colspan="2"  align="left">
+                        <td colspan="2" align="left">
                             <div class="row">
                                 @foreach ($petition->products as $index => $product)
                                     <div class="col-md-4">

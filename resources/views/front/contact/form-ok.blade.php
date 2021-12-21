@@ -28,16 +28,20 @@
                             </div>
                         </div>
                         <div class="col-5">
-                            <p class="small mt-4">{{__('Contacta.phone')}}</p>
+                            <p class="small mt-4">{{__('Contacta.phone2')}}</p>
                             <p>{{$petition->phone_number}}</p>
                         </div>
                         <div class="col-7 d-flex mt-4">
                             <hr class="hr-vertical mr-4 background-grey-light">
                             <div>
                                 <p class="small">{{__('Contacta.interest')}}</p>
-                                @if(isset($request->presu))
+                                @if($request->presu == 'info')
                                 <p>{{__('Contacta.recibir_info')}}</p>
-                                @else
+                                @endif
+                                @if($request->distribute == 'true')
+                                <p>{{__('Distribuir.distribute')}}</p>
+                                @endif
+                                @if($request->presu == 'presupuesto')
                                 <p>{{__('Contacta.recibir_presu')}}</p>
                                 @endif
                             </div>

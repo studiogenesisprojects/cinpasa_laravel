@@ -145,6 +145,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'company' => 'Business',
+        'activity' => 'Activity',
+        'politics' => 'Privacy policy',
+        'web'  => 'Corporate web'
+    ],
 
 ];

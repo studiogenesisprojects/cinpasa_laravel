@@ -15,24 +15,42 @@ class PetitionController extends Controller
 {
     public function store(RecapchaValidateRequest $request)
     {
-        if(isset($request->company)){
+        //if(isset($request->company)){
             $company = $request->company;
-        } else {
+       /* } else {
             $company = 'Particular';
-        }
+        }*/
 
         $comentaris = '';
 
-        if(isset($request->medidas)){
-            $comentaris = 'Medidas: ' . $request->medidas;
+        if(isset($request->distribute)){
+            $comentaris = $comentaris.' '. __('Contacta.interest').': '.__('Distribuir.distribute').' ';
         }
 
-        if(isset($request->cantidades)){
-            $comentaris = $comentaris . ' Cantidades: ' . $request->cantidades;
+        if(isset($request->presu)){
+            if($request->presu == 'presupuesto'){
+                $comentaris = $comentaris.' '. __('Contacta.interest').': '.__('Contacta.recibir_presu').' ';
+            }
+
+            if($request->presu == 'info'){
+                $comentaris = $comentaris .' '. __('Contacta.interest').': '.__('Contacta.recibir_info').' ';
+            }
         }
 
-        if(isset($request->comentaris)){
-            $comentaris = $comentaris . ' Comentarios: ' . $request->comentaris;
+        if(isset($request->second)){
+            switch($request->second){
+                case 'cantidades':
+                    $comentaris = $comentaris . ' '.__('Contacta.cantidades').': '. $request->comentaris;
+                    break;
+
+                case 'medidas':
+                    $comentaris = $comentaris. ' '.__('Contacta.medidas').': ' . $request->comentaris;
+                    break;
+
+                case 'comentarios':
+                    $comentaris = $comentaris. $request->comentaris;
+            }
+
         }
 
         if(isset($request->activity)){
@@ -63,7 +81,6 @@ class PetitionController extends Controller
         }
 
         $email_catalan_spanish = "ventas@cinpasa.com";
-        // $email_others = "diego.agudoal@gmail.com";
         // $locale = $request->locale;
         // if ($locale == "es" || $locale == "ca") {
             Mail::to($email_catalan_spanish)->send(new ProductFormSended($petition));
@@ -72,6 +89,13 @@ class PetitionController extends Controller
         // }
 
         $carousel = Carousel::where('section_id', 18)->where('active', 1)->where('main', 1)->first();
-        return view('front.contact.form-ok', compact('petition', 'carousel', 'request'));
+        $no_contact = true;
+        $no_distribute = null;
+
+        if($request->distribute == 'true'){
+            $no_distribute = true;
+        }
+
+        return view('front.contact.form-ok', compact('petition', 'carousel', 'request', 'no_contact', 'no_distribute'));
     }
 }

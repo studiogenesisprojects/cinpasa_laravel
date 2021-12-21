@@ -13,21 +13,20 @@
         <!-- End Google Tag Manager (noscript) -->
         {!! EuCookieConsent::getPopup() !!}
         @include('front.partials.header')
-        @if(!isset($more_info_trigger))
-            <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede a la categoría contacta" class="btn-fixed btn-more-info">
-                <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">{!!  __('Lab.more-info') !!}
-            </a>
-        @else
-            <a href="javascript:;" title="Accede a la categoría contacta" id="contact-button" class="btn-fixed btn-more-info">
+        @if(!isset($no_contact))
+            <a href="#info-request" title="{!!  strip_tags(__('Lab.more-info')) !!}" id="contact-button" class="btn-fixed btn-more-info">
                 <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">{!! __('Lab.more-info') !!}
             </a>
         @endif
         @yield('content')
 
         @if(!isset($no_contact))
-        @include('front.partials.formulario')
+            @include('front.partials.formulario')
         @endif
-        @include('front.partials.distribuir')
+
+        @if (empty($no_distribute))
+            @include('front.partials.distribuir')
+        @endif
         @include('front.partials.footer')
         @include('front.partials.js')
         @stack('js')
