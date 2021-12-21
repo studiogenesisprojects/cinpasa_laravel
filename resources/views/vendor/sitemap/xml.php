@@ -11,6 +11,9 @@
 if (! empty($item['translations'])) {
     foreach ($item['translations'] as $translation) {
         echo "\t\t".'<xhtml:link rel="alternate" hreflang="'.$translation['language'].'" href="'.$translation['url'].'" />'."\n";
+        if($translation['language'] == "es"){
+            echo "\t\t".'<xhtml:link rel="alternate" hreflang="x-default" href="'.$translation['url'].'" />'."\n";
+        }
     }
 }
 
