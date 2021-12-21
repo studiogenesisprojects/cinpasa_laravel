@@ -14,8 +14,9 @@ class ContactFormController extends Controller
     {
 
         $carousel = Carousel::where('section_id', 18)->where('active', 1)->where('main', 1)->first();
+        $no_contact = false;
 
-        return view('front.contact.index', compact('carousel'));
+        return view('front.contact.index', compact('carousel', 'no_contact'));
     }
 
     public function stored()

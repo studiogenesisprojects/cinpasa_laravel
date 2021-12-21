@@ -17,8 +17,9 @@ class DistributeController extends Controller
     {
         $carousel = Carousel::find(17);
         $no_contact = 1;
+        $no_distribute = true;
 
-        return view('front.distribute.index', compact('carousel', 'no_contact'));
+        return view('front.distribute.index', compact('carousel', 'no_contact', 'no_distribute'));
     }
 
     /**

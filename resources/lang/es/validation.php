@@ -170,7 +170,11 @@ return [
         'productLanguages.5.seo_title' => 'Título de SEO en Ruso',
         'colors' => 'Muestrarios',
         'finisheds' => 'Acabados',
-        'applications' => 'Aplicaciones'
+        'applications' => 'Aplicaciones',
+        'company' => 'Empresa',
+        'activity' => 'Actividad',
+        'politics' => 'Política de privacidad',
+        'web'  => 'Web corporativa'
     ],
 
 ];

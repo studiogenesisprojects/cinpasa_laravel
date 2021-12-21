@@ -1,7 +1,8 @@
-<section>
+<section id="info-request">
     <div class="container mt-5" id="contact-form-products">
         <form action="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.contact.store')}}" method="POST">
             @csrf
+            <input type="hidden" name="origen" id="origen">
             @if(isset($favorite_info))
             <input type="hidden" name="productsIds" value="{{$products->map(function ($product){
                 return $product->id;
@@ -14,12 +15,19 @@
                         <div class="col-xl-10">
                             <p>{{__('ContactaFooter.subtext')}}</p>
                             <div class="row flex-row flex-md-column">
-                                <div class="col-md-12 col-sm-6 col-10">
-                                    <div class="d-flex mt-4 align-items-start">
-                                        <img src="{{ asset('front/img/icon-loc.svg') }}" alt="icono localización">
-                                        <p class="ml-3 color-blue small">{{__('Contacta.location')}}</p>
-                                    </div>
-                                </div>
+                                @switch(App::getLocale())
+                                    @case ('ca')
+                                    @case ('es')
+                                        <div class="col-md-12 col-sm-6 col-10">
+                                            <div class="d-flex mt-4 align-items-start">
+                                                <img src="{{ asset('front/img/icon-loc.svg') }}" alt="icono localización">
+                                                <p class="ml-3 color-blue small">{{__('Contacta.location')}}</p>
+                                            </div>
+                                        </div>
+                                        @break
+                                    @default
+                                        @break
+                                @endswitch
                                 <div class="col-md-12 col-sm-6">
                                     <div class="d-flex mt-4 align-items-start">
                                         <img src="{{ asset('front/img/icon-phone.svg') }}" alt="icono teléfono">
@@ -27,8 +35,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-5 font-bold color-black">{{__('ContactaFooter.come')}}</p>
-                            <div style="width: 100%;margin: auto;margin-top: 10px;"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Cintas%20y%20Pasamanerias%20SA+(Cintas%20y%20Pasamaneria%20SA)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" title="abrir mapa de ubicación"></iframe><a href="https://www.mapsdirections.info/marcar-radio-circulo-mapa/" title="Cinpasa"></a></div>
+                            @switch(App::getLocale())
+                                @case ('ca')
+                                @case ('es')
+                                    <p class="mt-5 font-bold color-black">{{__('ContactaFooter.come')}}</p>
+                                    <div style="width: 100%;margin: auto;margin-top: 10px;"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Cintas%20y%20Pasamanerias%20SA+(Cintas%20y%20Pasamaneria%20SA)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" title="abrir mapa de ubicación"></iframe><a href="https://www.mapsdirections.info/marcar-radio-circulo-mapa/" title="Cinpasa"></a></div>
+                                    @break
+                                @default
+                                    @break
+                            @endswitch
                         </div>
                     </div>
                 </div>
@@ -37,40 +52,36 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="name" class="label_out">{{__('Contacta.name')}}</label>
-                                <input type="text" class="form-control background-blue-light" name="name" id="" placeholder="{{__('Contacta.name')}}">
+                                <input type="text" class="form-control background-blue-light  @error('name') is-invalid @enderror" required name="name" id="name" placeholder="{{__('Contacta.name')}}" value="{{ old('name') }}">
+                                @error('name')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
-                        <div class="col-6 mt-3">
-                            <div class="form-group">
-                                <input type="hidden" name="origen" id="origen">
-                                <label for="email" class="label_out">{{__('Contacta.email')}}</label>
-                                <input type="email" class="form-control background-blue-light" name="email" id="" placeholder="{{__('Contacta.email')}}">
-                            </div>
-                        </div>
+                        @switch(App::getLocale())
+                            @case ('ca')
+                            @case ('es')
+                                <div class="col-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="email" class="label_out">{{__('Contacta.email')}}</label>
+                                        <input type="email" class="form-control background-blue-light @error('email') is-invalid @enderror" required name="email" id="email" placeholder="{{__('Contacta.email')}}">
+                                        @error('email')<small class="text-danger">{{ $message }}</small>@enderror
+                                    </div>
+                                </div>
+                                @break
+                            @default
+                                @break
+                        @endswitch
                         <div class="col-6 mt-3">
                             <div class="form-group">
                                 <label for="phone" class="label_out">{{__('Contacta.phone_form')}}</label>
-                                <input type="phone" class="form-control background-blue-light" name="phone" id="" placeholder="{{__('Contacta.phone_form')}}">
+                                <input type="phone" required class="form-control background-blue-light @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="{{__('Contacta.phone_form')}}" value="{{ old('phone') }}">
+                                @error('phone')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
                         <div class="col-12 mt-3">
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="empresa" name="inlineDefaultRadiosExample">
-                                <label class="custom-control-label" for="empresa">{{__('Contacta.empresa')}}</label>
-                            </div>
-
-
-                            <!-- Default inline 2-->
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="particular" name="inlineDefaultRadiosExample" checked>
-                                <label class="custom-control-label" for="particular">{{__('Contacta.particular')}}</label>
-                            </div>
-
-
-                            <div class="col-12 px-0 d-none" id="company">
+                            <div class="col-12 px-0">
                                 <div class="form-group">
-                                    <label for="company" class="label_out">{{__('Contacta.company')}}</label>
-                                    <input type="text" name="company" class="form-control background-blue-light" placeholder="{{__('Contacta.company')}}">
+                                    <input type="text" id="company" name="company" required class="form-control background-blue-light @error('company') is-invalid @enderror" placeholder="{{__('Contacta.empresa')}} *" value="{{ old('company') }}">
+                                    @error('company')<small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                             </div>
                         </div>
@@ -79,64 +90,51 @@
                         </div>
                         <div class="col-12 mt-2">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="Recibir" name="inlineDefaultRadiosExample2" checked>
-                                <label class="custom-control-label" for="Recibir">{{__('Contacta.recibir_presu')}}</label>
+                                <input type="radio" name="presu" checked class="custom-control-input" id="presu" value="presupuesto" {{ (old('presu') == 'presupuesto')?'checked':'' }}>
+                                <label class="custom-control-label" for="presu">{{__('Contacta.recibir_presu')}}</label>
                             </div>
 
                             <!-- Default inline 2-->
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="Solicitar" name="inlineDefaultRadiosExample2">
-                                <label class="custom-control-label" for="Solicitar">{{__('Contacta.recibir_info')}}</label>
+                                <input type="radio" name="presu" class="custom-control-input" id="info" value="info" {{ (old('presu') == 'info')?'checked':'' }}>
+                                <label class="custom-control-label" for="info">{{__('Contacta.recibir_info')}}</label>
                             </div>
                         </div>
                         <div class="col-12 mt-3">
                             <label for="">{{__('Contacta.more_info')}}<span class="text-danger">*</span></label>
                         </div>
                         <div class="col-12 mt-2">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="cantidades">
-                                <label class="custom-control-label" for="cantidades">{{__('Contacta.cantidades')}}</label>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" name="second"  class="custom-control-input" id="cantidades" value="cantidades" {{ (old('second') == 'cantidades')?'checked':'' }}>
+                                <label class="custom-control-label"  for="cantidades">{{__('Contacta.cantidades')}}</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" name="second" checked class="custom-control-input" id="medidas" value="medidas" {{ (old('second') == 'medidas')?'checked':'' }}>
+                                <label class="custom-control-label" checked for="medidas">{{__('Contacta.medidas')}}</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" name="second" class="custom-control-input" id="comentarios" value="comentarios" {{ (old('second') == 'comentarios')?'checked':'' }}>
+                                <label class="custom-control-label" for="comentarios">{{__('Contacta.comentarios')}}</label>
                             </div>
                         </div>
-                        <div class="col-12 mt-3 d-none" id="cantidades-text">
+                        <div class="col-12 mt-3">
                             <div class="form-group">
-                                <label for="cantidades" class="label_out">{{__('Contacta.cantidades')}}</label>
-                                <textarea class="form-control background-blue-light" name="cantidades" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="custom-control custom-checkbox mt-3">
-                                <input type="checkbox" class="custom-control-input" id="medidas">
-                                <label class="custom-control-label" for="medidas">{{__('Contacta.medidas')}}</label>
-                            </div>
-                            <div class="col-12 mt-3 d-none" id="medidas-text">
-                                <div class="form-group">
-                                    <label for="cantidades" class="label_out">{{__('Contacta.medidas')}}</label>
-                                    <textarea class="form-control background-blue-light" name="medidas" rows="3"></textarea>
-                                </div>
-                            </div>
-                            <div class="custom-control custom-checkbox mt-3">
-                                <input type="checkbox" class="custom-control-input" id="comentaris">
-                                <label class="custom-control-label" for="comentaris">{{__('Contacta.comentarios')}}</label>
-                            </div>
-                        </div>
-                        <div class="col-12 mt-3 d-none" id="comentarios-text">
-                            <div class="form-group">
-                                <label for="cantidades" class="label_out">{{__('Contacta.comentarios')}}</label>
-                                <textarea class="form-control background-blue-light" name="comentaris" id="comentarios-text-new" rows="3"></textarea>
+                                <textarea class="form-control background-blue-light @error('comentaris') is-invalid @enderror" name="comentaris" id="comentaris" rows="3" required>{{ old('comentaris') }}</textarea>
+                                @error('comentaris')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
                         <div class="col-12 mt-3">
                             <br>
                             {!! htmlFormSnippet() !!}
                             <div class="col-12 px-0 mt-3">
-                                <label for="">{{__('Contacta.mensaje_ventas')}}</label>
+                                <b for="">{{ __('Contacta.mensaje_ventas') }}</b>
                             </div>
                             <div class="custom-control custom-checkbox mt-3">
-                                <input type="checkbox" name="politics" class="custom-control-input" id="privacidad">
+                                <input type="checkbox" name="politics" class="custom-control-input @error('politics') is-invalid @enderror" id="privacidad" required>
                                 <label class="custom-control-label" for="privacidad"><a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}">{{__('Contacta.privacy')}}</a></label>
+                                @error('politics')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
-                            <button type="submit" title="Enviar formulario" class="btn btn-primary mt-4">{{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
+                            <button type="submit" title="{{__('Contacta.send')}}" class="btn btn-primary mt-4">{{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
                             </button>
                         </div>
                     </div>
@@ -147,38 +145,6 @@
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $('#empresa').click(function(){
-        $('#company').removeClass('d-none');
-    });
-
-    $('#cantidades').click(function(){
-        if($( "#cantidades-text" ).hasClass("d-none")){
-            $('#cantidades-text').removeClass('d-none');
-        } else {
-            $('#cantidades-text').addClass('d-none');
-        }
-    });
-
-    $('#medidas').click(function(){
-        if($( "#medidas-text" ).hasClass("d-none")){
-            $('#medidas-text').removeClass('d-none');
-        } else {
-            $('#medidas-text').addClass('d-none');
-        }
-    });
-
-    $('#comentaris').click(function(){
-        if($( "#comentarios-text" ).hasClass("d-none")){
-            $('#comentarios-text').removeClass('d-none');
-        } else {
-            $('#comentarios-text').addClass('d-none');
-        }
-    });
-
-    $('#particular').click(function(){
-        $('#company').addClass('d-none');
-    });
-
     $(document).ready(function(){
         var origen = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
         if(origen == '') {
