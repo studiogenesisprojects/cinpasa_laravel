@@ -32,26 +32,6 @@
     $('[data-toggle="popover"]').popover({
         trigger: "hover"
        });
-
-    $('.favorit').each( (i, e) => {
-        $(e).click( ev => {
-            ev.preventDefault();
-            const id = $(ev.currentTarget).attr('id');
-            axios.post('/fav', {
-                value: id,
-            })
-            .then(r => {
-                if (r.data.action == 'added') {
-                    $(ev.currentTarget).addClass('active')
-                }else{
-                    $(ev.currentTarget).removeClass('active')
-                }
-
-                $('#header-fav-count').html(`(${r.data.count})`)
-            })
-            .catch(e => console.log(e.response))
-        })
-    })
     $('figure').click( function(e){
         let url = $(e.target).attr('url');
         window.location = url;

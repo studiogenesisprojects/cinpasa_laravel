@@ -43,8 +43,8 @@
                                 ])}}" title="{{$product->lang()->name}}"><img class="w-100 border-img" src="{{ Storage::url($product->getPrimaryImageUrlAttribute()) }}" alt="{{$product->lang()->name}}"></a>
                             <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
                                 <p class="btn-pink mr-1">-{{$product->higherDiscount->discount}}%</p>
-                                <a href="javascript:;" title="Comparte el artículo"><img class="btn-products p-1 mr-1" src="{{ asset('front/img/icon-share.svg') }}" alt="icono compartir"></a>
-                                <a href="javascript:;" onClick="setFavorite({{$product->id}})" title="Añade a favoritos el artículo"><img class="btn-products" id="{{$product->id}}" style="{{request()->session()->exists('product-' . $product->id) ? 'padding: .45rem' : 'padding: .25rem'}}" src="{{request()->session()->exists('product-' . $product->id) ? asset('front/img/fav-active.svg') : asset('front/img/icon-favorito.svg') }}" alt="icono favorito"></a>
+                              {{-- <ahref="javascript:;"title="Comparteelartículo"><imgclass="btn-productsp-1mr-1"src="asset('front/img/icon-share.svg') }}" alt="icono compartir"></a> --}}
+                                <span id="{{ $product->id }}" class="btn-icon favorit {{ request()->session()->exists('product-'.$product->id)?'active':'' }}"> <i class="far fa-heart" title="{{ __('Favoritos.add') }}"></i></span>
                             </div>
                         </div>
                         <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.outlet.show', [

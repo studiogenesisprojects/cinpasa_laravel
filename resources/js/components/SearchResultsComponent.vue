@@ -29,50 +29,29 @@
     </div>
     <br>
     <div class="row" v-if="items.length>0">
-      <div class="col-md-3" v-for="product in items" :key="product.id">
-        <div class="box-product">
-          <figure :class="'border mb-0 square box-product__figure ' + product.class">
-            <img
-              @click.stop="goTo(product)"
-              v-if="product.primary_image"
-              :src="`/storage/${product.primary_image.path.replace('public/', '')}`"
-              :alt="product.primary_image.alt.length > 0 ? product.primary_image.alt : product.name"
-              class="box-product__img"
-            />
-            <span
-              :class="'add-product bg-light favorit ' + (product.added ? 'active' : '')"
-              @click.stop="favorite(product)"
-            >
-              <i class="far fa-heart text-primary"></i>
-            </span>
-            <div class="info-eco--list" v-if="product.eco_logos && product.eco_logos.length > 0">
-              <a :href="eco_page">
-                <span
-                  v-for="logo in product.eco_logos"
-                  :key="logo.id"
-                  class="info-eco__icon"
-                  data-container="body"
-                  data-toggle="popover"
-                  data-placement="bottom"
-                  :data-content="logo.name"
-                >
-                  <img
-                    :src="'/storage/'+logo.image"
-                    :alt="logo.name"
-                    class="img-fluid info-eco__img"
-                  />
-                </span>
-              </a>
+      <div class="col-md-3 col-sm-6 p-3" v-for="product in items" :key="product.id">
+            <div class="position-relative">
+                <img
+                @click.stop="goTo(product)"
+                v-if="product.primary_image"
+                :src="`/storage/${product.primary_image.path.replace('public/', '')}`"
+                :alt="product.primary_image.alt.length > 0 ? product.primary_image.alt : product.name"
+                class="w-100 border-img"
+                />
+                <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
+                    <span
+                        :id="product.id"
+                    :class="'btn-icon favorit ' + (product.added ? 'active' : '') + setActive(product.id)"
+                    @click.stop="favorite(product)"
+                    >
+                    <i class="far fa-heart"></i>
+                    </span>
+                </div>
+                <a :id="`product_${product.id}`" :href="`${product.url}`" class="d-flex flex-column">
+                    <p class="small color-blue mt-3">{{ product.categories[0].name }}</p>
+                    <p class="font-bold color-black">{{ product.name }}</p>
+                </a>
             </div>
-          </figure>
-          <a :id="`product_${product.id}`" :href="`${product.url}`">
-            <div class="box-product-info">
-            <p class="small color-blue mt-3">{{ product.categories[0].name }}</p>
-            <p class="font-bold color-black">{{ product.name }}</p>
-            </div>
-          </a>
-        </div>
-        <br>
       </div>
       <div class="col-md-12 text-center">
         <infinite-loading v-if="nextUrl" class="text-center" spinner="spiral" @infinite="fetchNext">
@@ -91,30 +70,41 @@ export default {
   components: {
     InfiniteLoading
   },
-  props: ["locale", "favorites","img", "title", "nresults", 'noresult_title', 'noresult_subtitle', 'noresult_sugg1', 'noresult_sugg2', 'noresult_nofound', 'noresult_contact', 'link'],
+  props: ["locale", "img", "title", "nresults", 'noresult_title', 'noresult_subtitle', 'noresult_sugg1', 'noresult_sugg2', 'noresult_nofound', 'noresult_contact', 'link', 'favorites'],
 
   name: "search-result-component",
   data() {
     return {
       items: [],
-      eco_page: undefined,
-      favs: Object.values(this.favorites),
+      favorites: [],
       currentPage: 1,
       nextUrl: null,
       firstLoadDone: false
     };
   },
   methods: {
-    favorite(p) {
+      favorite(p) {
       axios
         .post("/fav", {
           value: p.id
         })
         .then(r => {
-          this.$set(p, "added", r.data.action == "added");
-          $("#header-fav-count").html(`(${r.data.count})`);
+          this.$set(p, "added", (r.data.action)?' active':'');
+          $('.num-fav').html(r.data.count);
+          $('#favorites_count').html(r.data.count);
         })
         .catch(e => console.log(e.response, "favorite"));
+    },
+    setActive(id){
+        var CSSActive = ""
+        $.each(this.favorites, function(key, value) {
+            if ((key == 'product-'+id) && (value == id)){
+                console.log(id);
+                CSSActive = " active";
+                return;
+            }
+        });
+        return CSSActive;
     },
     goTo(p) {
       window.location = p.url;
@@ -148,9 +138,6 @@ export default {
         this.nextUrl.searchParams.append(append, response.data.appends[append]);
       }
     }
-    axios.get("/eco-page-url/" + this.locale).then(r => {
-      this.eco_page = r.data;
-    });
     this.firstLoadDone = true;
   }
 };

@@ -71,16 +71,21 @@ class PetitionController extends Controller
             'origen' => $request->origen,
         ]);
 
-        if ($request->productsIds) {
-            $productsIds = json_decode($request->productsIds);
-            foreach ($productsIds as $id) {
-                $petition->petitionProducts()->create([
-                    "product_id" => $id
-                ]);
+        if(!empty($request->productsIds)){
+            foreach ($request->productsIds as $id) {
+                    $petition->petitionProducts()->create([
+                        "product_id" => $id
+                    ]);
             }
         }
 
-        $email_catalan_spanish = "ventas@cinpasa.com";
+        if(env('APP_ENV') == 'production'){
+            $email_catalan_spanish = "ventas@cinpasa.com";
+
+        } else {
+            $email_catalan_spanish = "montserrat.sistere@studiogenesis.es";
+        }
+
         // $locale = $request->locale;
         // if ($locale == "es" || $locale == "ca") {
             Mail::to($email_catalan_spanish)->send(new ProductFormSended($petition));

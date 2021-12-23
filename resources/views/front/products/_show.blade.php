@@ -106,7 +106,13 @@
                     </div>
                     <hr>
                     <div class="d-flex justify-content-end py-3">
-                        <button onClick="setFavorite({{$product->id}})" class="btn btn-third"><img id="fav_button" src="{{request()->session()->exists('product-' . $product->id) ? asset('front/img/fav-active.svg') : ''}}">{{__('Productos.ficha_producto_anadir_favoritos')}}</button>
+                        <button class="btn btn-third favorit" id="btn-{{ $product->id }}">
+                            @if(request()->session()->exists('product-' . $product->id))
+                            <i class="far fa-trash-alt mr-3"></i>{{ __('Productos.producto_mostrar_no_favorito') }}
+                            @else
+                            <i class="far fa-heart mr-3"></i>{{ __('Productos.producto_mostrar_favoritos') }}
+                            @endif
+                        </button>
                     </div>
                     <hr>
                 </div>
@@ -290,7 +296,7 @@
     </div>
 </section>
 
-@if((!empty($productCategory->image_low_1)) ||  (!empty($productCategory->image_low_2)) || (!empty($productCategory->image_low_2)))
+@if((!empty($productCategory->image_low_1)) ||  (!empty($productCategory->image_low_2)) || (!empty($productCategory->image_low_3)))
 <section class="trio-iconos">
     <div class="container">
         <div class="row">
@@ -339,11 +345,10 @@
                 value: id,
             })
             .then(r => {
-                if (r.data.action == 'added') {
-                    // $(ev.currentTarget).addClass('active')
-                    $(ev.currentTarget).html('<i class="far fa-trash-alt mr-3"></i></i>' + "{{__('Productos.producto_mostrar_no_favorito')}}")
+                if (r.data.action == 'true') {
+                    $(ev.currentTarget).html('<i class="far fa-trash-alt mr-3"></i>' + "{{__('Productos.producto_mostrar_no_favorito')}}")
+
                 }else{
-                    // $(ev.currentTarget).removeClass('active')
                     $(ev.currentTarget).html('<i class="far fa-heart mr-3"></i>' + "{{__('Productos.producto_mostrar_favoritos')}}")
                 }
 

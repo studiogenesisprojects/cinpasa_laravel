@@ -3636,39 +3636,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     InfiniteLoading: vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1___default.a
   },
-  props: ["locale", "favorites", "img", "title", "nresults", 'noresult_title', 'noresult_subtitle', 'noresult_sugg1', 'noresult_sugg2', 'noresult_nofound', 'noresult_contact', 'link'],
+  props: ["locale", "img", "title", "nresults", 'noresult_title', 'noresult_subtitle', 'noresult_sugg1', 'noresult_sugg2', 'noresult_nofound', 'noresult_contact', 'link', 'favorites'],
   name: "search-result-component",
   data: function data() {
     return {
       items: [],
-      eco_page: undefined,
-      favs: Object.values(this.favorites),
+      favorites: [],
       currentPage: 1,
       nextUrl: null,
       firstLoadDone: false
@@ -3681,12 +3659,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       axios.post("/fav", {
         value: p.id
       }).then(function (r) {
-        _this.$set(p, "added", r.data.action == "added");
+        _this.$set(p, "added", r.data.action ? ' active' : '');
 
-        $("#header-fav-count").html("(".concat(r.data.count, ")"));
+        $('.num-fav').html(r.data.count);
+        $('#favorites_count').html(r.data.count);
       })["catch"](function (e) {
         return console.log(e.response, "favorite");
       });
+    },
+    setActive: function setActive(id) {
+      var CSSActive = "";
+      $.each(this.favorites, function (key, value) {
+        if (key == 'product-' + id && value == id) {
+          console.log(id);
+          CSSActive = " active";
+          return;
+        }
+      });
+      return CSSActive;
     },
     goTo: function goTo(p) {
       window.location = p.url;
@@ -3756,12 +3746,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
               }
 
-              axios.get("/eco-page-url/" + _this3.locale).then(function (r) {
-                _this3.eco_page = r.data;
-              });
               _this3.firstLoadDone = true;
 
-            case 8:
+            case 7:
             case "end":
               return _context2.stop();
           }
@@ -44475,102 +44462,69 @@ var render = function() {
           { staticClass: "row" },
           [
             _vm._l(_vm.items, function(product) {
-              return _c("div", { key: product.id, staticClass: "col-md-3" }, [
-                _c("div", { staticClass: "box-product" }, [
-                  _c(
-                    "figure",
-                    {
-                      class:
-                        "border mb-0 square box-product__figure " +
-                        product.class
-                    },
-                    [
-                      product.primary_image
-                        ? _c("img", {
-                            staticClass: "box-product__img",
-                            attrs: {
-                              src:
-                                "/storage/" +
-                                product.primary_image.path.replace(
-                                  "public/",
-                                  ""
-                                ),
-                              alt:
-                                product.primary_image.alt.length > 0
-                                  ? product.primary_image.alt
-                                  : product.name
-                            },
-                            on: {
-                              click: function($event) {
-                                $event.stopPropagation()
-                                return _vm.goTo(product)
-                              }
-                            }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        {
-                          class:
-                            "add-product bg-light favorit " +
-                            (product.added ? "active" : ""),
+              return _c(
+                "div",
+                { key: product.id, staticClass: "col-md-3 col-sm-6 p-3" },
+                [
+                  _c("div", { staticClass: "position-relative" }, [
+                    product.primary_image
+                      ? _c("img", {
+                          staticClass: "w-100 border-img",
+                          attrs: {
+                            src:
+                              "/storage/" +
+                              product.primary_image.path.replace("public/", ""),
+                            alt:
+                              product.primary_image.alt.length > 0
+                                ? product.primary_image.alt
+                                : product.name
+                          },
                           on: {
                             click: function($event) {
                               $event.stopPropagation()
-                              return _vm.favorite(product)
+                              return _vm.goTo(product)
                             }
                           }
-                        },
-                        [_c("i", { staticClass: "far fa-heart text-primary" })]
-                      ),
-                      _vm._v(" "),
-                      product.eco_logos && product.eco_logos.length > 0
-                        ? _c("div", { staticClass: "info-eco--list" }, [
-                            _c(
-                              "a",
-                              { attrs: { href: _vm.eco_page } },
-                              _vm._l(product.eco_logos, function(logo) {
-                                return _c(
-                                  "span",
-                                  {
-                                    key: logo.id,
-                                    staticClass: "info-eco__icon",
-                                    attrs: {
-                                      "data-container": "body",
-                                      "data-toggle": "popover",
-                                      "data-placement": "bottom",
-                                      "data-content": logo.name
-                                    }
-                                  },
-                                  [
-                                    _c("img", {
-                                      staticClass: "img-fluid info-eco__img",
-                                      attrs: {
-                                        src: "/storage/" + logo.image,
-                                        alt: logo.name
-                                      }
-                                    })
-                                  ]
-                                )
-                              }),
-                              0
-                            )
-                          ])
-                        : _vm._e()
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        id: "product_" + product.id,
-                        href: "" + product.url
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "box-product-info" }, [
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "position-absolute transform-t-50 d-flex b-0 r-0 mr-3"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            class:
+                              "btn-icon favorit " +
+                              (product.added ? "active" : "") +
+                              _vm.setActive(product.id),
+                            attrs: { id: product.id },
+                            on: {
+                              click: function($event) {
+                                $event.stopPropagation()
+                                return _vm.favorite(product)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "far fa-heart" })]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "d-flex flex-column",
+                        attrs: {
+                          id: "product_" + product.id,
+                          href: "" + product.url
+                        }
+                      },
+                      [
                         _c("p", { staticClass: "small color-blue mt-3" }, [
                           _vm._v(_vm._s(product.categories[0].name))
                         ]),
@@ -44578,13 +44532,11 @@ var render = function() {
                         _c("p", { staticClass: "font-bold color-black" }, [
                           _vm._v(_vm._s(product.name))
                         ])
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("br")
-              ])
+                      ]
+                    )
+                  ])
+                ]
+              )
             }),
             _vm._v(" "),
             _c(

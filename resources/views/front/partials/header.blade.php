@@ -35,7 +35,7 @@
                 <a href="{{\LaravelLocalization::localizeURL('/')}}" title="Accede al apartado inicio"><img class="my-3 logo" src="{{ asset('front/img/logo-cinpasa.svg') }}" alt="logotipo Cinpasa"></a>
                 <div class="d-flex d-lg-none justify-content-end align-items-center">
                     <div class="position-relative">
-                        <a class="icon-fav" href="#" title="Accede a tus productos favoritos"><img class="icon-nav" src="{{ asset('front/img/icon-fav.svg') }}" alt="icono favoritos"></a>
+                        <a class="icon-fav" href="#" title="Accede a tus productos favoritos"><img class="icon-nav" src="{{ asset('front/img/icon-fav.svg') }}" alt="{{ __('Favoritos.icon') }}"></a>
                         <div class="num-fav">{{$favorites->count()}}</div>
                     </div>
                     <a class="icon-search" href="#" title="Busca por palabras clave"><img class="icon-nav ml-sm-3 ml-3" src="{{ asset('front/img/icon-search.svg') }}" alt="icono búsqueda"></a>
@@ -141,94 +141,6 @@
             </div>
         </div>
     </div>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        data = '{{$favorites}}';
-
-        $.ajax({
-            method: "POST",
-            url: '{{ route('fav.getProducts') }}',
-            data: {'values': data, "_token": "{{ csrf_token() }}"},
-            success : function(data){
-                data.forEach(function(item){
-                    $('#favorites_place').html($('#favorites_place').html() + `
-                    <hr class="mt-3 `+item.id+`">
-                    <div class="row align-items-center mt-3 `+item.id+`">
-                        <div class="col-3">
-                            <a href="`+item.link+`" title="Accede al producto favorito"><img class="w-100 border-img" src="{{ Storage::url('`+item.image_+`') }}" alt="imagen favoritos"></a>
-                        </div>
-                        <div class="col-7 px-0">
-                            <a href="`+item.link+`" title="Accede al producto favorito">
-                                <p class="small color-black font-bold">`+item.name+`</p>
-                            </a>
-                        </div>
-                        <a href="javascript:;" onClick="setFavorite(`+item.id+`)" title="Elimina el producto de tus favoritos" class="col-2 d-flex">
-                            <img class="w-50" src="{{ asset('front/img/icon-delete.svg') }}" alt="icono vectorial eliminar">
-                        </a>
-                    </div>
-                    `);
-                });
-            },
-            error : function(xhr, status){
-                console.log(xhr,status);
-            }
-        });
-
-
-    function setFavorite(id) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('#' + id).attr("src","{{ asset('front/img/fav-active.svg') }}");
-        $('#fav_button').attr("src","{{ asset('front/img/fav-active.svg') }}");
-        $('#' + id).css("padding",".45rem");
-
-        $.ajax({
-            method: "POST",
-            url: '{{ route('fav') }}',
-            data: {'value': id, "_token": "{{ csrf_token() }}"},
-            success : function(data){
-                $('.num-fav').html(data.count);
-                if(data.action == 0) {
-                    $('#favorites_count').html(parseInt($('#favorites_count').html()) + 1);
-                    $('#favorites_place').html($('#favorites_place').html() + `
-                    <hr class="mt-3 `+data.product.id+`">
-                    <div class="row align-items-center mt-3 `+data.product.id+`">
-                        <div class="col-3">
-                            <a href="`+data.link+`" title="Accede al producto favorito"><img class="w-100 border-img" src="{{ Storage::url('`+data.product.image+`') }}" alt="imagen favoritos"></a>
-                        </div>
-                        <div class="col-7 px-0">
-                            <a href="`+data.link+`" title="Accede al producto favorito">
-                                <p class="small color-black font-bold">`+data.product.name+`</p>
-                            </a>
-                        </div>
-                        <a href="" onClick="setFavorite(`+data.product.id+`)" title="Elimina el producto de tus favoritos" class="col-2 d-flex">
-                            <img class="w-50" src="{{ asset('front/img/icon-delete.svg') }}" alt="icono vectorial eliminar">
-                        </a>
-                    </div>
-                    `);
-                } else {
-                    $('#' + id).attr("src","{{ asset('front/img/icon-favorito.svg') }}");
-                    $('#fav_button').attr("src","");
-                    $('#' + id).css("padding",".25rem");
-                    $('.' + id).remove();
-                    $('#favorites_count').html(parseInt($('#favorites_count').html()) - 1);
-                }
-            },
-            error : function(xhr, status){
-                console.log(xhr,status);
-            }
-        });
-    }
-    </script>
 </header>
 
 <section id="header" class="background-white w-100 z-100 opacity-0">
@@ -242,8 +154,8 @@
             <div class="position-relative d-lg-block d-none">
                 <div class="d-flex justify-content-end mb-4">
                     <div class="position-relative">
-                        <a id="icon-fav" href="#" title="Accede a tus productos favoritos"><img class="icon-nav" src="{{ asset('front/img/icon-fav.svg') }}" alt="icono favoritos"></a>
-                        <div class="num-fav">4</div>
+                        <a href="#" title="Accede a tus productos favoritos"><img class="icon-nav" src="{{ asset('front/img/icon-fav.svg') }}" alt="{{ __('Favoritos.icon') }}"></a>
+                        <div id="header-fav-count" class="num-fav">4</div>
                     </div>
                     <a id="icon-search" href="#" title="Busca por palabras clave"><img class="icon-nav ml-3" src="{{ asset('front/img/icon-search.svg') }}" alt="icono búsqueda"></a>
                 </div>

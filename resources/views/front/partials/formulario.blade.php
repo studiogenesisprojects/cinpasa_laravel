@@ -4,15 +4,25 @@
             @csrf
             <input type="hidden" name="origen" id="origen">
             @if(isset($favorite_info))
-            <input type="hidden" name="productsIds" value="{{$products->map(function ($product){
-                return $product->id;
-            })}}">
+                @foreach ($products as $product)
+                <input type="hidden" name="productsIds[]" value="{{ $product->id }}">
+                @endforeach
             @endif
             <div class="row">
                 <div class="col-lg-5 col-md-6 mt-5">
                     <h3 class="before-title">{{__('ContactaFooter.titulo')}}</h3>
                     <div class="row mt-3">
                         <div class="col-xl-10">
+                            @if((empty($products)) && (!empty($product)) && (!empty($product->galeries)) && (!empty($product->galeries->first()->images)))
+                            <input type="hidden" name="productsIds[]" value="{{ $product->id }}">
+                            <div class="row flex-row flex-md-column">
+                                <div class="col-md-12 col-sm-6 col-10">
+                                    <img class="w-100 border-img" src="{{ Storage::url($product->galeries->first()->images->first()->path) }}" alt="{{ $product->name }}">
+                                    <p class="font-bold color-black mt-4">{{$product->name}}</p>
+                                    <p class="small">{!! $product->description !!}</p>
+                                </div>
+                            </div>
+                            @else
                             <p>{{__('ContactaFooter.subtext')}}</p>
                             <div class="row flex-row flex-md-column">
                                 @switch(App::getLocale())
@@ -44,6 +54,7 @@
                                 @default
                                     @break
                             @endswitch
+                            @endif
                         </div>
                     </div>
                 </div>

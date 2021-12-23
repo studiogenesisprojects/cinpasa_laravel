@@ -239,8 +239,6 @@ h6 {
     transition: .5s cubic-bezier(1, .25, 0, .75);
 }
 
-#nav-sticky {}
-
 .before-title::before {
     content: '...';
     font-size: 40px;
@@ -1413,3 +1411,64 @@ article.noticia-blog ul, article.noticia-blog ol {margin-left: 1rem;}
 .btn-more-info {
     background-color: #F2A616;
 }
+
+.add-product {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    display: block;
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    font-size: 1.25rem;
+  }
+
+  .add-product:hover {
+    transition: all 0.3s ease-in;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #005FAB !important;
+  }
+
+  .add-product:hover * {
+    color: #ffffff !important;
+  }
+
+  .add-product.active {
+    background-color: #005FAB !important;
+  }
+
+  .add-product.active * {
+    color: #ffffff !important;
+  }
+
+  .btn-icon {
+    color: #005FAB;
+    border-radius: 8px;
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    display: block;
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    font-size: 1.25rem;
+    margin-left: 1rem;
+    border: 2px solid #005FAB;
+    position: relative;
+  }
+
+  .favorit.btn-icon:hover,
+  .favorit.btn-icon.active {
+    background-color: #005FAB;
+    color: white;
+  }
+
+  .btn-icon i {
+      position: absolute;
+      transform: translate(-50%,-50%);
+      left: 50%;
+      top: 50%;
+  }
+
