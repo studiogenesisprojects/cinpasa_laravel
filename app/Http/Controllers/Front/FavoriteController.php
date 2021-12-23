@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Log;
 
 class FavoriteController extends Controller
 {
@@ -23,22 +24,27 @@ class FavoriteController extends Controller
         $ps = array_values(
             collect($request->session()->all())->filter(function ($e, $key) {
                 return Str::contains($key, 'product-');
+
             })->map(function ($e, $key) {
                 return \str_replace('product-', '', $key);
+
             })->toArray()
         );
 
-        $products = new Collection;
-        $categories = new Collection;
+        $products = new Collection();
+        $categories = new Collection();
         $text = strtoupper(__('Menu.products'));
 
         foreach($ps as $item){
             $product = Product::find($item);
 
-            if(!$product){
+            if(empty($product)){
                 $category = ProductCategory::find($item);
-                $categories->push($category);
-                $text = $text . '\n' . $category->name . ':';
+                if(!empty($category)){
+                    $categories->push($category);
+                    $text = $text . '\n' . $category->name . ':';
+                }
+
             } else {
                 $products->push($product);
                 $text = $text . '\n' . $product->name . ':';
@@ -80,6 +86,7 @@ class FavoriteController extends Controller
         if ($request->session()->exists('product-' . $request->value)) {
             //si existe, lo eliminamos
             $request->session()->forget('product-' . $request->value);
+
         } else {
             //si no existe lo añadimos
             //Guardamos en la lista de favoritos
@@ -88,9 +95,10 @@ class FavoriteController extends Controller
 
         $product = Product::find($request->value);
 
-        if(!$product){
+        if(empty($product)){
             $product = ProductCategory::find($request->value);
             $link = LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.show', ["productCategory" => $product]);
+
         } else {
             $link = LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
                 "productCategory" => $product->categories[0],
@@ -100,13 +108,14 @@ class FavoriteController extends Controller
 
         $ps = collect($request->session()->all())->filter(function ($e, $key) {
                 return Str::contains($key, 'product-');
+
             })->map(function ($e, $key) {
                 return \str_replace('product-', '', $key);
             });
 
         return response()->json([
             "count" => $ps->count(),
-            "action" =>  $request->session()->exists('product-' . $request->value) ? "0" : "1",
+            "action" =>  $request->session()->exists('product-' . $request->value) ? true : false,
             "product" => $product,
             "link" => $link
         ]);
@@ -119,10 +128,11 @@ class FavoriteController extends Controller
         foreach(json_decode($values) as $id){
             $product = Product::find($id);
 
-            if(!$product){
+            if(empty($product)){
                 $product = ProductCategory::find($id);
                 $link = LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.show', ["productCategory" => $product]);
                 $image =  $product->image;
+
             } else {
                 $link = LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
                     "productCategory" => $product->categories[0],

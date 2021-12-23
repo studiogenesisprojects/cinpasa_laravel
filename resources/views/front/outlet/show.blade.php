@@ -113,7 +113,13 @@
                     </div>
                     <hr>
                     <div class="d-flex justify-content-end py-3">
-                        <p class="btn btn-third">{{__('Productos.ficha_producto_anadir_favoritos')}}</p>
+                        <button class="btn btn-third favorit" id="btn-{{ $product->id }}">
+                            @if(request()->session()->exists('product-' . $product->id))
+                            <i class="far fa-trash-alt mr-3"></i>{{ __('Productos.producto_mostrar_no_favorito') }}
+                            @else
+                            <i class="far fa-heart mr-3"></i>{{ __('Productos.producto_mostrar_favoritos') }}
+                            @endif
+                        </button>
                     </div>
                     <hr>
                 </div>

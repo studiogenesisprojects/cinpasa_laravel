@@ -12,7 +12,7 @@
             <div class="col-lg-8">
                 <p class="color-black font-bold mt-2">{{__('Menu.products')}}</p>
                 @foreach($products as $product)
-                    <div class="card flex-row justify-content-between align-items-center {{!$loop->first ? 'mt-2' : ''}} p-2 {{$product->id}}">
+                    <div id="product-{{$product->id}}" class="card flex-row justify-content-between align-items-center {{!$loop->first ? 'mt-2' : ''}} p-2 {{$product->id}}">
                         <div class="d-flex align-items-center w-100">
                             <div class="col-3 px-0">
                                 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
@@ -32,13 +32,13 @@
                         </div>
                         <div class="d-flex align-items-center">
                             <hr class="hr-vertical">
-                            <a href="javascript:;" onClick="setFavorite({{$product->id}})" title="Elimina el producto de tus favoritos" class="col-2 d-flex"><img class="p-4" src="{{ asset('front/img/icon-delete.svg') }}" alt="icono eliminar"></a>
+                            <a id="{{ $product->id }}" href="javascript:;" title="{{ __('Favoritos.delete') }}" class="col-2 d-flex favorit"><img class="p-4" src="{{ asset('front/img/icon-delete.svg') }}" alt="{{ __('Favoritos.icono-delete') }}"></a>
                         </div>
                     </div>
                 @endforeach
                 <p class="color-black font-bold mt-2">{{__('Favoritos.categorias')}}</p>
                 @foreach($categories as $product)
-                    <div class="card flex-row justify-content-between align-items-center {{!$loop->first ? 'mt-2' : ''}} p-2 {{$product->id}}">
+                    <div id="product-{{$product->id}}" class="card flex-row justify-content-between align-items-center {{!$loop->first ? 'mt-2' : ''}} p-2 {{$product->id}}">
                         <div class="d-flex align-items-center w-100">
                             <div class="col-3 px-0">
                                 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.show', ["productCategory" => $product])}}" title="Accede al producto favorito"><img class="w-100 border-img" src="{{Storage::url($product->image)}}" alt="icono favorito"></a>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="d-flex align-items-center">
                             <hr class="hr-vertical">
-                            <a href="javascript:;" onClick="setFavorite({{$product->id}})" title="Elimina el producto de tus favoritos" class="col-2 d-flex"><img class="p-4" src="{{ asset('front/img/icon-delete.svg') }}" alt="icono eliminar"></a>
+                            <a id="{{ $product->id }}" href="javascript:;" title="{{ __('Favoritos.delete') }}" class="col-2 d-flex favorit"><img class="p-4" src="{{ asset('front/img/icon-delete.svg') }}" alt="{{ __('Favoritos.icono-delete') }}"></a>
                         </div>
                     </div>
                 @endforeach

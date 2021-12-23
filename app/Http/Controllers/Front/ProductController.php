@@ -14,6 +14,7 @@ use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades
 use App\Models\MaterialCategory;
 use App\Models\ProductColorShade;
 use Log;
+use Str;
 
 class ProductController extends Controller
 {
@@ -155,7 +156,14 @@ class ProductController extends Controller
 
     public function search(Request  $request)
     {
-        return view('front.products.searchResult');
+        $favorites = collect($request->session()->all())->filter(function ($e, $key) {
+            return Str::contains($key, 'product-');
+
+        })->map(function ($e, $key) {
+            return \str_replace('product-', '', $key);
+        });
+
+        return view('front.products.searchResult', compact('favorites'));
     }
 
     public function getSearchResults(Request $request, $locale)
@@ -249,9 +257,6 @@ class ProductController extends Controller
 
             $append["color"] = $request->input('color');
         }
-
-        Log::debug($results->toSql());
-        Log::debug($results->getBindings());
 
         $results = $results->paginate(8);
         return response()->json([

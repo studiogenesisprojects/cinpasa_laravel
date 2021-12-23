@@ -4,7 +4,6 @@
 @include('front.home.carousel2')
 <section id="aplicaciones">
     <div class="container">
-        <form>
             <div class="row">
                 <div class="col-lg-8 transform-t-5">
                     <div class="card flex-row flex-wrap p-4">
@@ -58,14 +57,30 @@
                             <p class="mt-3">{{__('Contacta.more_info')}}</p>
                             <p class="mt-2">{{$petition->comment}}</p>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-3 offset-1 d-lg-flex d-none flex-column justify-content-end">
                     <img class="w-100" src="{{ asset('front/img/contacta-1.jpg') }}" alt="imagen mujer sonriendo">
                 </div>
+                @if(count($petition->petitionProducts) > 0)
+                <div class="col-12 mt-4">
+                    <div class="row">
+                    @foreach($petition->petitionProducts as $pp)
+                        @php $product = app\Models\Product::find($pp->product_id) @endphp
+                            <div class="col-3 mt-4">
+                                <div class="border-card h-100 p-3">
+                                    <div class="position-relative">
+                                        <img class="w-100 border-img" src="{{ Storage::url($product->getPrimaryImageUrlAttribute()) }}" alt="{{ $product->name }}">
+                                    </div>
+                                    <p class="font-bold color-black mt-4">{{ $product->name }}</p>
+                                    <p class="small">{!! $product->description !!}</p>
+                                </div>
+                            </div>
+                    @endforeach
+                    </div>
+                </div>
+                @endif
             </div>
-        </form>
     </div>
 </section>
 @endsection

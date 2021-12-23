@@ -87,10 +87,10 @@
                                         ])}}" title="Accede a la información"><img class="w-100 border-img" src="{{ asset('front/img/no-foto.jpg') }}"></a>
                                 @endif
                                 <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
-                                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
+                                    <a class="btn-icon" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
                                         "productCategory" => $product,
-                                        ])}}" title="Obten información de este artículo"><img class="btn-products p-1 mr-1" src="{{ asset('front/img/icon-info.svg') }}" alt="icono información"></a>
-                                    <a href="javascript:;" onClick="setFavorite({{$product->id}})" title="Añade a favoritos este artículo"><img class="btn-products" style="{{request()->session()->exists('product-' . $product->id) ? 'padding: .45rem' : 'padding: .25rem'}}" id="{{$product->id}}" src="{{request()->session()->exists('product-' . $product->id) ? asset('front/img/fav-active.svg') : asset('front/img/icon-favorito.svg') }}" alt="icono favoritos"></a>
+                                        ])}}" title="Obten información de este artículo"><i class="fas fa-info-circle" title="icono información"></i></a>
+                                    <span id="{{ $product->id }}" class="btn-icon favorit {{ request()->session()->exists('product-'.$product->id)?'active':'' }}"> <i class="far fa-heart" title="{{ __('Favoritos.add') }}"></i></span>
                                 </div>
                             </div>
                             <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [

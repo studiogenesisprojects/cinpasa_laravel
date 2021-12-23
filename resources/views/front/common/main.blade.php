@@ -32,6 +32,38 @@
         @stack('js')
 
         <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.favorit').on('click', function(){
+                $.ajax({
+                    method: "POST",
+                    url: '{{ route('fav') }}',
+                    data: {
+                        "value": $(this).attr('id').replace('btn-', '')
+                    },
+                    dataType: "json",
+                    success : function(data){
+                        $('.num-fav').html(data.count);
+                        $('#favorites_count').html(data.count);
+                        if(data.action) {
+                            $('#'+data.product.id).addClass('active');
+                            $('#btn-'+data.product.id).html('<i class="far fa-trash-alt mr-3"></i>{{ __('Productos.producto_mostrar_no_favorito') }}');
+
+                        } else {
+                            $('#'+data.product.id).removeClass('active');
+                            $('#btn-'+data.product.id).html('<i class="far fa-heart mr-3"></i>{{ __('Productos.producto_mostrar_favoritos') }}');
+                            $('#product-'+data.product.id).hide();
+                        }
+                    },
+                    error : function(xhr, status){
+                        console.log(xhr,status);
+                    }
+                });
+            });
 
             $('#select_language').change(function(){
                 var language = $('#select_language').val();
