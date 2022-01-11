@@ -81,12 +81,12 @@
                                 <p class="answer-title">Empresa</p>
                                 <p class="answer-text">{{ $petition->company }}</p>
                             </div>
-                            {{--
+
                             <div class="answer-item">
                                 <p class="answer-title">Email</p>
                                 <p class="answer-text">{{ $petition->email }}</p>
                             </div>
-                            --}}
+
                             <div class="answer-item">
                                 <p class="answer-title">Telèfon</p>
                                 <p class="answer-text">{{ $petition->phone_number }}</p>
