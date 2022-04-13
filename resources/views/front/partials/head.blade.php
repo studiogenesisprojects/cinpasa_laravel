@@ -21,6 +21,7 @@
     <title>@yield('meta-title')</title>
     <meta name="title" content="@yield('meta-title')">
     <meta name="description" content="@yield('meta-description')">
+    <meta name="facebook-domain-verification" content="luojrac4agvuqxefqvay508oqxfk86" />
 
     @if(isset($products) && method_exists($products, 'links'))
         @if(!isset($_GET['page']))
