@@ -16,6 +16,7 @@
         "greggilbert/recaptcha": "*",
         "guzzlehttp/guzzle": "^7.0.1",
         "huangdijia/laravel-sitemap": "^1.1",
+        "josiasmontag/laravel-recaptchav3": "^1.0",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "laraveles/spanish": "^1.5",
