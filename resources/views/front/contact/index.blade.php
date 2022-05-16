@@ -92,7 +92,7 @@
                                 @error('politics')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                             <br>
-                            {!! htmlFormSnippet() !!}
+                            {!! RecaptchaV3::field('submit') !!}
                             <button type="submit" title="{{__('Contacta.send')}}" class="btn btn-primary mt-4">{{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
                             </button>
                         </div>

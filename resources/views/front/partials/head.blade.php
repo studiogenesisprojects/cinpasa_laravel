@@ -15,8 +15,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Grandstander&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
-    {!! htmlScriptTagJsApi(['lang' => 'es']) !!}
+    {!! RecaptchaV3::initJs() !!}
 
+    <style>
+        .grecaptcha-badge { 
+            visibility: hidden !important;
+        }
+    </style>
+    
     {{-- <title>Cinpasa</title> --}}
     <title>@yield('meta-title')</title>
     <meta name="title" content="@yield('meta-title')">

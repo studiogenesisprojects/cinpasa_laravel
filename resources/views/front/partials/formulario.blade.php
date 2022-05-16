@@ -136,7 +136,6 @@
                         </div>
                         <div class="col-12 mt-3">
                             <br>
-                            {!! htmlFormSnippet() !!}
                             <div class="col-12 px-0 mt-3">
                                 <b for="">{{ __('Contacta.mensaje_ventas') }}</b>
                             </div>
@@ -145,6 +144,7 @@
                                 <label class="custom-control-label" for="privacidad"><a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}">{{__('Contacta.privacy')}}</a></label>
                                 @error('politics')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
+                            {!! RecaptchaV3::field('submit') !!}
                             <button type="submit" title="{{__('Contacta.send')}}" class="btn btn-primary mt-4">{{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
                             </button>
                         </div>

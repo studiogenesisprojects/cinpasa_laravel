@@ -107,12 +107,12 @@
                         </div>
                         <div class="col-12 mt-3">
                             <br>
-                            {!! htmlFormSnippet() !!}
                             <div class="custom-control custom-checkbox mt-3">
                                 <input type="checkbox" class="custom-control-input" name="politics" required id="politics">
                                 <label class="custom-control-label" for="politics">{{__('Contacta.privacy')}}</label>
                                 @error('politics')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
+                            {!! RecaptchaV3::field('submit') !!}
                             <button type="submit" class="btn btn-primary mt-4" id="send">
                                 {{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="{{__('Contacta.send')}}">
                             </button>
