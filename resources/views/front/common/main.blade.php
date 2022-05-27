@@ -7,6 +7,8 @@
     @include('front.partials.head')
 
     <body class="menu-position-side menu-side-left full-screen with-content-panel">
+        <div id="api-chat-bot"></div>
+
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5R5VDBD"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -77,6 +79,17 @@
                     scrollTop: $("#contact-form-products").offset().top
                 }, 2000);
             });
+        </script>
+        <script>
+        (function(d, s, t, id) \{
+        var js, fjs = d.getElementsByTagName(s)\[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = t;
+        js.src = "[https://manager.citra.es/Widget/widget-archivos/widget-chat/widget.frame.js?version=3.2.0.7&var1=|https://manager.citra.es/Widget/widget-archivos/widget-chat/widget.frame.js?version=3.2.0.7&var1=]" + id;
+        js.defer = true;
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'id-chat-widget',  '79715152772769a4c588c943a7e49cad'));
         </script>
     </body>
 </html>
