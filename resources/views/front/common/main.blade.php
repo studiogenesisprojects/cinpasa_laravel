@@ -82,13 +82,13 @@
         </script>
         <script>
         (function(d, s, t, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = t;
-        js.src = "[https://manager.citra.es/Widget/widget-archivos/widget-chat/widget.frame.js?version=3.2.0.7&var1=|https://manager.citra.es/Widget/widget-archivos/widget-chat/widget.frame.js?version=3.2.0.7&var1=]" + id;
-        js.defer = true;
-        fjs.parentNode.insertBefore(js, fjs);
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = t;
+            js.src = "https://manager.citra.es/Widget/widget-archivos/widget-chat/widget.frame.js?version=3.2.0.7&var1=" + id;
+            js.defer = true;
+            fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'id-chat-widget',  '79715152772769a4c588c943a7e49cad'));
         </script>
     </body>
