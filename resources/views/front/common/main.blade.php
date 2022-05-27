@@ -81,8 +81,8 @@
             });
         </script>
         <script>
-        (function(d, s, t, id) \{
-        var js, fjs = d.getElementsByTagName(s)\[0];
+        (function(d, s, t, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s);
         js.id = t;
