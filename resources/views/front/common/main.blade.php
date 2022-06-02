@@ -17,7 +17,7 @@
         @include('front.partials.header')
         @if(!isset($no_contact))
             <a href="#info-request" title="{!!  strip_tags(__('Lab.more-info')) !!}" id="contact-button" class="btn-fixed btn-more-info">
-                <img class="mr-2" src="{{ asset('front/img/icon-contacta.svg') }}" alt="Icono contacto">{!! __('Lab.more-info') !!}
+                <img class="mr-2" src="{{ asset('front/img/envelope-open.svg') }}" alt="envelope">{!! __('Lab.more-info') !!}
             </a>
         @endif
         @yield('content')
