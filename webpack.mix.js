@@ -15,6 +15,14 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
+
+//Al hacer algun cambio relacionado con news, hacer los siguiente:
+// 1.Npm run dev en local
+// 2.Subir la compilación al repo
+// 3.Hacer pull en el servidor
+
+// IMPORTANTE NO HACER NPM RUN PROD EN EL SERVIDOR
+
 mix.js('resources/js/front/app.js', 'public/js/front');
 
 mix.js(
