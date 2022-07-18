@@ -5,6 +5,9 @@
             <div class="d-flex align-items-center">
                 <p>+34 977 845 668</p>
                 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Escribenos a nuestro correo" class="ml-5">ventas@cinpasa.com</a>
+                <a href="https://api.whatsapp.com/send?phone=34621283448&text=Hola,%20me%20gustar%C3%ADa%20recibir%20información"  class="ml-5" title="{{ __('Comun.whatsapp_attention_title') }}">
+                    {{ __('Comun.whatsapp_attention_title') }}<img class="ml-3" src="{{ asset('front/img/icon-whatsapp.svg') }}" alt="whatsapp">
+                </a>
             </div>
             <div class="d-flex align-items-center">
                 <select class="form-control-search" id="select_language">

@@ -43,6 +43,11 @@
                 <img class="w-100" src="{{ asset('front/img/logo-cinpasa-negative.svg') }}" alt="logotipo cinpasa">
                 <p class="mt-4">{{__('Contacta.location')}}</p>
                 <p class="mt-4">{{__('Contacta.phone')}}</p>
+                <p class="mt-4">
+                    <a href="https://api.whatsapp.com/send?phone=34621283448&text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n" title="{{ __('Comun.whatsapp_attention_title') }}">
+                        {{ __('Comun.whatsapp_attention_title') }}<img class="ml-3" src="{{ asset('front/img/icon-whatsapp.svg') }}" alt="whatsapp">
+                    </a>
+                </p>
             </div>
             <div class="col-xl-2 col-md-3 col-sm-4 col-6 offset-xl-1 offset-lg-2 offset-md-1 mt-sm-0 mt-5">
                 <p class="font-bold">{{__('Footer.contenido')}}</p>

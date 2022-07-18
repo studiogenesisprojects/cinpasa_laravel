@@ -13,6 +13,12 @@
             <div class="col-lg-7 col-md-10">
                 <h1 class="before-title">{{$applicationCategory->lang()->name}}</h1>
                 <p class="mt-3">{!! $applicationCategory->lang()->description !!}</p>
+                <p class="mt-3">
+                    <a href="https://api.whatsapp.com/send?phone=34621283448&text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20el%20sector%20{{$applicationCategory->lang()->name}}" title="{{ __('Comun.whatsapp_doubts_title') }}">
+                            {{ __('Comun.whatsapp_doubts_title') }}
+                        <img class="ml-3" src="{{ asset('front/img/icon-whatsapp.svg') }}" alt="whatsapp">
+                    </a>
+                </p>
             </div>
         </div>
         <div class="row mt-5">

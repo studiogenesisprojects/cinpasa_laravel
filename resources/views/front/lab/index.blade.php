@@ -10,6 +10,12 @@
             <div class="col-lg-7 col-md-10 mt-4">
                 <h1 class="before-title">{{__('Lab.titulo')}}</h1>
                 <p class="mt-3">{{__('Lab.text')}}</p>
+                <p class="mt-3">
+                    <a href="https://api.whatsapp.com/send?phone=34621283448&text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n" title="{{ __('Comun.whatsapp_project_title') }}">
+                        {{ __('Comun.whatsapp_project_title') }}
+                        <img class="ml-3" src="{{ asset('front/img/icon-whatsapp.svg') }}" alt="whatsapp">
+                    </a>
+                </p>
             </div>
         </div>
     </div>
