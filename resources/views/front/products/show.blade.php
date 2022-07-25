@@ -76,7 +76,7 @@
                 <div class="row px-3 pt-4 pb-5 border-card-left">
                     <p class="small">{{$productCategory->lang(App::getLocale())->description}}</p>
                     <p class="mt-5">
-                        <a class="dudas-link" href="https://api.whatsapp.com/send?phone=34621283448&text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20{{$productCategory->name}}" title="{{ __('Comun.whatsapp_doubts_title') }}">
+                        <a class="dudas-link" href="https://api.whatsapp.com/send?phone=34621283448&locale={{ App::getLocale() }}&text={{ __('Comun.whatsapp_products_message') }} {{$productCategory->name}}" title="{{ __('Comun.whatsapp_doubts_title') }}" hreflang="{{ App::getLocale() }}">
                             <i class="fa fa-whatsapp"></i>{{ __('Comun.whatsapp_doubts_title') }}
                         </a>
                     </p>

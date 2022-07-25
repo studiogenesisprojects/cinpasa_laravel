@@ -45,7 +45,7 @@
                 <p class="mt-4"><i class="fa fa-phone pr-2"></i>{{__('Contacta.phone')}}</p>
                 <p class="mt-4">
                     <i class="fa fa-whatsapp pr-2"></i>
-                    <a href="https://api.whatsapp.com/send?phone=34621283448&text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n" title="{{ __('Comun.whatsapp_attention_title') }}">
+                    <a href="https://api.whatsapp.com/send?phone=34621283448&locale={{ App::getLocale() }}&text={{ __('Comun.whatsapp_attention_message') }}" title="{{ __('Comun.whatsapp_attention_title') }}" hreflang="{{ App::getLocale() }}">
                         {{ __('Comun.whatsapp_attention_title') }}
                         <br><span style="margin-left:22px">+34 621 283 448</span>
                     </a>

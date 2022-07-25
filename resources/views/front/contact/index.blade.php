@@ -112,7 +112,7 @@
                             </div>
                             <div class="d-flex mt-4 align-items-start">
                                 <p class="color-blue ">
-                                        <a class="link-contacta" href="https://api.whatsapp.com/send?phone=34621283448&text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n" title="{{ __('Comun.whatsapp_attention_title') }}">
+                                        <a class="link-contacta" href="https://api.whatsapp.com/send?phone=34621283448&locale={{ App::getLocale() }}&text={{ __('Comun.whatsapp_attention_message') }}" title="{{ __('Comun.whatsapp_attention_title') }}">
                                             <i class="fa fa-whatsapp"></i>
                                             <small>{{ __('Comun.whatsapp_attention_title') }}</small>
                                          </a>
