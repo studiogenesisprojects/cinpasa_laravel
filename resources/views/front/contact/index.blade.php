@@ -111,13 +111,11 @@
                                 <p class="ml-3 color-blue"><small>{{__('Contacta.phone')}}</small></p>
                             </div>
                             <div class="d-flex mt-4 align-items-start">
-                                <img src="{{ asset('front/img/icon-whatsapp.svg') }}" alt="whatsapp">
-                                <p class="ml-3 color-blue">
-                                    <small>
-                                        <a href="https://api.whatsapp.com/send?phone=34621283448&text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n" title="{{ __('Comun.whatsapp_attention_title') }}">
-                                        {{ __('Comun.whatsapp_attention_title') }}
-                                        </a>
-                                    </small>
+                                <p class="color-blue ">
+                                        <a class="link-contacta" href="https://api.whatsapp.com/send?phone=34621283448&text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n" title="{{ __('Comun.whatsapp_attention_title') }}">
+                                            <i class="fa fa-whatsapp"></i>
+                                            <small>{{ __('Comun.whatsapp_attention_title') }}</small>
+                                         </a>
                                 </p>
                             </div>
                         </div>
