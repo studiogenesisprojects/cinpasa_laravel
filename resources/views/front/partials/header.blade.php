@@ -3,8 +3,15 @@
     <div id="nav-none" class="container-fluid position-relative z-2 px-0 d-md-block d-none">
         <div class="row justify-content-between py-3 px-5 header-social">
             <div class="d-flex align-items-center">
-                <p>+34 977 845 668</p>
-                <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Escribenos a nuestro correo" class="ml-5">ventas@cinpasa.com</a>
+                <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Escribenos a nuestro correo" class="mr-3"><i class="fa fa-envelope-o"></i> Contacta</a>
+                <a href="https://api.whatsapp.com/send?phone=34621283448&text=Hola,%20me%20gustar%C3%ADa%20recibir%20información"  class="mr-3" title="{{ __('Comun.whatsapp_attention_title') }}">
+                    <i class="fa fa-whatsapp"></i>
+                    {{ __('Comun.whatsapp_attention_title') }}
+                    {{-- <img class="ml-3" src="{{ asset('front/img/icon-whatsapp.svg') }}" alt="whatsapp"> --}}
+                </a>
+                <p><i class="fa fa-phone"></i>
+                    +34 977 845 668</p>
+
             </div>
             <div class="d-flex align-items-center">
                 <select class="form-control-search" id="select_language">
