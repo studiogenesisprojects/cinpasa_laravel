@@ -4,7 +4,7 @@
         <div class="row justify-content-between py-3 px-5 header-social">
             <div class="d-flex align-items-center">
                 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Escribenos a nuestro correo" class="mr-3"><i class="fa fa-envelope-o"></i> Contacta</a>
-                <a href="https://api.whatsapp.com/send?phone=34621283448&text={{ __('Comun.whatsapp_attention_message') }}"  class="mr-3" title="{{ __('Comun.whatsapp_attention_title') }}">
+                <a href="https://api.whatsapp.com/send?phone=34621283448&locale={{ App::getLocale() }}&text={{ __('Comun.whatsapp_attention_message') }}"  class="mr-3" title="{{ __('Comun.whatsapp_attention_title') }}" hreflang="{{ App::getLocale() }}">
                     <i class="fa fa-whatsapp"></i>
                     {{ __('Comun.whatsapp_attention_title') }}
                     {{-- <img class="ml-3" src="{{ asset('front/img/icon-whatsapp.svg') }}" alt="whatsapp"> --}}
