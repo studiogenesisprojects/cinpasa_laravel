@@ -28,7 +28,7 @@
     <meta name="title" content="@yield('meta-title')">
     <meta name="description" content="@yield('meta-description')">
     <meta name="facebook-domain-verification" content="luojrac4agvuqxefqvay508oqxfk86" />
-    <meta name=“google-site-verification” content="gBGhpBgCMjyxbklcebgapd2fqjrTkuy5_gW6uC8QsSQ" />
+    <meta name="google-site-verification" content="gBGhpBgCMjyxbklcebgapd2fqjrTkuy5_gW6uC8QsSQ" />
 
     @if(isset($products) && method_exists($products, 'links'))
         @if(!isset($_GET['page']))
