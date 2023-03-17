@@ -31,6 +31,8 @@
         @endif
         @include('front.partials.footer')
         @include('front.partials.js')
+        @include('front.partials.icon-contacta')
+
         @stack('js')
 
         <script>
@@ -80,7 +82,7 @@
                 }, 2000);
             });
         </script>
-        <script>
+        {{-- <script>
         (function(d, s, t, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
@@ -90,6 +92,6 @@
             js.defer = true;
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'id-chat-widget',  '79715152772769a4c588c943a7e49cad'));
-        </script>
+        </script> --}}
     </body>
 </html>
