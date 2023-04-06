@@ -96,7 +96,7 @@
                             </div>
                             <div class="custom-control custom-checkbox mt-3">
                                 <input type="checkbox" class="custom-control-input @error('politics') is-invalid @enderror" name="politics" id="politics" required>
-                                <label class="custom-control-label" for="politics">{{__('Contacta.privacy')}}<a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}" target="_blank">{{__('Contacta.privacy_policy')}}</a></label>
+                                <label class="custom-control-label" for="politics">{{__('Contacta.privacy')}} <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}" target="_blank">{{__('Contacta.privacy_policy')}}</a>.</label>
                                 @error('politics')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                             <br>
