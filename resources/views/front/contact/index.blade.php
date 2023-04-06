@@ -45,6 +45,14 @@
                             </div>
                         </div>
                         <div class="col-12 px-0 mt-3">
+                            <div class="col-12 px-0" id="countryDiv">
+                                <div class="form-group">
+                                    <input type="text" id="country" name="country" required class="form-control background-blue-light @error('country') is-invalid @enderror" placeholder="{{__('Contacta.pais')}} *" value="{{ old('country') }}">
+                                    @error('country')<small class="text-danger">{{ $message }}</small>@enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 px-0 mt-3">
                             <label for="">{{__('Contacta.interest')}}</label>
                         </div>
                         <div class="col-12 px-0 mt-2">
@@ -88,7 +96,7 @@
                             </div>
                             <div class="custom-control custom-checkbox mt-3">
                                 <input type="checkbox" class="custom-control-input @error('politics') is-invalid @enderror" name="politics" id="politics" required>
-                                <label class="custom-control-label" for="politics"><a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}">{{__('Contacta.privacy')}}</a></label>
+                                <label class="custom-control-label" for="politics">{{__('Contacta.privacy')}}<a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}" target="_blank">{{__('Contacta.privacy_policy')}}</a></label>
                                 @error('politics')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                             <br>

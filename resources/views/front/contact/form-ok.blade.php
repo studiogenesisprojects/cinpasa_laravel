@@ -51,6 +51,13 @@
                             <p>{{$petition->company}}</p>
                         </div>
                         @endif
+                        <div class="col-7 d-flex mt-4">
+                            <hr class="hr-vertical mr-4 background-grey-light">
+                            <div>
+                                <p class="small">{{__('Contacta.pais')}}</p>
+                                <p>{{$petition->country}}</p>
+                            </div>
+                        </div>
 
                         <div class="col-12 mt-4">
                             <hr>

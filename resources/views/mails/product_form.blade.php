@@ -91,12 +91,12 @@
                                 <p class="answer-title">Telèfon</p>
                                 <p class="answer-text">{{ $petition->phone_number }}</p>
                             </div>
-                            {{--
+                            
                             <div class="answer-item">
                                 <p class="answer-title">País</p>
                                 <p class="answer-text">{{ $petition->country }}</p>
                             </div>
-                            --}}
+                           
                             <div class="answer-item">
                                 <p class="answer-title">Comentari</p>
                                 <p class="answer-text">{{ $petition->comment }}</p>

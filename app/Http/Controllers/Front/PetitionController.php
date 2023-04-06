@@ -15,9 +15,9 @@ class PetitionController extends Controller
 {
     public function store(RecapchaValidateRequest $request)
     {
-        $this->validate($request, [
-            'g-recaptcha-response' => 'required|recaptchav3:submit,0.7'
-        ]);
+        // $this->validate($request, [
+        //     'g-recaptcha-response' => 'required|recaptchav3:submit,0.7'
+        // ]);
 
         //if(isset($request->company)){
             $company = $request->company;
@@ -70,7 +70,7 @@ class PetitionController extends Controller
             'company' => $company,
             'email' => $request->email,
             'phone_number' => $request->phone,
-            'country' => '-',
+            'country' => $request->country,
             'comment' => $comentaris,
             'origen' => $request->origen,
         ]);
