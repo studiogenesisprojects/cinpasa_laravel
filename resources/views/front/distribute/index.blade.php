@@ -75,6 +75,12 @@
                         </div>
                         <div class="col-12 mt-3">
                             <div class="form-group">
+                                <input type="text" id="country" name="country" required class="form-control background-blue-light @error('country') is-invalid @enderror" placeholder="{{__('Contacta.pais')}} *" value="{{ old('country') }}">
+                                @error('country')<small class="text-danger">{{ $message }}</small>@enderror
+                            </div>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <div class="form-group">
                                 <input type="hidden" name="origen" id="origen">
                                 <input type="text" class="form-control background-blue-light @error('name') is-invalid @enderror" required name="name" id="name" placeholder="{{__('Contacta.name')}}" value="{{ old('name') }}">
                                 @error('name')<small class="text-danger">{{ $message }}</small>@enderror

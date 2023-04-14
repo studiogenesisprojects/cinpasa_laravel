@@ -97,6 +97,14 @@
                             </div>
                         </div>
                         <div class="col-12 mt-3">
+                            <div class="col-12 px-0">
+                                <div class="form-group">
+                                    <input type="text" id="country" name="country" required class="form-control background-blue-light @error('country') is-invalid @enderror" placeholder="{{__('Contacta.pais')}} *" value="{{ old('country') }}">
+                                    @error('country')<small class="text-danger">{{ $message }}</small>@enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-3">
                             <label for="">{{__('Contacta.interest')}}</label>
                         </div>
                         <div class="col-12 mt-2">
