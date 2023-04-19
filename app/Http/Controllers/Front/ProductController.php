@@ -97,9 +97,10 @@ class ProductController extends Controller
             return $item->applicationCategories->first()->name ?? "";
         });
 
-        $product_caracteristics = ProductCaracteristics::where('product_id', $product->id)->orderBy('order')->get();
+        $product_caracteristics = ProductCaracteristics::with('material.languages')->where('product_id', $product->id)->orderBy('order')->get();
 
         $references = $product_caracteristics->pluck('references');
+        $material = $product_caracteristics->pluck('material_id');
         $width = $product_caracteristics->pluck('width');
         $bags = $product_caracteristics->pluck('bags');
         $laces = $product_caracteristics->pluck('laces');
@@ -114,7 +115,7 @@ class ProductController extends Controller
 
         return view('front.products._show', compact('relateds',
          'product_caracteristics',
-         'references', 'width', 'bags', 'laces', 'rapport', 'diameter', 'length', 'width_diameter', 'observations',
+         'references', 'material', 'width', 'bags', 'laces', 'rapport', 'diameter', 'length', 'width_diameter', 'observations',
          'product', 'finishedColumns',
           'productCategory',
            'colorCategories',
@@ -235,8 +236,8 @@ class ProductController extends Controller
 
             $ids = $materialCategory->materials->pluck('id');
 
-            $results = $results->whereHas('materials', function ($q) use ($ids) {
-                $q->whereIn('materials.id', $ids);
+            $results = $results->whereHas('caracteristics.material', function ($q) use ($ids) {
+                $q->whereIn('id', $ids);
             });
 
             $append["material"] = $request->input('material');

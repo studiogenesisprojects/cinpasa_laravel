@@ -210,6 +210,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Referencia</th>
+                                                <th>Material</th>
                                                 <th>Ancho</th>
                                                 <th>Bolsas</th>
                                                 <th>Cordones</th>
@@ -226,12 +227,22 @@
                                                 <th class="td-acciones">Acciones</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="caracteristics_body">
+                                        <tbody id="caracteristics_body" class="with-material-select2">
                                             @foreach($caracteristics as $key => $caracteristic)
                                             <div id="bloc_1">
                                                 <tr id="row_{{$key}}">
                                                 <td>
                                                     <input type="text" class="form-control" value="{{$caracteristic->references}}" name="references2[]">
+                                                </td>
+                                                <td>
+                                                    <select class="form-control select2" name="material_id[]">
+                                                        <option value=""></option>
+                                                        @foreach ($materials as $material)
+                                                            <option value="{{ $material->id }}" @if ($caracteristic->material_id == $material->id) selected @endif>
+                                                                {{ $material->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control " value="{{$caracteristic->width}}" name="width[]">
@@ -290,22 +301,10 @@
                                 </div>
                                 <br>
                                 <div class="col-md-6 pb-3 mt-2">
-                                    <label>Materiales</label>
-                                    <select class="form-control select2" name="materials[]" multiple="true">
-                                        @foreach ($materials as $material)
-                                            <option value="{{$material->id}}"
-                                                @if ($product->materials)
-                                                {{ $product->materials->contains($material) ? "selected" : "" }}
-                                                @endif
-                                                >{{$material->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-6 pb-3 mt-2">
                                     <label>Cabezal FleCortin</label>
                                     <input type="text" class="form-control " value="@if(isset($caracteristics[0])){{ $caracteristics[0]->flecortin_head }}@endif " name="flecortin_head">
                                 </div>
-                                <div class="col-md-6 pb-3">
+                                <div class="col-md-6 pb-3 mt-2">
                                     <label>Ancho FleCortin</label>
                                     <input type="text" class="form-control " value="@if(isset($caracteristics[0])){{ $caracteristics[0]->flecortin_head }}@endif " name="flecortin_width">
                                 </div>
@@ -399,6 +398,16 @@
                     <input type="text" class="form-control " name="references2[]">
                 </td>
                 <td>
+                    <select class="form-control select2 select2-counter-${counter}" name="material_id[]">
+                        <option value=""></option>
+                        @foreach ($materials as $material)
+                            <option value="{{ $material->id }}">
+                                {{ $material->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+                <td>
                     <input type="number" class="form-control " name="width[]">
                 </td>
                 <td>
@@ -437,7 +446,7 @@
                 </td>
             </tr>
             `);
-
+            $(`.select2-counter-${counter}`).select2();
             counter++;
         }
 

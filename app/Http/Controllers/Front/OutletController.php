@@ -93,9 +93,10 @@ class OutletController extends Controller
             return $item->applicationCategories->first()->name ?? "";
         });
 
-        $product_caracteristics = ProductCaracteristics::where('product_id', $product->id)->whereNotNull('discount')->orderBy('discount', 'desc')->orderBy('order')->get();
+        $product_caracteristics = ProductCaracteristics::with('material.languages')->where('product_id', $product->id)->orderBy('order')->get();
 
         $references = $product_caracteristics->pluck('references');
+        $material = $product_caracteristics->pluck('material_id');
         $width = $product_caracteristics->pluck('width');
         $bags = $product_caracteristics->pluck('bags');
         $laces = $product_caracteristics->pluck('laces');
@@ -110,7 +111,7 @@ class OutletController extends Controller
 
         return view('front.outlet.show', compact('relateds',
          'product_caracteristics',
-         'references', 'width', 'bags', 'laces', 'rapport', 'diameter', 'length', 'width_diameter', 'observations',
+         'references', 'material', 'width', 'bags', 'laces', 'rapport', 'diameter', 'length', 'width_diameter', 'observations',
          'product', 'finishedColumns',
            'colorCategories',
            'applicationCategories', 'more_info_trigger'));

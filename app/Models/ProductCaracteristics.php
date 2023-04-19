@@ -21,6 +21,12 @@ class ProductCaracteristics extends Model
         "flecortin_head",
         "flecortin_width",
         'presentation',
-        'stock'
+        'stock',
+        'material_id',
     ];
+
+    public function material()
+    {
+        return $this->belongsTo(Material::class);
+    }
 }

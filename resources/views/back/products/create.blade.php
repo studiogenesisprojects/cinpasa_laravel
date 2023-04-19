@@ -182,6 +182,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Referencia</th>
+                                                <th>Material</th>
                                                 <th>Ancho</th>
                                                 <th>Bolsas</th>
                                                 <th>Cordones</th>
@@ -203,6 +204,16 @@
                                                 <tr id="row_0">
                                                 <td>
                                                     <input type="text" class="form-control " name="references2[]" value="{{ old('references2.0') }}" />
+                                                </td>
+                                                <td>
+                                                    <select class="form-control select2" name="material_id[]">
+                                                        <option value=""></option>
+                                                        @foreach ($materials as $material)
+                                                            <option value="{{ $material->id }}" @if (old('material_id.0') == $material->id) selected @endif>
+                                                                {{ $material->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control " name="width[]" value="{{ old('width.0') }}" />
@@ -261,18 +272,10 @@
                                 <br>
 
                                 <div class="col-md-6 pb-3 mt-3">
-                                    <label>Materiales</label>
-                                    <select name="materials[]" class="form-control select2" multiple="multiple">
-                                        @foreach ($materials as $material)
-                                            <option value="{{$material->id}}" {{old('materials') != null && in_array($material->id, old('materials')) ?'selected':''}}>{{$material->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-6 pb-3 mt-3">
                                     <label>Cabezal FleCortin</label>
                                     <input type="text" class="form-control " name="flecortin_head" value="{{ old('flecortin_head') }}" />
                                 </div>
-                                <div class="col-md-6 pb-3">
+                                <div class="col-md-6 pb-3 mt-3">
                                     <label>Ancho FleCortin</label>
                                     <input type="text" class="form-control " name="flecortin_width" value="{{ old('flecortin_width') }}" />
                                 </div>
@@ -355,6 +358,16 @@
                     <input type="text" class="form-control " name="references2[]">
                 </td>
                 <td>
+                    <select class="form-control select2 select2-counter-${counter}" name="material_id[]">
+                        <option value=""></option>
+                        @foreach ($materials as $material)
+                            <option value="{{ $material->id }}">
+                                {{ $material->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </td>
+                <td>
                     <input type="number" class="form-control " name="width[]">
                 </td>
                 <td>
@@ -393,7 +406,7 @@
                 </td>
             </tr>
             `);
-
+            $(`.select2-counter-${counter}`).select2();
             counter++;
         }
 

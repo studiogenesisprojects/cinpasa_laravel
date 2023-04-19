@@ -86,7 +86,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-
         $request->slug = Str::slug($request->slug);
 
         $validated = $request->validate([
@@ -112,6 +111,7 @@ class ProductController extends Controller
                     $product_caracteristic = new ProductCaracteristics;
                     $product_caracteristic->product_id = $product->id;
                     $product_caracteristic->references = $request->references2[$i];
+                    $product_caracteristic->material_id = $request->material_id[$i];
                     $product_caracteristic->width = $request->width[$i];
                     $product_caracteristic->bags = $request->bags[$i];
                     $product_caracteristic->laces = $request->laces[$i];
@@ -163,7 +163,6 @@ class ProductController extends Controller
 
             $product->applications()->sync($request->applications);
             $product->finisheds()->sync($request->finisheds);
-            $product->materials()->sync($request->materials);
             $product->categories()->sync($request->categories);
             $product->colorCategories()->sync($request->colors);
             $product->labs()->sync($request->labs);
@@ -178,12 +177,12 @@ class ProductController extends Controller
             DB::commit();
 
             //Si es un producto de outlet
-            $route = 'productos.index';
+            $route = 'productos';
             if ($product->outlet){
-                $route = 'outlet.index';
+                $route = 'outlet';
             }
 
-            return redirect()->route($route)->with('success', 'Producto creado correctamente');
+            return redirect()->route($route . '.edit', $product->id)->with('success', 'Producto creado correctamente');
 
         } catch(\Exception $ex){
             DB::rollBack();
@@ -268,6 +267,7 @@ class ProductController extends Controller
                     $product_caracteristic = new ProductCaracteristics;
                     $product_caracteristic->product_id = $product->id;
                     $product_caracteristic->references = $request->references2[$i];
+                    $product_caracteristic->material_id = $request->material_id[$i];
                     $product_caracteristic->width = $request->width[$i];
                     $product_caracteristic->bags = $request->bags[$i];
                     $product_caracteristic->laces = $request->laces[$i];
@@ -340,7 +340,6 @@ class ProductController extends Controller
 
             $product->references()->sync($request->references);
             $product->labels()->sync($this->getOrder($request->labels));
-            $product->materials()->sync($this->getOrder($request->materials));
             $product->colorCategories()->sync($this->getOrder($request->colors));
             $product->finisheds()->sync($this->getOrder($request->finisheds));
             $product->applications()->sync($this->getOrder($request->applications));

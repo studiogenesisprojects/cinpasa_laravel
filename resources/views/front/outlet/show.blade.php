@@ -129,23 +129,6 @@
         <div class="row mt-3">
             <div class="col-md-12">
                 <hr>
-                <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_caracteristicas')}}</p>
-                <div class="row mt-3">
-                    @if($product->materials)
-                    <div class="col-12">
-                        <p class="color-black">
-                        @foreach($product->materials as $material)
-                            <span class="color-primary"><strong>{{$material->name}}</strong></span> /
-                        @endforeach
-                        </p>
-                    </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <hr>
                 <p class="font-bold color-black mt-4">{{__('Productos.producto_mostrar_referencias')}}</p>
                    <p class="d-sm-none d-block">{{__('Productos.scroll')}}</p>
                     <div class="table-responsive mt-3">
@@ -154,6 +137,9 @@
                                 <tr>
                                     @if(in_array(!null, $references->toArray()))
                                         <th>{{__('Productos.referencia')}}</th>
+                                    @endif
+                                    @if(in_array(!null, $material->toArray()))
+                                        <th>{{__('Productos.producto_mostrar_caracteristicas')}}</th>
                                     @endif
                                     @if(in_array(!null, $width->toArray()))
                                         <th>{{__('Productos.ancho')}}</th>
@@ -190,6 +176,13 @@
                                         @if(in_array(!null, $references->toArray()))
                                             <td>
                                                 <span class="color-primary"><strong>{{$references[$i]}}</strong></span>
+                                            </td>
+                                        @endif
+                                        @if(in_array(!null, $material->toArray()))
+                                            <td>
+                                                @if ($product_caracteristics[$i]->material_id != null)
+                                                    <span>{{ $product_caracteristics[$i]->material->lang()->name }}</span>
+                                                @endif
                                             </td>
                                         @endif
                                         @if(in_array(!null, $width->toArray()))
