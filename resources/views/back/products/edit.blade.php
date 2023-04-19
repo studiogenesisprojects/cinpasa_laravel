@@ -5,6 +5,10 @@
 .select2-dropdown.select2-dropdown--below {
     min-width: 120px;
 }
+#caracteristics_body .form-control {
+    padding: 0.1rem 0.15rem;
+    font-size: 0.9rem;
+}
 </style>
 @endsection
 @section('content')
