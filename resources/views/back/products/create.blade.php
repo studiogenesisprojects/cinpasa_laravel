@@ -1,6 +1,11 @@
 @extends('back.common.main')
 @section('css')
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<style>
+#caracteristics_body .select2-dropdown.select2-dropdown--below {
+    min-width: 120px;
+}
+</style>
 @endsection
 @section('content')
 
