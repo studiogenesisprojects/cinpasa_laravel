@@ -94,7 +94,7 @@ Route::group([
     Route::delete('images/{id}', 'Back\Products\ProductController@deleteImage');
     Route::get('download-excel', 'Back\Products\ProductController@downloadExcel');
     Route::get('download-excel-apps', 'Back\Products\ProductController@downloadExcelApps');
-
+    Route::get('download-excel-detail', 'Back\Products\ProductController@downloadExcelDetail');
 
     //ETIQUETAS DE PRODUCTOS
     Route::prefix('/etiquetas')->group(function () {

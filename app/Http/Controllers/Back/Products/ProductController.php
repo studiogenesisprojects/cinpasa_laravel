@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Back\Products;
 
 use App\Exports\ExportProducts;
 use App\Exports\ExportProductsApps;
+use App\Exports\ExportProductsDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestCategory;
@@ -543,6 +544,14 @@ class ProductController extends Controller
     public function downloadExcelApps()
     {
         return Excel::download(new ExportProductsApps(), 'products.xls');
+    }
+
+    /**
+     * Descarga un MS Excel con la información de los productos detallada
+     */
+    public function downloadExcelDetail()
+    {
+        return Excel::download(new ExportProductsDetail(), 'products.xls');
     }
 
     private function assignCategories(Product $product)

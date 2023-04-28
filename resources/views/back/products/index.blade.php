@@ -13,7 +13,7 @@
                     <div class="col-sm-12 mb-3">
                         <button id="download-excel" class="btn btn-primary">Descargar productos por categorias</button>
                         <button id="download-excel-apps" class="btn btn-primary">Descargar productos por aplicaciones</button>
-
+                        <button id="download-excel-detail" class="btn btn-primary">Descargar detalle de productos</button>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -110,6 +110,20 @@
                         document.body.appendChild(link);
                         link.click();
                     })
+            })
+            $('#download-excel-detail').click(function(e){
+                $(this).html('<span role="status" aria-hidden="true"><i class="fas fa-spinner fa-spin mr-2"></i></span>Descargando MS Excel...').addClass('disabled');
+                axios.get('/admin/productos/download-excel-detail', { responseType: "blob" })
+                    .then(response => {
+                        const url = window.URL.createObjectURL(new Blob([response.data]));
+                        const link = document.createElement("a");
+                        link.href = url;
+                        link.setAttribute("download", "detalle-productos.xls");
+                        document.body.appendChild(link);
+                        link.click();
+                    }).finally(() => {
+                        $(this).html('Descargar detalle de productos').removeClass('disabled');
+                    }) ;
             })
         });
         </script>

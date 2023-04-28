@@ -99,6 +99,15 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
         return $this->belongsToMany(Material::class, 'product_materials');
     }
 
+    /**
+     *  Materials belonging to the product related caracteristics, in contrast 
+     *  to the old direct relation between products and materials
+     */
+    public function caracteristicsMaterials()
+    {
+        return $this->belongsToMany(Material::class, 'product_caracteristics');
+    }
+
     public function applicationCategories()
     {
         return $this->hasManyThrough(ApplicationCategory::class, Aplication::class);
@@ -121,7 +130,7 @@ class Product extends TranslatedModel implements LocalizedUrlRoutable
 
     public function labels()
     {
-        return $this->belongsToMany(ProductLabel::class, 'products_labels_relation', 'product_id', 'label_id')->withPivot('order');
+        return $this->belongsToMany(ProductLabel::class, 'products_labels_relation', 'product_id', 'label_id');
     }
 
     public function ecoLogos()
