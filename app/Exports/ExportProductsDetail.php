@@ -39,12 +39,12 @@ class ExportProductsDetail implements FromCollection, WithTitle, WithHeadings, S
                             $translation->where('language_id', 1);
                     });
                 }, 
+                'caracteristics', 
                 'materials' => function($q) {
                     $q->with('languages')->whereHas('languages', function($translation) {
                             $translation->where('language_id', 1);
                     });
                 }, 
-                'caracteristics', 
                 'categories' => function($q) {
                     $q->with('languages')->whereHas('languages', function($translation) {
                             $translation->where('language_id', 1);
@@ -78,8 +78,16 @@ class ExportProductsDetail implements FromCollection, WithTitle, WithHeadings, S
                 $product->ecoLogos->count() > 0 ? $product->ecoLogos->implode('name', ' / ') : '',
                 $product->form != null ? $product->form->name : '',
                 $product->braided != null ? $product->braided->name : '',
-                $product->caracteristicsMaterials->count() > 0 ? $product->caracteristicsMaterials->implode('name', ' / ') : '',
                 $product->caracteristics->count() > 0 ? $product->caracteristics->implode('references', ' / ') : '',
+                $product->caracteristicsMaterials->count() > 0 ? $product->caracteristicsMaterials->implode('name', ' / ') : '',
+                $product->caracteristics->count() > 0 ? $product->caracteristics->implode('width', ' / ') : '',
+                $product->caracteristics->count() > 0 ? $product->caracteristics->implode('bags', ' / ') : '',
+                $product->caracteristics->count() > 0 ? $product->caracteristics->implode('laces', ' / ') : '',
+                $product->caracteristics->count() > 0 ? $product->caracteristics->implode('rapport', ' / ') : '',
+                $product->caracteristics->count() > 0 ? $product->caracteristics->implode('diameter', ' / ') : '',
+                $product->caracteristics->count() > 0 ? $product->caracteristics->implode('length', ' / ') : '',
+                $product->caracteristics->count() > 0 ? $product->caracteristics->implode('width_diameter', ' / ') : '',
+                $product->caracteristics->count() > 0 ? $product->caracteristics->implode('observations', ' / ') : '',
                 $product->categories->count() > 0 ? $product->categories->implode('name', ' / ') : '',
                 $product->categoryColors->count() > 0 ? $product->categoryColors->implode('name', ' / ') : '',
                 $product->finisheds->count() > 0 ? $product->finisheds->implode('name', ' / ') : '',
@@ -107,8 +115,16 @@ class ExportProductsDetail implements FromCollection, WithTitle, WithHeadings, S
             "Eco Logos",
             "Forma",
             "Trenzado",
-            "Materiales",
             "Referencias",
+            "Materiales",
+            "Ancho",
+            "Bolsas",
+            "Cordones",
+            "Rapport",
+            "Diámetro",
+            "Largo",
+            "Ancho/Díametro",
+            "Observaciones",
             "Categorías",
             "Muestrarios",
             "Acabados",
