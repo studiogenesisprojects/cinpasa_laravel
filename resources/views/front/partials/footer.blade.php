@@ -98,7 +98,6 @@
                         <label class="custom-control-label" for="politics"><a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}">{{__('Contacta.privacy')}}</a></label>
                     </div>
                     <input type="hidden" name="frm_nc" id="frm_nc" value="1" />
-                    <script id="embed_jquery" type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
                     <script id="embed_script" type="text/javascript"  src="https://d1nn1beycom2nr.cloudfront.net/news/scripts/form.script.js"></script>
                 </form>
                 <br>
