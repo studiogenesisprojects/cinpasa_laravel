@@ -376,7 +376,7 @@
 
                         search = "?color=" + r.data.color.id;
 
-                        var image = r.data.products[i]['primaryImage'].path.length != 0 ? encodeURI(r.data.products[i]['primaryImage'].path) : '/img/nofoto.png';
+                        var image = r.data.products[i]['primaryImage'].path.length != 0 ? encodeURI(r.data.products[i]['primaryImage'].path.replace('public/', '')) : '/img/nofoto.png';
                         var alt = r.data.products[i]['primaryImage'].alt.length != 0 ? r.data.products[i]['primaryImage'].alt : r.data.products[i]['name'];
 
                         $('#color-modal-products').append(`
