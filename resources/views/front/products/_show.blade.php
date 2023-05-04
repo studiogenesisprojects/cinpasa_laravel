@@ -371,10 +371,10 @@
                         <hr>
                     </div>
                     `)
-
+                    
+                    search = "{{ route('searcher') }}?_token={{ csrf_token() }}&single_color=" + r.data.color.id;
+                    $('#searchLink').attr('href', search);
                     for(i = 0 ; i < 4; i++){
-
-                        search = "?color=" + r.data.color.id;
 
                         var image = r.data.products[i]['primaryImage'].path.length != 0 ? encodeURI(r.data.products[i]['primaryImage'].path.replace('public/', '')) : '/img/nofoto.png';
                         var alt = r.data.products[i]['primaryImage'].alt.length != 0 ? r.data.products[i]['primaryImage'].alt : r.data.products[i]['name'];

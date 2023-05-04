@@ -169,7 +169,6 @@ class ProductController extends Controller
 
     public function getSearchResults(Request $request, $locale)
     {
-
         app()->setLocale($locale);
         $results = Product::where('active', true)->where('outlet', false)->whereHas('languages', function ($q) use ($locale) {
             $q->where('language_id', Product::getLangIndex($locale))->where('active', true);
@@ -257,6 +256,15 @@ class ProductController extends Controller
             });
 
             $append["color"] = $request->input('color');
+        
+        } else if ($request->input('single_color')) {
+            $results = $results->whereHas('categoryColors', function ($q) use ($request) {
+                $q->whereHas('colors', function ($q) use ($request) {
+                    $q->where('product_colors.id', $request->input('single_color'));
+                });
+            });
+
+            $append["single_color"] = $request->input('color');
         }
 
         $results = $results->paginate(8);
