@@ -386,7 +386,7 @@
                                 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProductRe', [
                                     'product' => '${ r.data.products[i].slug}'
                                 ])}}">
-                                    <figure class="border mb-0 square box-product__figure ${ r.data.products[i].class}">
+                                    <figure class="border mb-0 square box-product__figure ${ r.data.products[i].class} img-modal-color">
                                         <img src="{{Storage::url('${image}')}}" class="box-product__img" alt="${r.data.products[i]['name']}">
                                     </figure>
                                     <div class="box-product-info">

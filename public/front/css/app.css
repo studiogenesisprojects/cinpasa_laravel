@@ -12507,3 +12507,6 @@ section.intro-text .text-default + p {
   margin-bottom: 1rem;
 }
 
+figure.box-product__figure.img-modal-color {
+  max-height: 250px;
+}

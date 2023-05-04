@@ -1544,3 +1544,7 @@ a.link-contacta {
 a.link-contacta small{
     line-height:26px
 }
+
+figure.box-product__figure.img-modal-color {
+    max-height: 250px;
+}
