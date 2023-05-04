@@ -387,7 +387,7 @@
                                     'product' => '${ r.data.products[i].slug}'
                                 ])}}">
                                     <figure class="border mb-0 square box-product__figure ${ r.data.products[i].class}">
-                                        <img src="{{Storage::url('${image}')}}" class="box-product__img" alt="${r.data.products[i]['name']}">
+                                        <img src="{{ str_replace('/public/', '', Storage::url('${image}')) }}" class="box-product__img" alt="${r.data.products[i]['name']}">
                                     </figure>
                                     <div class="box-product-info">
                                         <p class="text-primary"><strong>${r.data.products[i]['name']}</strong></p>
