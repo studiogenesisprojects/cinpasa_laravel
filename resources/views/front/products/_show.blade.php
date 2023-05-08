@@ -237,6 +237,8 @@
             </div>
             <div class="col-12 mt-2 d-flex flex-wrap">
                 @foreach ($colorCategories as $colorCategory)
+                <p class="font-bold color-black mt-4"><strong>{{ $colorCategory->lang()->name }}</strong></p>
+                <p class="mt-3">{!! $colorCategory->lang()->description !!}</p>
                     @foreach ($colorCategory->colors as $color)
                         <a href="#" title="Más información sobre el color" style="width: 100px;" class="card-color p-2 mr-3 mt-2 show-color-modal" data-toggle="modal" cc="{{$colorCategory->id}}" id="{{$color->id}}"
                             data-target="#modal-color" >
