@@ -235,19 +235,23 @@
                 <p class="font-bold color-black mt-4"><strong>{{__('Productos.producto_mostrar_colores')}}</strong></p>
                 <p class="mt-3">{{__('Productos.producto_mostrar_colores_texto2')}}</p>
             </div>
-            <div class="col-12 mt-2 d-flex flex-wrap">
+            <div class="col-12 mt-2">
                 @foreach ($colorCategories as $colorCategory)
-                <p class="font-bold color-black mt-4"><strong>{{ $colorCategory->lang()->name }}</strong></p>
-                <p class="mt-3">{!! $colorCategory->lang()->description !!}</p>
-                    @foreach ($colorCategory->colors as $color)
-                        <a href="#" title="Más información sobre el color" style="width: 100px;" class="card-color p-2 mr-3 mt-2 show-color-modal" data-toggle="modal" cc="{{$colorCategory->id}}" id="{{$color->id}}"
-                            data-target="#modal-color" >
-                            <div class="color" style="background:#{{$color->hex_color}}">
-                                <img class="position-absolute t-0 r-0 background-blue p-1 icon-plus-color" src="{{ asset('front/img/icon-plus.svg') }}" alt="icono más">
-                            </div>
-                            <p class="small-xs font-semibold mt-2">{{$color->name}}</p>
-                        </a>
-                    @endforeach
+                    <p class="font-bold color-black mt-4"><strong>{{ $colorCategory->lang()->name }}</strong></p>
+                    <p class="mt-3">{!! $colorCategory->lang()->description !!}</p>
+                    <div class="row">
+                        <div class="col-12 mt-2 d-flex flex-wrap">
+                            @foreach ($colorCategory->colors as $color)
+                                <a href="#" title="Más información sobre el color" style="width: 100px;" class="card-color p-2 mr-3 mt-2 show-color-modal" data-toggle="modal" cc="{{$colorCategory->id}}" id="{{$color->id}}"
+                                    data-target="#modal-color" >
+                                    <div class="color" style="background:#{{$color->hex_color}}">
+                                        <img class="position-absolute t-0 r-0 background-blue p-1 icon-plus-color" src="{{ asset('front/img/icon-plus.svg') }}" alt="icono más">
+                                    </div>
+                                    <p class="small-xs font-semibold mt-2">{{$color->name}}</p>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
                 @endforeach
             </div>
         </div>
