@@ -188,6 +188,8 @@ class ProductController extends Controller
                 })->orderBy('order');
                 $results = $results->whereHas('references', function ($q) use ($request) {
                     $q->where('referencia', 'like', '%' . $request->input('name') . '%');
+                })->orWhereHas('caracteristics', function ($q) use ($request) {
+                    $q->where('references', 'LIKE', '%' . $request->input('name') . '%');
                 });
             }
             $append["name"] = $request->input('name');
