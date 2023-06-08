@@ -9,8 +9,12 @@
         <div id="api-chat-bot"></div>
 
         <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5R5VDBD"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <noscript>
+			<!--<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5R5VDBD"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>-->
+			<iframe src="https://www.googletagmanager.com/gtag/js?id=G-20FMRY22PL"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+		</noscript>
         <!-- End Google Tag Manager (noscript) -->
         {!! EuCookieConsent::getPopup() !!}
         @include('front.partials.header')
