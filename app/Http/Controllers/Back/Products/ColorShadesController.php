@@ -40,7 +40,7 @@ class ColorShadesController extends Controller
     public function store(Request $request)
     {
         $productColorCategory = ProductColorShade::create([
-            "active" => $request->active ?? 0,
+            "searcher_order" => $request->searcher_order,
         ]);
 
         foreach ($request->colorLanguages as $language) {
