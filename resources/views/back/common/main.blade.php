@@ -69,7 +69,7 @@
         $('#delete_link2').click(e => {
             e.preventDefault();
             var url = $(e.currentTarget).attr('href');
-            axios.get(url).then(
+            axios.delete(url).then(
                 r => {
 
                     $('#modal-delete').modal('hide')
