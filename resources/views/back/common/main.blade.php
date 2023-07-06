@@ -81,6 +81,7 @@
                     });
                     tr.remove();
                     img.remove();
+                    window.location.reload();
                 }
             ).catch(e => {
                     $('#modal-delete').modal('hide')
