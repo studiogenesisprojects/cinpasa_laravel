@@ -15,6 +15,7 @@
                     <table width="100%" id="shades" class="table table-striped table-lightfont table-hover">
                         <thead>
                             <tr>
+                                <th>Orden</th>
                                 <th>Nombre</th>
                                 <th>Slug</th>
                                 <th>Descrición</th>
@@ -23,6 +24,7 @@
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>Orden</th>
                                 <th>Nombre</th>
                                 <th>Slug</th>
                                 <th>Descrición</th>
@@ -32,6 +34,7 @@
                         <tbody>
                             @foreach($shades as $shade)
                             <tr role="row">
+                                <td>{{ $shade->searcher_order }}</td>
                                 <td><strong>{{ $shade->name ?? 'Sin nombre' }}</strong></td>
                                 <td>{{ $shade->slug }}</td>
                                 <td>{{ $shade->description }}</td>
