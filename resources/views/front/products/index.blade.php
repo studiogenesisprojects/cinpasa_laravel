@@ -22,9 +22,6 @@
                 <p class="color-blue mb-4 d-flex align-items-center ml-lg-0 ml-3 mt-lg-0 mt-5"><img
                         class="mr-3 mb-1 d-lg-inline-block d-none" src="{{ asset('front/img/icon-categorias.svg') }}"
                         alt="icono menu categorías"><strong>CATEGORÍAS</strong></p>
-                @php
-                $categories = $categories->sortBy('order');
-                @endphp
                 @foreach ($categories as $father)
                 @if($father->active == 1)
                 <div class="d-flex flex-column ml-4">
@@ -38,6 +35,9 @@
                 </div>
                 <div class="collapse show" id="{{$father->slug}}">
                     <div class="sub-item">
+                        @php
+                            $father->childrens = $father->childrens->sortBy('searcher_order');
+                        @endphp
                         @foreach ($father->childrens as $child)
                         <a class="d-block {{Str::contains(url()->current(), $child->slug) ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
                         "productCategory" => $child,

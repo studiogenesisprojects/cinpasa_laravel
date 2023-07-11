@@ -20,7 +20,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $categories = ProductCategory::where('sup_product_category', null)->get();
+        $categories = ProductCategory::where('sup_product_category', null)->orderBy('order')->get();
         $carousel = Carousel::with(['slides' => function ($q) {
             $q->orderBy('order', 'asc');
         }])->where('section_id', 4)->where('active', 1)->where('main', 1)->first();
@@ -55,7 +55,7 @@ class ProductController extends Controller
             } elseif($filter == 2) {
                 $products = $products->sortByDesc('name');
             } else {
-                $products = $products->sortBy('order');
+                $products = $products->sortBy('searcher_order');
             }
             $productCategoryChildrens = $productCategory->childrens;
             $fathers = ProductCategory::where('sup_product_category', null)->get();
