@@ -1447,9 +1447,6 @@ article.noticia-blog ul, article.noticia-blog ol {margin-left: 1rem;}
     background-color: #F2A616;
 }
 
-.btn-whatsapp {
-    background-color: #07bc4c;
-}
 
 .add-product {
     border-radius: 100%;
@@ -1514,22 +1511,11 @@ article.noticia-blog ul, article.noticia-blog ol {margin-left: 1rem;}
 
 
 .header-social a i.fa.fa-envelope-o{color:#F2A616!important}
-.header-social a i.fa.fa-whatsapp{color:#07bc4c!important}
 
-a.dudas-link{
-    padding: 0.5rem 0.75rem;
-    border-radius: 8px;
-    border: 1px solid #002E66;
-    color: #002E66;
-}
 
 a.link-contacta i{
     color:#07bc4c;
     margin-right: 1rem;
-}
-a.dudas-link i{
-    color:#07bc4c;
-    margin-right: 0.5rem;
 }
 
 a.link-contacta i {

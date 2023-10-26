@@ -118,14 +118,7 @@
                                 <img src="{{ asset('front/img/icon-phone.svg') }}" alt="icono teléfono">
                                 <p class="ml-3 color-blue"><small>{{__('Contacta.phone')}}</small></p>
                             </div>
-                            <div class="d-flex mt-4 align-items-start">
-                                <p class="color-blue ">
-                                        <a class="link-contacta" href="https://api.whatsapp.com/send?phone=34621283448&locale={{ App::getLocale() }}&text={{ __('Comun.whatsapp_attention_message') }}" title="{{ __('Comun.whatsapp_attention_title') }}">
-                                            <i class="fa fa-whatsapp"></i>
-                                            <small>{{ __('Comun.whatsapp_attention_title') }}</small>
-                                         </a>
-                                </p>
-                            </div>
+                            
                         </div>
                         <div class="col-lg-12 flex-inherit col-6">
                             <img class="w-100" src="{{ asset('front/img/contacta-1.jpg') }}" alt="imagen mujer sonriendo">

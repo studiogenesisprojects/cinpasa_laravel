@@ -10,11 +10,7 @@
             <div class="col-lg-7 col-md-10 mt-4">
                 <h1 class="before-title">{{__('Lab.titulo')}}</h1>
                 <p class="mt-3">{{__('Lab.text')}}</p>
-                <p class="mt-5">
-                    <a class="dudas-link" href="https://api.whatsapp.com/send?phone=34621283448&locale={{ App::getLocale() }}&text={{ __('Comun.whatsapp_attention_message') }}" title="{{ __('Comun.whatsapp_project_title') }}" hreflang="{{ App::getLocale() }}">
-                        <i class="fa fa-whatsapp"></i>{{ __('Comun.whatsapp_doubts_title') }}
-                    </a>
-                </p>
+                
             </div>
         </div>
     </div>

@@ -13,11 +13,6 @@
             <div class="col-lg-7 col-md-10">
                 <h1 class="before-title">{{$applicationCategory->lang()->name}}</h1>
                 <p class="mt-3">{!! $applicationCategory->lang()->description !!}</p>
-                <p class="mt-5">
-                    <a class="dudas-link" href="https://api.whatsapp.com/send?phone=34621283448&locale={{ App::getLocale() }}&text={{__('Comun.whatsapp_apps_title')}} {{$applicationCategory->lang()->name}}" title="{{ __('Comun.whatsapp_doubts_title') }}" hreflang="{{ App::getLocale() }}">
-                        <i class="fa fa-whatsapp"></i>{{ __('Comun.whatsapp_doubts_title') }}
-                    </a>
-                </p>
             </div>
         </div>
         <div class="row mt-5">
