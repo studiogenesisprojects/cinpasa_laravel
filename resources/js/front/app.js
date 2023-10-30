@@ -46,6 +46,11 @@ Vue.component(
 );
 
 Vue.component(
+    "products-component",
+    require("../components/ProductsComponent.vue").default
+);
+
+Vue.component(
     "products-index-component",
     require("../components/ProductsIndexComponent.vue").default
 );

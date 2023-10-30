@@ -11,20 +11,55 @@ use App\Models\Product;
 use App\Models\ProductCaracteristics;
 use App\Models\ProductColor;
 use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Models\Language;
 use App\Models\MaterialCategory;
 use App\Models\ProductColorShade;
+use Illuminate\Support\Facades\DB;
 use Log;
 use Str;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $userLangId = Language::where('code', app()->getLocale())->firstOrFail()->id;
+        $products = Product::select('id', 'category_id', 'product_image_id')
+            ->with([
+                'languages' => function($translations) use ($userLangId) {
+                    $translations->select(['name', 'slug', 'description', 'language_id', 'product_id'])
+                        ->where('language_id', $userLangId);
+                },
+                'categories' => function($categories) use ($userLangId) {
+                    $categories->with([
+                        'languages' => function($translations) use ($userLangId) {
+                            $translations->select(['name', 'slug', 'language_id', 'product_category_id'])
+                                ->where('language_id', $userLangId);
+                        }]);
+                },
+                'primaryImage' => function($primaryImage) use ($userLangId) {
+                    $primaryImage->select(['id', 'path'])
+                        ->with([
+                            'languages' => function($translations) use ($userLangId) {
+                                $translations->select(['alt', 'product_image_id', 'language_id'])
+                                    ->where('language_id', $userLangId);
+                        }]);
+                }
+            ])
+            ->where('active', true)
+            ->where('outlet', false)
+            ->orderBy('order')
+            ->paginate();
+
+        if ($request->page) {
+            return response()->json($products);
+        }
+
         $categories = ProductCategory::where('sup_product_category', null)->orderBy('order')->get();
         $carousel = Carousel::with(['slides' => function ($q) {
             $q->orderBy('order', 'asc');
         }])->where('section_id', 4)->where('active', 1)->where('main', 1)->first();
-        return view('front.products.index', compact('categories', 'carousel'));
+        
+        return view('front.products.index', compact('categories', 'carousel', 'products'));
     }
 
     public function fetchCategories($sup, $locale)

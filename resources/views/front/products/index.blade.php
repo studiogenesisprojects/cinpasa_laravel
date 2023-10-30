@@ -5,14 +5,10 @@
     @include('front.home.barra-busqueda')
     @section('meta-title', __('Productos.titulo_seo'))
     @section('meta-description', __('Productos.descripcion_seo'))
-    <div class="container-fluid">
+    <div id="app" class="container-fluid">
         <div class="row">
             <div class="col-3 px-5 pb-3 d-lg-block d-none">
                 <h1 style="font-size: 25px;" class="color-black"><strong>Filtrar productos</strong></h1>
-            </div>
-            <div class="col-9 px-0 pb-3 d-flex align-items-center ml-lg-0 ml-3">
-                <p class="mr-1 color-grey">Productos </p> /
-                <p class="mx-1 color-grey"> Categorías</p>
             </div>
         </div>
         <hr class="vw-100">
@@ -50,7 +46,7 @@
 
             </div>
             <div class="col-lg-9">
-                <div class="row background-blue-light border-card py-2">
+                {{-- <div class="row background-blue-light border-card py-2">
                     <div class="col-8 d-flex align-items">
                         <a id="menu_filtrar_productos" href="#" title="Despliega el menú filtrar productos"
                             class="d-flex align-items"><img class="mr-2 d-lg-none d-inline-block"
@@ -58,46 +54,20 @@
                             <p class="color-blue font-bold"></p>
                         </a>
                     </div>
-                    {{-- <div class="col-4 px-0 d-flex justify-content-between">
+                     <div class="col-4 px-0 d-flex justify-content-between">
                         <hr class="hr-vertical background-blue">
                         <select class="form-control p-0 px-4 w-auto mr-5 border-0" id="">
                             <option>Z-A</option>
                             <option>A-Z</option>
                         </select>
-                    </div> --}}
-                </div>
-                <div class="row px-3 pt-4 pb-5 border-card-left">
-                    <div class="row">
-                        @foreach ($categories as $category)
-                        @if ($category->childrens->count() > 0)
-                        <div class="col-12">
-                            <div class="bg-light d-flex align-items-center p-3">
-                                <h4 class="title-sd  mb-0" style="color:#002E66" ;>
-                                    {{$category->lang()->name}}</h4>
-                                <small class="text-default ml-5">{{$category->childrens->count()}}
-                                    {{__('Productos.categorias_texto')}} </small>
-                            </div>
-                        </div>
-                        @foreach ($category->childrens as $child)
-                        <div class="col-lg-4 col-md-6 my-4">
-                            <div class="box-product">
-                                <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
-                                        "productCategory" => $child,
-                                        ])}}">
-                                    <figure class="border mb-0 square box-product__figure {{$child->class}}">
-                                        <img src="@if(!empty($child->image)){{$child->image ? Storage::url($child->image) : '' }}@else{{Storage::url('/img/nofoto.png')}}@endif"
-                                            alt="{{$child->lang()->name}}" class="box-product__img">
-                                    </figure>
-                                    <div class="box-product-info">
-                                        <p class="color-black"><strong>{{$child->lang()->name}}</strong></p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        @endforeach
-                        @endif
-                        @endforeach
-                    </div>
+                    </div> 
+                </div> --}}
+                <div class="row px-3 pb-5 border-card-left">
+                    <products-component
+                        :products_info="{{ collect($products)->toJson() }}"
+                        :favorites='{{ $favorites }}'
+                    >
+                    </products-component>
                 </div>
 
             </div>
@@ -114,6 +84,7 @@
 @endsection
 
 @push('js')
+<script src="{{asset('js/front/app.js')}}"></script>
 <script>
     let bool_filtrar_productos = true;
     let tl_filtrar_productoso = gsap.timeline({

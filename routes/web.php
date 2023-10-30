@@ -118,7 +118,8 @@ Route::group([
     Route::get(LaravelLocalization::transRoute('routes.favorites.index'), 'Front\FavoriteController@index');
     Route::get(LaravelLocalization::transRoute('routes.favorites.info'), 'Front\FavoriteController@info');
     Route::get(LaravelLocalization::transRoute('routes.favorites.stored'), 'Front\FavoriteController@stored');
-
+    Route::post('fav', 'Front\FavoriteController@fav');
+    
     /**
      * Distribuir
      */
