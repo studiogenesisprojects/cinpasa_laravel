@@ -226,6 +226,7 @@ class ProductController extends Controller
                 })->orWhereHas('caracteristics', function ($q) use ($request) {
                     $q->where('references', 'LIKE', '%' . $request->input('name') . '%');
                 });
+                $results = $results->where('active', true);
             }
             $append["name"] = $request->input('name');
         }
