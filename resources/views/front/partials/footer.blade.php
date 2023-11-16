@@ -74,11 +74,15 @@
                     <a class="" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-7 d-flex mt-xl-0 mt-5">
+            <div class="col-xl-4 col-md-7 d-flex mt-xl-0 mt-5 footer-contacta">
                 <!-- [BEGIN OF SIGNUP FORM]-->
                 <hr class="hr-vertical mr-4">
                 <div class="form-group w-100">
-                <form name="frmjoin" id="frmjoin" method="post" action="https://www.email-index.com/join.php?L=RblSsAJNHjFVyC7639jyAyzg" class="form" > <input value="" id="frm_guardar" name="frm_guardar" type="hidden" />
+                    <p>{{__('Footer.subscribe')}}</p>
+                    <p class="text-color-grey">{{__('Footer.descripcion')}}</p>
+                    <p class="text-color-grey">{{__('Footer.solicitar_presupuesto')}}</p>
+                    <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.contact.index') }}" title="{{__('Footer.boton_formulario')}}" class="btn btn-sub px-3">{{__('Footer.boton_formulario')}}</a>
+                <!-- <form name="frmjoin" id="frmjoin" method="post" action="https://www.email-index.com/join.php?L=RblSsAJNHjFVyC7639jyAyzg" class="form" > <input value="" id="frm_guardar" name="frm_guardar" type="hidden" />
                     <label for="">{{__('Footer.subscribe')}}</label>
                     <div class="form-group w-100">
                         <div class="d-flex">
@@ -93,7 +97,7 @@
                     </div>
                     <input type="hidden" name="frm_nc" id="frm_nc" value="1" />
                     <script id="embed_script" type="text/javascript"  src="https://d1nn1beycom2nr.cloudfront.net/news/scripts/form.script.js"></script>
-                </form>
+                </form> -->
                 <br>
                 <!-- [END OF SIGNUP FORM] -->
 

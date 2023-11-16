@@ -716,6 +716,19 @@ footer label {
     font-size: 16px;
 }
 
+footer .footer-contacta p {
+    margin-bottom: 16px;
+}
+
+footer .footer-contacta p.text-color-grey {
+    color: #CCCCCC !important;
+}
+
+footer .footer-contacta a.btn-sub {
+    background-color: orange !important;
+}
+
+
 /*bootstrap*/
 
 .btn {
