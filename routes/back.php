@@ -221,7 +221,7 @@ Route::delete('/acabados/galery/{id}', 'Back\EndingGaleryController@destroy');
 
 Route::post('/productos/galery', 'Back\Products\ProductController@handleGalery');
 Route::delete('/productos/galery/{id}', 'Back\Products\ProductController@deleteGalery');
-Route::get('/productos/delete/{id}', 'Back\Products\ProductController@destroy')->name('products.destroy');
+Route::delete('/productos/delete/{id}', 'Back\Products\ProductController@destroy')->name('products.destroy');
 
 Route::resource('peticiones', 'Back\Petitions\PetitionController');
 Route::get('excel/peticiones', 'Back\Petitions\PetitionController@excel')->name('petitionsExcel');
