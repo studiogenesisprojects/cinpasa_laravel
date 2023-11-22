@@ -84,27 +84,33 @@ class ProductController extends Controller
 
         $more_info_trigger = 1;
         if ($productCategory->father == null) {
-            $products = $productCategory->childrens;
+            $products = collect();
+            $children = $productCategory->childrens;
+            if($filter == 1) {
+                $children = $children->sortBy('name');
+            } elseif($filter == 2) {
+                $children = $children->sortByDesc('name');
+            } else {
+                $children = $children->sortBy('searcher_order');
+            }
+            $productCategoryChildrens = $productCategory->childrens;
+
+            foreach ($children as $child) {
+                $products = $products->merge($child->products);
+            }
+            //return view('front.products.showFather', compact('productCategory','filter','productCategoryChildrens', 'fathers', 'products','more_info_trigger'));
+        } else {
+            $products = $productCategory->products;
             if($filter == 1) {
                 $products = $products->sortBy('name');
             } elseif($filter == 2) {
                 $products = $products->sortByDesc('name');
             } else {
-                $products = $products->sortBy('searcher_order');
+                $products = $products->sortBy('order');
             }
-            $productCategoryChildrens = $productCategory->childrens;
-            $fathers = ProductCategory::where('sup_product_category', null)->get();
-            return view('front.products.showFather', compact('productCategory','filter','productCategoryChildrens', 'fathers', 'products','more_info_trigger'));
         }
-        $products = $productCategory->products;
-        if($filter == 1) {
-            $products = $products->sortBy('name');
-        } elseif($filter == 2) {
-            $products = $products->sortByDesc('name');
-        } else {
-            $products = $products->sortBy('order');
-        }
-        $products = $products->where('outlet', false);
+        
+        $products = $products->where('outlet', false)->unique('id');
         return view('front.products.show', compact('productCategory', 'products','filter','more_info_trigger'));
     }
 
