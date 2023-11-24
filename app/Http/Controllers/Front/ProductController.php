@@ -110,7 +110,7 @@ class ProductController extends Controller
             }
         }
         
-        $products = $products->where('outlet', false)->unique('id');
+        $products = $products->where('outlet', false)->sortBy('order')->unique('id');
         return view('front.products.show', compact('productCategory', 'products','filter','more_info_trigger'));
     }
 
