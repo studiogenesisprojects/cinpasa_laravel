@@ -13,7 +13,7 @@
                     <h3 class="before-title">{{__('ContactaFooter.titulo')}}</h3>
                     <div class="row mt-3">
                         <div class="col-xl-10">
-                            @if((empty($products)) && (!empty($product)) && (!empty($product->galeries)) && (!$product->galeries->first()->images->isEmpty()) )
+                            @if((empty($products)) && (!empty($product)) && (!empty($product->galeries)) && (!empty($product->galeries->first()->images)) )
                             <input type="hidden" name="productsIds[]" value="{{ $product->id }}">
                             <div class="row flex-row flex-md-column">
                                 <div class="col-md-12 col-sm-6 col-10">

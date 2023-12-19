@@ -29,14 +29,21 @@
                     data-interval="false">
                     <div class="carousel-inner">
                         @if($product->galeries->first())
-                        @foreach ($product->galeries->first()->images as $image)
-                        <div class="carousel-item {{($loop->first) ? 'active' : ''}}">
-                            <figure class="bg-cover bg-lg box-list__figure">
-                                <img src="@if(!empty($image->path)){{Storage::url($image->path)}}@else{{Storage::url('/img/nofoto.png')}}@endif" alt="@empty($image->alt) {{ $product->name }} @else {{  $image->alt}} @endempty" class="box-product__carousel img-fluid">
-                            </figure>
-                        </div>
-                        @endforeach
-                        @endif
+							@foreach ($product->galeries->first()->images as $image)
+								<div class="carousel-item {{($loop->first) ? 'active' : ''}}">
+									<figure class="bg-cover bg-lg box-list__figure">
+										<img src="@if(!empty($image->path)){{Storage::url($image->path)}}@else{{Storage::url('/img/nofoto.png')}}@endif" alt="@empty($image->alt) {{ $product->name }} @else {{  $image->alt}} @endempty" class="box-product__carousel img-fluid">
+									</figure>
+								</div>
+							@endforeach
+                        @else				
+							<div class="carousel-item active">
+								<figure class="bg-cover bg-lg box-list__figure" >
+									<img src="{{ asset('front/img/no-foto.jpg') }}" alt=" {{ $product->name }} " class="box-product__carousel img-fluid" style="width:100%">
+								</figure>
+							</div>
+						@endif
+
                         @if($product->video)
                         <div class="carousel-item">
                             <figure class="bg-cover bg-lg">
@@ -49,16 +56,9 @@
                         @endif
                     </div>
                     <ol class="carousel-indicators carousel-indicators-productos mt-3">
-                        {{-- @if ($product->primaryImage)
-                        <li data-target="#carousel-token" data-slide-to="0" class="active col">
-                            <figure class="bg-cover bg-sm"
-                                style="background-image:@if(!empty($product->primaryImage->path)) url('{{route('carousel.getImage', str_replace("/",";",$product->primaryImage->path))}}')@else url('{{Storage::url('/img/nofoto.png')}}')@endif">
-                            </figure>
-                        </li>
-                        @endif --}}
                         @if ($product->galeries->first())
                         @foreach ($product->galeries->first()->images as $i => $image)
-                        <li data-target="#carousel-token" data-slide-to="{{$product->primaryImage ? $i : $i}}" class="{{$loop->first && !$product->primaryImage ? 'active' : ''}} col">
+                        <li data-target="#carousel-token" data-slide-to="{{$product->primaryImage ? $i : ''}}" class="{{$loop->first && !$product->primaryImage ? 'active' : ''}} col">
                             <img class="border-img miniatura" style="width: 90px; height: 90px;" src="@if(!empty($image->path)) {{ Storage::url($image->path)}} @else {{Storage::url('/img/nofoto.png')}}@endif" alt="miniatura carousel">
                         </li>
                         @endforeach
