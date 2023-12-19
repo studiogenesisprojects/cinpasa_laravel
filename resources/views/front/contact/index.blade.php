@@ -12,6 +12,11 @@
             <div class="row">
                 <div class="col-lg-8 transform-t-5">
                     <div class="card flex-row flex-wrap p-4">
+                        @if (Session::has('message'))
+                            <div class="col-12 px-0">
+                                <div class="alert alert-danger">{{ Session::get('message') }}</div>
+                            </div>
+                        @endif
                         <div class="col-12 px-0">
                             <div class="form-group">
                                 <input type="text" id="name" name="name" class="form-control background-blue-light  @error('name') is-invalid @enderror" placeholder="{{__('Contacta.name')}}" required value="{{ old('name') }}">
@@ -150,7 +155,8 @@
 @endswitch
 <script>
     $(document).ready(function(){
-        $('#origen').val(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+        let urlContact = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);\
+        $('#origen').val(urlContact);
     });
 
 </script>

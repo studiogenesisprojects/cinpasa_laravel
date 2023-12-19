@@ -22,11 +22,11 @@
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
     {!! RecaptchaV3::initJs() !!}
 
-    <style>
+    {{-- <style>
         .grecaptcha-badge { 
             visibility: hidden !important;
         }
-    </style>
+    </style> --}}
     
     {{-- <title>Cinpasa</title> --}}
     <title>@yield('meta-title')</title>
