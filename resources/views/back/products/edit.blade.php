@@ -326,19 +326,6 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6 pb-3">
-                                    <label>LAB</label>
-                                    <select name="labs[]" class="form-control select2" multiple="multiple">
-                                        <option value="">Elige un LAB</option>
-                                        @foreach($labs as $lab)
-                                        @if(in_array($lab->id,$selected_labs->toArray()))
-                                            <option value="{{$lab->id}}" selected>{{$lab->name}}</option>
-                                        @else
-                                            <option value="{{$lab->id}}">{{$lab->name}}</option>
-                                        @endif
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-6 pb-3">
                                     <label for="">Referencias</label>
                                     <select name="references[]" class="form-control select2" multiple >
                                         @foreach ($references as $reference)
