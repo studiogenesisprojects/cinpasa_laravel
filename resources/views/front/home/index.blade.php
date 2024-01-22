@@ -42,18 +42,6 @@
         </div>
     </section>
 
-    <section id="CIN">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-sm-10 col-12">
-                    <h2 class="mt-5 before-title-center text-center">{{__('Inicio.seccion3_titulo')}}</h2>
-                    <p class="text-center mt-3">{{__('Inicio.seccion3_subtitulo')}}</p>
-                </div>
-            </div>
-        @include('front.home.cin-lines')
-        </div>
-    </section>
-
     {{-- <section class="background-grey-light">
         <div class="container">
             <div class="row">
