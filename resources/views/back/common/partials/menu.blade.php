@@ -507,23 +507,6 @@
             </li>
             @endif
             @endif
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(2)))
-            <li class="selected has-sub-menu no-sub-menu">
-                <a href="{{route('lab')}}">
-                    <div class="icon-w">
-                        <div class="ti-image"></div>
-                    </div>
-                    <span>Lab</span>
-                </a>
-            </li>
-            @endif
-            <li class="selected has-sub-menu no-sub-menu">
-                <a href="{{route('outlet.index')}}">
-                    <div class="icon-w">
-                        <div class="ti-layout-list-large-image"></div>
-                    </div>
-                    <span>Outlet</span>
-                </a>
-            </li>
+            
         </ul>
     </div>
