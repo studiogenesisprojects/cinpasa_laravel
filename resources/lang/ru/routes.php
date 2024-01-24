@@ -76,7 +76,10 @@ return [
 
     ],
     'lab' => [
-        'index' => 'лаборатория',
+        'index' => 'приложени/texniceskoe-primenenie-promyslennost/energetika',
         'show_products' => 'лаборатория/{slug}'
+    ],
+	'applications_technical-industrial' => [
+        "temp" => 'приложени/texniceskoe-primenenie-promyslennost'
     ]
 ];

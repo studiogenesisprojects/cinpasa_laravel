@@ -75,7 +75,10 @@ return [
         'show' => 'outlet/{product}',
     ],
     'lab' => [
-        'index' => 'lab',
+        'index' => 'candidatures/technique-industriel/electrique',
         'show_products' => 'lab/{slug}'
+    ],
+	'applications_technical-industrial' => [
+        "temp" => 'candidatures/technique-industriel'
     ]
 ];

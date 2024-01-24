@@ -17,10 +17,11 @@
                                     @endif
                                     <p class="color-white">{{$slide->lang()->text}}</p>
                                     @if($key == 0)
-                                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
+                                    <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.index', [
                                         "productCategory" => $homeApps[0],
                                     ])}}" title="saber más sobre líderes en fabricación de cintas y cintas para cortinas" class="btn btn-secundary mt-3">SABER MÁS <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>
                                     @elseif($key == 1)
+									<p style="visibility: hidden;">{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications_technical-industrial.temp')}}</p>
                                     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.show', [
                                         "applicationCategory" => 'tecnico-industrial'
                                     ])}}" title="saber más sobre líderes en fabricación de cintas y cintas para cortinas" class="btn btn-secundary mt-3">SABER MÁS <img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="Icono flecha derecha"></a>

@@ -77,7 +77,10 @@ return [
         'show' => 'outlet/{product}',
     ],
     'lab' => [
-        'index' => 'lab',
+        'index' => 'applications/technical-industrial/electrical-industry',
         'show_products' => 'lab/{slug}'
+    ],
+	'applications_technical-industrial' => [
+        "temp" => 'applications/technical-industrial'
     ]
 ];
