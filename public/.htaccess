@@ -2325,7 +2325,19 @@
     redirect 301 /project-category/cortadas-en https://www.cinpasa.com/en
     redirect 301 /project-category/27-mm-en https://www.cinpasa.com/en
 
+	#redirects 25/01/2024
 
+	redirect 301 /productos/cintas-onda-perfecta/cinta-onda-perfecta-transparente /productos/cintas-onda-perfecta/cinta-onda-perfecta-2-bolsas-transparente
+
+	redirect 301 /ca/productes/cintes-ona-perfecta/cinta-onda-perfecta-transparent /ca/productes/cintes-ona-perfecta/cinta-onda-perfecta-2-bosses-transparent
+
+	redirect 301 /en/products/perfect-wave-tapes/transparent-perfect-wave-tape /en/products/perfect-wave-tapes/transparent-perfect-wave-tape-2-pockets
+
+	redirect 301 /fr/produits/perfect-wave-ruban/ruban-ondulation-parfaite-transparent /fr/produits/perfect-wave-ruban/ruban-onde-parfaite-2-poches-transparent
+
+	redirect 301 /ru/Индекс/cintas-onda-perfecta/lenta-dlya-sozdaniya-idealnyx-voln-prozracnaya /ru/Индекс/cintas-onda-perfecta/lenta-idealnoi-volny-s-2-prozracnymi-karmanami
+
+	#end redirects 25/01/2024
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
