@@ -47,20 +47,32 @@
                 <div id="menu" class="">
                     <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.company.index')}}" title="Accede al apartado empresa">{{strtoupper(__('Menu.business'))}}</a>
                     <a id="productos_submenu" class="ml-sm-5 a-stagger" href="#" title="Accede al apartado productos">{{strtoupper(__('Menu.products'))}} <img src="{{ asset('front/img/icon-arrow-down-blue.svg') }}" alt="icono flecha abajo"></a>
-                    <div class="flex-column ml-5 my-2 submenu">
+                    <div class="flex-column ml-3 my-2 submenu">
                         @php
                            $fathers = $fathers->sortBy('order');
                         @endphp
                         @foreach ($fathers as $father)
-                            <a class="ml-sm-5"
-                                href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" => $father->slug])}}">{!! $father->name !!}</a>
+                        @if($father->active == 1)
+                            <div class="d-flex flex-column">
+                                <a class="font-bold"
+                                    href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" => $father->slug])}}">{!! $father->name !!}</a>
+                                @php
+                                    $childs = $father->childrens;
+                                    $childs = $childs->sortBy('searcher_order');
+                                @endphp
+                                @foreach ($childs as $children)
+                                <a class="ml-3 mt-1 font-light"
+                                    href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" =>$children->slug])}}">{!! $children->name !!}</a>
+                                @endforeach
+                            </div>
+                        @endif
                         @endforeach
                     </div>
                     <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Accede al apartado aplicaciones">{{strtoupper(strtoupper(__('Menu.aplications')))}}</a>
                     @if(1 == 0)
                     <a class="ml-sm-5 a-stagger" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.news.index')}}" title="Accede al apartado noticias">{{strtoupper(__('Menu.news'))}}</a>
                     @endif
-                    <a class="ml-3 {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
+                    <a class="ml-sm-5 a-stagger {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
 
                 </div>
             </div>

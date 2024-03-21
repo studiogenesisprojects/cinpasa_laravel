@@ -69,7 +69,7 @@ let tl_menu = gsap.timeline({
 
 tl_menu.set("#icon-menu .icon-nav", {
     attr: {
-        src: "img/icon-menu-pink.svg"
+        src: "https://cinpasa.com/front/img/icon-menu-pink.svg"
     }
 });
 
