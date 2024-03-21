@@ -23,18 +23,12 @@
                                 @error('name')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
-                        @switch(App::getLocale())
-                            @case ('ca')
-                            @case ('es')
-                                <div class="col-6 pl-0 mt-3">
-                                    <div class="form-group">
-                                        <input type="email" required name="email" class="form-control background-blue-light @error('email') is-invalid @enderror" id="email" placeholder="{{__('Contacta.email')}}">
-                                        @error('email')<small class="text-danger">{{ $message }}</small>@enderror
-                                    </div>
-                                </div>
-                                @break
-                            @default
-                        @endswitch
+                        <div class="col-6 pl-0 mt-3">
+                            <div class="form-group">
+                                <input type="email" required name="email" class="form-control background-blue-light @error('email') is-invalid @enderror" id="email" placeholder="{{__('Contacta.email')}}">
+                                @error('email')<small class="text-danger">{{ $message }}</small>@enderror
+                            </div>
+                        </div>
                         <div class="col-6 pr-0 mt-3">
                             <div class="form-group">
                                 <input type="phone" id="phone" required name="phone" class="form-control background-blue-light @error('phone') is-invalid @enderror" placeholder="{{__('Contacta.phone_form')}}" value="{{ old('phone') }}">

@@ -10,6 +10,7 @@ use App\Models\Petition;
 use App\Models\Product;
 use App\Models\ProductLang;
 use Exception;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 
 class PetitionController extends Controller
@@ -17,14 +18,14 @@ class PetitionController extends Controller
     public function store(RecapchaValidateRequest $request)
     {
         $this->validate($request, [
-            'g-recaptcha-response' => 'required|recaptchav3:submit,0.7'
-            ]);
+            'g-recaptcha-response' => 'required|recaptchav3:submit,0.7',
+            'fullname' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'country' => 'required',
+        ]);
 
         try {
-            //if(isset($request->company)){
-            /* } else {
-                $company = 'Particular';
-            }*/
             
             $company = $request->company;
             $comentaris = '';

@@ -81,22 +81,6 @@
                     <p class="text-color-grey">{{__('Footer.descripcion')}}</p>
                     <p class="text-color-grey">{{__('Footer.solicitar_presupuesto')}}</p>
                     <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.contact.index') }}" title="{{__('Footer.boton_formulario')}}" class="btn btn-sub px-3">{{__('Footer.boton_formulario')}}</a>
-                <!-- <form name="frmjoin" id="frmjoin" method="post" action="https://www.email-index.com/join.php?L=RblSsAJNHjFVyC7639jyAyzg" class="form" > <input value="" id="frm_guardar" name="frm_guardar" type="hidden" />
-                    <label for="">{{__('Footer.subscribe')}}</label>
-                    <div class="form-group w-100">
-                        <div class="d-flex">
-                            <input maxlength="" data-type="email" value="" id="frm_email" name="frm_email" type="email" required  placeholder="{{__('Contacta.email')}}" class="form-control background-white"  />
-                            <button type="submit" title="{{__('Footer.subscribe')}}" class="btn-sub px-3">{{__('Footer.seguir')}}</button>
-                        </div>
-                    </div>
-                    <input type='hidden' name='frm_email_format' id='frm_email_format' value='2'/>
-                    <div class="custom-control custom-checkbox mt-3">
-                        <input type="checkbox" class="custom-control-input" id="politics" required>
-                        <label class="custom-control-label" for="politics"><a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.politic_pages.politic_privacy')}}">{{__('Contacta.privacy')}}</a></label>
-                    </div>
-                    <input type="hidden" name="frm_nc" id="frm_nc" value="1" />
-                    <script id="embed_script" type="text/javascript"  src="https://d1nn1beycom2nr.cloudfront.net/news/scripts/form.script.js"></script>
-                </form> -->
                 <br>
                 <!-- [END OF SIGNUP FORM] -->
 
