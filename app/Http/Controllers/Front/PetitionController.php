@@ -18,8 +18,8 @@ class PetitionController extends Controller
     public function store(RecapchaValidateRequest $request)
     {
         $this->validate($request, [
-            'g-recaptcha-response' => 'required|recaptchav3:submit,0.7',
-            'fullname' => 'required',
+            'g-recaptcha-response' => 'required|recaptchav3:register,0.7',
+            'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
             'country' => 'required',

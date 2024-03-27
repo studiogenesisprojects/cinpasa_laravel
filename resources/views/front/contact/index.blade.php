@@ -17,6 +17,13 @@
                                 <div class="alert alert-danger">{{ Session::get('message') }}</div>
                             </div>
                         @endif
+
+                        @error('g-recaptcha-response')
+                            <div class="col-12 px-0">
+                                <div class="alert alert-danger">Captcha error</div>
+                            </div>
+                        @enderror
+
                         <div class="col-12 px-0">
                             <div class="form-group">
                                 <input type="text" id="name" name="name" class="form-control background-blue-light  @error('name') is-invalid @enderror" placeholder="{{__('Contacta.name')}}" required value="{{ old('name') }}">
@@ -99,8 +106,9 @@
                                 @error('politics')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                             <br>
-                            {!! RecaptchaV3::field('submit') !!}
-                            <button type="submit" title="{{__('Contacta.send')}}" class="btn btn-primary mt-4">{{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
+                            {!! RecaptchaV3::field('register') !!}
+                        
+                            <button value="register" type="submit" title="{{__('Contacta.send')}}" class="btn btn-primary mt-4">{{__('Contacta.send')}}<img class="ml-4 mb-1" src="{{ asset('front/img/icon-arrow-right.svg') }}" alt="icono flecha derecha">
                             </button>
                         </div>
                     </div>
