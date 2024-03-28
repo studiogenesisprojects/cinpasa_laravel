@@ -75,6 +75,19 @@
                     <a class="ml-sm-5 a-stagger {{Str::contains($currentUrl, "contacta") ? "active": ""}}" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.contact.index')}}" title="Accede al apartado contacta">{{strtoupper(__('Menu.contact'))}}</a>
 
                 </div>
+				<select class="form-control-search mobile_language" id="select_mobilelanguage">
+                    @foreach(\App\Models\Language::all() as $language)
+                        @if(isset(explode("/", url()->current())[3]))
+                            @if(explode("/", url()->current())[3] == $language->code)
+                                <option value="{{$language->code}}" data-url="{{LaravelLocalization::getLocalizedURL($language->code)}}" selected>{{strtoupper($language->code)}}</option>
+                            @else
+                                <option value="{{$language->code}}" data-url="{{LaravelLocalization::getLocalizedURL($language->code)}}">{{strtoupper($language->code)}}</option>
+                            @endif
+                        @else
+                            <option value="{{$language->code}}" data-url="{{LaravelLocalization::getLocalizedURL($language->code)}}">{{strtoupper($language->code)}}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
             <div class="position-relative">
                 <div class="justify-content-end mb-4 d-lg-flex d-none">
