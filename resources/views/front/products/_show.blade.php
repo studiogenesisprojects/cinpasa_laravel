@@ -67,7 +67,7 @@
                         <li data-target="#carousel-token"
                             data-slide-to="{{ $product->galeries->first()->images->count() }}" class="col">
                             <figure class="bg-cover bg-sm"
-                                style="background-image: url(https://img.youtube.com/vi/{{$product->video}}/default.jpg)">
+                                style="width: 90px; height: 90px; background-image: url(https://img.youtube.com/vi/{{$product->video}}/default.jpg)">
                                 <span class="video"><img src="https://img.youtube.com/vi/{{$product->video}}/default.jpg" alt="video"
                                         class="img-fluid"></span>
                             </figure>
