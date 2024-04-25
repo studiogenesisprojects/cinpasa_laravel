@@ -257,6 +257,18 @@
             @endif
 
             @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
+                <li class="selected">
+                    <a href="{{route('guide-request.index')}}">
+                        <div class="icon-w">
+                            <i class="ti-share-alt"></i>
+                        </div>
+                        <span>Solcitudes de guias</span>
+                    </a>
+                  
+                </li>
+            @endif
+
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
                 <li class="selected has-sub-menu">
                     <a href="#">
                         <div class="icon-w">
@@ -487,6 +499,19 @@
                 </div> --}}
             </li>
             @endif
+
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
+                <li class="selected">
+                    <a href="{{route('guide-request.index')}}">
+                        <div class="icon-w">
+                            <i class="ti-share-alt"></i>
+                        </div>
+                        <span>Solcitudes de guias</span>
+                    </a>
+                  
+                </li>
+            @endif
+            
             @if(1 == 0)
             @if(Auth()->user()->role->canRead(App\Models\Section::find(15)))
             <li class="selected has-sub-menu">

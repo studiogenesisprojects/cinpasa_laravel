@@ -24,6 +24,10 @@
                     </ol>
                 </nav>
             </div>
+            <div class="col-lg-10 col-10 offset-lg-0 offset-1 order-lg-1 order-2 mt-lg-0">
+                <h1 class="font-bold mt-4 mb-4">{{$product->name}}</h1>
+
+            </div>
             <div class="col-lg-7 col-10 offset-lg-0 offset-1 order-lg-1 order-2 mt-lg-0 mt-5">
                 <div id="carousel-token" class="carousel slide carousel-token" data-ride="carousel"
                     data-interval="false">
@@ -88,7 +92,7 @@
             </div>
             <div class="col-lg-5 d-flex flex-column justify-content-between order-lg-2 order-1">
                 <div>
-                    <h1 class="font-bold before-title mt-4">{{$product->name}}</h1>
+                    <!-- <h1 class="font-bold before-title mt-4">{{$product->name}}</h1> -->
                     <p class="mt-3 p-small">{!! $product->lang()->description !!}</p>
                 </div>
                 <br>
@@ -229,6 +233,21 @@
             </div>
         </div>
         @endif
+
+        @if($product->display_download)
+            <div class="d-flex justify-content-center mt-2">
+                <a 
+                    data-toggle="modal" 
+                    data-target="#modal-guide" 
+                    style="padding-left:1.5em; padding-right:1.5em; background-color: orange !important;" 
+                    class="btn btn-sub" 
+                    href="#"
+                >
+                    {{__('Productos.guia_descargar')}}
+                </a>
+            </div>
+        @endif
+
         <div class="row mt-5">
             <div class="col-12 mt-5">
                 <hr>
@@ -327,6 +346,7 @@
 
 {{-- @include('front.common.partials.mid-banner') --}}
 @include('front.common.modals.color')
+@include('front.common.modals.guide')
 @endsection
 
 @push('js')

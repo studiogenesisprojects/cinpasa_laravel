@@ -11,10 +11,14 @@ use App\Models\Product;
 use App\Models\ProductCaracteristics;
 use App\Models\ProductColor;
 use App\Localization\laravellocalization\src\Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Mail\ProductGuideSended;
+use App\Models\GuideRequest;
 use App\Models\Language;
 use App\Models\MaterialCategory;
 use App\Models\ProductColorShade;
+use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Log;
 use Str;
 
@@ -334,4 +338,29 @@ class ProductController extends Controller
         })->orderBy('order', 'ASC');
         return response()->json($products->paginate(6));
     }
+
+    public function downloadGuide(Request $request, $id)
+    {
+        try {
+            $product = Product::where('id', $id)->first();
+            $requestEmail = $request->email;
+
+            GuideRequest::create([
+                'email' => $requestEmail, 
+                'product_id' => $product->id, 
+                'created_at' => now(), 
+                'updated_at' => now()
+            ]);
+
+            Mail::to($requestEmail)->send(new ProductGuideSended($product));
+            
+            return response()->json(200);
+        } catch (Exception $e) {
+            Log::error($e);
+
+            return response()->json(500);
+
+        }
+    }
+        
 }

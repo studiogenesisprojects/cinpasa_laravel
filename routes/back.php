@@ -200,6 +200,10 @@ Route::resource('ofertas-trabajo/inscritos', 'Back\JobOffers\JobOfferInscription
 Route::resource('ofertas-trabajo/cvs', 'Back\JobOffers\JobOfferResumeController');
 Route::resource('ofertas-trabajo', 'Back\JobOffers\JobOfferController');
 
+//Solicitudes de guias
+Route::get('solicitudes-guias/listado', 'Back\Products\GuideRequestController@index')->name('guide-request.index');
+Route::get('solicitudes-guias/download-excel', 'Back\Products\GuideRequestController@downloadExcel');
+
 //CONFIGURACIÓN
 Route::post('configuracion/usuarios/toggle', 'Back\User\UserController@toggle')->name('toggleUsers');
 Route::resource('configuracion/usuarios', 'Back\User\UserController');

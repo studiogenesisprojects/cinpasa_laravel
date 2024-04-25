@@ -104,7 +104,7 @@ class ProductController extends Controller
 
             DB::beginTransaction();
 
-            $productId = DB::table('products')->insertGetId(['active' => $request->active, 'liasa_code' => $request->liasa_code, 'video' => $request->video, 'outlet' => ($request->outlet == 'true')]);
+            $productId = DB::table('products')->insertGetId(['active' => $request->active, 'liasa_code' => $request->liasa_code, 'video' => $request->video, 'display_download' => $request->display_download, 'outlet' => ($request->outlet == 'true')]);
             $product = Product::findOrFail($productId);
 
             if(isset($request->references2)){
@@ -151,6 +151,14 @@ class ProductController extends Controller
                 $path = $request->file('primary_image')->storeAs('public/productos', $request->file('primary_image')->getClientOriginalName());
                 $image = $product->images()->create(['path' => $path,]);
                 $product->update(['product_image_id' => $image->id]);
+            }
+
+            if($request->hasFile('technical_guide_file')){
+                $fileName = $request->file('technical_guide_file')->getClientOriginalName();
+
+                $path = $request->file('technical_guide_file')->storeAs('public/productos/guia-tecnica',  str_replace(" ","-",$request->file('technical_guide_file')->getClientOriginalName()));
+                $product->update(['technical_guide_file' => $fileName]);
+
             }
 
 
@@ -332,6 +340,14 @@ class ProductController extends Controller
                 $product->save();
             }
 
+            if($request->hasFile('technical_guide_file')){
+                $fileName = $request->file('technical_guide_file')->getClientOriginalName();
+
+                $path = $request->file('technical_guide_file')->storeAs('public/productos/guia-tecnica', str_replace(" ","-",$request->file('technical_guide_file')->getClientOriginalName()));
+                $product->update(['technical_guide_file' => $fileName]);
+
+            }
+
             if ($request->images) {
                 foreach ($request->images as $image) {
                     $path = $image->storeAs('public/productos', $image->getClientOriginalName());
@@ -351,7 +367,7 @@ class ProductController extends Controller
             $product->categories()->sync($this->getOrder($request->categories));
 
             $product->ecoLogos()->sync($request->ecos);
-            $product->update(array_merge($request->all(), ["active" => isset($request->active), "outlet" => isset($request->outlet)?$request->outlet:false]));
+            $product->update(array_merge($request->except('technical_guide_file'), ["active" => isset($request->active), "display_download" => $request->display_download, "outlet" => isset($request->outlet)?$request->outlet:false]));
             $this->assignCategories($product);
 
             DB::commit();
@@ -384,6 +400,12 @@ class ProductController extends Controller
                     $image->delete();
                 }
                 $galery->delete();
+            }
+
+            $productGuidePath = 'public/productos/guia-tecnica/'. $product->technical_guide_file;
+
+            if (Storage::exists($productGuidePath)) {
+                Storage::delete($productGuidePath);
             }
 
             $product->galeries()->delete();

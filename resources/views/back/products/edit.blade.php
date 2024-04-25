@@ -210,7 +210,20 @@
                                     :galery="{{$product->galeries()->with(['images', 'images.languages'])->first() ?? 'null'}}" :languages="{{$languages}}"
                                     ></product-galery>
                                 </div>
+                            </div>
 
+                            <h5 class="pt-3">Guia tecnica</h5>
+
+                            <div class="row pb-3">
+                                <div class="col-sm-12">
+                                    <label for="">Descargable: <input type="checkbox" value="1" name="display_download" {{ !$product->display_download ? "": "checked" }}></label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="technical_guide_file">
+                                        Fichero: @if ($product->technical_guide_file) <span>{{ $product->technical_guide_file }}</span> @endif
+                                    </label>
+                                    <input type="file" name="technical_guide_file" class="form-control">
+                                </div>
                             </div>
                             <h5 class="py-3">Características</h5>
                             <div class="row pb-3">
