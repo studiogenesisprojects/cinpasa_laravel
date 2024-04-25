@@ -159,11 +159,11 @@
             <tr>
                 <td colspan="2">
                     <h1 class="title">
-                        {{__('Productos.mail.title')}}
+                        {{__('Productos.mail_title')}}
                     </h1>
 
                     <div class="mt-4">
-                        {{__('Productos.mail.message')}}
+                        {{__('Productos.mail_message')}}
                     </div>
 
                 </td>
@@ -171,7 +171,7 @@
             <tr>
                 <td colspan="2">
                     <em>
-                        {{__('Productos.mail.message-auto-send')}}
+                        {{__('Productos.mail_message-auto-send')}}
                     </em>
                 </td>
             </tr>
