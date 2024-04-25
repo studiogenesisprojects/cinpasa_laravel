@@ -23,6 +23,7 @@
         </div>
         <div class="row mt-5">
             @foreach($news as $new)
+            @if($new->lang()->title!="")
             <div class="col-xl-4 col-md-6">
                 <div class="row mx-0 flex-column align-items-center hover-noticia">
                     <div class="position-relative w-100">
@@ -42,9 +43,10 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
-            {{$news->links()}}
         </div>
+        {{$news->links()}}
     </div>
 </section>
 @endsection

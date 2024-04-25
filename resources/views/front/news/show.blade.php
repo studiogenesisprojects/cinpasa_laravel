@@ -1,8 +1,12 @@
 @extends('front.common.main')
 
 @section('content')
+@if(isset($news->lang()->seo_title))
 @section('meta-title', $news->lang()->seo_title)
+@endif
+@if(isset($news->lang()->seo_description))
 @section('meta-description', $news->lang()->seo_description)
+@endif
 <section id="home">
     <div class="container">
         <div class="row">
@@ -75,7 +79,9 @@
                     <h5 class="color-black font-bold mt-4">{{__('Noticias.noticias-relacionadas')}}</h5>
                     <div class="d-flex flex-row flex-wrap mt-3">
                         @foreach ($news->relatedNews as $related)
-                        <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.show', ["news" => $related])}}" class="btn-noticia mt-3 px-3 py-2 ml-1">{{$related->lang(App::getLocale())->title}}</a>
+                        @if($related->active && isset($related->lang(App::getLocale())->title) && $related->lang(App::getLocale())->title != "")
+                            <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.news.show', ["news" => $related])}}" class="btn-noticia mt-3 px-3 py-2 ml-1">{{$related->lang(App::getLocale())->title}}</a>
+                        @endif
                         @endforeach
                     </div>
                 @endif

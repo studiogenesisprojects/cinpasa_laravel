@@ -75,6 +75,13 @@
                 window.location.href = url;
             });
 
+			$('#select_mobilelanguage').change(function(){
+                var language = $('#select_language').val();
+                var url = $(this).find(':selected').data('url');
+
+                window.location.href = url;
+            });
+
             $("#contact-button").click(function() {
                 $([document.documentElement, document.body]).animate({
                     scrollTop: $("#contact-form-products").offset().top

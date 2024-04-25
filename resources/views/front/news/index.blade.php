@@ -48,8 +48,8 @@
                 </div>
             </div>
             @endforeach
-            {{$news->links()}}
         </div>
+        {{$news->links()}}
     </div>
 </section>
 @endsection

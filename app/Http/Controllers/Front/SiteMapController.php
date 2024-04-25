@@ -68,14 +68,18 @@ class SiteMapController extends Controller
                     'language' => $language->code,
                     'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.contact.index')
                 ];
+                /*
                 $labTranslations[$key] = [
                     'language' => $language->code,
                     'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.lab.index')
                 ];
+                */
+                /*
                 $outletTranslations[$key] = [
                     'language' => $language->code,
                     'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.outlet.index')
                 ];
+                */
                 $distributeTranslations[$key] = [
                     'language' => $language->code,
                     'url' => LaravelLocalization::getURLFromRouteNameTranslated($language->code, 'routes.distribute.index')
@@ -122,6 +126,7 @@ class SiteMapController extends Controller
             null,
             $companyTranslations
         );
+        /*
         $sitemap->add(
             LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.lab.index'),
             date("Y-m-d H:i:s",filectime($view.'/front/lab/index.blade.php')),
@@ -131,6 +136,8 @@ class SiteMapController extends Controller
             null,
             $labTranslations
         );
+        */
+        /*
         $sitemap->add(
             LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.outlet.index'),
             date("Y-m-d H:i:s",filectime($view.'/front/lab/index.blade.php')),
@@ -140,6 +147,7 @@ class SiteMapController extends Controller
             null,
             $outletTranslations
         );
+        */
         $sitemap->add(
             LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.applications.index'),
             Aplication::latest()->first()->updated_at,
@@ -251,11 +259,15 @@ class SiteMapController extends Controller
 
         //Productos y productos outlet
         foreach (Product::where('active', true)->get() as $product) {
+            /*
             if($product->outlet){
                 $route = 'routes.outlet.show';
             } else {
                 $route = 'routes.products.showProduct';
             }
+            */
+            $route = 'routes.products.showProduct';
+
             $m = 0;
             $n = 0;
             $imagesProduct = [];
@@ -339,7 +351,7 @@ class SiteMapController extends Controller
         }
 
 
-
+        /*
         //LAB
         foreach (Lab::all() as $lab) {
             //Productos lab
@@ -376,7 +388,8 @@ class SiteMapController extends Controller
                 );
             }
         }
-
+        */
+        
         //Aplicaciones
         foreach (Aplication::where('active', true)->get() as $application) {
             //Categorías de esa aplicación
