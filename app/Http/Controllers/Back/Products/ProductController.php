@@ -154,9 +154,9 @@ class ProductController extends Controller
             }
 
             if($request->hasFile('technical_guide_file')){
-                $fileName = $request->file('technical_guide_file')->getClientOriginalName();
+                $fileName = str_replace(" ","-",$request->file('technical_guide_file')->getClientOriginalName());
 
-                $path = $request->file('technical_guide_file')->storeAs('public/productos/guia-tecnica',  str_replace(" ","-",$request->file('technical_guide_file')->getClientOriginalName()));
+                $path = $request->file('technical_guide_file')->storeAs('public/productos/guia-tecnica', $fileName);
                 $product->update(['technical_guide_file' => $fileName]);
 
             }
@@ -341,9 +341,9 @@ class ProductController extends Controller
             }
 
             if($request->hasFile('technical_guide_file')){
-                $fileName = $request->file('technical_guide_file')->getClientOriginalName();
+                $fileName = str_replace(" ","-",$request->file('technical_guide_file')->getClientOriginalName());
 
-                $path = $request->file('technical_guide_file')->storeAs('public/productos/guia-tecnica', str_replace(" ","-",$request->file('technical_guide_file')->getClientOriginalName()));
+                $path = $request->file('technical_guide_file')->storeAs('public/productos/guia-tecnica', $fileName);
                 $product->update(['technical_guide_file' => $fileName]);
 
             }
