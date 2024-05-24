@@ -149,7 +149,7 @@
             <tr>
                 <td colspan="1">
                     <a class="navbar-brand" href="{{ asset('/') }}" title="{{ env('APP_NAME') }}"><img
-                        src="{{ asset('/front/img/logo-cinpasa.svg') }}" alt="{{ env('APP_NAME') }} logo"
+                        src="{{ asset('front/img/logo-cinpasa-negative.svg') }}" alt="{{ env('APP_NAME') }} logo"
                         width="154">
                     </a>
                 </td>

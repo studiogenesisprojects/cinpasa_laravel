@@ -352,7 +352,7 @@ class ProductController extends Controller
                 'updated_at' => now()
             ]);
 
-            Mail::to($requestEmail)->send(new ProductGuideSended($product));
+            Mail::to($requestEmail)->bcc('export@cinpasa.com')->send(new ProductGuideSended($product));
             
             return response()->json(200);
         } catch (Exception $e) {
