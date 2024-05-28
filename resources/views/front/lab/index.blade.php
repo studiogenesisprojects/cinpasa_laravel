@@ -7,7 +7,7 @@
 <section id="aplicaciones">
     <div class="container">
         <div class="row mt-5">
-            <div class="col-lg-7 col-md-10 mt-4">
+            <div class="col-lg-12 col-md-10 mt-4">
                 <h1 class="before-title">{{__('Lab.titulo')}}</h1>
                 <p class="mt-3">{{__('Lab.text')}}</p>
                 

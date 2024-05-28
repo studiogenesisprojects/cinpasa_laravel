@@ -322,6 +322,8 @@
                                     <a onClick="addValues()" class="btn btn-primary"><i class="fas fa-plus"></i></a>
                                 </div>
                                 <br>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6 pb-3 mt-2">
                                     <label>Cabezal FleCortin</label>
                                     <input type="text" class="form-control " value="@if(isset($caracteristics[0])){{ $caracteristics[0]->flecortin_head }}@endif " name="flecortin_head">
@@ -330,6 +332,8 @@
                                     <label>Ancho FleCortin</label>
                                     <input type="text" class="form-control " value="@if(isset($caracteristics[0])){{ $caracteristics[0]->flecortin_head }}@endif " name="flecortin_width">
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6 pb-3">
                                     <label>Presentación</label>
                                     <select name="presentation" class="form-control">
@@ -338,6 +342,7 @@
                                         <option value="1">Por lotes</option>
                                     </select>
                                 </div>
+                                <!--
                                 <div class="col-md-6 pb-3">
                                     <label for="">Referencias</label>
                                     <select name="references[]" class="form-control select2" multiple >
@@ -350,6 +355,9 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                -->
+                            </div>                            
+                            <div class="row ">
                                 <div class="col-md-6">
                                     <label>Categorías</label>
                                     <applications :name="'categories[]'" :items="{{$categories}}" :sitems="{{$product->categories->sortBy('pivot.order')}}" ></applications>
@@ -359,7 +367,6 @@
                                     <applications :name="'colors[]'" :items="{{$colors}}" :sitems="{{$product->categoryColors->sortBy('pivot.order')}}" ></applications>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Acabados</label>

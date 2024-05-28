@@ -24,10 +24,11 @@
                     </ol>
                 </nav>
             </div>
-            <div class="col-lg-10 col-10 offset-lg-0 offset-1 order-lg-1 order-2 mt-lg-0">
+            <div class="col-lg-12 col-10 offset-lg-0 offset-1 order-lg-1 order-2 mt-lg-0">
                 <h1 class="font-bold mt-4 mb-4">{{$product->name}}</h1>
-
-            </div>
+ 				<p>{{$product->lite_description}}</p>
+				<br>
+			</div>
             <div class="col-lg-7 col-10 offset-lg-0 offset-1 order-lg-1 order-2 mt-lg-0 mt-5">
                 <div id="carousel-token" class="carousel slide carousel-token" data-ride="carousel"
                     data-interval="false">

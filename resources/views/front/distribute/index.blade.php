@@ -7,7 +7,7 @@
 <section>
     <div class="container">
         <div class="row mt-5">
-            <div class="col-lg-7 col-md-10 mt-5">
+            <div class="col-lg-12 col-md-10 mt-5">
                 <h1 class="before-title">{{__('Distribuir.titulo_pag')}}</h1>
                 <p class="mt-3">{{__('Distribuir.text1_pag')}}</p>
             </div>
