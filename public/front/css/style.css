@@ -1572,3 +1572,17 @@ figure.box-product__figure.img-modal-color {
 		width:fit-content;
 	}
 }
+figure.control_noticia{
+	position: relative;
+	height:250px;
+	width:100%;
+	overflow:hidden;
+	background-size:cover;
+	background-position:center center;
+	background-repeat: no-repeat;
+	border-radius:12px;
+}
+.control_card{
+	margin: -100px 10px 0px 10px;
+	height: calc(100% - 150px);
+}
