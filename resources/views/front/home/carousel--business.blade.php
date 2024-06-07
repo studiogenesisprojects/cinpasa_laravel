@@ -2,7 +2,7 @@
 <section id="historia">
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-6 col-sm-10 mt-5">
+            <div class="col-md-12 col-sm-10 mt-5">
                 <h2 class="before-title">{{__('Empresa.titulo_historia')}}</h2>
                 <p class="mt-3">
                     {{__('Empresa.texto_historia')}}

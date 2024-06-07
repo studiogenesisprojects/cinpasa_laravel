@@ -96,7 +96,7 @@
             <div class="col-lg-5 d-flex flex-column justify-content-between order-lg-2 order-1">
                 <div>
                     <h3 class="font-bold before-title mt-4">{{$product->name}}</h3>
-                    <p class="mt-3 p-small">{!! $product->lang()->description !!}</p>
+                    <p class="mt-3">{!! $product->lang()->description !!}</p>
                 </div>
                 <br>
                 <div class="d-lg-block d-none">

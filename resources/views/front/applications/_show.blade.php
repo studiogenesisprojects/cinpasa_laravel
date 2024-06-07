@@ -39,6 +39,7 @@
                 <br>
                 <h2 class="title-xl">{{$aplication->lang(App::getLocale())->subtitle ?? ""}}</h2>
                 <p class="text text-default">{!! $aplication->lang(App::getLocale())->description??"" !!}</p>
+                <br>
             </div>
         </div>
         <div class="row">
