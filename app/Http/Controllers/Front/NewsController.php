@@ -34,7 +34,7 @@ class NewsController extends Controller
         $lang = Language::where('code', App::getLocale())->first();
         $news = News::whereHas('newsLang', function ($q) use($lang){
             $q->where('active',1)->where('language_id', $lang->id)->where('title','!=',null);
-        })->orderBy('created_at', 'desc')->where('active', 1)->paginate(9);
+        })->orderBy('created_at', 'desc')->where('active', 1)->paginate(18);
 
         $carousel = new Carousel;
         $slideCarousel = new Slide;

@@ -90,7 +90,7 @@
 <section>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <h2 class="mt-5 before-title">{{__('Empresa.titulo_subtitulo1')}}</h2>
                 <p class="mt-3 color-blue mb-5">{{__('Empresa.titulo_subtitulo1_texto1')}}<br>
                     <br>{{__('Empresa.titulo_subtitulo1_texto2')}}</p>
