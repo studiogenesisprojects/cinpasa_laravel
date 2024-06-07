@@ -34,7 +34,7 @@
 <section class="products">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-12">
+            <div class="col-md-12 col-12">
                 <h3 class="title-md mt-5">{{$aplication->lang(App::getLocale())->name ?? ""}}</h3>
                 <br>
                 <h2 class="title-xl">{{$aplication->lang(App::getLocale())->subtitle ?? ""}}</h2>
