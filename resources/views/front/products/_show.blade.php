@@ -303,7 +303,7 @@
                             "applicationCategory" => $app->applicationCategories->first() ? $app->applicationCategories->first()->lang()->slug : "",
                             "aplication" => $app
                         ])}}" title="Acceder a la aplicación" class="d-flex justify-content-between align-items-center">
-                            <p class="color-black mb-3 mt-2">{{$app->lang()->name}}</p>
+                            <p class="mb-3 mt-2">{{$app->lang()->name}}</p>
                             <img class="mr-sm-0 mr-3" src="{{ asset('front/img/arrow-right.svg') }}" alt="icono flecha derecha">
                         </a>
                         <hr>
