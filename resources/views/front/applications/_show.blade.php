@@ -16,7 +16,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6 col-md-8 col-10 offset-xl-0 offset-1">
-                                    <h1 class="before-title" style="color-white;">{{$aplication->name}}</h1>
+                                    <h1 class="before-title" style="color:white;">{{$aplication->name}}</h1>
                                     <p class="color-white">{{$applicationCategory->name}}</p>
                                 </div>
                             </div>
