@@ -284,7 +284,7 @@
             @foreach ($finishedColumns as $cols)
             <div class="col-lg-4 col-sm-6 mt-3">
                     @foreach ($cols as $finished)
-                    <p class="color-black mb-3 mt-2">{{$finished->lang()->name}}</p>
+                    <p class="mb-3 mt-2">{{$finished->lang()->name}}</p>
                     <hr>
                     @endforeach
             </div>
