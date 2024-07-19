@@ -730,7 +730,7 @@ footer label {
 }
 
 footer .footer-contacta p {
-    margin-bottom: 16px;
+    margin-bottom: 0.5rem;
 }
 
 footer .footer-contacta p.text-color-grey {
@@ -1586,4 +1586,8 @@ figure.control_noticia{
 .control_card{
 	margin: -100px 10px 0px 10px;
 	height: calc(100% - 150px);
+}
+
+.icon-footer {
+    max-width: 40px;
 }
