@@ -1572,6 +1572,10 @@ figure.box-product__figure.img-modal-color {
 		border:0px solid transparent;
 		width:fit-content;
 	}
+    .footer-blocs{
+        text-align: center;
+    }
+
 }
 figure.control_noticia{
 	position: relative;
@@ -1589,5 +1593,5 @@ figure.control_noticia{
 }
 
 .icon-footer {
-    max-width: 40px;
+    max-width: 35px;
 }

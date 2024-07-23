@@ -41,8 +41,8 @@
         <div class="row justify-content-center">
             <img class="w-50 justify-content-center" src="{{ asset('front/img/logo-cinpasa-bl.png') }}" alt="logotipo cinpasa">
         </div>
-        <div class="row mt-5 mb-5">
-            <div class="col-xl-3 col-sm-4 col-7 ml-sm-0 ml-1">
+        <div class="row mt-5 mb-5 footer-blocs">
+            <div class="col-xl-3 col-sm-4 col-12 ml-sm-0 ml-1">
                 <p class="font-bold">{{__('Footer.address')}}</p>
 
                 <p class="mt-2">{{__('Footer.cinpasa-oficinas-title')}}</p>
@@ -57,13 +57,10 @@
                 </p>
                 
             </div>
-            <div class="col-xl-2 col-md-3 col-sm-4 col-6 mt-sm-0 mt-5">
+            <div class="col-xl-2 col-md-3 col-sm-4 col-12 mt-sm-0 mt-5">
                 <p class="font-bold mb-2">{{__('Footer.contenido')}}</p>
                 <div class="d-flex flex-column">
-                    @php
-                        $fathers = $fathers->sortBy('order');
-                    @endphp
-                    @foreach ($fathers as $father)
+                    @foreach ($footers as $father)
                         <a class=""
                             href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" => $father->slug])}}">{!! $father->name !!}</a>
                     @endforeach
@@ -71,11 +68,11 @@
                     {{-- <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Accede al apartado aplicaciones">{{strtoupper(strtoupper(__('Menu.aplications')))}}</a> --}}
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-sm-4 col-6 mt-sm-0 mt-5">
+            <div class="col-xl-2 col-sm-4 col-12 ml-sm-0 ml-1">
                 <p class="mb-2">{{__('Footer.certificates')}}</p>
-                <img class="w-100 justify-content-center" src="{{ asset('front/img/certificates.png') }}" alt="logotipo cinpasa">
+                <img class="w-75 justify-content-center" src="{{ asset('front/img/certificates.png') }}" alt="logotipo cinpasa">
             </div>
-            <div class="col-xl-2 col-lg-3 col-sm-4 col-6 mt-sm-0 mt-5">
+            <div class="col-xl-2 col-lg-3 col-sm-4 col-12 mt-sm-0 mt-5">
                 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.work-with-us.index')}}" title="Accede al apartado Trabaja" class="text-white" style="text-decoration: underline;">{{strtoupper(strtoupper(__('TrabajaConNosotros.titulo-seccion')))}}</a>
 
                 <p class="mt-3">{{__('Footer.legal')}}</p>
