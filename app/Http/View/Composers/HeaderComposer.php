@@ -21,7 +21,6 @@ class HeaderComposer
     {
         $view->with([
             "fathers" => $this->categories->where('sup_product_category', null)->get(),
-            "footers" => $this->categories->where(function($q){ $q->where('sup_product_category', null)->orWhere('id', 47744);})->where('id', '!=', 47737)->get(),
             "currentUrl" => LaravelLocalization::getLocalizedURL('es'),
             "favorites" =>
             collect(session()->all())->filter(function ($e, $key) {

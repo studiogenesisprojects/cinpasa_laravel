@@ -72,7 +72,7 @@
                 <p class="mb-2">{{__('Footer.certificates')}}</p>
                 <img class="w-75 justify-content-center" src="{{ asset('front/img/certificates.png') }}" alt="logotipo cinpasa">
             </div>
-            <div class="col-xl-2 col-lg-3 col-sm-4 col-12 mt-sm-0 mt-5">
+            <div class="col-xl-2 col-lg-3 col-sm-4 col-12 mt-xl-0 mt-5">
                 <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.work-with-us.index')}}" title="Accede al apartado Trabaja" class="text-white" style="text-decoration: underline;">{{strtoupper(strtoupper(__('TrabajaConNosotros.titulo-seccion')))}}</a>
 
                 <p class="mt-3">{{__('Footer.legal')}}</p>

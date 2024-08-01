@@ -3,6 +3,7 @@
 namespace App\Http\View\Composers;
 
 use App\Models\Aplication;
+use App\Models\ApplicationCategory;
 use App\Models\Product;
 use Illuminate\View\View;
 use App\Models\ProductCategory;
@@ -19,9 +20,18 @@ class FooterComposer
 
     public function compose(View $view)
     {
+        $footers = [];
+        $footers[] = ProductCategory::find(47734);
+        $footers[] = ProductCategory::find(47735);
+        $footers[] = ProductCategory::find(47744);
+        $footers[] = ProductCategory::find(47736);
+        $footers[] = ProductCategory::find(47755);
+        $footers[] = ProductCategory::find(47753);
+        $footers[] = ProductCategory::find(25338);
+        $footers[] = ApplicationCategory::with('getLang')->find(25339);
+
         $view->with([
-            // "productCategories" => ProductCategory::where('active', true)->where('sup_product_category', null)->with('getLang')->get()->take(5),
-            // "aplications" => Aplication::orderBy('order')->get()->take(5)
+            "footers" => $footers,
         ]);
     }
 }

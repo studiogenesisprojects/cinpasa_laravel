@@ -36,6 +36,6 @@ class ViewServiceProvider extends ServiceProvider
         //View composer para el buscador
         View::composer('front.home.barra-busqueda', 'App\Http\View\Composers\SearcherComposer');
         //View composer para el footer
-        View::composer('front.common.partials.footer', 'App\Http\View\Composers\FooterComposer');
+        View::composer('front.partials.footer', 'App\Http\View\Composers\FooterComposer');
     }
 }
