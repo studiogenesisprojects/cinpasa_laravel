@@ -1575,7 +1575,9 @@ figure.box-product__figure.img-modal-color {
     .footer-blocs{
         text-align: center;
     }
-
+	.footer-certificate p{
+        text-align: center !important;
+    }
 }
 figure.control_noticia{
 	position: relative;

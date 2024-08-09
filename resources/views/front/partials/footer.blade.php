@@ -114,7 +114,7 @@
     </div>
     <div class="bg-white">
         <div class="container">
-            <div class="row pt-3 align-items-end">
+            <div class="row pt-3 align-items-end footer-certificate">
                 <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
                     <img  class="w-100" src="{{ asset('front/img/unio-europea-ng.png') }}" style="border:1px solid black;" alt="icono ue">
                 </div>
