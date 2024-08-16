@@ -28,8 +28,8 @@ class FooterComposer
         $footers[] = ProductCategory::find(47755);
         $footers[] = ProductCategory::find(47753);
         $footers[] = ProductCategory::find(25338);
-        $footers[] = ApplicationCategory::with('getLang')->find(25339);
-
+        $footers[] = ProductCategory::find(47741);
+        
         $view->with([
             "footers" => $footers,
         ]);
