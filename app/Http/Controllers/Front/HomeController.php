@@ -22,17 +22,11 @@ class HomeController extends Controller
     public function index()
     {
         $applicationCategories = ApplicationCategory::orderBy('order')->take(6)->get();
+        $idHomeApps = [47734, 47748, 47753, 47747, 47737, 25338, 47736];
 
-        $homeApps = [];
+        $homeApps = ProductCategory::whereIn('id', $idHomeApps)->with('getLang')->get();
 
-        $homeApps[] = ProductCategory::where('id',47734)->with('getLang')->first();
-        $homeApps[] = ProductCategory::where('id',47735)->with('getLang')->first();
-        $homeApps[] = ProductCategory::where('id',47744)->with('getLang')->first();
-        $homeApps[] = ProductCategory::where('id',47736)->with('getLang')->first();
-        $homeApps[] = ProductCategory::where('id',47755)->with('getLang')->first();
-        $homeApps[] = ProductCategory::where('id',47753)->with('getLang')->first();
-        $homeApps[] = ProductCategory::where('id',25338)->with('getLang')->first();
-        $homeApps[] = ProductCategory::where('id',47741)->with('getLang')->first();
+        $homeApps[] = ApplicationCategory::with('getLang')->find(25339);
 
         $labs = Lab::all();
 
