@@ -1,6 +1,6 @@
 
 @foreach ($homeApps as $key => $homeApp)
-@if($key != 7)
+@if($key != 8)
     <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', [
                 "productCategory" => $homeApp,
             ])}}" class="col-lg-3 col-md-4 col-sm-6 position-relative mt-3">
