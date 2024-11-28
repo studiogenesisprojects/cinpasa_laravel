@@ -61,7 +61,7 @@
                                     $childs = $childs->sortBy('searcher_order');
                                 @endphp
                                 @foreach ($childs as $children)
-                                <a class="ml-3 mt-1 font-light"
+                                <a class="ml-3 mt-1 font-default"
                                     href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" =>$children->slug])}}">{!! $children->name !!}</a>
                                 @endforeach
                             </div>
