@@ -235,4 +235,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
+    'path_uploads' => [
+        'eco' => 'eco-logos',
+    ],
 ];

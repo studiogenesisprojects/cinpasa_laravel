@@ -31,7 +31,7 @@
                             @foreach($ecos as $eco)
                             <tr role="row">
                                 <td><strong>{{ $eco->name ?? 'Sin nombre' }}</strong></td>
-                                <td>{!! $eco->image ? '<img src="' . Storage::url($eco->image) . '" alt="" width="50px" height="auto">' : 'Sin imagen' !!}</td>
+                                <td>{!! $eco->image ? '<img src="' . Storage::url(config('app.path_uploads.eco') . "/" . $eco->image) . '" alt="" width="50px" height="auto">' : 'Sin imagen' !!}</td>
                                 <td class="td-acciones">
                                     <div class="btn-group">
                                         <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" form="button"><i class="icon-options-vertical"></i></button>

@@ -38,6 +38,11 @@
                 :alt="product.primary_image.alt.length > 0 ? product.primary_image.alt : product.name"
                 class="w-100 border-img"
                 />
+                <div class="position-absolute transform-t-50 d-flex t-0 l-0 ml-3">
+                    <span v-for="logo in product.eco_logos" :key="logo.id" class="btn-icon" style="padding: 1px">
+                    	<img :src="`/storage/eco-logos/${logo.image}`" :alt="logo.name" class="w-auto h-100" :title="logo.name">
+                    </span>
+                </div>
                 <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
                     <span
                         :id="product.id"
@@ -83,7 +88,7 @@ export default {
     };
   },
   methods: {
-      favorite(p) {
+    favorite(p) {
       axios
         .post("/fav", {
           value: p.id

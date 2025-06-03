@@ -90,6 +90,13 @@
                         <span class="sr-only">Next</span>
                     </div>
                 </div>
+                <div class="d-flex mt-5 justify-content-between">
+                    @foreach ($product->ecoLogos as $logo)
+                        <span class="btn-icon" style="padding: 1px">
+                            <img src="{{ Storage::url(config('app.path_uploads.eco') . "/" . $logo->image) }}" alt="{{$logo->name}}" class="w-auto h-100" title="{{$logo->name}}">
+                        </span>                          
+                    @endforeach
+                </div>
             </div>
             <div class="col-lg-5 d-flex flex-column justify-content-between order-lg-2 order-1">
                 <div>
@@ -119,7 +126,6 @@
                             @endif
                         </button>
                     </div>
-                    <hr>
                 </div>
             </div>
         </div>

@@ -104,6 +104,13 @@
                                     <span id="{{ $product->id }}" class="btn-icon favorit {{ request()->session()->exists('product-'.$product->id)?'active':'' }}"> <i class="far fa-heart" title="{{ __('Favoritos.add') }}"></i></span>
                                 </div>
                             </div>
+                            <div class="position-absolute transform-t-50 d-flex t-0 l-0 ml-3 mt-3">
+                                @foreach($product->ecoLogos as $logo)
+                                    <span class="btn-icon" style="padding: 1px">
+                                        <img src="{{ Storage::url(config('app.path_uploads.eco') . "/" . $logo->image) }}" alt="{{$logo->name}}" class="w-auto h-100" title="{{$logo->name}}">
+                                    </span>
+                                @endforeach
+                            </div>
                             <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
                                 "productCategory" => $product->categories[0],
                                 "product" => $product
