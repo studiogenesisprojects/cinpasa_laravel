@@ -90,10 +90,10 @@
                         <span class="sr-only">Next</span>
                     </div>
                 </div>
-                <div class="d-flex mt-5 justify-content-between">
+                <div class="d-flex mt-5 justify-content-start">
                     @foreach ($product->ecoLogos as $logo)
-                        <span class="btn-icon" style="padding: 1px">
-                            <img src="{{ Storage::url(config('app.path_uploads.eco') . "/" . $logo->image) }}" alt="{{$logo->name}}" class="w-auto h-100" title="{{$logo->name}}">
+                        <span class="eco-icon" style="padding: 1px">
+                            <img src="{{ Storage::url(config('app.path_uploads.eco') . "/" . $logo->image) }}" alt="{{$logo->name}}" class="w-auto h-100 mw-100 mh-100" title="{{$logo->name}}">
                         </span>                          
                     @endforeach
                 </div>
