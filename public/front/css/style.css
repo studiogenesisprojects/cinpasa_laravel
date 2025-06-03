@@ -1602,3 +1602,16 @@ figure.control_noticia{
     font-size: 16px;
     font-weight: 400 !important;
 }
+
+.eco-icon {
+    border-radius: 8px;
+    background-color: white;
+    width: 70px;
+    height: 70px;
+    display: block;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    margin-left: 1rem;
+    position: relative;
+  }

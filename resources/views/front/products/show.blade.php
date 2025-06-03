@@ -107,7 +107,7 @@
                             <div class="position-absolute transform-t-50 d-flex t-0 l-0 ml-3 mt-3">
                                 @foreach($product->ecoLogos as $logo)
                                     <span class="btn-icon" style="padding: 1px">
-                                        <img src="{{ Storage::url(config('app.path_uploads.eco') . "/" . $logo->image) }}" alt="{{$logo->name}}" class="w-auto h-100" title="{{$logo->name}}">
+                                        <img src="{{ Storage::url(config('app.path_uploads.eco') . "/" . $logo->image) }}" alt="{{$logo->name}}" class="w-auto h-100 mw-100 mh-100" title="{{$logo->name}}">
                                     </span>
                                 @endforeach
                             </div>

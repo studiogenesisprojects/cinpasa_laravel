@@ -40,7 +40,7 @@
                 />
                 <div class="position-absolute transform-t-50 d-flex t-0 l-0 ml-3">
                     <span v-for="logo in product.eco_logos" :key="logo.id" class="btn-icon" style="padding: 1px">
-                    	<img :src="`/storage/eco-logos/${logo.image}`" :alt="logo.name" class="w-auto h-100" :title="logo.name">
+                    	<img :src="`/storage/eco-logos/${logo.image}`" :alt="logo.name" class="w-auto h-100 mw-100 mh-100" :title="logo.name">
                     </span>
                 </div>
                 <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
