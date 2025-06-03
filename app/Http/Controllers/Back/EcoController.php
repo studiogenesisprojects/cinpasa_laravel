@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
+use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Models\EcoFriend;
 use App\Models\Language;
@@ -9,7 +10,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class EcoController extends Controller
-{
+{   
+    private $fileHelper;
+    
+    public function __construct() {
+        $this->fileHelper = new FileHelper('image', 'public/' . config('path_uploads.eco'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -40,16 +47,12 @@ class EcoController extends Controller
      */
     public function store(Request $request)
     {
+        $logo = EcoFriend::create();
 
         if ($request->hasFile('image')) {
-            $path = Storage::putFile('eco-logos', $request->image);
-        } else {
-            $path = null;
+            $this->fileHelper->saveFile($request->file('image'), $logo);
         }
 
-        $logo = EcoFriend::create([
-            "image" => $path
-        ]);
         foreach ($request->languages as $language) {
             $logo->languages()->create($language);
         }
@@ -94,18 +97,8 @@ class EcoController extends Controller
 
         if ($request->hasFile('image')) {
 
-            $path = Storage::putFile('eco-logos', $request->image);
-
-            if (Storage::exists($eco->section_image)) {
-                Storage::delete($eco->section_image);
-            }
-
-            $eco->update([
-                "image" => $path
-            ]);
+            $this->fileHelper->saveFile($request->file('image'), $eco);
         }
-
-
 
         foreach ($request->languages as $language) {
             $eco->lang((int) $language["language_id"])->update($language);

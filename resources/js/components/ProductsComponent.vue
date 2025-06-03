@@ -17,6 +17,11 @@
                             class="w-100 border-img"
                         />
                     </a>
+                    <div class="position-absolute transform-t-50 d-flex t-0 l-0 ml-3 mt-3">
+                        <span v-for="logo in product.eco_logos" :key="logo.id" class="btn-icon" style="padding: 1px">
+                            <img :src="`/storage/eco-logos/${logo.image}`" :alt="logo.name" :title="logo.name" class="w-auto h-100">
+                        </span>
+                    </div>
                     <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
                         <a 
                             :href="`${path}/${product.categories[0].languages[0].slug}/${product.languages[0].slug}`" 
@@ -74,6 +79,7 @@ export default {
         this.products = this.products_info.data;
         this.url = this.products_info.next_page_url
         this.path = this.products_info.path;
+        console.log(this.products)
 
     },
     methods: {

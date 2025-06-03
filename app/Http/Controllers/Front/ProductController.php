@@ -49,6 +49,7 @@ class ProductController extends Controller
                         }]);
                 }
             ])
+            ->with('ecoLogos')
             ->where('active', true)
             ->where('outlet', false)
             ->orderBy('order')

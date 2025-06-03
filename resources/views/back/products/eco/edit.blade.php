@@ -28,6 +28,7 @@
                                 <label for="">Logo</label>
                                 <input type="file" name="image" class="form-control" data-error="Introduzca una imagen">
                                 <div class="help-block form-text with-errors form-control-feedback"></div>
+                                @if($eco->image)<img src="{{Storage::url(config('app.path_uploads.eco') . "/" . $eco->image)}}" class="rounded mt-3 d-block" alt="{{ $eco->lang()->name }}" style="width: 10%;">@endif
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
