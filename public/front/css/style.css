@@ -1606,12 +1606,15 @@ figure.control_noticia{
 .eco-icon {
     border-radius: 8px;
     background-color: white;
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
+    text-align: center;
     display: block;
     padding: 0.5rem;
     cursor: pointer;
     transition: all 0.3s ease-in;
-    margin-left: 1rem;
+    margin-left: 15px;
+    margin-right: 15px;
     position: relative;
+
   }
