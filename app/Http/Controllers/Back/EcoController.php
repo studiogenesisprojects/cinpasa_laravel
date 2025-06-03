@@ -14,7 +14,7 @@ class EcoController extends Controller
     private $fileHelper;
     
     public function __construct() {
-        $this->fileHelper = new FileHelper('image', 'public/' . config('path_uploads.eco'));
+        $this->fileHelper = new FileHelper('image', 'public/' . config('app.path_uploads.eco'));
     }
 
     /**
