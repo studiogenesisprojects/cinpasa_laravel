@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Section;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -17,7 +19,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $this->authorize('read', User::class);
+		if(!auth()->user()->role->canRead(Section::find(11))) {
+			abort(403);
+		}
+		
         $users = User::all();
 
         return view('back.configuration.users.index', ['users' => $users]);
@@ -29,8 +34,11 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        $this->authorize('write', User::class);
+    {	
+		if(!auth()->user()->role->canWrite(Section::find(11))) {
+			abort(403);
+		}
+		
         return view('back.configuration.users.create', ['roles' => Role::all()]);
     }
 
@@ -42,20 +50,31 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+		if(!auth()->user()->role->canWrite(Section::find(11))) {
+			abort(403);
+		}
+		
+        $validated = $request->validate([
+			'name' => 'required|string',
+			'email' => 'required|string|email|unique:users',
+			'role_id' => 'required|exists:roles,id',
+			'password' => 'required|string|min:6'
+		], [
+			'name.required' => 'El nombre es obligatorio.',
+			'email.required' => 'El correo electrónico es obligatorio.',
+			'email.email' => 'El correo electrónico no es válido.',
+			'email.unique' => 'Este correo ya está registrado.',
+			'role_id.required' => 'Debe seleccionar un rol.',
+			'role_id.exists' => 'El rol seleccionado no es válido.',
+			'password.required' => 'La contraseña es obligatoria.',
+			'password.min' => 'La contraseña debe tener al menos 6 caracteres.',
+		]);
 
-        $this->authorize('write', User::class);
-
-        $request->validate([
-            "name" => "required|string",
-            "email" => "required|string|unique:users",
-            "role_id" => "required",
-            "password" => "required|string"
-        ]);     
-       
-        $user = new User($request->toArray());
-        $user->role_id = $request->role_id;
-        $user->active = $request->active ?  true : false;
+        $user = new User($validated);
+        $user->password = bcrypt($validated['password']);
+        $user->active = $request->has('active');
         $user->save();
+		
         return redirect()->route('usuarios.index')->with('success', 'El usuario ha sido creado correctamente');
     }
 
@@ -78,7 +97,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $this->authorize('write', User::class);
+		if(!auth()->user()->role->canWrite(Section::find(11))) {
+			abort(403);
+		}
+		
         $user = User::findOrFail($id);
 
         return view('back.configuration.users.edit', [
@@ -96,18 +118,31 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->authorize('write', User::class);
-        $request->validate([
-            "name" => "required|string",
-            "email" => "required|string",
-            "role_id" => "required",
-        ]);
+        if(!auth()->user()->role->canWrite(Section::find(11))) {
+			abort(403);
+		}
+
+		$validated = $request->validate([
+			'name' => 'required|string',
+			'email' => [
+				'required',
+				'string',
+				'email',
+				Rule::unique('users', 'email')->ignore($id),
+			],
+			'role_id' => 'required|exists:roles,id',
+		], [
+			'name.required' => 'El nombre es obligatorio.',
+			'email.required' => 'El correo electrónico es obligatorio.',
+			'email.email' => 'El correo electrónico no es válido.',
+			'email.unique' => 'Este correo ya está registrado por otro usuario.',
+			'role_id.required' => 'Debe seleccionar un rol.',
+			'role_id.exists' => 'El rol seleccionado no es válido.',
+		]);
 
         $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->role_id = $request->role_id;
-        $user->save();
+        $user->update($validated);
+
         return redirect()->route('usuarios.index')->with('success', 'El usuario ha sido actualizado correctamente');
     }
 
@@ -119,7 +154,10 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $this->authorize('write', User::class);
+        if(!auth()->user()->role->canWrite(Section::find(11))) {
+			abort(403);
+		}
+		
         $user = User::findOrFail($id);
 
         if ($user->id == $request->user()->id)
@@ -134,7 +172,10 @@ class UserController extends Controller
      */
     public function toggle(Request $request)
     {
-        $this->authorize('write', User::class);
+        if(!auth()->user()->role->canWrite(Section::find(11))) {
+			abort(403);
+		}
+		
         $user = User::findOrFail($request->id);
         $user->active = !$user->active;
 
@@ -145,5 +186,4 @@ class UserController extends Controller
         ]);
     }
 }
-
 

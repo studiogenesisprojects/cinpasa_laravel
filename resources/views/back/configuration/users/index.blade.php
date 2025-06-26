@@ -33,8 +33,8 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td>{{$user->name}}</td>
-                                    <td>{{$user->role->name}}</td>
-                                    <td>{{\Carbon\Carbon::parse($user->last_login)->format('d-m-y H:i')}}</td>
+                                    <td>{{ $user->last_login ? \Carbon\Carbon::parse($user->last_login)->format('d-m-y H:i') : '-' }}</td>
+									<td>{{$user->role->name}}</td>
                                     <td>
                                         <div class="btn-group">
                                             <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>

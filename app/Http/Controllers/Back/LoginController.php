@@ -44,6 +44,8 @@ class LoginController extends Controller
             'password' => $request->password,
             'active' => true
         ], $remember)) {
+			
+			auth()->user()->update(['last_login' => now()]);
             return redirect()->route('dashboardIndex');
         } else {
             return redirect()->action('Back\LoginController@index')->with('error_login', "Usuario o contraseña incorrectos.");

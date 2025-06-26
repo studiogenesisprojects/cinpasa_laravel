@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     protected $guarded = ['id'];
-
+	
+	protected $fillable = [
+        'name',
+    ];
+	
     public function permissions(){
         return $this->hasMany(Permission::class);
     }

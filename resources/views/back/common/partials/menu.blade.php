@@ -512,7 +512,6 @@
                 </li>
             @endif
             
-            @if(1 == 0)
             @if(Auth()->user()->role->canRead(App\Models\Section::find(15)))
             <li class="selected has-sub-menu">
                 <a href="javascript:void(0)">
@@ -530,7 +529,6 @@
                     </div>
                 </div>
             </li>
-            @endif
             @endif
             
         </ul>

@@ -27,6 +27,11 @@ class RoleController extends Controller
         ]);
             //TODO update this 
         $role = Role::findOrFail($id);
+		
+		$role->update([
+			'name' => $request->input('name'),
+		]);
+		
         //creamos permisos para las secciones enviadas
         foreach($request->sections as $section){
             $permission = $role->permissions->where('section_id', $section['section_id'])->first();
@@ -64,7 +69,6 @@ class RoleController extends Controller
         
         //creamos permisos para las secciones enviadas
         foreach($request->sections as $section){
-
             //las secciones que tiene un length de 1 
             //solo contienen el id, no se deben añadir
             if(sizeof($section) > 1){
@@ -72,7 +76,7 @@ class RoleController extends Controller
                     "read" => isset($section['read']) ? true: false,
                     "write" => isset($section['write']) ? true: false,
                     "role_id" => $role->id,
-                    "section_id" => $section["id"]
+                    "section_id" => $section["section_id"]
                 ]);
             }
         }
