@@ -56,8 +56,13 @@
                                         <div class="btn-group">
                                             <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
                                             <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu dropdown-menu-right">
-                                                <a href="{{ route('inscritos.edit', $inscription->id)}}" class="dropdown-item"><i class="ti-pencil"></i> Editar</a>
-                                                <a href="{{ route('inscritos.destroy', $inscription->id)}}" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('inscritos.destroy', $inscription->id)}}"><i class="ti-trash"></i> Eliminar</a>
+                                                @if(Auth()->user()->role->canWrite(App\Models\Section::find(config('app.enabled_sections.solicitudes'))))
+                                                    <a href="{{ route('inscritos.edit', $inscription->id)}}" class="dropdown-item"><i class="ti-pencil"></i> Editar</a>
+                                                @endif
+                                                
+                                                @if(Auth()->user()->role->canDelete(App\Models\Section::find(config('app.enabled_sections.solicitudes'))))
+                                                    <a href="{{ route('inscritos.destroy', $inscription->id)}}" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('inscritos.destroy', $inscription->id)}}"><i class="ti-trash"></i> Eliminar</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </td>
