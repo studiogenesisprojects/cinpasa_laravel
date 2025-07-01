@@ -5,10 +5,18 @@ namespace App\Http\Controllers\Back\Finished;
 use App\Http\Controllers\Controller;
 use App\Models\FinishedColor;
 use App\Models\Language;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class FinishedColorController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.acabados'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +24,7 @@ class FinishedColorController extends Controller
      */
     public function index()
     {
+        $this->authorize('read', $this->section);
         $colors = FinishedColor::all();
         return view('back.finisheds.colors.index', compact('colors'));
     }
@@ -27,6 +36,7 @@ class FinishedColorController extends Controller
      */
     public function create()
     {
+        $this->authorize('write', $this->section);
         $languages = Language::all();
         return view('back.finisheds.colors.create', compact('languages'));
     }
@@ -39,6 +49,7 @@ class FinishedColorController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
         $request->validate([]);
 
         $color = FinishedColor::create();
@@ -62,6 +73,7 @@ class FinishedColorController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $color = FinishedColor::findOrFail($id);
         $languages = Language::all();
         return view('back.finisheds.colors.edit', compact('color', 'languages'));
@@ -76,6 +88,7 @@ class FinishedColorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $color = FinishedColor::findOrFail($id);
         foreach ($request->languages as $index => $language) {
             $color->lang((int) $language['language_id'])->update([
@@ -94,6 +107,7 @@ class FinishedColorController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $p = FinishedColor::findOrFail($id);
         $p->delete();
         return response()->json("OK");

@@ -6,19 +6,29 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductLabelRequest;
 use App\Models\ProductLabel;
+use App\Models\Section;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class LabelController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.productos'));
+    }
+    
     public function index()
     {
+        $this->authorize('read', $this->section);
         $labels = ProductLabel::cursor();
         return view('back.products.labels.index', compact('labels'));
     }
 
     public function update($id = null)
     {
+        $this->authorize('write', $this->section);
         if ($id) {
             $label = ProductLabel::find($id);
         } else {
@@ -30,6 +40,7 @@ class LabelController extends Controller
 
     public function handleUpdate(ProductLabelRequest $request, $id = null)
     {
+        $this->authorize('write', $this->section);
         try {
             DB::beginTransaction();
 
@@ -56,6 +67,7 @@ class LabelController extends Controller
 
     public function delete($id)
     {
+        $this->authorize('delete', $this->section);
         $label = ProductLabel::findOrFail($id);
 
         $label->delete();

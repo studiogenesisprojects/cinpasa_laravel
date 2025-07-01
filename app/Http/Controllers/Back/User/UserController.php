@@ -11,6 +11,12 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.configuracion'));
+    }
 
     /**
      * Display a listing of the resource.
@@ -19,10 +25,8 @@ class UserController extends Controller
      */
     public function index()
     {
-		if(!auth()->user()->role->canRead(Section::find(11))) {
-			abort(403);
-		}
-		
+		$this->authorize('read', $this->section);
+
         $users = User::all();
 
         return view('back.configuration.users.index', ['users' => $users]);
@@ -35,9 +39,7 @@ class UserController extends Controller
      */
     public function create()
     {	
-		if(!auth()->user()->role->canWrite(Section::find(11))) {
-			abort(403);
-		}
+		$this->authorize('write', $this->section);
 		
         return view('back.configuration.users.create', ['roles' => Role::all()]);
     }
@@ -50,9 +52,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-		if(!auth()->user()->role->canWrite(Section::find(11))) {
-			abort(403);
-		}
+		$this->authorize('write', $this->section);
 		
         $validated = $request->validate([
 			'name' => 'required|string',
@@ -97,9 +97,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-		if(!auth()->user()->role->canWrite(Section::find(11))) {
-			abort(403);
-		}
+		$this->authorize('write', $this->section);
 		
         $user = User::findOrFail($id);
 
@@ -118,9 +116,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(!auth()->user()->role->canWrite(Section::find(11))) {
-			abort(403);
-		}
+		$this->authorize('write', $this->section);
 
 		$validated = $request->validate([
 			'name' => 'required|string',
@@ -154,9 +150,7 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        if(!auth()->user()->role->canWrite(Section::find(11))) {
-			abort(403);
-		}
+		$this->authorize('delete', $this->section);
 		
         $user = User::findOrFail($id);
 
@@ -172,9 +166,7 @@ class UserController extends Controller
      */
     public function toggle(Request $request)
     {
-        if(!auth()->user()->role->canWrite(Section::find(11))) {
-			abort(403);
-		}
+		$this->authorize('write', $this->section);
 		
         $user = User::findOrFail($request->id);
         $user->active = !$user->active;

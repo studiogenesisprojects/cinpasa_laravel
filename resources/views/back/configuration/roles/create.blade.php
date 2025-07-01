@@ -48,6 +48,7 @@
                                         <th>Sección</th>
                                         <th>Acceso</th>
                                         <th>Escritura</th>
+                                        <th>Eliminación</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,20 +56,26 @@
                                         <td class="text-weight-bold">Todo</td>
                                         <td class="px-4"><input type="checkbox" id="toggleRead"></td>
                                         <td class="px-4"><input type="checkbox" id="toggleWrite"></td>
+                                        <td class="px-4"><input type="checkbox" id="toggleDelete"></td>
                                     </tr>
                                     @foreach ($sections as $key => $section)
-                                    <tr>
-                                        <td>
-                                            {{ $section->name }}
-                                            <input type="hidden" name="sections[{{ $key }}][section_id]" value="{{ $section->id }}">
-                                        </td>
-                                        <td class="px-4">
-                                            <input type="checkbox" class="read" name="sections[{{ $key }}][read]">
-                                        </td>
-                                        <td class="px-4">
-                                            <input type="checkbox" class="write" name="sections[{{ $key }}][write]">
-                                        </td>
-                                    </tr>
+                                        @if(in_array($section->id, config('app.enabled_sections')))
+                                            <tr>
+                                                <td>
+                                                    {{ $section->name }}
+                                                    <input type="hidden" name="sections[{{ $key }}][section_id]" value="{{ $section->id }}">
+                                                </td>
+                                                <td class="px-4">
+                                                    <input type="checkbox" class="read" name="sections[{{ $key }}][read]">
+                                                </td>
+                                                <td class="px-4">
+                                                    <input type="checkbox" class="write" name="sections[{{ $key }}][write]">
+                                                </td>
+                                                <td class="px-4">
+                                                    <input type="checkbox" class="delete" name="sections[{{ $key }}][delete]">
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>
@@ -90,6 +97,7 @@
     // Set "Todo" checkboxes based on current state
     $('#toggleRead').prop("checked", $('.read:checked').length === $('.read').length);
     $('#toggleWrite').prop("checked", $('.write:checked').length === $('.write').length);
+    $('#toggleDelete').prop("checked", $('.delete:checked').length === $('.delete').length);
 
     // Toggle all "read" checkboxes
     $('#toggleRead').on('change', function () {
@@ -99,6 +107,11 @@
     // Toggle all "write" checkboxes
     $('#toggleWrite').on('change', function () {
         $('.write').prop('checked', this.checked);
+    });
+
+    // Toggle all "delete" checkboxes
+    $('#toggleDelete').on('change', function () {
+        $('.delete').prop('checked', this.checked);
     });
 </script>
 @endsection

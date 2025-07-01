@@ -7,24 +7,35 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductCategoryRequest;
 use App\Models\ProductCategory;
 use App\Models\ProductCategoryLang;
+use App\Models\Section;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.productos'));
+    }
+    
     public function index()
     {
+        $this->authorize('read', $this->section);
         $categories = ProductCategory::orderBy('searcher_order', 'ASC')->get();
         return view('back.products.categories.index', compact('categories'));
     }
 
     public function create()
     {
+        $this->authorize('write', $this->section);
         $categories = ProductCategory::where('sup_product_category', null)->get();
         return view('back.products.categories.create', compact('categories'));
     }
 
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $category = ProductCategory::findOrFail($id);
         $categories = ProductCategory::where('sup_product_category', null)->get();
         return view('back.products.categories.edit', compact('categories', 'category'));
@@ -32,12 +43,14 @@ class CategoryController extends Controller
 
     public function createFather()
     {
+        $this->authorize('write', $this->section);
         $categories = ProductCategory::where('sup_product_category', null)->get();
         return view('back.products.categories.create-father', compact('categories'));
     }
 
     public function editFather($id)
     {
+        $this->authorize('write', $this->section);
         $category = ProductCategory::findOrFail($id);
         $categories = ProductCategory::where('sup_product_category', null)->get();
         return view('back.products.categories.edit-father', compact('categories', 'category'));
@@ -45,6 +58,7 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
         $productCategory = ProductCategory::create($request->toArray());
         foreach ($request->productCategoryLanguages as $language) {
             $productCategory->languages()->create($language);
@@ -59,6 +73,7 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $category = ProductCategory::findOrFail($id);
         $category->update($request->toArray());
 
@@ -124,6 +139,7 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $category = ProductCategory::findOrFail($id);
         $category->delete();
 
@@ -132,6 +148,7 @@ class CategoryController extends Controller
 
     public function toggleActive($id)
     {
+        $this->authorize('write', $this->section);
         $category = ProductCategory::findOrFail($id);
         $category->update([
             "active" => !$category->active

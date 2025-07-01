@@ -249,3 +249,5 @@ Route::resource('outlet', 'Back\Outlet\OutletController');
 Route::post('outlet/featured_products', 'Back\Outlet\OutletController@featuredProducts')->name('outlet.featured');
 Route::get('/outlet/destroy/{id}', 'Back\Outlet\OutletController@destroy')->name('outlet.destroy');
 Route::resource('/productos-outlet', 'Back\Outlet\ProductOutletController')->middleware('access.client');
+
+Route::get('/has-permission/{permission}/{section}', 'Controller@hasPermission')->name('hasPermission');

@@ -9,24 +9,26 @@ use App\Models\JobOfferResume;
 
 use App\Http\Controllers\Controller;
 use App\Models\Language;
+use App\Models\Section;
 
 class JobOfferController extends Controller
 {
-
+    public $section;
     public function __construct()
     {
-        // $this->authorizeResource(JobOffer::class, 'id');
+        $this->section = Section::find(config('app.enabled_sections.solicitudes'));
     }
-
 
     public function index()
     {
+        $this->authorize('read', $this->section);
         $offers = JobOffer::all();
         return view('back.job_offers.index', ['offers' => $offers]);
     }
 
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $languages = Language::all();
         $jobOffer = JobOffer::findOrFail($id);
         return view('back.job_offers.edit', ['offer' => $jobOffer, 'languages' => $languages]);
@@ -34,7 +36,7 @@ class JobOfferController extends Controller
 
     public function update(Request $request, $id)
     {
-
+        $this->authorize('write', $this->section);
 
         $jobOffer = JobOffer::findOrFail($id);
 
@@ -60,6 +62,7 @@ class JobOfferController extends Controller
 
     public function create(Request $request)
     {
+        $this->authorize('write', $this->section);
         $languages = Language::all();
 
         return view('back.job_offers.create', ['languages' => $languages]);
@@ -67,7 +70,7 @@ class JobOfferController extends Controller
 
     public function  store(Request $request)
     {
-
+        $this->authorize('write', $this->section);
         //creamos la oferta de trabajo
         $jobOffer = JobOffer::create([
             "publication_date" => $request->publication_date,
@@ -83,6 +86,7 @@ class JobOfferController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        $this->authorize('delete', $this->section);
         $jobOffer = JobOffer::findOrFail($id);
         $jobOffer->delete();
 

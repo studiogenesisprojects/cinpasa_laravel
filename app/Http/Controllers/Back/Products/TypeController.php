@@ -10,17 +10,27 @@ use App\Models\ProductType;
 use App\Models\TypeLang;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Models\Section;
 
 class TypeController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.productos'));
+    }
+    
     public function index()
     {
+        $this->authorize('read', $this->section);
         $types = ProductType::all();
         return view('back.products.types.index', compact('types'));
     }
 
     public function update($id = null)
     {
+        $this->authorize('write', $this->section);
         if ($id) {
             $type = ProductType::find($id);
         } else {
@@ -34,6 +44,7 @@ class TypeController extends Controller
 
     public function handleUpdate(ProductsTypeRequest $request, $id = null)
     {
+        $this->authorize('write', $this->section);
         try {
             DB::beginTransaction();
 
@@ -76,6 +87,7 @@ class TypeController extends Controller
 
     public function delete($id)
     {
+        $this->authorize('delete', $this->section);
         $type = ProductType::findOrFail($id);
 
         $type->delete();

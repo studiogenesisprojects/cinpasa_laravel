@@ -8,6 +8,7 @@ use App\Models\NoticiaRedactorLang;
 use App\Http\Requests\HandleUpdateNoticiaRedactor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Section;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Http\UploadedFile;
 use File;
@@ -18,6 +19,13 @@ use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class RedactorController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.noticias'));
+    }
+
     /*
      * Busca el slug que se pasa por parámetro en la base de datos en el idioma indicado y que no sea para el elemento en concreto
      * devuelve el número de veces que aparece el slug
@@ -31,7 +39,8 @@ class RedactorController extends Controller
     }
 
     public function index(Request $request)
-    {
+    {   
+        $this->authorize('read', $this->section);
         if ($request->isMethod('post')) {
             $request->session()->put('filtro_noticia_redactor_nombre', $request->input('nombre'));
             $nombre = $request->session()->get('filtro_noticia_redactor_nombre');
@@ -63,6 +72,7 @@ class RedactorController extends Controller
 
     public function delete($id)
     {
+        $this->authorize('delete', $this->section);
         try {
             DB::beginTransaction();
             $redactor = NoticiaRedactor::findOrFail($id);
@@ -85,6 +95,7 @@ class RedactorController extends Controller
 
     public function update($id = null)
     {
+        $this->authorize('write', $this->section);
         try {
             if ($id) {
                 $redactor = NoticiaRedactor::findOrFail($id);
@@ -102,6 +113,7 @@ class RedactorController extends Controller
 
     public function handleUpdate(HandleUpdateNoticiaRedactor $request, $id = '')
     {
+        $this->authorize('write', $this->section);
         try {
             $mensaje = array();
             if ($id == '') {
@@ -177,6 +189,7 @@ class RedactorController extends Controller
 
     public function deleteImage($id)
     {
+        $this->authorize('write', $this->section);
         try {
             $redactor = NoticiaRedactor::findOrFail($id);
             if (!empty($redactor->imagen)) {
@@ -196,6 +209,7 @@ class RedactorController extends Controller
 
     public function deleteFileImage($imagen)
     {
+        $this->authorize('write', $this->section);
         if (!empty($imagen)) {
             $path = public_path() . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . config('app.ruta_uploads.noticias-redactores') . DIRECTORY_SEPARATOR;
             $file = $path . $imagen;

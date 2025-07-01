@@ -6,10 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\FinishedPosition;
 use App\Models\FinishedPositionLang;
 use App\Models\Language;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class FinishedPositionController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.acabados'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +24,7 @@ class FinishedPositionController extends Controller
      */
     public function index()
     {
+        $this->authorize('read', $this->section);
         $positions = FinishedPosition::all();
         return view('back.finisheds.positions.index', compact('positions'));
     }
@@ -28,6 +36,7 @@ class FinishedPositionController extends Controller
      */
     public function create()
     {
+        $this->authorize('write', $this->section);
         $languages = Language::all();
         return view('back.finisheds.positions.create', compact('languages'));
     }
@@ -40,6 +49,7 @@ class FinishedPositionController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
         $request->validate([]);
 
         $position = FinishedPosition::create();
@@ -63,6 +73,7 @@ class FinishedPositionController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $finishedPosition = FinishedPosition::findOrFail($id);
         $languages = Language::all();
         return view('back.finisheds.positions.edit', compact('finishedPosition', 'languages'));
@@ -77,6 +88,7 @@ class FinishedPositionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $position = FinishedPosition::findOrFail($id);
         foreach ($request->languages as $index => $language) {
             $position->lang((int) $language['language_id'])->update([
@@ -95,6 +107,7 @@ class FinishedPositionController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $p = FinishedPosition::findOrFail($id);
         $p->delete();
         return response()->json("OK");

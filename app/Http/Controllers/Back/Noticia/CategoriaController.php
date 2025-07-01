@@ -11,9 +11,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
 use Log;
 use DB;
+use App\Models\Section;
 
 class CategoriaController extends Controller
-{
+{   
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.noticias'));
+    }
     /*
     * Busca el slug que se pasa por parámetro en la base de datos en el idioma indicado y que no sea para el elemento en concreto
     * devuelve el número de veces que aparece el slug
@@ -29,6 +36,8 @@ class CategoriaController extends Controller
 
     public function index(Request $request)
     {
+        $this->authorize('read', $this->section);
+
         if ($request->isMethod('post')) {
             $request->session()->put('filtro_noticia_categoria_nombre', $request->input('nombre'));
             $nombre = $request->session()->get('filtro_noticia_categoria_nombre');
@@ -60,6 +69,7 @@ class CategoriaController extends Controller
 
     public function delete($id)
     {
+        $this->authorize('delete', $this->section);
         try {
             DB::beginTransaction();
             $categoria = NoticiaCategoria::findOrFail($id);
@@ -80,6 +90,7 @@ class CategoriaController extends Controller
 
     public function update($id = null)
     {
+        $this->authorize('write', $this->section);
         try {
             if ($id) {
                 $categoria = NoticiaCategoria::findOrFail($id);
@@ -97,6 +108,8 @@ class CategoriaController extends Controller
 
     public function handleUpdate(HandleUpdateNoticiaCategoria $request, $id = null)
     {
+        $this->authorize('write', $this->section);
+
         try {
             $mensaje = array();
 

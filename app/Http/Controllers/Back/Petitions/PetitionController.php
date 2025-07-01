@@ -9,13 +9,15 @@ use App\Models\ProductPetition;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ContactsExport;
 use App\Http\Requests\RecapchaValidateRequest;
+use App\Models\Section;
 
 class PetitionController extends Controller
 {
+    public $section;
+
     public function __construct()
     {
-        // TODO: arreglar permisos
-        // $this->authorizeResource(Petition::class, 'id');
+        $this->section = Section::find(config('app.enabled_sections.peticiones'));
     }
 
     public function excel()
@@ -27,18 +29,21 @@ class PetitionController extends Controller
 
     public function index()
     {
+        $this->authorize('read', $this->section);
         $petitions = Petition::all();
         return view('back.petitions.index', ['petitions' => $petitions]);
     }
 
     public function show($id)
-    {
+    {   
+        $this->authorize('read', $this->section);
         $petition = Petition::findOrFail($id);
         return view('back.petitions.show', ['petition' => $petition]);
     }
 
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $p = Petition::findOrFail($id);
         $p->petitionProducts()->delete();
         $p->delete();

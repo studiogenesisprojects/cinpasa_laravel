@@ -54,10 +54,15 @@
                                         <div class="btn-group">
                                             <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
                                             <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="{{ action('Back\Traslator\TraslatorController@update', $traslator->group) }}">
-                                                    <i class="icon-pencil"></i> Editar
-                                                </a>
-                                                <a class="delete-register dropdown-item" href="#" data-url="{{ action('Back\Traslator\TraslatorController@delete', $traslator->group) }}" data-toggle="modal" data-target="#modal-delete"><i class="icon-trash"></i> Eliminar</a>
+                                                @if(Auth()->user()->role->canWrite(App\Models\Section::find(config('app.enabled_sections.traducciones'))))
+                                                    <a class="dropdown-item" href="{{ action('Back\Traslator\TraslatorController@update', $traslator->group) }}">
+                                                        <i class="icon-pencil"></i> Editar
+                                                    </a>
+                                                @endif
+
+                                                @if(Auth()->user()->role->canDelete(App\Models\Section::find(config('app.enabled_sections.traducciones'))))
+                                                    <a class="delete-register dropdown-item" href="#" data-url="{{ action('Back\Traslator\TraslatorController@delete', $traslator->group) }}" data-toggle="modal" data-target="#modal-delete"><i class="icon-trash"></i> Eliminar</a>
+                                                @endif
 
                                             </div>
                                         </div>

@@ -49,7 +49,9 @@
                                         </button>
                                         <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu dropdown-menu-right">
                                             <a href="{{route('peticiones.show', $petition->id)}}" class="dropdown-item"><i class="ti-pencil"></i>Ver</a>
-                                            <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{route('peticiones.destroy', $petition->id)}}"><i class="ti-trash"></i> Eliminar</a>
+                                            @if(Auth()->user()->role->canDelete(App\Models\Section::find(config('app.enabled_sections.peticiones'))))
+                                                <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{route('peticiones.destroy', $petition->id)}}"><i class="ti-trash"></i> Eliminar</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>

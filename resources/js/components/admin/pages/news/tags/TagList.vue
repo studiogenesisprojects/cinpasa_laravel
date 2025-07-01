@@ -14,7 +14,7 @@
           <div class="col-md-12">
             <a-table :loading="showBlockUi" :dataSource="items" :columns="columns">
               <span slot="action" slot-scope="item">
-                <a-button type="primary" @click="handleEdit(item)">Editar</a-button>
+                <a-button v-if="writePermission" type="primary" @click="handleEdit(item)">Editar</a-button>
                 <a-divider type="vertical" />
                 <a-popconfirm
                   title="Estás seguro de borrar esta etiqueta?"
@@ -22,7 +22,7 @@
                   okText="Si"
                   cancelText="No"
                 >
-                  <a-button type="danger">Borrar</a-button>
+                  <a-button v-if="deletePermission" type="danger">Borrar</a-button>
                 </a-popconfirm>
               </span>
             </a-table>
@@ -56,7 +56,9 @@ export default {
           key: "action",
           scopedSlots: { customRender: "action" }
         }
-      ]
+      ],
+      writePermission: false,
+      deletePermission: false
     };
   },
 
@@ -105,11 +107,17 @@ export default {
         .catch(e => {
           console.log(e.response);
         });
+    },
+    async hasPermission(permision) {
+      const { data } = await axios.get(`/admin/has-permission/${permision}/noticias`)
+      return data;
     }
   },
 
   async mounted() {
     this.showBlockUi = true;
+    this.writePermission = await this.hasPermission("write")
+    this.deletePermission = await this.hasPermission("delete")
     await this.fetch();
     this.showBlockUi = false;
   }

@@ -238,4 +238,19 @@ return [
     'path_uploads' => [
         'eco' => 'eco-logos',
     ],
+
+    'enabled_sections' => [
+        'escritorio' => 1,
+        'inicio' => 2,
+        'carousels' => 3,
+        'productos' => 4,
+        'peticiones' => 6,
+        'aplicaciones' => 7,
+        'acabados' => 8,
+        'materiales' => 9,
+        'noticias' => 10,
+        'solicitudes' => 11,
+        'traducciones' => 13,
+        'configuracion' => 15,
+    ]
 ];

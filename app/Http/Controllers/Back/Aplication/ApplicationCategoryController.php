@@ -6,11 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\ApplicationCategory;
 use App\Models\ApplicationCategoryLang;
 use App\Models\Language;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ApplicationCategoryController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.aplicaciones'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +26,7 @@ class ApplicationCategoryController extends Controller
      */
     public function index()
     {
+        $this->authorize('read', $this->section);
         $applicationCategories = ApplicationCategory::orderBy('order')->get();
         return view('back.aplication.categories.index', compact('applicationCategories'));
     }
@@ -29,6 +38,7 @@ class ApplicationCategoryController extends Controller
      */
     public function create()
     {
+        $this->authorize('write', $this->section);
         $languages = Language::all();
 
         return view('back.aplication.categories.create', compact('languages'));
@@ -42,7 +52,7 @@ class ApplicationCategoryController extends Controller
      */
     public function store(Request $request)
     {
-
+        $this->authorize('write', $this->section);
         $applicationCategory = ApplicationCategory::create([]);
 
         foreach ($request->applications as $application) {
@@ -70,6 +80,7 @@ class ApplicationCategoryController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $applicationCategory = ApplicationCategory::findOrFail($id);
         $languages = Language::all();
 
@@ -84,7 +95,8 @@ class ApplicationCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
+        $this->authorize('write', $this->section);
         $applicationCategory = ApplicationCategory::find($id);
 
         foreach ($request->applications as $language) {
@@ -117,6 +129,7 @@ class ApplicationCategoryController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $applicationCategory = ApplicationCategory::findOrFail($id);
 
         $applicationCategory->aplications()->detach();
@@ -131,6 +144,7 @@ class ApplicationCategoryController extends Controller
 
     public function toggleActive($id)
     {
+        $this->authorize('write', $this->section);
         $category = ApplicationCategory::findOrFail($id);
         $category->update([
             "active" => !$category->active
@@ -141,6 +155,7 @@ class ApplicationCategoryController extends Controller
 
     public function changeOrder(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $request->validate([
             "order" => "required|numeric",
         ]);

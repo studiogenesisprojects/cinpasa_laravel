@@ -5,9 +5,17 @@ namespace App\Http\Controllers\Back\Products;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductReference;
+use App\Models\Section;
 
 class ProductReferenceController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.productos'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +23,7 @@ class ProductReferenceController extends Controller
      */
     public function index()
     {
+        $this->authorize('read', $this->section);
         $references = ProductReference::cursor();
         return  view('back.products.references.index', compact('references'));
     }
@@ -26,6 +35,7 @@ class ProductReferenceController extends Controller
      */
     public function create()
     {
+        $this->authorize('write', $this->section);
         return  view('back.products.references.create');
     }
 
@@ -37,6 +47,7 @@ class ProductReferenceController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
         ProductReference::create([
             "referencia" => $request->name,
             "diametro" => $request->reference,
@@ -67,6 +78,7 @@ class ProductReferenceController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $reference = ProductReference::find($id);
 
         return view('back.products.references.edit', compact('reference'));
@@ -81,6 +93,7 @@ class ProductReferenceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $reference = ProductReference::findOrFail($id);
         $reference->update([
             "referencia" => $request->name,
@@ -101,7 +114,7 @@ class ProductReferenceController extends Controller
      */
     public function destroy($id)
     {
-
+        $this->authorize('delete', $this->section);
         $reference = ProductReference::findOrFail($id);
 
         $reference->delete();

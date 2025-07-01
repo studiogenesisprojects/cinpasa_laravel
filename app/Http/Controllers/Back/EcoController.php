@@ -8,12 +8,16 @@ use App\Models\EcoFriend;
 use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Section;
 
 class EcoController extends Controller
 {   
+    public $section;
     private $fileHelper;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.productos'));
         $this->fileHelper = new FileHelper('image', 'public/' . config('app.path_uploads.eco'));
     }
 
@@ -24,6 +28,7 @@ class EcoController extends Controller
      */
     public function index()
     {
+        $this->authorize('read', $this->section);
         $ecos = EcoFriend::cursor();
         return view('back.products.eco.index', compact('ecos'));
     }
@@ -35,6 +40,7 @@ class EcoController extends Controller
      */
     public function create()
     {
+        $this->authorize('write', $this->section);
         $languages = Language::all();
         return view('back.products.eco.create', compact('languages'));
     }
@@ -47,6 +53,7 @@ class EcoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
         $logo = EcoFriend::create();
 
         if ($request->hasFile('image')) {
@@ -79,6 +86,7 @@ class EcoController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $eco = EcoFriend::find($id);
         $languages = Language::all();
         return view('back.products.eco.edit', compact('eco', 'languages'));
@@ -93,6 +101,7 @@ class EcoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $eco = EcoFriend::find($id);
 
         if ($request->hasFile('image')) {
@@ -110,6 +119,7 @@ class EcoController extends Controller
 
     public function deleteImage($id)
     {
+        $this->authorize('write', $this->section);
         $eco = EcoFriend::find($id);
 
         $eco->update([
@@ -131,6 +141,7 @@ class EcoController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $eco = EcoFriend::find($id);
 
         if (Storage::exists($eco->section_image)) {

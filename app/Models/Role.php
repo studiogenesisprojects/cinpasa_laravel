@@ -28,4 +28,7 @@ class Role extends Model
         return $this->permissions->where('section_id', '=', $section->id)->where('write', true)->count() > 0;
     }
 
+    public function canDelete(Section $section){
+        return $this->permissions->where('section_id', '=', $section->id)->where('delete', true)->count() > 0;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Section;
 use App\News;
 use App\NewsRelatedNews;
 use Illuminate\Http\Request;
@@ -9,6 +10,13 @@ use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.noticias'));
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -28,6 +36,7 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
 
         $data = json_decode($request->news, true);
         $news = News::create($data);
@@ -57,6 +66,8 @@ class NewsController extends Controller
 
     public function storeImage(Request $request)
     {
+        $this->authorize('write', $this->section);
+        
         if ($request->hasFile('image')) {
             $filename = $request->file('image')->getClientOriginalName();
             //TODO check if there is duplicated
@@ -76,6 +87,8 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
+
         $data = json_decode($request->news, true);
         $news = News::findOrFail($id);
         $news->update($data);
@@ -104,6 +117,8 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
+
         $news = News::findOrFail($id);
         $news->categories()->sync([]);
         $news->tags()->sync([]);

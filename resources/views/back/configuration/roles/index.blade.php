@@ -36,8 +36,12 @@
                                         <div class="btn-group">
                                             <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" type="button"><i class="icon-options-vertical"></i></button>
                                             <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu dropdown-menu-right">
-                                                <a href="{{ route('roles.edit', $role->id)}}" class="dropdown-item"><i class="ti-pencil"></i> Editar</a>
-                                                <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('roles.destroy', $role->id) }}"><i class="ti-trash"></i> Eliminar</a>
+                                                @if(Auth()->user()->role->canUpdate(App\Models\Section::find(config('app.enabled_sections.configuracion'))))
+                                                    <a href="{{ route('roles.edit', $role->id)}}" class="dropdown-item"><i class="ti-pencil"></i> Editar</a>
+                                                @endif
+                                                @if(Auth()->user()->role->canDelete(App\Models\Section::find(config('app.enabled_sections.configuracion'))))
+                                                    <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('roles.destroy', $role->id) }}"><i class="ti-trash"></i> Eliminar</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </td>

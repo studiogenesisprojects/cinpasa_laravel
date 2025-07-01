@@ -26,6 +26,7 @@ use App\Models\BloqueVideo;
 use Illuminate\Http\Request;
 use App\Http\Requests\HandleUpdateNoticia;
 use App\Http\Controllers\Controller;
+use App\Models\Section;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
@@ -35,11 +36,18 @@ use Log;
 
 class NoticiaController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.noticias'));
+    }
+    
     /*
      * Obtener valores para las selects de noticias relacionadas
      */
     private function getNoticiasExceptThis($noticia_id)
-    {
+    {   
         $relacionadas = NoticiaRelacionada::select('noticia_relacionada')->where('noticia_id', '=', (int) $noticia_id)->groupby('noticia_relacionada')->orderby('orden', 'DESC')->get();
         $array_ids = array();
         foreach ($relacionadas as $key => $relacionada) {
@@ -61,7 +69,7 @@ class NoticiaController extends Controller
      * devuelve el número de veces que aparece el slug
      */
     private function buscarSlugRepetido($id, $slug, $id_idioma)
-    {
+    {       
         return NoticiaLang::where('noticia_id', '!=', $id)->where('idioma_id', '=', $id_idioma)->where('slug', '=', $slug)->where('slug', '<>', '')->get()->count();
     }
 
@@ -273,6 +281,7 @@ class NoticiaController extends Controller
 
     public function indexHemeroteca(Request $request)
     {
+        $this->authorize('read', $this->section);
         if ($request->isMethod('post')) {
             $fecha_ini = $request->input('fecha_inicio');
             if ($fecha_ini != '') {
@@ -339,12 +348,14 @@ class NoticiaController extends Controller
 
     public function indexListado(Request $request)
     {
+        $this->authorize('read', $this->section);
         $noticias = Noticia::orderBy('fecha_publicacion', 'DESC')->paginate(25);
         return view('back.noticia.noticia.index-listado', compact('noticias'));
     }
 
     public function update(Request $request, $id = '', $pantalla_retorno)
     {
+        $this->authorize('write', $this->section);
         try {
             if ($id == '') {
                 $noticia = new Noticia;
@@ -394,17 +405,20 @@ class NoticiaController extends Controller
     // Para saber si vamos desde la pantalla del listado
     public function updateListado(Request $request, $id = '')
     {
+        $this->authorize('write', $this->section);
         return $this->update($request, $id, 'listado');
     }
 
     // Para saber si vamos desde la pantalla del hemeroteca
     public function updateHemeroteca(Request $request, $id = '')
     {
+        $this->authorize('write', $this->section);
         return $this->update($request, $id, 'hemeroteca');
     }
 
     public function handleUpdate(HandleUpdateNoticia $request, $id = '', $pantalla_retorno)
     {
+        $this->authorize('write', $this->section);
         try {
             DB::beginTransaction();
             $mensaje = array();
@@ -712,17 +726,20 @@ class NoticiaController extends Controller
     //A la hora de guardar saber si volvemos a la pantalla de listado
     public function handleUpdateListado(HandleUpdateNoticia $request, $id = '')
     {
+        $this->authorize('write', $this->section);
         return $this->handleUpdate($request, $id, 'listado');
     }
 
     //A la hora de guardar saber si volvemos a la pantalla de hemeroteca
     public function handleUpdateHemeroteca(HandleUpdateNoticia $request, $id = '')
     {
+        $this->authorize('write', $this->section);
         return $this->handleUpdate($request, $id, 'hemeroteca');
     }
 
     public function deleteImage($id)
     {
+        $this->authorize('write', $this->section);
         try {
             $noticia = Noticia::findOrFail($id);
             if (!empty($noticia->imagen_principal)) {
@@ -743,6 +760,7 @@ class NoticiaController extends Controller
 
     public function deleteBloqueImage($tipo_bloque, $id_bloque, $campo)
     {
+        $this->authorize('write', $this->section);
         try {
             switch ((int) $tipo_bloque) {
                 case 2:
@@ -776,6 +794,7 @@ class NoticiaController extends Controller
 
     public function deleteFileImage($imagen)
     {
+        $this->authorize('write', $this->section);
         if (!empty($imagen)) {
             $path = public_path() . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . config('app.route_uploads.noticias-imagenes') . DIRECTORY_SEPARATOR;
             $file = $path . $imagen;
@@ -788,6 +807,7 @@ class NoticiaController extends Controller
 
     public function deleteFileDocumento($doc)
     {
+        $this->authorize('write', $this->section);
         if (!empty($doc)) {
             $path = public_path() . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . config('app.route_uploads.noticias-documentos') . DIRECTORY_SEPARATOR;
             $file = $path . $doc;
@@ -800,6 +820,7 @@ class NoticiaController extends Controller
 
     public function delete($id)
     {
+        $this->authorize('delete', $this->section);
         try {
             DB::beginTransaction();
             $noticia = Noticia::findOrFail($id);
@@ -839,6 +860,7 @@ class NoticiaController extends Controller
 
     public function updateStatus($id)
     {
+        $this->authorize('write', $this->section);
         try {
             $noticia = Noticia::findOrFail($id);
             if ($noticia->activo) {
@@ -857,6 +879,7 @@ class NoticiaController extends Controller
 
     public function noticiaRelacionada(Request $request)
     {
+        $this->authorize('read', $this->section);
         try {
             if ($request->noticia_id != '0') {
                 $noticias = $this->getNoticiasExceptThis($request->noticia_id);
@@ -884,6 +907,7 @@ class NoticiaController extends Controller
      */
     public function noticiaRelacionadaMultiidioma(Request $request)
     {
+        $this->authorize('read', $this->section);
         // try {
         if ($request->noticia_id != '0') {
             $noticias = $this->getNoticiasExceptThis($request->noticia_id);
@@ -907,6 +931,7 @@ class NoticiaController extends Controller
 
     public function noticiaRelacionadaModal(Request $request)
     {
+        $this->authorize('read', $this->section);
         try {
             if ($request->isMethod('post')) {
                 //Aplica filtros en la pagina, hay que coger los valores de los imputs
@@ -984,6 +1009,7 @@ class NoticiaController extends Controller
 
     public function mostrarNuevoBloque(Request $request)
     {
+        $this->authorize('read', $this->section);
         try {
             $idioma = $request->input('idioma');
             $tipo = $request->input('tipo');

@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Section;
 use App\Writer;
 use Illuminate\Http\Request;
 
 class WriterController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.noticias'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,6 +33,7 @@ class WriterController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
         $data = json_decode($request->writer, true);
         $writer = Writer::create($data);
 
@@ -47,6 +56,7 @@ class WriterController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $data = json_decode($request->writer, true);
         $writer = Writer::findOrFail($id);
         $writer->update($data);
@@ -62,6 +72,7 @@ class WriterController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $writer = Writer::findOrFail($id);
         $writer->languages()->delete();
         $writer->delete();

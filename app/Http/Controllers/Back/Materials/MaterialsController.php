@@ -8,14 +8,22 @@ use App\Http\Requests\MaterialRequest;
 use App\Models\Language;
 use App\Models\Material;
 use App\Models\MaterialCategory;
+use App\Models\Section;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class MaterialsController extends Controller
 {
+    public $section;
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.materiales'));
+    }
+
     public function index()
     {
+        $this->authorize('read', $this->section);
         // Material::ponerOrder();
         $materials = Material::cursor();
 
@@ -24,6 +32,7 @@ class MaterialsController extends Controller
 
     public function update($id = null)
     {
+        $this->authorize('write', $this->section);
         if ($id) {
             $material = Material::find($id);
         } else {
@@ -38,6 +47,7 @@ class MaterialsController extends Controller
 
     public function handleUpdate(MaterialRequest $request, $id = null)
     {
+        $this->authorize('write', $this->section);
         try {
             DB::beginTransaction();
             if ($request->category_father != "null") {
@@ -107,6 +117,7 @@ class MaterialsController extends Controller
 
     public function delete($id)
     {
+        $this->authorize('delete', $this->section);
         $material = Material::findOrFail($id);
 
         $material->delete();
@@ -116,6 +127,7 @@ class MaterialsController extends Controller
 
     public function toggleActive($id)
     {
+        $this->authorize('write', $this->section);
         $material = Material::findOrFail($id);
         $material->update([
             "active" => !$material->active
@@ -126,6 +138,7 @@ class MaterialsController extends Controller
 
     public function changeOrder(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $request->validate([
             "order" => "required|numeric",
         ]);

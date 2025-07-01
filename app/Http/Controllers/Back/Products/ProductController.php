@@ -30,7 +30,7 @@ use App\Models\ProductColorCategory;
 use App\Models\ProductGalery;
 use App\Models\ProductGaleryImage;
 use App\Models\ProductGaleryImageLang;
-
+use App\Models\Section;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use Log;
@@ -40,15 +40,23 @@ use Redirect;
 
 class ProductController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.productos'));
+    }
 
     public function index()
     {
         // Product::arreglarOrder();
+        $this->authorize('read', $this->section);
         return view('back.products.index', ['products' => Product::where('outlet', false)->get()]);
     }
 
     public function create()
-    {
+    {   
+        $this->authorize('write', $this->section);
         ini_set('memory_limit', '-1');
         $colors = ProductColorCategory::where('active', 1)->get();
         $finishes = Finished::all();
@@ -87,6 +95,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
         $request->slug = Str::slug($request->slug);
 
         $validated = $request->validate([
@@ -205,7 +214,8 @@ class ProductController extends Controller
     }
 
     public function edit(Request $request, $id)
-    {
+    {   
+        $this->authorize('write', $this->section);
         $product = Product::findOrFail($id);
         $products = Product::all();
         $colors = ProductColorCategory::where('active', 1)->get();
@@ -251,7 +261,8 @@ class ProductController extends Controller
     }
 
     public function update(RequestCategory $request, $id)
-    {
+    {   
+        $this->authorize('write', $this->section);
         $validated = $request->validate([
             'productLanguages.*.name' => 'required|max:255',
             'productLanguages.*.slug' => 'required|max:255',
@@ -386,7 +397,8 @@ class ProductController extends Controller
     }
 
     public function destroy($id)
-    {
+    {   
+        $this->authorize('delete', $this->section);
 
         try {
 
@@ -478,8 +490,6 @@ class ProductController extends Controller
 
     public function handleGalery(Request $request)
     {
-
-
         try {
 
             DB::beginTransaction();

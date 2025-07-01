@@ -11,11 +11,20 @@ use App\Models\ProductColorCategory;
 use App\Models\ProductColorShade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Models\Section;
 
 class ColorController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.productos'));
+    }
+    
     public function index()
     {
+        $this->authorize('read', $this->section);
         $colors = ProductColor::all();
         return view('back.products.colors.index', compact('colors'));
     }
@@ -23,6 +32,7 @@ class ColorController extends Controller
 
     public function create()
     {
+        $this->authorize('write', $this->section);
         $materials = Material::all();
         $shades = ProductColorShade::all();
         $categories = ProductColorCategory::where('active', 1)->get();
@@ -32,6 +42,7 @@ class ColorController extends Controller
 
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $materials = Material::all();
         $shades = ProductColorShade::all();
         $categories = ProductColorCategory::where('active', 1)->get();
@@ -41,6 +52,7 @@ class ColorController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
         $productColor = ProductColor::create($request->toArray());
         $productColor->update(['active' => $request->active ? true : false]);
 
@@ -57,6 +69,7 @@ class ColorController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $productColor = ProductColor::findOrFail($id);
         $productColor->update($request->toArray());
         $productColor->update(['active' => $request->active ? true : false]);
@@ -74,6 +87,7 @@ class ColorController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $productColor = ProductColor::findOrFail($id);
         $productColor->delete();
         return response()->json("Color borrado correctamente");

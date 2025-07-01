@@ -6,19 +6,27 @@ use App\Http\Controllers\Controller;
 use App\Models\Language;
 use App\Models\Material;
 use App\Models\MaterialCategory;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class MaterialCategoryController extends Controller
 {
+    public $section;
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.materiales'));
+    }
 
     public function index()
     {
+        $this->authorize('read', $this->section);
         $categories = MaterialCategory::all();
         return view('back.materials.categories.index', compact('categories'));
     }
 
     public function create()
     {
+        $this->authorize('write', $this->section);
         $category = new MaterialCategory();
         $materials = Material::all();
         $languages = Language::all();
@@ -27,6 +35,7 @@ class MaterialCategoryController extends Controller
 
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $category = MaterialCategory::findOrFail($id);
         $materials = Material::all();
         $languages = Language::all();
@@ -35,6 +44,7 @@ class MaterialCategoryController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
         $materialCategory = MaterialCategory::create($request->all());
         $materialCategory->materials()->sync($request->materials);
         foreach ($request->materialsLangs as $language) {
@@ -45,6 +55,7 @@ class MaterialCategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $materialCategory = MaterialCategory::findOrFail($id);
         $materialCategory->update($request->all());
 
@@ -66,6 +77,7 @@ class MaterialCategoryController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $category = MaterialCategory::findOrFail($id);
         $category->materials()->detach();
         $category->delete();
@@ -74,6 +86,7 @@ class MaterialCategoryController extends Controller
 
     public function toggleActive($id)
     {
+        $this->authorize('write', $this->section);
         $category = MaterialCategory::findOrFail($id);
         $category->update([
             "active" => !$category->active
@@ -84,6 +97,7 @@ class MaterialCategoryController extends Controller
 
     public function changeOrder(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $request->validate([
             "order" => "required|numeric",
         ]);

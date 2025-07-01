@@ -11,21 +11,34 @@ use App\Models\Permission;
 
 class RoleController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.configuracion'));
+    }
+    
     public function index(){
+		$this->authorize('read', $this->section);
+
         $roles = Role::all();
         return view('back.configuration.roles.index', ['roles' => $roles]);
     }
 
     public function create(){
+		$this->authorize('write', $this->section);
+        
         return view('back.configuration.roles.create', ['sections' => Section::all()]);
     }
 
     public function update(Request $request, $id){
+		$this->authorize('write', $this->section);
+        
         $request->validate([
             "name" => "required|string",
             "sections"=>"array"
         ]);
-            //TODO update this 
+
         $role = Role::findOrFail($id);
 		
 		$role->update([
@@ -41,6 +54,7 @@ class RoleController extends Controller
                 Permission::create([
                     "read" => isset($section['read']) ? true: false,
                     "write" => isset($section['write']) ? true: false,
+                    "delete" => isset($section['delete']) ? true: false,
                     "role_id" => $role->id,
                     "section_id" => $section["section_id"]
                 ]);
@@ -48,6 +62,7 @@ class RoleController extends Controller
                 $permission->update([
                     "read" => isset($section['read']) ? true: false,
                     "write" => isset($section['write']) ? true: false,
+                    "delete" => isset($section['delete']) ? true: false,
                     "role_id" => $role->id,
                     "section_id" => $section["section_id"]
                 ]);
@@ -58,6 +73,8 @@ class RoleController extends Controller
     }
 
     public function store(Request $request){
+		$this->authorize('write', $this->section);
+        
         $request->validate([
             "name" => "required|string|unique:roles",
             "sections"=>"array"
@@ -75,6 +92,7 @@ class RoleController extends Controller
                 Permission::create([
                     "read" => isset($section['read']) ? true: false,
                     "write" => isset($section['write']) ? true: false,
+                    "delete" => isset($section['delete']) ? true: false,
                     "role_id" => $role->id,
                     "section_id" => $section["section_id"]
                 ]);
@@ -85,6 +103,8 @@ class RoleController extends Controller
     }
 
     public function edit(Request $request, $id){
+		$this->authorize('write', $this->section);
+
         $role = Role::findOrFail($id);
 
         return view('back.configuration.roles.edit', [
@@ -94,7 +114,8 @@ class RoleController extends Controller
     }
 
     public function destroy($id){
-        //
+		$this->authorize('delete', $this->section);
+        
         $role = Role::findOrFail($id);
         if($role->users->count() > 0){
             return response()->json(["error" => "No se puede eleminar"], 403);

@@ -7,19 +7,29 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductsFormRequest;
 use App\Models\Language;
 use App\Models\ProductForm;
+use App\Models\Section;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class FormController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.productos'));
+    }
+    
     public function index()
     {
+        $this->authorize('read', $this->section);
         $forms = ProductForm::all();
         return view('back.products.forms.index', compact('forms'));
     }
 
     public function update($id = null)
     {
+        $this->authorize('write', $this->section);
         if ($id) {
             $form = ProductForm::find($id);
         } else {
@@ -33,6 +43,7 @@ class FormController extends Controller
 
     public function handleUpdate(ProductsFormRequest $request, $id = null)
     {
+        $this->authorize('write', $this->section);
         try {
             DB::beginTransaction();
 
@@ -69,6 +80,7 @@ class FormController extends Controller
 
     public function delete($id)
     {
+        $this->authorize('delete', $this->section);
         $form = ProductForm::findOrFail($id);
 
         $form->delete();

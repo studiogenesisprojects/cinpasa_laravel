@@ -58,14 +58,18 @@
                                         </button>
                                         <div aria-aplicationledby="dropdownMenuButton2"
                                             class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item"
-                                                href="{{ route('aplicaciones.edit', $aplication->id) }}">
-                                                <i class="icon-pencil"></i>
-                                                Editar
-                                            </a>
-                                            <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('aplicacions.destroy', $aplication->id) }}">
-                                                <i class="ti-trash"></i> Eliminar
-                                            </a>
+                                            @if(Auth()->user()->role->canWrite(App\Models\Section::find(config('app.enabled_sections.aplicaciones'))))
+                                                <a class="dropdown-item"
+                                                    href="{{ route('aplicaciones.edit', $aplication->id) }}">
+                                                    <i class="icon-pencil"></i>
+                                                    Editar
+                                                </a>
+                                            @endif
+                                            @if(Auth()->user()->role->canDelete(App\Models\Section::find(config('app.enabled_sections.aplicaciones'))))
+                                                <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('aplicacions.destroy', $aplication->id) }}">
+                                                    <i class="ti-trash"></i> Eliminar
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>

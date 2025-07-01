@@ -5,10 +5,17 @@ namespace App\Http\Controllers\Back\Finished;
 use App\Http\Controllers\Controller;
 use App\Models\FinishedSize;
 use App\Models\Language;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class FinishedSizeController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.acabados'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +23,7 @@ class FinishedSizeController extends Controller
      */
     public function index()
     {
+        $this->authorize('read', $this->section);
         $sizes = FinishedSize::all();
         return view('back.finisheds.sizes.index', compact('sizes'));
     }
@@ -27,6 +35,7 @@ class FinishedSizeController extends Controller
      */
     public function create()
     {
+        $this->authorize('write', $this->section);
         $languages = Language::all();
         return view('back.finisheds.sizes.create', compact('languages'));
     }
@@ -39,6 +48,7 @@ class FinishedSizeController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
         $request->validate([]);
 
         $size = FinishedSize::create();
@@ -62,6 +72,7 @@ class FinishedSizeController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $size = FinishedSize::findOrFail($id);
         $languages = Language::all();
         return view('back.finisheds.sizes.edit', compact('size', 'languages'));
@@ -76,6 +87,7 @@ class FinishedSizeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $size = FinishedSize::findOrFail($id);
         foreach ($request->languages as $index => $language) {
             $size->lang((int) $language['language_id'])->update([
@@ -94,6 +106,7 @@ class FinishedSizeController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $p = FinishedSize::findOrFail($id);
         $p->delete();
         return response()->json("OK");

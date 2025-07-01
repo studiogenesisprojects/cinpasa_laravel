@@ -6,25 +6,26 @@ use App\ApplicationHome;
 use App\Http\Controllers\Controller;
 use App\Models\Aplication;
 use App\Models\ApplicationCategory;
-use App\Models\Carousel;
-use App\Models\Noticia;
-use App\Models\NoticiaPrincipal;
 use App\Models\Product;
+use App\Models\Section;
 use App\News;
 use App\NewsFeatured;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public $section;
 
     public function __construct()
     {
+        $this->section = Section::find(config('app.enabled_sections.inicio'));
 
         //$this->authorizeResource(Product::class, 'id');
     }
 
     public function index()
     {
+        $this->authorize('read', $this->section);
         $news = News::orderBy('created_at', 'DESC')->get();
         $newsFeatured = NewsFeatured::all();
         $products = Product::orderBy('order')->take(10)->get();
@@ -48,6 +49,7 @@ class HomeController extends Controller
 
     public function update(Request $request)
     {
+        $this->authorize('write', $this->section);
         //logica para guardar las 3 noticias principales
         if ($request->select_type) {
             NewsFeatured::truncate();

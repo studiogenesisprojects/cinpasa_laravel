@@ -50,6 +50,7 @@
                                         <th>Sección</th>
                                         <th>Acceso</th>
                                         <th>Escritura</th>
+                                        <th>Eliminación</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,9 +58,10 @@
                                         <td class="text-weight-bold">Todo</td>
                                         <td class="px-4"><input id="toggleRead" type="checkbox"></td>
                                         <td class="px-4"><input id="toggleWrite" type="checkbox"></td>
+                                        <td class="px-4"><input id="toggleDelete" type="checkbox"></td>
                                     </tr>
                                     @foreach ($sections as $key => $section)
-                                        @if ($section->id < 16)
+                                        @if (in_array($section->id, config('app.enabled_sections')))
                                         <tr>
                                             <td>
                                                 {{ $section->name }}
@@ -72,6 +74,10 @@
                                             <td class="px-4">
                                                 <input name="sections[{{ $key }}][write]" class="write" type="checkbox"
                                                     {{ $role->canWrite($section) ? 'checked' : '' }}>
+                                            </td>
+                                            <td class="px-4">
+                                                <input name="sections[{{ $key }}][delete]" class="delete" type="checkbox"
+                                                    {{ $role->canDelete($section) ? 'checked' : '' }}>
                                             </td>
                                         </tr>
                                         @endif
@@ -96,6 +102,7 @@
     // Sync "Todo" toggles on page load
     $('#toggleRead').prop("checked", $('.read:checked').length === $('.read').length);
     $('#toggleWrite').prop("checked", $('.write:checked').length === $('.write').length);
+    $('#toggleDelete').prop("checked", $('.delete:checked').length === $('.delete').length);
 
     // Toggle all read checkboxes
     $('#toggleRead').change(function () {
@@ -105,6 +112,11 @@
     // Toggle all write checkboxes
     $('#toggleWrite').change(function () {
         $('.write').prop("checked", this.checked);
+    });
+
+    // Toggle all delete checkboxes
+    $('#toggleDelete').change(function () {
+        $('.delete').prop("checked", this.checked);
     });
 </script>
 @endsection

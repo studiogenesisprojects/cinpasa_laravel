@@ -7,19 +7,29 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductsBraidedRequest;
 use App\Models\Language;
 use App\Models\ProductBraided;
+use App\Models\Section;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class BraidedController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.productos'));
+    }
+    
     public function index()
     {
+        $this->authorize('read', $this->section);
         $braids = ProductBraided::cursor();
         return view('back.products.braids.index', compact('braids'));
     }
 
     public function update($id = null)
     {
+        $this->authorize('write', $this->section);
         if ($id) {
             $braid = ProductBraided::find($id);
         } else {
@@ -32,6 +42,7 @@ class BraidedController extends Controller
 
     public function handleUpdate(ProductsBraidedRequest $request, $id = null)
     {
+        $this->authorize('write', $this->section);
         try {
             DB::beginTransaction();
 
@@ -70,6 +81,7 @@ class BraidedController extends Controller
 
     public function delete($id)
     {
+        $this->authorize('delete', $this->section);
         $braid = ProductBraided::findOrFail($id);
         $braid->delete();
 

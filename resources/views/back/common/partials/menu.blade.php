@@ -26,7 +26,7 @@
             <ul class="main-menu">
                 <li class="sub-header"><span>Secciones</span></li>
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(2)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.inicio'))))
                 <li class="selected has-sub-menu">
                     <a href="#">
                         <div class="icon-w">
@@ -42,7 +42,8 @@
                         </div>
                     </div>
                 </li>
-
+            @endif
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.escritorio'))))
                 <li class="selected has-sub-menu">
                     <a href="#">
                         <div class="icon-w">
@@ -58,8 +59,8 @@
                         </div>
                     </div>
                 </li>
-                @endif
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(13)))
+            @endif
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.traducciones'))))
 
                 <li class="selected has-sub-menu">
                     <a href="#">
@@ -78,7 +79,7 @@
                 </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(10)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.noticias'))))
 
                 <li class="selected has-sub-menu">
                     <a href="javascript:void(0)">
@@ -99,7 +100,7 @@
                     </div>
                 </li>
             @endif
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(3)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.carousels'))))
 
                 <li class="selected has-sub-menu">
                     <a href="#">
@@ -118,7 +119,7 @@
                 </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(7)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.aplicaciones'))))
                 <li class="selected has-sub-menu">
                     <a href="#">
                         <div class="icon-w">
@@ -137,7 +138,7 @@
                 </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(4)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.productos'))))
                 <li class="selected has-sub-menu">
                     <a href="#">
                         <div class="icon-w">
@@ -164,7 +165,7 @@
                 </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(9)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.materiales'))))
 
                 <li class="selected has-sub-menu">
                     <a href="#">
@@ -183,7 +184,7 @@
                     </div>
                 </li>
             @endif
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(12)))
+            {{-- @if(Auth()->user()->role->canRead(App\Models\Section::find(12)))
 
                 <li class="selected has-sub-menu">
                     <a href="#">
@@ -200,9 +201,9 @@
                         </div>
                     </div>
                 </li>
-            @endif
+            @endif --}}
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(6)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.peticiones'))))
 
                 <li class="selected no-sub-menu">
                     <a href="{{route('peticiones.index')}}">
@@ -213,7 +214,7 @@
                     </a>
                 </li>
             @endif
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(8)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.acabados'))))
 
                 <li class="selected has-sub-menu">
                     <a href="#">
@@ -236,7 +237,7 @@
                 </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.solicitudes'))))
             <li class="selected">
                 <a href="{{route('cvs.index')}}">
                     <div class="icon-w">
@@ -256,7 +257,7 @@
             </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.solicitudes'))))
                 <li class="selected">
                     <a href="{{route('guide-request.index')}}">
                         <div class="icon-w">
@@ -268,7 +269,7 @@
                 </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.configuracion'))))
                 <li class="selected has-sub-menu">
                     <a href="#">
                         <div class="icon-w">
@@ -303,7 +304,7 @@
         <ul class="main-menu">
             <li class="sub-header"><span>Secciones</span></li>
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(2)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.inicio'))))
 
             <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('homeIndex')}}">
@@ -313,7 +314,9 @@
                     <span>Inicio</span>
                 </a>
             </li>
-
+            @endif
+            
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.escritorio'))))
             <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('dashboardIndex')}}">
                     <div class="icon-w">
@@ -324,7 +327,7 @@
             </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(13)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.traducciones'))))
             <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('traducciones')}}">
                     <div class="icon-w">
@@ -335,7 +338,7 @@
             </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(10)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.noticias'))))
             <li class="selected has-sub-menu">
                 <a href="javascript:void(0)">
                     <div class="icon-w">
@@ -356,7 +359,7 @@
             </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(3)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.carousels'))))
             <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('carousels.index')}}">
                     <div class="icon-w">
@@ -367,7 +370,7 @@
             </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(7)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.aplicaciones'))))
             <li class="selected has-sub-menu">
                 <a href="#">
                     <div class="icon-w">
@@ -386,7 +389,7 @@
             </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(4)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.productos'))))
             <li class="selected has-sub-menu">
                 <a href="{{route('productos.index')}}">
                     <div class="icon-w">
@@ -413,7 +416,7 @@
             </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(9)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.materiales'))))
             <li class="selected has-sub-menu">
                 <a href="{{route('materialIndex')}}">
                     <div class="icon-w">
@@ -432,8 +435,8 @@
             </li>
 
             @endif
-            @if(1 == 0)
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(12)))
+
+            {{-- @if(Auth()->user()->role->canRead(App\Models\Section::find(12)))
 
             <li class="selected has-sub-menu no-sub-menu">
                 <a href="{{route('customers')}}">
@@ -443,10 +446,9 @@
                     <span>Clientes</span>
                 </a>
             </li>
-            @endif
-            @endif
+            @endif --}}
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(6)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.peticiones'))))
 
             <li class="selected no-sub-menu">
                 <a href="{{route('peticiones.index')}}">
@@ -459,7 +461,7 @@
             @endif
 
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(8)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.acabados'))))
             <li class="selected has-sub-menu">
                 <a href="javascript:void(0)">
                     <div class="icon-w">
@@ -480,7 +482,7 @@
                 </div>
             </li>
             @endif
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.solicitudes'))))
             <li class="selected">
                 <a href="{{route('cvs.index')}}">
                     <div class="icon-w">
@@ -500,7 +502,7 @@
             </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(11)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.solicitudes'))))
                 <li class="selected">
                     <a href="{{route('guide-request.index')}}">
                         <div class="icon-w">
@@ -512,7 +514,7 @@
                 </li>
             @endif
             
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(15)))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.configuracion'))))
             <li class="selected has-sub-menu">
                 <a href="javascript:void(0)">
                     <div class="icon-w">

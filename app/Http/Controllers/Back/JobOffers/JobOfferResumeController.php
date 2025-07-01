@@ -7,15 +7,16 @@ use Illuminate\Http\Request;
 use App\Models\JobOffer;
 use App\Models\JobOfferInscription;
 use App\Models\JobOfferResume;
+use App\Models\Section;
 use Illuminate\Support\Facades\Storage;
 
 class JobOfferResumeController extends Controller
 {
 
+    public $section;
     public function __construct()
     {
-        // TODO arreglar permisos
-        // $this->authorizeResource(JobOfferInscription::class, 'id');
+        $this->section = Section::find(config('app.enabled_sections.solicitudes'));
     }
 
     /**
@@ -25,6 +26,7 @@ class JobOfferResumeController extends Controller
      */
     public function index()
     {
+        $this->authorize('read', $this->section);
         return view('back.job_offers.resumes.index', ['resumes' => JobOfferResume::all()]);
     }
 
@@ -35,6 +37,7 @@ class JobOfferResumeController extends Controller
      */
     public function create()
     {
+        $this->authorize('write', $this->section);
         return view('back.job_offers.resumes.create');
     }
 
@@ -68,6 +71,7 @@ class JobOfferResumeController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $jobResume = JobOfferResume::findOrFail($id);
         return view('back.job_offers.resumes.edit', ['resume' => $jobResume]);
     }
@@ -81,6 +85,7 @@ class JobOfferResumeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $request->validate([
             "created_at" => "date",
             "name" => "required|string"
@@ -100,6 +105,7 @@ class JobOfferResumeController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $jobResume = JobOfferResume::findOrFail($id);
 
         $file = Storage::url($jobResume->path);

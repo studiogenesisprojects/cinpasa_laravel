@@ -6,9 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\ProductColor;
 use App\Models\ProductColorShade;
 use Illuminate\Http\Request;
+use App\Models\Section;
 
 class ColorShadesController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.productos'));
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +24,7 @@ class ColorShadesController extends Controller
      */
     public function index()
     {
+        $this->authorize('read', $this->section);
         $shades = ProductColorShade::cursor();
         return view('back.products.colorsShades.index', compact('shades'));
     }
@@ -27,6 +36,7 @@ class ColorShadesController extends Controller
      */
     public function create()
     {
+        $this->authorize('write', $this->section);
         $colors = ProductColor::all();
         return view('back.products.colorsShades.create', compact('colors'));
     }
@@ -81,6 +91,7 @@ class ColorShadesController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $colors = ProductColor::all();
 
         $shade = ProductColorShade::findOrFail($id);
@@ -97,6 +108,7 @@ class ColorShadesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $colorCategory = ProductColorShade::findOrFail($id);
 
         $colorCategory->update($request->all());
@@ -131,6 +143,7 @@ class ColorShadesController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $productColor = ProductColorShade::findOrFail($id);
         $productColor->delete();
         return response()->json("Tonalidad borrada correctamente");

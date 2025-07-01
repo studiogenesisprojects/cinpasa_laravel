@@ -11,9 +11,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
 use DB;
 use Log;
+use App\Models\Section;
 
 class EtiquetaController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.noticias'));
+    }
     /*
      * Busca el slug que se pasa por parámetro en la base de datos en el idioma indicado y que no sea para el elemento en concreto
      * devuelve el número de veces que aparece el slug
@@ -25,6 +32,7 @@ class EtiquetaController extends Controller
 
     public function index(Request $request)
     {
+        $this->authorize('read', $this->section);
         if ($request->isMethod('post')) {
             $request->session()->put('filtro_noticia_etiqueta_nombre', $request->input('nombre'));
             $nombre = $request->session()->get('filtro_noticia_etiqueta_nombre');
@@ -56,6 +64,7 @@ class EtiquetaController extends Controller
 
     public function delete($id)
     {
+        $this->authorize('delete', $this->section);
         try {
             DB::beginTransaction();
             $etiqueta = NoticiaEtiqueta::findOrFail($id);
@@ -76,6 +85,7 @@ class EtiquetaController extends Controller
 
     public function update($id = null)
     {
+        $this->authorize('write', $this->section);
         try {
             if ($id) {
                 $etiqueta = NoticiaEtiqueta::findOrFail($id);
@@ -92,7 +102,8 @@ class EtiquetaController extends Controller
     }
 
     public function handleUpdate(HandleUpdateNoticiaEtiqueta $request, $id = '')
-    {
+    {   
+        $this->authorize('write', $this->section);
         try {
 
             $mensaje = array();

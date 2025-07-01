@@ -8,14 +8,16 @@ use Illuminate\Http\Request;
 use App\Models\JobOfferInscription;
 use App\Models\JobOfferLang;
 use App\Models\JobOfferResume;
+use App\Models\Section;
 use Illuminate\Support\Facades\Storage;
 
 class JobOfferInscriptionController extends Controller
 {
 
+    public $section;
     public function __construct()
     {
-        $this->authorizeResource(JobOfferInscription::class, 'id');
+        $this->section = Section::find(config('app.enabled_sections.solicitudes'));
     }
 
     /**
@@ -26,6 +28,7 @@ class JobOfferInscriptionController extends Controller
 
     public function index()
     {
+        $this->authorize('read', $this->section);
         return view('back.job_offers.inscriptions.index', ['inscriptions' => JobOfferInscription::all()]);
     }
 
@@ -69,6 +72,7 @@ class JobOfferInscriptionController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $jobInscription = JobOfferInscription::findOrFail($id);
         return view('back.job_offers.inscriptions.edit', ['inscription' => $jobInscription]);
     }
@@ -82,6 +86,7 @@ class JobOfferInscriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $jobInscription = JobOfferInscription::findOrFail($id);
         $jobInscription->update($request->toArray());
         return redirect()->route('inscritos.index')->with('success', 'Inscripción actualizada correctamente');
@@ -95,6 +100,7 @@ class JobOfferInscriptionController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $jobInscription = JobOfferInscription::findOrFail($id);
         $jobInscription->delete();
 

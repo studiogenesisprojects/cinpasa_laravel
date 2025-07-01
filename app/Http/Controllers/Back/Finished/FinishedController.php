@@ -13,14 +13,22 @@ use App\Models\FinishedMaterial;
 use App\Models\FinishedPosition;
 use App\Models\FinishedSize;
 use App\Models\Language;
-use App\Models\Material;
+use App\Models\Section;
 
 use Illuminate\Support\Facades\Storage;
 
 class FinishedController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.acabados'));
+    }
+
     public function index()
     {
+        $this->authorize('read', $this->section);
         // Finished::ponerOrder();
         $finisheds = Finished::orderBy('order')->get();
         return view('back.finisheds.index', compact('finisheds'));
@@ -28,6 +36,7 @@ class FinishedController extends Controller
 
     public function create()
     {
+        $this->authorize('write', $this->section);
         $materials = FinishedMaterial::all();
         $applications = Aplication::all();
         $languages = Language::all();
@@ -47,6 +56,7 @@ class FinishedController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
         // dd($request->all());
         $request->validate([
             "finishedLangs" => "required|array",
@@ -108,7 +118,7 @@ class FinishedController extends Controller
 
     public function edit($id)
     {
-
+        $this->authorize('write', $this->section);
         $finished = Finished::findOrFail($id);
         $applications = Aplication::all();
         $sizes = FinishedSize::all();
@@ -132,6 +142,7 @@ class FinishedController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $request->validate([
             "colors" => "array",
             "sizes" => "array",
@@ -233,6 +244,7 @@ class FinishedController extends Controller
 
     public function deleteImage($id, $imagen)
     {
+        $this->authorize('write', $this->section);
         $finished = Finished::find($id);
 
         if ($imagen == "primary") {
@@ -256,6 +268,7 @@ class FinishedController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $finished = Finished::findOrFail($id);
         $finished->aplications()->sync([]);
         $finished->materials()->delete();

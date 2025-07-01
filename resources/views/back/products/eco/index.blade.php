@@ -36,10 +36,14 @@
                                     <div class="btn-group">
                                         <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton2" form="button"><i class="icon-options-vertical"></i></button>
                                         <div aria-labelledby="dropdownMenuButton2" class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="{{ route('eco.edit', $eco->id) }}">
-                                                <i class="icon-pencil"></i> Editar
-                                            </a>
-                                            <a class="delete-register dropdown-item" href="#" data-url="{{ route('eco.destroy', $eco->id) }}" data-toggle="modal" data-target="#modal-delete"><i class="icon-trash"></i> Eliminar</a>
+                                            @if(Auth()->user()->role->canWrite(App\Models\Section::find(config('app.enabled_sections.productos'))))
+                                                <a class="dropdown-item" href="{{ route('eco.edit', $eco->id) }}">
+                                                    <i class="icon-pencil"></i> Editar
+                                                </a>
+                                            @endif
+                                            @if(Auth()->user()->role->canDelete(App\Models\Section::find(config('app.enabled_sections.productos'))))
+                                                <a class="delete-register dropdown-item" href="#" data-url="{{ route('eco.destroy', $eco->id) }}" data-toggle="modal" data-target="#modal-delete"><i class="icon-trash"></i> Eliminar</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>

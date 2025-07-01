@@ -9,12 +9,21 @@ use App\Models\AplicationLang;
 use App\Models\ApplicationCategory;
 use App\Models\ProductCategory;
 use App\Models\Language;
+use App\Models\Section;
 use Illuminate\Support\Facades\Storage;
 
 class AplicationController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.aplicaciones'));
+    }
+
     public function index()
     {
+        $this->authorize('read', $this->section);
         $aplications = Aplication::orderBy('order', 'DESC')->get();
 
         return view('back.aplication.index', compact('aplications'));
@@ -22,7 +31,7 @@ class AplicationController extends Controller
 
     public function create()
     {
-
+        $this->authorize('write', $this->section);
         $applicationCategories = ApplicationCategory::all();
         $languages = Language::all();
         return view('back.aplication.create', compact('applicationCategories', 'languages'));
@@ -30,7 +39,7 @@ class AplicationController extends Controller
 
     public function store(Request $request)
     {
-
+        $this->authorize('write', $this->section);
         $app = Aplication::create($request->all());
 
         if ($request->hasFile('section_image')) {
@@ -55,6 +64,7 @@ class AplicationController extends Controller
 
     public function edit($id)
     {
+        $this->authorize('write', $this->section);
         $application = Aplication::findOrFail($id);
         $applicationCategories = ApplicationCategory::all();
         $languages = Language::all();
@@ -64,6 +74,7 @@ class AplicationController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $aplication = Aplication::findOrFail($id);
         $aplication->order = $request->order;
         if ($request->hasFile('section_image')) {
@@ -89,6 +100,7 @@ class AplicationController extends Controller
 
     public function order(Request $request)
     {
+        $this->authorize('write', $this->section);
         foreach ($request->applications as $i => $application) {
             $p = ApplicationCategory::find($application['id']);
             $p->update([
@@ -100,6 +112,7 @@ class AplicationController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $aplication = Aplication::findOrFail($id);
         $aplication->applicationCategories()->sync([]);
         $aplication->finisheds()->sync([]);
@@ -119,6 +132,7 @@ class AplicationController extends Controller
 
     public function toggleActive($id)
     {
+        $this->authorize('write', $this->section);
         $category = Aplication::findOrFail($id);
         $category->update([
             "active" => !$category->active
@@ -129,6 +143,7 @@ class AplicationController extends Controller
 
     public function changeOrder(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $request->validate([
             "order" => "required|numeric",
         ]);

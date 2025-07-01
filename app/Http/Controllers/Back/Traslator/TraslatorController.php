@@ -8,12 +8,21 @@ use Spatie\TranslationLoader\LanguageLine;
 use App\Models\LanguageLine as LanguageLineFilter;
 use App\Models\Language;
 use App\Http\Requests\HandleUpdateTraslator;
+use App\Models\Section;
 use Exception;
 
 class TraslatorController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.traducciones'));
+    }
+    
     public function index(Request $request)
     {
+        $this->authorize('read', $this->section);
         if ($request->isMethod('post')) {
 
             if ($request->type) {
@@ -33,6 +42,7 @@ class TraslatorController extends Controller
 
     public function update($slug)
     {
+        $this->authorize('write', $this->section);
         $languages = Language::where('status', 1)->get();
         $line = LanguageLine::Where('group', '=', $slug)->get();
         return view('back.traslator.update', compact('languages', 'line', 'slug'));
@@ -40,7 +50,7 @@ class TraslatorController extends Controller
 
     public function handleTraducciones(Request $request, $slug)
     {
-
+        $this->authorize('write', $this->section);
         $slug =  $request->slug;
 
         $traslators = LanguageLine::Where('group', '=', $slug)->get();
@@ -67,6 +77,7 @@ class TraslatorController extends Controller
 
     public function newTranslate($slug = '')
     {
+        $this->authorize('write', $this->section);
         $languages = Language::where('status', 1)->get();
         return view('back.traslator.create', compact('languages', 'slug'));
     }
@@ -74,7 +85,7 @@ class TraslatorController extends Controller
     //crear desde 0 un grupo i texto
     public function handleUpdateCreate(HandleUpdateTraslator $request)
     {
-
+        $this->authorize('write', $this->section);
         $request->validate([
             "key" => "required|string"
         ]);
@@ -89,13 +100,12 @@ class TraslatorController extends Controller
 
     public function delete($slug)
     {
+        $this->authorize('delete', $this->section);
+
         try {
-
             LanguageLine::Where('group', '=', $slug)->delete();
-
             return redirect()->action('Back\Traslator\TraslatorController@index')->with('messages', 'Traduccion eliminada.');
         } catch (Exception $e) {
-
             return redirect()->action('Back\Traslator\TraslatorController@index')->with('message', 'Error. No se puede eliminar la noticia.');
         }
     }

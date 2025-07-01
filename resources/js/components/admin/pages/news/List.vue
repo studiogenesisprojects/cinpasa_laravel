@@ -19,14 +19,14 @@
               :columns="columns"
             >
               <span slot="action" slot-scope="item">
-                <a-button class="mb-2" size="small" type="primary" @click="handleEdit(item)">Editar</a-button>
+                <a-button v-if="writePermission" class="mb-2" size="small" type="primary" @click="handleEdit(item)">Editar</a-button>
                 <a-popconfirm
                   title="Estás seguro de borrar esta noticia?"
                   @confirm="handleDelete(item)"
                   okText="Si"
                   cancelText="No"
                 >
-                  <a-button size="small" type="danger">Borrar</a-button>
+                  <a-button v-if="deletePermission" size="small" type="danger">Borrar</a-button>
                 </a-popconfirm>
               </span>
 
@@ -97,8 +97,11 @@ export default {
           scopedSlots: { customRender: "action" }
         }
       ],
-      showBlockUi: false
+      showBlockUi: false,
+      writePermission: false,
+      deletePermission: false
     };
+
   },
 
   methods: {
@@ -135,11 +138,17 @@ export default {
         .catch(e => {
           this.$message.error("Error al eliminar la noticia");
         });
+    },
+    async hasPermission(permision) {
+      const { data } = await axios.get(`/admin/has-permission/${permision}/noticias`)
+      return data;
     }
   },
 
   async mounted() {
     this.showBlockUi = true;
+    this.writePermission = await this.hasPermission("write")
+    this.deletePermission = await this.hasPermission("delete")
     await this.fetch();
     this.showBlockUi = false;
   }

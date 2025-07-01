@@ -12,13 +12,21 @@ use Illuminate\Support\Facades\Response;
 
 class CarouselController extends Controller
 {
+    public $section;
+
+    public function __construct()
+    {
+        $this->section = Section::find(config('app.enabled_sections.carousels'));
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $this->authorize('read', $this->section);
         $carousels = Carousel::with('slides', 'slides.languages')->get();
         return response()->json($carousels);
     }
@@ -31,6 +39,7 @@ class CarouselController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('write', $this->section);
         $data = json_decode($request->carousel, true);
         $carousel = Carousel::create($data);
         foreach ($data['slides'] as $i => $slide) {
@@ -58,6 +67,7 @@ class CarouselController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('read', $this->section);
         $c = Carousel::findOrFail($id)->with('languages', 'slides');
         return response()->json($c);
     }
@@ -71,6 +81,7 @@ class CarouselController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $data = json_decode($request->carousel, true);
         $carousel = Carousel::findOrFail($id);
         $carousel->update($data);
@@ -111,6 +122,7 @@ class CarouselController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', $this->section);
         $carrousel = Carousel::findOrFail($id);
 
         $carrousel->slides->each(function ($slide) {
@@ -126,7 +138,7 @@ class CarouselController extends Controller
 
     public function deleteSlide($id)
     {
-
+        $this->authorize('delete', $this->section);
         $slide = Slide::findOrFail($id);
         $slide->delete();
         return  response()->json($id);
@@ -135,6 +147,7 @@ class CarouselController extends Controller
 
     public function toggleActive($id)
     {
+        $this->authorize('write', $this->section);
         $c = Carousel::findOrFail($id);
         $c->update([
             "active" => !$c->active
@@ -143,6 +156,7 @@ class CarouselController extends Controller
 
     public function toggleMain($id)
     {
+        $this->authorize('write', $this->section);
         $c = Carousel::findOrFail($id);
         if (!$c->active) {
             Carousel::where('section_id', $c->section_id)->where('main', true)->get()->each(function ($c) {
@@ -164,6 +178,7 @@ class CarouselController extends Controller
 
     function updateSlideImage(Request $request, $id)
     {
+        $this->authorize('write', $this->section);
         $slide = Slide::findOrFail($id);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->storeAs('public/carousels', str_replace(" ","-",$request->file('image')->getClientOriginalName()));
