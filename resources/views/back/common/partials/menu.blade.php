@@ -257,7 +257,7 @@
             </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.solicitudes'))))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.productos'))))
                 <li class="selected">
                     <a href="{{route('guide-request.index')}}">
                         <div class="icon-w">
@@ -502,7 +502,7 @@
             </li>
             @endif
 
-            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.solicitudes'))))
+            @if(Auth()->user()->role->canRead(App\Models\Section::find(config('app.enabled_sections.productos'))))
                 <li class="selected">
                     <a href="{{route('guide-request.index')}}">
                         <div class="icon-w">
