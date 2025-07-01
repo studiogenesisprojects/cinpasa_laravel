@@ -46,7 +46,7 @@
                                                     <a href="{{ route('ofertas-trabajo.edit', $offer->id)}}" class="dropdown-item"><i class="ti-pencil"></i> Editar</a>
                                                 @endif
                                                 
-                                                @if(Auth()->user()->role->canWrite(App\Models\Section::find(config('app.enabled_sections.solicitudes'))))  
+                                                @if(Auth()->user()->role->canDelete(App\Models\Section::find(config('app.enabled_sections.solicitudes'))))  
                                                     <a href="" class="dropdown-item delete-register" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('ofertas-trabajo.destroy', $offer->id) }}"><i class="ti-trash"></i> Eliminar</a>
                                                 @endif
                                             </div>
