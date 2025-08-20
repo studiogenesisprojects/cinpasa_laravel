@@ -50,12 +50,16 @@
                         <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
                             "productCategory" => $product->categories->first() ? $product->categories->first()->lang(App::getLocale()) : "",
                             "product" => $product
-                            ])}}" title="Accede a la información"><img class="w-100 border-img" src="{{ Storage::url($product->getPrimaryImageUrlAttribute()) }}"></a>
+                            ])}}" title="Accede a la información">
+                            <img class="w-100 border-img" src="{{ Storage::url($product->getPrimaryImageUrlAttribute()) }}" alt="{{ $product->primaryImage ? $product->primaryImage->getAltAttribute() : $product->getNameAttribute() }}">
+                        </a>
                         <div class="position-absolute transform-t-50 d-flex b-0 r-0 mr-3">
                             <a class="btn-icon" href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(), 'routes.products.showProduct', [
                                 "productCategory" =>  $product->categories->first() ? $product->categories->first()->lang(App::getLocale()) : "",
                                 "product" => $product
-                                ])}}" title="Obten información de este artículo"><i class="fas fa-info-circle" title="icono información"></i></a>
+                                ])}}" title="Obten información de este artículo">
+                                <i class="fas fa-info-circle" title="icono información"></i>
+                            </a>
                             <span id="{{ $product->id }}" class="btn-icon favorit {{ request()->session()->exists('product-'.$product->id)?'active':'' }}"> <i class="far fa-heart" title="{{ __('Favoritos.add') }}"></i></span>
                         </div>
                     </div>
