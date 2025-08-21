@@ -1,4 +1,6 @@
 @extends('front.common.main')
+@section('meta-title', __('Textos_legals.legal_warning_meta_title'))
+@section('meta-description', __('Textos_legals.legal_warning_meta_description'))
 
 @section('content')
 <div class="container">

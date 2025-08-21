@@ -1,4 +1,7 @@
 @extends('front.common.main')
+@section('meta-title', __('Favoritos.meta_title'))
+@section('meta-description', __('Favoritos.meta_description'))
+
 @section('content')
 <section id="home">
     <div class="container">

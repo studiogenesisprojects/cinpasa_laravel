@@ -1,4 +1,6 @@
 @extends('front.common.main')
+@section('meta-title', __('Textos_legals.cookie_policy_meta_title'))
+@section('meta-description', __('Textos_legals.cookie_policy_meta_description'))
 
 @section('content')
 <div class="container">

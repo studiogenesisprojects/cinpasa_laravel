@@ -1,5 +1,8 @@
 @extends('front.common.main')
 
+@section('meta-title', __('Textos_legals.privacy_polity_meta_title'))
+@section('meta-description', __('Textos_legals.privacy_polity_meta_description'))
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center mt-5">
