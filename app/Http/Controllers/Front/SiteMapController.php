@@ -198,7 +198,7 @@ class SiteMapController extends Controller
         );
 
         //Categorías de productos
-        $categories = ProductCategory::where('sup_product_category', null)->get();
+        $categories = ProductCategory::where('sup_product_category', null)->where('active', true)->get();
         foreach ($categories as $category) {
             $i = 0;
             foreach ($languages as $language) {
