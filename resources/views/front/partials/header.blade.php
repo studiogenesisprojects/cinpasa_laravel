@@ -11,7 +11,7 @@
             </div>
             <div class="d-flex align-items-center">
                 <select class="form-control-search" id="select_language">
-                    @foreach(\App\Models\Language::all() as $language)
+                    @foreach($appLanguages as $language)
                         @if(isset(explode("/", url()->current())[3]))
                             @if(explode("/", url()->current())[3] == $language->code)
                                 <option value="{{$language->code}}" data-url="{{LaravelLocalization::getLocalizedURL($language->code)}}" selected>{{strtoupper($language->code)}}</option>

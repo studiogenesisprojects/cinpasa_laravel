@@ -61,8 +61,7 @@
                 <p class="font-bold mb-2">{{__('Footer.contenido')}}</p>
                 <div class="d-flex flex-column">
                     @foreach ($footers as $father)
-                        <a class=""
-                            href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" => $father->slug])}}">{!! $father->name !!}</a>
+                        <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.products.show', ["productCategory" => $father->slug])}}">{!! $father->name !!}</a>
                     @endforeach
                     <br>
                     {{-- <a href="{{LaravelLocalization::getURLFromRouteNameTranslated(App::getLocale(),'routes.applications.index')}}" title="Accede al apartado aplicaciones">{{strtoupper(strtoupper(__('Menu.aplications')))}}</a> --}}
