@@ -64,7 +64,7 @@
                         @if ($product->galeries->first())
                         @foreach ($product->galeries->first()->images as $i => $image)
                         <li data-target="#carousel-token" data-slide-to="{{$product->primaryImage ? $i : ''}}" class="{{$loop->first && !$product->primaryImage ? 'active' : ''}} col">
-                            <img class="border-img miniatura" style="width: 90px; height: 90px;" src="@if(!empty($image->path)) {{ Storage::url($image->path)}} @else {{Storage::url('/img/nofoto.png')}}@endif" alt="miniatura carousel">
+                            <img class="border-img miniatura" style="width: 90px; height: 90px;" src="@if(!empty($image->path)){{ Storage::url($image->path)}}@else{{Storage::url('/img/nofoto.png')}}@endif" alt="miniatura carousel">
                         </li>
                         @endforeach
                         @endif
