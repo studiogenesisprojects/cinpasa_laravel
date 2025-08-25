@@ -26,11 +26,20 @@
         }
     </style> --}}
 
+    {{-- Stack for head (e.g. cronical links, meta tags, etc.) --}}
     @stack('head')
+  
+    {{-- Hreflangs --}}
+    <link rel="alternate" href="{{LaravelLocalization::getLocalizedURL(App::getLocale())}}" hreflang="x-default" />
+    @foreach ($appLanguages as $lang)
+        <link rel="alternate" href="{{LaravelLocalization::getLocalizedURL($lang->code)}}" hreflang="{{$lang->code}}" />
+    @endforeach
 
+    {{-- Title and description--}}
     <title>@yield('meta-title')</title>
     <meta name="title" content="@yield('meta-title')">
     <meta name="description" content="@yield('meta-description')">
+
     <meta name="facebook-domain-verification" content="luojrac4agvuqxefqvay508oqxfk86" />
     <meta name="google-site-verification" content="gBGhpBgCMjyxbklcebgapd2fqjrTkuy5_gW6uC8QsSQ" />
 
