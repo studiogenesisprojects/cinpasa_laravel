@@ -30,7 +30,7 @@
     @stack('head')
   
     {{-- Hreflangs --}}
-    <link rel="alternate" href="{{LaravelLocalization::getLocalizedURL(App::getLocale())}}" hreflang="x-default" />
+    <link rel="alternate" href="{{LaravelLocalization::getLocalizedURL(LaravelLocalization::getDefaultLocale())}}" hreflang="x-default" />
     @foreach ($appLanguages as $lang)
         <link rel="alternate" href="{{LaravelLocalization::getLocalizedURL($lang->code)}}" hreflang="{{$lang->code}}" />
     @endforeach
