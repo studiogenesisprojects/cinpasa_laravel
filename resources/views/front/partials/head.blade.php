@@ -20,17 +20,14 @@
     <link rel="stylesheet" href="{{ asset('front/css/style.css') . "?v=" . time() }}">
     {!! RecaptchaV3::initJs() !!}
     
-    @foreach ($appLanguages as $language)
-        <link rel="alternate" hreflang="{{ $language->code}}" href="{{ url($language->code) }}">
-    @endforeach
-
     {{-- <style>
         .grecaptcha-badge { 
             visibility: hidden !important;
         }
     </style> --}}
-    
-    {{-- <title>Cinpasa</title> --}}
+
+    @stack('head')
+
     <title>@yield('meta-title')</title>
     <meta name="title" content="@yield('meta-title')">
     <meta name="description" content="@yield('meta-description')">
